@@ -1,42 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* BRAVISSEA DESIGN SYSTEM - Náutico Minimalista Premium */
 
 @layer base {
   :root {
+    /* Cores Principais - Oceânico */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 210 50% 8%;
+    
+    /* Azul Oceânico Principal (#00438a convertido para HSL) */
+    --primary: 210 100% 27%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 210 100% 35%;
+    --primary-dark: 210 100% 20%;
+    
+    /* Cores Secundárias - Elegância */
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 50% 8%;
+    
+    /* Cores Neutras Premium */
+    --muted: 210 15% 95%;
+    --muted-foreground: 210 10% 45%;
+    
+    --accent: 190 80% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Bordas e Inputs Sutis */
+    --border: 210 20% 90%;
+    --input: 210 20% 94%;
+    --ring: 210 100% 27%;
+    
+    /* Sistema de Cards */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 210 50% 8%;
+    
+    /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --popover-foreground: 210 50% 8%;
+    
+    /* Estados de Sucesso/Erro */
+    --success: 140 65% 42%;
+    --success-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --warning: 45 100% 51%;
+    --warning-foreground: 0 0% 100%;
+    
+    /* Gradientes Náuticos */
+    --gradient-ocean: linear-gradient(135deg, hsl(210 100% 27%), hsl(190 80% 50%));
+    --gradient-sunset: linear-gradient(135deg, hsl(210 100% 27%), hsl(25 100% 60%));
+    --gradient-premium: linear-gradient(135deg, hsl(210 100% 27%) 0%, hsl(210 100% 35%) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    
+    /* Sombras Premium */
+    --shadow-sm: 0 2px 4px rgba(33, 80, 138, 0.06);
+    --shadow-md: 0 4px 12px rgba(33, 80, 138, 0.1);
+    --shadow-lg: 0 8px 25px rgba(33, 80, 138, 0.15);
+    --shadow-luxury: 0 20px 40px rgba(33, 80, 138, 0.2);
+    --shadow-glow: 0 0 20px rgba(33, 80, 138, 0.3);
+    
+    /* Animações Suaves */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    --radius: 12px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -94,12 +125,75 @@ All colors MUST be HSL.
   }
 }
 
+  .dark {
+    /* Modo escuro náutico */
+    --background: 210 50% 3%;
+    --foreground: 0 0% 95%;
+    --primary: 190 80% 50%;
+    --primary-foreground: 210 50% 3%;
+    --secondary: 210 30% 8%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 210 30% 6%;
+    --muted-foreground: 210 10% 65%;
+    --border: 210 30% 12%;
+    --input: 210 30% 10%;
+    --card: 210 30% 4%;
+    --card-foreground: 0 0% 95%;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-['Poppins',sans-serif] antialiased;
+  }
+}
+
+@layer components {
+  /* Componentes Náuticos Premium */
+  .btn-ocean {
+    @apply bg-gradient-to-r from-primary to-accent text-primary-foreground px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95;
+  }
+  
+  .btn-ghost-ocean {
+    @apply border-2 border-primary text-primary bg-transparent px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-md;
+  }
+  
+  .card-luxury {
+    @apply bg-card rounded-2xl shadow-md border border-border/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
+  }
+  
+  .text-gradient-ocean {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+  
+  .whatsapp-pulse {
+    @apply animate-pulse bg-green-500 hover:bg-green-600;
+  }
+  
+  /* Animações Náuticas */
+  .wave-animation {
+    animation: wave 3s ease-in-out infinite;
+  }
+  
+  @keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
   }
 }

@@ -1,0 +1,108 @@
+import { Button } from "@/components/ui/button";
+import { MessageCircle, Anchor, Star, Users } from "lucide-react";
+import heroYacht from "@/assets/hero-yacht.jpg";
+
+const Hero = () => {
+  const whatsappLink = "https://wa.me/5521999999999?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroYacht})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/60 to-accent/70"></div>
+      </div>
+      
+      {/* Floating Elements */}
+      <div className="absolute top-20 left-10 opacity-20 float-animation">
+        <Anchor className="w-16 h-16 text-white" />
+      </div>
+      <div className="absolute bottom-32 right-16 opacity-20 wave-animation">
+        <Star className="w-12 h-12 text-white" />
+      </div>
+      
+      {/* Main Content */}
+      <div className="relative z-10 container mx-auto px-6 text-center text-white">
+        <div className="max-w-4xl mx-auto">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 mb-8">
+            <Star className="w-5 h-5 text-yellow-400" />
+            <span className="text-sm font-medium">Experiências Premium no Rio</span>
+          </div>
+          
+          {/* Main Headline */}
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            Navegue pelo
+            <span className="block text-gradient-ocean bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
+              Paraíso Carioca
+            </span>
+          </h1>
+          
+          {/* Subheadline */}
+          <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
+            Descubra as belezas do Rio de Janeiro a bordo de iates, lanchas e catamarãs de luxo. 
+            Experiências inesquecíveis com segurança e conforto garantidos.
+          </p>
+          
+          {/* Stats */}
+          <div className="flex flex-wrap justify-center gap-8 mb-10">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-yellow-300">1000+</div>
+              <div className="text-sm text-white/80">Clientes Satisfeitos</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-yellow-300">15+</div>
+              <div className="text-sm text-white/80">Embarcações Premium</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-yellow-300">5 Anos</div>
+              <div className="text-sm text-white/80">de Experiência</div>
+            </div>
+          </div>
+          
+          {/* Call-to-Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              asChild 
+              size="lg" 
+              className="btn-ocean text-lg px-8 py-6 min-w-[200px]"
+            >
+              <a href="#embarcacoes">
+                <Users className="w-5 h-5 mr-2" />
+                Ver Embarcações
+              </a>
+            </Button>
+            
+            <Button 
+              asChild 
+              variant="outline" 
+              size="lg" 
+              className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-primary backdrop-blur-md text-lg px-8 py-6 min-w-[200px]"
+            >
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Falar no WhatsApp
+              </a>
+            </Button>
+          </div>
+          
+          {/* Trust Indicators */}
+          <div className="mt-12 text-sm text-white/70">
+            <p>✓ Embarcações licenciadas • ✓ Capitães experientes • ✓ Seguro incluso</p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
