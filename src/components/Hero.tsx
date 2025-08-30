@@ -16,51 +16,51 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-6 text-center text-white my-[11px]">
         <div className="max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 mb-8 my-[35px]">
-            <Star className="w-5 h-5 text-yellow-400" />
-            <span className="text-sm font-medium">Experiências Premium no Rio</span>
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 md:px-6 py-2 md:py-3 mb-6 md:mb-8 my-[25px] md:my-[35px]">
+            <Star className="w-4 h-4 md:w-5 md:h-5 text-yellow-400" />
+            <span className="text-xs md:text-sm font-medium">Experiências Premium no Rio</span>
           </div>
           
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
             Navegue pelo
             <span className="block bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Paraíso Carioca</span>
           </h1>
           
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
             Descubra as belezas do Rio de Janeiro a bordo de iates, lanchas e catamarãs de luxo. 
             Experiências inesquecíveis com segurança e conforto garantidos.
           </p>
           
           {/* Stats */}
-          <div className="flex flex-wrap justify-center gap-8 mb-10">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-8 md:mb-10">
             <div className="text-center">
-              <div className="text-3xl font-bold text-white">1000+</div>
-              <div className="text-sm text-white/80">Clientes Satisfeitos</div>
+              <div className="text-2xl md:text-3xl font-bold text-white">1000+</div>
+              <div className="text-xs md:text-sm text-white/80">Clientes Satisfeitos</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-white">15+</div>
-              <div className="text-sm text-white/80">Embarcações Premium</div>
+              <div className="text-2xl md:text-3xl font-bold text-white">15+</div>
+              <div className="text-xs md:text-sm text-white/80">Embarcações Premium</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-white">5 Anos</div>
-              <div className="text-sm text-white/80">de Experiência</div>
+              <div className="text-2xl md:text-3xl font-bold text-white">5 Anos</div>
+              <div className="text-xs md:text-sm text-white/80">de Experiência</div>
             </div>
           </div>
           
           {/* Call-to-Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button asChild size="lg" className="btn-ocean text-lg px-8 py-6 min-w-[200px]">
+            <Button asChild size="lg" className="btn-ocean text-base md:text-lg px-6 md:px-8 py-4 md:py-6 min-w-[180px] md:min-w-[200px]">
               <a href="#embarcacoes">
-                <Users className="w-5 h-5 mr-2" />
+                <Users className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                 Ver Embarcações
               </a>
             </Button>
             
-            <Button asChild variant="outline" size="lg" className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-primary backdrop-blur-md text-lg px-8 py-6 min-w-[200px]">
+            <Button asChild variant="outline" size="lg" className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-primary backdrop-blur-md text-base md:text-lg px-6 md:px-8 py-4 md:py-6 min-w-[180px] md:min-w-[200px]">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="w-5 h-5 mr-2" />
+                <MessageCircle className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                 Falar no WhatsApp
               </a>
             </Button>
