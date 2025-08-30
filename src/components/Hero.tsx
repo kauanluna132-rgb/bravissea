@@ -1,17 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Anchor, Star, Users } from "lucide-react";
 import heroYacht from "@/assets/hero-yacht.jpg";
-
 const Hero = () => {
   const whatsappLink = "https://wa.me/5521999999999?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
-
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroYacht})` }}
-      >
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
+      backgroundImage: `url(${heroYacht})`
+    }}>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/70 via-primary/50 to-primary/60"></div>
       </div>
       
@@ -35,9 +31,7 @@ const Hero = () => {
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Navegue pelo
-            <span className="block bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-              Paraíso Carioca
-            </span>
+            <span className="block bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Paraíso Carioca</span>
           </h1>
           
           {/* Subheadline */}
@@ -64,23 +58,14 @@ const Hero = () => {
           
           {/* Call-to-Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              asChild 
-              size="lg" 
-              className="btn-ocean text-lg px-8 py-6 min-w-[200px]"
-            >
+            <Button asChild size="lg" className="btn-ocean text-lg px-8 py-6 min-w-[200px]">
               <a href="#embarcacoes">
                 <Users className="w-5 h-5 mr-2" />
                 Ver Embarcações
               </a>
             </Button>
             
-            <Button 
-              asChild 
-              variant="outline" 
-              size="lg" 
-              className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-primary backdrop-blur-md text-lg px-8 py-6 min-w-[200px]"
-            >
+            <Button asChild variant="outline" size="lg" className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-primary backdrop-blur-md text-lg px-8 py-6 min-w-[200px]">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Falar no WhatsApp
@@ -90,7 +75,7 @@ const Hero = () => {
           
           {/* Trust Indicators */}
           <div className="mt-12 text-sm text-white/70">
-            <p>✓ Embarcações licenciadas • ✓ Capitães experientes • ✓ Seguro incluso</p>
+            
           </div>
         </div>
       </div>
@@ -101,8 +86,6 @@ const Hero = () => {
           <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
