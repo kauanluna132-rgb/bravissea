@@ -14,6 +14,16 @@ const Index = () => {
       <div id="home">
         <Hero />
       </div>
+      
+      {/* Scroll Indicator */}
+      <div className="relative z-20 flex justify-center -mt-8">
+        <div className="animate-bounce">
+          <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center bg-white shadow-lg">
+            <div className="w-1 h-3 bg-primary/70 rounded-full mt-2 animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+      
       <VesselCatalog />
       <TourRoutes />
       <HowItWorks />

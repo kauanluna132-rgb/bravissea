@@ -11,13 +11,6 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/70 via-primary/50 to-primary/60"></div>
       </div>
       
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 opacity-20 float-animation">
-        <Anchor className="w-16 h-16 text-white" />
-      </div>
-      <div className="absolute bottom-32 right-16 opacity-20 wave-animation">
-        <Star className="w-12 h-12 text-white" />
-      </div>
       
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6 text-center text-white my-[11px]">
@@ -80,12 +73,6 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
-        </div>
-      </div>
     </section>;
 };
 export default Hero;
