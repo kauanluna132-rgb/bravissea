@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Menu, X, Anchor, Phone, MapPin } from "lucide-react";
 import { Button } from "./ui/button";
-import bravissealogo from "@/assets/bravissea-logo.png";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuItems = [{
@@ -34,7 +33,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <img src={bravissealogo} alt="Bravissea" className="h-12 w-auto" />
+            <img src="/lovable-uploads/3ae1ccf8-33be-4386-9ddc-94def815ae84.png" alt="Bravissea" className="h-12 w-auto" />
           </div>
 
           {/* Desktop Menu */}
