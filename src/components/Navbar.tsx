@@ -30,9 +30,14 @@ const Navbar = () => {
   };
   return <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-border/50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
+        <div className="flex items-center justify-between h-16 md:justify-between">
+          {/* Logo - Desktop */}
+          <div className="hidden md:flex items-center space-x-2">
+            <img src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" />
+          </div>
+
+          {/* Logo - Mobile (Centered) */}
+          <div className="md:hidden flex-1 flex justify-center">
             <img src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" />
           </div>
 
@@ -55,7 +60,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button className="md:hidden p-2 absolute right-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X className="h-6 w-6 text-foreground" /> : <Menu className="h-6 w-6 text-foreground" />}
           </button>
         </div>
