@@ -1,5 +1,5 @@
 import { MapPin } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 
 const routes = [
@@ -43,7 +43,7 @@ const routes = [
 
 const TourRoutes = () => {
   const handleBookRoute = (routeName: string) => {
-    const message = `Olá! Gostaria de reservar o roteiro: ${routeName}. Podem me enviar mais informações?`;
+    const message = `Olá! Gostaria de incluir o destino: ${routeName} no meu passeio. Podem me enviar mais informações?`;
     const whatsappUrl = `https://wa.me/5521999999999?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -70,7 +70,7 @@ const TourRoutes = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute bottom-4 left-4">
-                  <div className="flex items-center text-white">
+                  <div className="flex items-center text-white bg-black/30 backdrop-blur-sm rounded-full px-3 py-1">
                     <MapPin className="h-4 w-4 mr-1" />
                     <span className="font-medium">{route.name}</span>
                   </div>
@@ -93,7 +93,7 @@ const TourRoutes = () => {
 
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">
-            Não encontrou o roteiro ideal? Criamos experiências personalizadas!
+            Não encontrou o destino ideal? Criamos experiências personalizadas!
           </p>
           <Button 
             variant="outline" 
