@@ -22,13 +22,13 @@ const Hero = () => {
           </div>
           
           {/* Main Headline */}
-          <h1 className="md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight text-4xl">
+          <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
             Navegue pelo
             <span className="block bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Paraíso Carioca</span>
           </h1>
           
           {/* Subheadline */}
-          <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="md:text-xl lg:text-2xl mb-6 md:mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed text-base">
             Descubra as belezas do Rio de Janeiro a bordo de iates, lanchas e catamarãs de luxo. 
             Experiências inesquecíveis com segurança e conforto garantidos.
           </p>
