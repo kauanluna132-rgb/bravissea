@@ -27,6 +27,7 @@ interface VesselCardProps {
   image: string;
   capacity: number;
   price: string;
+  originalPrice?: string;
   rating: number;
   duration: string;
   location: string;
@@ -42,6 +43,7 @@ const VesselCard = ({
   image,
   capacity,
   price,
+  originalPrice,
   rating,
   duration,
   location,
@@ -103,7 +105,10 @@ const VesselCard = ({
           </div>
           <div className="text-right">
             <div className="text-2xl font-bold text-primary">{price}</div>
-            <div className="text-xs text-muted-foreground">por pessoa</div>
+            {originalPrice && (
+              <div className="text-sm text-muted-foreground line-through">{originalPrice}</div>
+            )}
+            <div className="text-xs text-muted-foreground">por passeio</div>
           </div>
         </div>
       </CardHeader>

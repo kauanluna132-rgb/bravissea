@@ -16,77 +16,180 @@ import {
   Sun
 } from "lucide-react";
 
-// Importar as imagens
-import lanchaImage from "@/assets/lancha-premium.jpg";
-import catamaraImage from "@/assets/catamara-luxury.jpg";
-import iateImage from "@/assets/iate-executive.jpg";
+// Importar as imagens das embarcações
+import segueImage from "@/assets/segue-yacht.jpg";
+import tecnomarineImage from "@/assets/tecnomarine-yacht.jpg";
+import mywayImage from "@/assets/myway-yacht.jpg";
+import flyhiImage from "@/assets/flyhi-boat.jpg";
+import mcellImage from "@/assets/mcell-boat.jpg";
+import comendadorImage from "@/assets/comendador-yacht.jpg";
+import dragaoImage from "@/assets/dragao-yacht.jpg";
+import grandrarayImage from "@/assets/grandraray-yacht.jpg";
 
 const vessels = [
   {
-    id: "1",
-    name: "Ocean Dream",
-    type: "Lancha Premium",
-    image: lanchaImage,
-    capacity: 12,
-    price: "R$ 180",
+    id: "segue",
+    name: "SEGUE",
+    type: "Iate Premium",
+    image: segueImage,
+    capacity: 18,
+    price: "R$ 18.000",
+    originalPrice: "R$ 20.000",
     rating: 4.9,
-    duration: "4h",
+    duration: "8h",
     location: "Marina da Glória",
     features: [
-      { icon: Wifi, label: "Wi-Fi" },
+      { icon: Anchor, label: "Luxo Premium" },
       { icon: Music, label: "Som Premium" },
-      { icon: Coffee, label: "Bar" },
-      { icon: Shield, label: "Seguro" }
+      { icon: Coffee, label: "Bar Completo" },
+      { icon: Shield, label: "Capitão Incluso" }
     ],
-    description: "Lancha moderna e confortável para grupos pequenos",
+    description: "Iate premium com capacidade para 18 passageiros",
     highlight: true,
+    category: "iate"
+  },
+  {
+    id: "tecnomarine",
+    name: "Iate Tecnomarine",
+    type: "Iate Executive",
+    image: tecnomarineImage,
+    capacity: 20,
+    price: "R$ 10.000",
+    rating: 4.8,
+    duration: "8h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "Tecnologia Avançada" },
+      { icon: Music, label: "Sistema de Som" },
+      { icon: Coffee, label: "Cozinha Gourmet" },
+      { icon: Shield, label: "Segurança Total" }
+    ],
+    description: "Iate Tecnomarine com alta tecnologia para 20 passageiros",
+    category: "iate"
+  },
+  {
+    id: "myway",
+    name: "IATE MY WAY",
+    type: "Iate Luxury",
+    image: mywayImage,
+    capacity: 20,
+    price: "R$ 12.000",
+    rating: 4.9,
+    duration: "8h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "Design Exclusivo" },
+      { icon: Music, label: "Som Ambiente" },
+      { icon: Coffee, label: "Bar Premium" },
+      { icon: Waves, label: "Deck Espaçoso" }
+    ],
+    description: "Iate MY WAY com design exclusivo para 20 passageiros",
+    highlight: true,
+    category: "iate"
+  },
+  {
+    id: "flyhi",
+    name: "FLY HI",
+    type: "Lancha Premium",
+    image: flyhiImage,
+    capacity: 15,
+    price: "R$ 3.200",
+    originalPrice: "R$ 3.700",
+    rating: 4.7,
+    duration: "6h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Waves, label: "Alta Velocidade" },
+      { icon: Music, label: "Som Premium" },
+      { icon: Sun, label: "Área Solar" },
+      { icon: Shield, label: "Segurança" }
+    ],
+    description: "Lancha FLY HI ideal para passeios emocionantes",
     category: "lancha"
   },
   {
-    id: "2",
-    name: "Paradise Sailing",
-    type: "Catamarã Luxury",
-    image: catamaraImage,
-    capacity: 25,
-    price: "R$ 220",
-    rating: 4.8,
-    duration: "6h",
-    location: "Urca",
+    id: "mcell",
+    name: "M CELL",
+    type: "Lancha Compacta",
+    image: mcellImage,
+    capacity: 9,
+    price: "R$ 1.999",
+    originalPrice: "R$ 2.400",
+    rating: 4.6,
+    duration: "4h",
+    location: "Marina da Glória",
     features: [
-      { icon: Waves, label: "Deck Amplo" },
-      { icon: Music, label: "Sistema de Som" },
-      { icon: Coffee, label: "Cozinha" },
-      { icon: Sun, label: "Área Solar" }
+      { icon: Users, label: "Grupos Pequenos" },
+      { icon: Music, label: "Som" },
+      { icon: Sun, label: "Deck Aberto" },
+      { icon: Shield, label: "Seguro" }
     ],
-    description: "Catamarã espaçoso ideal para grupos grandes",
-    category: "catamara"
+    description: "Lancha compacta M CELL perfeita para grupos pequenos",
+    category: "lancha"
   },
   {
-    id: "3",
-    name: "Royal Yacht",
-    type: "Iate Executive",
-    image: iateImage,
-    capacity: 18,
-    price: "R$ 350",
-    rating: 5.0,
+    id: "comendador",
+    name: "COMENDADOR",
+    type: "Iate Executivo",
+    image: comendadorImage,
+    capacity: 25,
+    price: "R$ 7.700",
+    rating: 4.8,
     duration: "8h",
-    location: "Copacabana",
+    location: "Marina da Glória",
     features: [
-      { icon: Anchor, label: "3 Decks" },
-      { icon: Coffee, label: "Cozinha Gourmet" },
-      { icon: Wifi, label: "Wi-Fi Premium" },
-      { icon: Shield, label: "Capitão Incluso" }
+      { icon: Anchor, label: "Grande Capacidade" },
+      { icon: Music, label: "Som Profissional" },
+      { icon: Coffee, label: "Cozinha Completa" },
+      { icon: Waves, label: "Múltiplos Decks" }
     ],
-    description: "Iate de luxo para experiências exclusivas",
-    category: "iate",
-    highlight: true
+    description: "Iate COMENDADOR com capacidade para 25 passageiros",
+    category: "iate"
+  },
+  {
+    id: "dragao",
+    name: "Dragão",
+    type: "Iate Médio",
+    image: dragaoImage,
+    capacity: 17,
+    price: "R$ 4.000",
+    rating: 4.7,
+    duration: "6h",
+    location: "Marina da Glória",
+    size: "41 pés",
+    features: [
+      { icon: Anchor, label: "41 Pés" },
+      { icon: Music, label: "Sistema de Audio" },
+      { icon: Coffee, label: "Bar" },
+      { icon: Shield, label: "Tripulação" }
+    ],
+    description: "Iate Dragão de 41 pés para 17 passageiros",
+    category: "iate"
+  },
+  {
+    id: "grandraray",
+    name: "GRAND RARAY",
+    type: "Iate Premium",
+    image: grandrarayImage,
+    capacity: 18,
+    price: "R$ 6.000",
+    rating: 4.8,
+    duration: "8h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "Design Premium" },
+      { icon: Music, label: "Som Surround" },
+      { icon: Coffee, label: "Cozinha Gourmet" },
+      { icon: Waves, label: "Vista Panorâmica" }
+    ],
+    description: "GRAND RARAY com embarque na Marina da Glória",
+    category: "iate"
   }
 ];
 
 const categories = [
   { id: "all", name: "Todas", count: vessels.length },
   { id: "lancha", name: "Lanchas", count: vessels.filter(v => v.category === "lancha").length },
-  { id: "catamara", name: "Catamarãs", count: vessels.filter(v => v.category === "catamara").length },
   { id: "iate", name: "Iates", count: vessels.filter(v => v.category === "iate").length }
 ];
 
