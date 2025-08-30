@@ -28,7 +28,7 @@ const Navbar = () => {
       setIsMenuOpen(false);
     }
   };
-  return <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-border/50">
+  return <nav className="fixed top-4 left-4 right-4 mx-auto max-w-7xl glass-effect z-50 rounded-2xl border border-white/20 shadow-elegant">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:justify-between">
           {/* Logo - Desktop */}
