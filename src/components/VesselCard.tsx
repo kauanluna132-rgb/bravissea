@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 import { 
   Users, 
   Clock, 
@@ -48,6 +49,7 @@ const VesselCard = ({
   description,
   highlight = false
 }: VesselCardProps) => {
+  const navigate = useNavigate();
   const whatsappMessage = `Olá! Tenho interesse na embarcação ${name}. Gostaria de mais informações sobre preços e disponibilidade.`;
   const whatsappLink = `https://wa.me/5521999999999?text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -141,6 +143,7 @@ const VesselCard = ({
         <div className="flex gap-3 w-full">
           <Button 
             variant="outline" 
+            onClick={() => navigate(`/vessel/${id}`)}
             className="flex-1 border-primary text-primary hover:bg-primary hover:text-white"
           >
             Ver Detalhes

@@ -6,13 +6,13 @@ const Hero = () => {
   const whatsappLink = "https://wa.me/5521999999999?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroYacht})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/60 to-accent/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/70 via-primary/50 to-primary/60"></div>
       </div>
       
       {/* Floating Elements */}
@@ -35,7 +35,7 @@ const Hero = () => {
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Navegue pelo
-            <span className="block text-gradient-ocean bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
               Paraíso Carioca
             </span>
           </h1>
@@ -49,15 +49,15 @@ const Hero = () => {
           {/* Stats */}
           <div className="flex flex-wrap justify-center gap-8 mb-10">
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-300">1000+</div>
+              <div className="text-3xl font-bold text-white">1000+</div>
               <div className="text-sm text-white/80">Clientes Satisfeitos</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-300">15+</div>
+              <div className="text-3xl font-bold text-white">15+</div>
               <div className="text-sm text-white/80">Embarcações Premium</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-300">5 Anos</div>
+              <div className="text-3xl font-bold text-white">5 Anos</div>
               <div className="text-sm text-white/80">de Experiência</div>
             </div>
           </div>

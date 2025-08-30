@@ -4,57 +4,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* BRAVISSEA DESIGN SYSTEM - Náutico Minimalista Premium */
+/* BRAVISSEA DESIGN SYSTEM - Azul Marinho & Branco Premium */
 
 @layer base {
   :root {
-    /* Cores Principais - Oceânico */
+    /* Cores Principais - Apenas Azul Marinho e Branco */
     --background: 0 0% 100%;
-    --foreground: 210 50% 8%;
+    --foreground: 210 100% 20%;
     
-    /* Azul Oceânico Principal (#00438a convertido para HSL) */
+    /* Azul Marinho Principal (#00438a) */
     --primary: 210 100% 27%;
     --primary-foreground: 0 0% 100%;
     --primary-light: 210 100% 35%;
     --primary-dark: 210 100% 20%;
     
-    /* Cores Secundárias - Elegância */
-    --secondary: 210 20% 96%;
-    --secondary-foreground: 210 50% 8%;
+    /* Tons de Branco e Cinza Muito Sutil */
+    --secondary: 210 20% 98%;
+    --secondary-foreground: 210 100% 20%;
     
-    /* Cores Neutras Premium */
-    --muted: 210 15% 95%;
-    --muted-foreground: 210 10% 45%;
+    /* Neutros Mínimos */
+    --muted: 210 10% 96%;
+    --muted-foreground: 210 50% 40%;
     
-    --accent: 190 80% 50%;
+    --accent: 210 100% 27%;
     --accent-foreground: 0 0% 100%;
     
-    /* Bordas e Inputs Sutis */
-    --border: 210 20% 90%;
-    --input: 210 20% 94%;
+    /* Bordas Sutis */
+    --border: 210 20% 92%;
+    --input: 210 10% 98%;
     --ring: 210 100% 27%;
     
     /* Sistema de Cards */
     --card: 0 0% 100%;
-    --card-foreground: 210 50% 8%;
+    --card-foreground: 210 100% 20%;
     
     /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 210 50% 8%;
+    --popover-foreground: 210 100% 20%;
     
-    /* Estados de Sucesso/Erro */
-    --success: 140 65% 42%;
+    /* Estados mantendo apenas azul marinho */
+    --success: 210 100% 27%;
     --success-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
+    --destructive: 210 100% 27%;
     --destructive-foreground: 0 0% 100%;
-    --warning: 45 100% 51%;
+    --warning: 210 100% 27%;
     --warning-foreground: 0 0% 100%;
     
-    /* Gradientes Náuticos */
-    --gradient-ocean: linear-gradient(135deg, hsl(210 100% 27%), hsl(190 80% 50%));
-    --gradient-sunset: linear-gradient(135deg, hsl(210 100% 27%), hsl(25 100% 60%));
-    --gradient-premium: linear-gradient(135deg, hsl(210 100% 27%) 0%, hsl(210 100% 35%) 100%);
-    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    /* Gradientes Azul Marinho e Branco */
+    --gradient-ocean: linear-gradient(135deg, hsl(210 100% 27%), hsl(210 100% 35%));
+    --gradient-premium: linear-gradient(135deg, hsl(210 100% 27%) 0%, hsl(210 100% 20%) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+    --gradient-overlay: linear-gradient(135deg, rgba(0,67,138,0.1) 0%, rgba(0,67,138,0.05) 100%);
     
     /* Sombras Premium */
     --shadow-sm: 0 2px 4px rgba(33, 80, 138, 0.06);
