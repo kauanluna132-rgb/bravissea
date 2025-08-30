@@ -44,7 +44,7 @@ const routes = [
 const TourRoutes = () => {
   const handleBookRoute = (routeName: string) => {
     const message = `Olá! Gostaria de incluir o destino: ${routeName} no meu passeio. Podem me enviar mais informações?`;
-    const whatsappUrl = `https://wa.me/5521999999999?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5521974004415?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

@@ -111,7 +111,7 @@ ${bookingForm.message}
 Aguardo confirmação! 🌊
     `;
     
-    const whatsappUrl = `https://wa.me/5521999999999?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5521974004415?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

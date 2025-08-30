@@ -14,7 +14,7 @@ import {
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const whatsappLink = "https://wa.me/5521999999999?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
+  const whatsappLink = "https://wa.me/5521974004415?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
 
   return (
     <footer className="bg-primary text-primary-foreground">

@@ -332,7 +332,7 @@ const VesselCatalog = () => {
               Entre em contato conosco e criaremos uma experiência personalizada para você!
             </p>
             <Button asChild className="btn-ocean">
-              <a href="https://wa.me/5521999999999?text=Olá! Gostaria de uma experiência personalizada." target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5521974004415?text=Olá! Gostaria de uma experiência personalizada." target="_blank" rel="noopener noreferrer">
                 Falar com Especialista
               </a>
             </Button>

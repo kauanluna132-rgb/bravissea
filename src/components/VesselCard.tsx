@@ -53,7 +53,7 @@ const VesselCard = ({
 }: VesselCardProps) => {
   const navigate = useNavigate();
   const whatsappMessage = `Olá! Tenho interesse na embarcação ${name}. Gostaria de mais informações sobre preços e disponibilidade.`;
-  const whatsappLink = `https://wa.me/5521999999999?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappLink = `https://wa.me/5521974004415?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <Card className={`card-luxury overflow-hidden group ${highlight ? 'ring-2 ring-accent shadow-luxury' : ''}`}>

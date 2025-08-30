@@ -154,7 +154,7 @@ const HowItWorks = () => {
               Ver Embarcações
             </a>
             <a 
-              href="https://wa.me/5521999999999?text=Olá! Quero agendar meu passeio com a Bravissea."
+              href="https://wa.me/5521974004415?text=Olá! Quero agendar meu passeio com a Bravissea."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-primary transition-colors"
