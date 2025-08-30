@@ -33,7 +33,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <img src="/lovable-uploads/3ae1ccf8-33be-4386-9ddc-94def815ae84.png" alt="Bravissea" className="h-12 w-auto" />
+            <img src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" />
           </div>
 
           {/* Desktop Menu */}
