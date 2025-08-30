@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle, Anchor, Star, Users } from "lucide-react";
 import heroYacht from "@/assets/hero-yacht.jpg";
 const Hero = () => {
-  const whatsappLink = "https://wa.me/5521974004415?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
+  const whatsappLink = "https://wa.me/5521999999999?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
@@ -31,7 +31,9 @@ const Hero = () => {
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Navegue pelo
-            <span className="block bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Paraíso Carioca</span>
+            <span className="block bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent text-sm">
+              Paraíso Carioca
+            </span>
           </h1>
           
           {/* Subheadline */}
@@ -75,7 +77,7 @@ const Hero = () => {
           
           {/* Trust Indicators */}
           <div className="mt-12 text-sm text-white/70">
-            
+            <p>✓ Embarcações licenciadas • ✓ Capitães experientes • ✓ Seguro incluso</p>
           </div>
         </div>
       </div>
