@@ -183,6 +183,7 @@
   /* Customização da Barra de Rolagem */
   ::-webkit-scrollbar {
     width: 12px;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-track {
@@ -192,13 +193,10 @@
   ::-webkit-scrollbar-thumb {
     background: hsl(var(--primary));
     border-radius: 6px;
-    border: 2px solid transparent;
-    background-clip: content-box;
   }
 
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary-dark));
-    background-clip: content-box;
   }
 
   ::-webkit-scrollbar-button {
@@ -209,6 +207,10 @@
 
   ::-webkit-scrollbar-button:hover {
     background: hsl(var(--primary-dark));
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
   }
 
   /* Para Firefox */
