@@ -474,16 +474,40 @@ const AdminVessels = () => {
 
   const handleSaveAllChanges = () => {
     try {
+      console.log('Iniciando salvamento das alterações...');
+      console.log('Dados a serem salvos:', vessels);
+      
+      // Verificar se localStorage está disponível
+      if (typeof Storage === "undefined") {
+        throw new Error("LocalStorage não está disponível");
+      }
+      
+      // Converter para JSON e verificar se é válido
+      const dataToSave = JSON.stringify(vessels);
+      console.log('JSON gerado com sucesso, tamanho:', dataToSave.length);
+      
       // Salvar no localStorage
-      localStorage.setItem('adminVesselsData', JSON.stringify(vessels));
+      localStorage.setItem('adminVesselsData', dataToSave);
+      console.log('Dados salvos no localStorage com sucesso');
       
       // Também salvar uma flag indicando que há dados customizados
       localStorage.setItem('hasCustomVesselData', 'true');
+      console.log('Flag de dados customizados salva');
+      
+      // Verificar se foi salvo corretamente
+      const savedData = localStorage.getItem('adminVesselsData');
+      if (!savedData) {
+        throw new Error("Falha ao verificar dados salvos");
+      }
       
       setHasUnsavedChanges(false);
+      console.log('Estado atualizado - salvamento concluído');
       toast.success("Todas as alterações foram salvas no site!");
+      
     } catch (error) {
-      toast.error("Erro ao salvar alterações. Tente novamente.");
+      console.error('Erro ao salvar alterações:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
+      toast.error(`Erro ao salvar as informações: ${errorMessage}`);
     }
   };
 
