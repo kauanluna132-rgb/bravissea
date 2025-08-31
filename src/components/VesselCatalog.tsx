@@ -187,19 +187,31 @@ const vessels = [
     id: "comendador",
     name: "COMENDADOR",
     type: "Iate Executivo",
-    image: comendadorImage,
+    image: "/lovable-uploads/ca40959a-88f6-40ad-b3af-b8dca052c478.png",
+    images: [
+      "/lovable-uploads/ca40959a-88f6-40ad-b3af-b8dca052c478.png",
+      "/lovable-uploads/1c23f56d-2616-47e2-ba2d-f7bd359321e6.png",
+      "/lovable-uploads/cc84d2d6-4777-40f2-b0c5-e4a7ed3cfb1f.png",
+      "/lovable-uploads/d3999fcc-6362-452a-95f1-ee4837989846.png",
+      "/lovable-uploads/51953857-9cc6-4f6b-860b-f10e344d8e94.png",
+      "/lovable-uploads/f5fdfd5d-7cd9-457e-b76c-c16cbda72ee9.png",
+      "/lovable-uploads/6dc5fa01-f68a-45c6-aa61-a7dcc64a66f5.png",
+      "/lovable-uploads/1f2426c2-e57a-44a4-8978-c8a660c19472.png",
+      "/lovable-uploads/82016ba6-204b-43a9-ab66-548244eb229b.png",
+      "/lovable-uploads/3329870f-eac1-45fd-9e11-293311b5b514.png"
+    ],
     capacity: 25,
     price: "R$ 7.700",
     rating: 4.8,
-    duration: "8h",
+    duration: "5h",
     location: "Marina da Glória",
     features: [
-      { icon: Anchor, label: "Grande Capacidade" },
-      { icon: Music, label: "Som Profissional" },
-      { icon: Coffee, label: "Cozinha Completa" },
-      { icon: Waves, label: "Múltiplos Decks" }
+      { icon: Anchor, label: "55 Pés" },
+      { icon: Music, label: "Som Bluetooth" },
+      { icon: Coffee, label: "Cooler" },
+      { icon: Waves, label: "Flybridge" }
     ],
-    description: "Iate COMENDADOR com capacidade para 25 passageiros",
+    description: "Lancha 55 Pés com capacidade para 25 passageiros + 2 tripulantes",
     category: "iate"
   },
   {

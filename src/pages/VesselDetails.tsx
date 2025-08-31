@@ -269,14 +269,59 @@ const vesselsData = {
     id: "comendador",
     name: "COMENDADOR",
     type: "Iate Executivo",
-    images: [comendadorImage],
+    images: [
+      "/lovable-uploads/ca40959a-88f6-40ad-b3af-b8dca052c478.png",
+      "/lovable-uploads/1c23f56d-2616-47e2-ba2d-f7bd359321e6.png",
+      "/lovable-uploads/cc84d2d6-4777-40f2-b0c5-e4a7ed3cfb1f.png",
+      "/lovable-uploads/d3999fcc-6362-452a-95f1-ee4837989846.png",
+      "/lovable-uploads/51953857-9cc6-4f6b-860b-f10e344d8e94.png",
+      "/lovable-uploads/f5fdfd5d-7cd9-457e-b76c-c16cbda72ee9.png",
+      "/lovable-uploads/6dc5fa01-f68a-45c6-aa61-a7dcc64a66f5.png",
+      "/lovable-uploads/1f2426c2-e57a-44a4-8978-c8a660c19472.png",
+      "/lovable-uploads/82016ba6-204b-43a9-ab66-548244eb229b.png",
+      "/lovable-uploads/3329870f-eac1-45fd-9e11-293311b5b514.png"
+    ],
     capacity: 25,
     price: "R$ 7.700",
     rating: 4.8,
-    duration: "8h",
+    duration: "5h",
     location: "Marina da Glória",
-    description: "Iate COMENDADOR com capacidade para 25 passageiros",
-    category: "iate"
+    description: "Lancha 55 Pés com capacidade para 25 passageiros + 2 tripulantes",
+    category: "iate",
+    specs: {
+      type: "Lancha 55 Pés",
+      capacity: "25 passageiros + 2 tripulantes",
+      duration: "5 horas",
+      departure: "Late Clube Rio de Janeiro"
+    },
+    amenities: [
+      "Quarto",
+      "Salão", 
+      "Flybridge",
+      "Banheiro",
+      "Solarium de proa",
+      "Som Bluetooth",
+      "TV",
+      "Tomadas USB",
+      "Cooler",
+      "Ducha de água doce"
+    ],
+    schedule: {
+      morning: "08h às 13h",
+      afternoon: "14h às 19h"
+    },
+    included: [
+      "Tripulação",
+      "Limpeza", 
+      "Combustível"
+    ],
+    itineraries: [
+      { name: "Roteiro Urca", price: "R$ 7.700", description: "Passeio pela região da Urca" },
+      { name: "Roteiro Praia do Morcego", price: "R$ 8.500", description: "Visita à Praia do Morcego" },
+      { name: "Roteiro Praia Vermelha", price: "R$ 9.000", description: "Exploração da Praia Vermelha" },
+      { name: "Roteiro Copacabana", price: "R$ 9.500", description: "Passeio pela costa de Copacabana" },
+      { name: "Roteiro Ilha Cagarras", price: "R$ 11.000", description: "Aventura nas Ilhas Cagarras" }
+    ]
   },
   dragao: {
     id: "dragao",
