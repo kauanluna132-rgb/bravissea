@@ -292,7 +292,7 @@ const vessels = [
       { icon: Shield, label: "Marinheiro" }
     ],
     description: "Catamarã de até 65 passageiros com horários válidos por 30 dias",
-    category: "iate"
+    category: "catamara"
   },
   {
     id: "blau",
@@ -311,7 +311,7 @@ const vessels = [
       { icon: Shield, label: "Marinheiro" }
     ],
     description: "Catamarã Blau com embarque na Marina da Glória",
-    category: "iate"
+    category: "catamara"
   },
   {
     id: "nossa",
@@ -395,7 +395,8 @@ const vessels = [
 const categories = [
   { id: "all", name: "Todas", count: vessels.length },
   { id: "lancha", name: "Lanchas", count: vessels.filter(v => v.category === "lancha").length },
-  { id: "iate", name: "Iates", count: vessels.filter(v => v.category === "iate").length }
+  { id: "iate", name: "Iates", count: vessels.filter(v => v.category === "iate").length },
+  { id: "catamara", name: "Catamarãs", count: vessels.filter(v => v.category === "catamara").length }
 ];
 
 const VesselCatalog = () => {
