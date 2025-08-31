@@ -25,6 +25,7 @@ interface VesselCardProps {
   name: string;
   type: string;
   image: string;
+  images?: string[];
   capacity: number;
   price: string;
   originalPrice?: string;
@@ -41,6 +42,7 @@ const VesselCard = ({
   name,
   type,
   image,
+  images = [],
   capacity,
   price,
   originalPrice,
@@ -87,12 +89,14 @@ const VesselCard = ({
         </div>
         
         {/* Botão de galeria no hover */}
-        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <Button size="sm" variant="secondary" className="bg-white/90 text-primary">
-            <Camera className="w-4 h-4 mr-2" />
-            Ver Galeria
-          </Button>
-        </div>
+        {images.length > 1 && (
+          <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <Button size="sm" variant="secondary" className="bg-white/90 text-primary">
+              <Camera className="w-4 h-4 mr-2" />
+              Ver Galeria ({images.length} fotos)
+            </Button>
+          </div>
+        )}
       </div>
       
       <CardHeader className="pb-4">

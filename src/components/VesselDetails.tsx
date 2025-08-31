@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import VesselImageCarousel from "@/components/VesselImageCarousel";
 import { 
   ArrowLeft, 
   Star, 
@@ -73,7 +74,8 @@ const vesselData = {
       "Sistema de som premium",
       "Bar completo"
     ],
-    gallery: [segueImage]
+    gallery: [segueImage],
+    images: [segueImage]
   },
   tecnomarine: {
     id: "tecnomarine",
@@ -101,7 +103,8 @@ const vesselData = {
       "Sistema de navegação GPS",
       "Cozinha equipada"
     ],
-    gallery: [tecnomarineImage]
+    gallery: [tecnomarineImage],
+    images: [tecnomarineImage]
   },
   myway: {
     id: "myway",
@@ -129,7 +132,8 @@ const vesselData = {
       "Som ambiente",
       "Bar premium"
     ],
-    gallery: [mywayImage]
+    gallery: [mywayImage],
+    images: [mywayImage]
   },
   flyhi: {
     id: "flyhi",
@@ -156,7 +160,8 @@ const vesselData = {
       "Som premium",
       "Cooler com gelo"
     ],
-    gallery: [flyhiImage]
+    gallery: [flyhiImage],
+    images: [flyhiImage]
   },
   mcell: {
     id: "mcell",
@@ -182,7 +187,8 @@ const vesselData = {
       "Kit de segurança",
       "Sistema de som"
     ],
-    gallery: [mcellImage]
+    gallery: [mcellImage],
+    images: [mcellImage]
   },
   comendador: {
     id: "comendador",
@@ -210,7 +216,8 @@ const vesselData = {
       "Som profissional",
       "Cozinha completa"
     ],
-    gallery: [comendadorImage]
+    gallery: [comendadorImage],
+    images: [comendadorImage]
   },
   dragao: {
     id: "dragao",
@@ -237,7 +244,8 @@ const vesselData = {
       "Sistema de audio",
       "Bar básico"
     ],
-    gallery: [dragaoImage]
+    gallery: [dragaoImage],
+    images: [dragaoImage]
   },
   grandraray: {
     id: "grandraray",
@@ -265,7 +273,8 @@ const vesselData = {
       "Cozinha gourmet",
       "Vista panorâmica"
     ],
-    gallery: [grandrarayImage]
+    gallery: [grandrarayImage],
+    images: [grandrarayImage]
   },
   "lady-ruth": {
     id: "lady-ruth",
@@ -292,7 +301,8 @@ const vesselData = {
       "Equipamentos de segurança",
       "Seguro náutico"
     ],
-    gallery: [ladyRuthImage]
+    gallery: [ladyRuthImage],
+    images: [ladyRuthImage]
   },
   mangata: {
     id: "mangata",
@@ -334,7 +344,8 @@ const vesselData = {
       "Luzes subaquáticas",
       "Taxa de churrasqueiro R$200"
     ],
-    gallery: [mangataImage]
+    gallery: [mangataImage],
+    images: [mangataImage]
   },
   prestige: {
     id: "prestige",
@@ -368,7 +379,8 @@ const vesselData = {
       "Som Bluetooth com automação independente em todos os ambientes",
       "Fly com pia!"
     ],
-    gallery: [prestigeImage]
+    gallery: [prestigeImage],
+    images: [prestigeImage]
   },
   rebeca: {
     id: "rebeca",
@@ -401,7 +413,8 @@ const vesselData = {
       "Design italiano Pininfarina",
       "Passei com duração de 6 horas com combustível incluso"
     ],
-    gallery: [rebecaImage]
+    gallery: [rebecaImage],
+    images: [rebecaImage]
   },
   oceano: {
     id: "oceano",
@@ -429,7 +442,8 @@ const vesselData = {
       "Até 50 passageiros - R$16.000,00",
       "Até 65 passageiros - R$18.000,00"
     ],
-    gallery: [oceanoImage]
+    gallery: [oceanoImage],
+    images: [oceanoImage]
   },
   blau: {
     id: "blau",
@@ -456,7 +470,8 @@ const vesselData = {
       "Roteiro: Urca X Praia Vermelha",
       "Itaipu ou cagarras acréscimo de R$2.000,00"
     ],
-    gallery: [blauImage]
+    gallery: [blauImage],
+    images: [blauImage]
   },
   nossa: {
     id: "nossa",
@@ -492,7 +507,8 @@ const vesselData = {
       "08:00 as 13:00",
       "13:30 as 18:30"
     ],
-    gallery: [nossaImage]
+    gallery: [nossaImage],
+    images: [nossaImage]
   },
   seven: {
     id: "seven",
@@ -521,7 +537,8 @@ const vesselData = {
       "Roteiro 5: Marina da glória x Flamengo x Botafogo x piratininga x Camboinhas x itaipu x marina da glória R$8.400,00",
       "Taxa de churrasco R$200,0"
     ],
-    gallery: [sevenImage]
+    gallery: [sevenImage],
+    images: [sevenImage]
   },
   senna: {
     id: "senna",
@@ -567,7 +584,8 @@ const vesselData = {
       "R$200,00 taxa churrasqueiro",
       "Está incluso diesel, comandante e auxiliar"
     ],
-    gallery: [sennaImage]
+    gallery: [sennaImage],
+    images: [sennaImage]
   },
   luisa: {
     id: "luisa",
@@ -600,7 +618,8 @@ const vesselData = {
       "Taxa de Embarque = R$200,00",
       "Coolers/macarrão flutuantes / churrasqueira"
     ],
-    gallery: [luisaImage]
+    gallery: [luisaImage],
+    images: [luisaImage]
   }
 };
 
@@ -733,30 +752,11 @@ Aguardo retorno!`;
             
             {/* Image Gallery */}
             <div className="space-y-4">
-              <img 
-                src={vessel.gallery[selectedImage]} 
-                alt={vessel.name}
-                className="w-full h-96 object-cover rounded-xl"
+              <VesselImageCarousel
+                images={vessel.images || vessel.gallery}
+                vesselName={vessel.name}
+                isAdminMode={false}
               />
-              {vessel.gallery.length > 1 && (
-                <div className="flex gap-2">
-                  {vessel.gallery.map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedImage(index)}
-                      className={`flex-1 h-20 rounded-lg overflow-hidden border-2 ${
-                        selectedImage === index ? 'border-primary' : 'border-border'
-                      }`}
-                    >
-                      <img 
-                        src={image} 
-                        alt={`${vessel.name} ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
 
             {/* Description */}

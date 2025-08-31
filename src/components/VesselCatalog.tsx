@@ -43,6 +43,7 @@ const vessels = [
     name: "SEGUE",
     type: "Iate Premium",
     image: segueImage,
+    images: [segueImage],
     capacity: 18,
     price: "R$ 18.000",
     originalPrice: "R$ 20.000",
