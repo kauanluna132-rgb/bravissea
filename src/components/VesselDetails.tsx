@@ -298,30 +298,43 @@ const vesselData = {
   },
   mcell: {
     id: "mcell",
-    name: "M CELL",
-    type: "Lancha Compacta",
-    image: mcellImage,
+    name: "Lancha M Cell",
+    type: "Lancha",
+    image: "/lovable-uploads/mcell-1.png",
     capacity: 9,
-    price: "R$ 1.999",
-    originalPrice: "R$ 2.400",
-    rating: 4.6,
-    duration: "4h",
+    price: "R$ 2.500",
+    originalPrice: undefined,
+    rating: 4.8,
+    duration: "5h",
     location: "Marina da Glória",
-    description: "Lancha compacta M CELL perfeita para grupos pequenos e passeios íntimos.",
+    description: "Lancha M Cell com cabine, churrasqueira e todas as comodidades para um passeio perfeito.",
     specifications: {
-      comprimento: "28 pés",
-      motor: "Yamaha 225hp",
-      combustivel: "Gasolina",
-      capacidadeTanque: "150L"
+      comprimento: "Lancha",
+      capacidade: "01 Tripulante + 09 Passageiros",
+      horarios: "08h às 13h / 14h às 19h",
+      embarque: "Marina da Glória"
     },
     included: [
-      "Piloto profissional",
-      "Seguro básico",
-      "Kit de segurança",
-      "Sistema de som"
+      "Tripulante",
+      "Limpeza",
+      "Combustível"
     ],
-    gallery: [mcellImage],
-    images: [mcellImage]
+    gallery: [
+      "/lovable-uploads/mcell-1.png",
+      "/lovable-uploads/mcell-2.png",
+      "/lovable-uploads/mcell-3.png",
+      "/lovable-uploads/mcell-4.png",
+      "/lovable-uploads/mcell-5.png",
+      "/lovable-uploads/mcell-6.png"
+    ],
+    images: [
+      "/lovable-uploads/mcell-1.png",
+      "/lovable-uploads/mcell-2.png",
+      "/lovable-uploads/mcell-3.png",
+      "/lovable-uploads/mcell-4.png",
+      "/lovable-uploads/mcell-5.png",
+      "/lovable-uploads/mcell-6.png"
+    ]
   },
   comendador: {
     id: "comendador",
@@ -1161,7 +1174,104 @@ Aguardo retorno!`;
                </>
              )}
 
-            {/* Senna Specific Information */}
+             {/* M CELL Specific Information */}
+             {vessel.id === 'mcell' && (
+               <>
+                 {/* Roteiro */}
+                 <div className="bg-white p-6 rounded-xl border shadow-sm">
+                   <h3 className="text-xl font-bold mb-4">Roteiro Urca</h3>
+                   <div className="space-y-3">
+                     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
+                       <span className="font-medium text-blue-800">Preço:</span>
+                       <span className="font-bold text-blue-600">R$ 2.500,00</span>
+                     </div>
+                     <div className="bg-gray-50 p-4 rounded-lg">
+                       <h4 className="font-semibold mb-2">Roteiro:</h4>
+                       <ul className="space-y-1 text-sm">
+                         <li>• Praia do Flamengo</li>
+                         <li>• Enseada de Botafogo</li>
+                         <li>• Mureta da Urca</li>
+                         <li>• Flutuante Rio</li>
+                         <li>• Praia da Bandeira</li>
+                         <li>• Vista do Pão de Açúcar e Cristo Redentor</li>
+                       </ul>
+                     </div>
+                   </div>
+                 </div>
+
+                 {/* Capacidade */}
+                 <div className="bg-white p-6 rounded-xl border shadow-sm">
+                   <h3 className="text-xl font-bold mb-4">Capacidade</h3>
+                   <div className="space-y-3">
+                     <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                       <span>Tripulante:</span>
+                       <span className="font-semibold">01</span>
+                     </div>
+                     <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                       <span>Passageiros:</span>
+                       <span className="font-semibold">09</span>
+                     </div>
+                   </div>
+                 </div>
+
+                 {/* Horários Disponíveis */}
+                 <div className="bg-white p-6 rounded-xl border shadow-sm">
+                   <h3 className="text-xl font-bold mb-4">Horários Disponíveis</h3>
+                   <div className="space-y-3">
+                     <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                       <span className="font-medium">Manhã:</span>
+                       <span className="font-semibold">08h às 13h</span>
+                     </div>
+                     <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                       <span className="font-medium">Tarde:</span>
+                       <span className="font-semibold">14h às 19h</span>
+                     </div>
+                   </div>
+                 </div>
+
+                 {/* Taxas Adicionais */}
+                 <div className="bg-white p-6 rounded-xl border shadow-sm">
+                   <h3 className="text-xl font-bold mb-4">Taxas Adicionais</h3>
+                   <div className="space-y-3">
+                     <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                       <span>Taxa Churrasqueiro:</span>
+                       <span className="font-semibold">R$ 200,00</span>
+                     </div>
+                     <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                       <span>Taxa de Embarque:</span>
+                       <span className="font-semibold">R$ 200,00</span>
+                     </div>
+                   </div>
+                 </div>
+
+                 {/* Comodidades */}
+                 <div className="bg-white p-6 rounded-xl border shadow-sm">
+                   <h3 className="text-xl font-bold mb-4">Comodidades</h3>
+                   <div className="grid grid-cols-2 gap-3">
+                     <div className="p-3 bg-green-50 rounded-lg text-center">
+                       <span className="text-sm font-medium">Cabine</span>
+                     </div>
+                     <div className="p-3 bg-green-50 rounded-lg text-center">
+                       <span className="text-sm font-medium">Som Bluetooth</span>
+                     </div>
+                     <div className="p-3 bg-green-50 rounded-lg text-center">
+                       <span className="text-sm font-medium">Churrasqueira</span>
+                     </div>
+                     <div className="p-3 bg-green-50 rounded-lg text-center">
+                       <span className="text-sm font-medium">Banheiro</span>
+                     </div>
+                     <div className="p-3 bg-green-50 rounded-lg text-center">
+                       <span className="text-sm font-medium">Ducha de Água Doce</span>
+                     </div>
+                     <div className="p-3 bg-green-50 rounded-lg text-center">
+                       <span className="text-sm font-medium">Flutuadores para banho de mar</span>
+                     </div>
+                   </div>
+                 </div>
+               </>
+             )}
+
+             {/* Senna Specific Information */}
             {vessel.id === 'senna' && (
               <>
                 {/* Horários */}

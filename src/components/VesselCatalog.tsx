@@ -163,22 +163,22 @@ const vessels = [
   },
   {
     id: "mcell",
-    name: "M CELL",
-    type: "Lancha Compacta",
-    image: mcellImage,
+    name: "Lancha M Cell",
+    type: "Lancha",
+    image: "/lovable-uploads/mcell-1.png",
     capacity: 9,
-    price: "R$ 1.999",
-    originalPrice: "R$ 2.400",
-    rating: 4.6,
-    duration: "4h",
+    price: "R$ 2.500",
+    originalPrice: undefined,
+    rating: 4.8,
+    duration: "5h",
     location: "Marina da Glória",
     features: [
       { icon: Users, label: "Grupos Pequenos" },
-      { icon: Music, label: "Som" },
-      { icon: Sun, label: "Deck Aberto" },
-      { icon: Shield, label: "Seguro" }
+      { icon: Music, label: "Som Bluetooth" },
+      { icon: Sun, label: "Churrasqueira" },
+      { icon: Shield, label: "Banheiro" }
     ],
-    description: "Lancha compacta M CELL perfeita para grupos pequenos",
+    description: "Lancha M Cell com cabine, churrasqueira e todas as comodidades para um passeio perfeito",
     category: "lancha"
   },
   {
