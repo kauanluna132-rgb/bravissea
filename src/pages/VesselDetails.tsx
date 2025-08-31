@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Users, Clock, Star, MapPin, Waves, Coffee, Music, Sun, Shield, Anchor, Zap, Box, Monitor, Smartphone, Droplets, Sparkles, Fuel } from "lucide-react";
+import { ArrowLeft, Users, Clock, Star, MapPin, Waves, Coffee, Music, Sun, Shield, Anchor, Zap, Box, Monitor, Smartphone, Droplets, Sparkles, Fuel, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -570,14 +570,46 @@ const vesselsData = {
   seven: {
     id: "seven",
     name: "SEVEN",
-    type: "Lancha Premium",
-    images: [sevenImage],
+    type: "Lancha SEVEN Intermarine 44",
+    images: [
+      "/lovable-uploads/0e8ef52a-4cbd-4c90-8602-90019c49b129.png",
+      "/lovable-uploads/79cf6208-ce19-4ffe-85c4-6cc5c03d60e0.png",
+      "/lovable-uploads/a47c4b6e-8519-414d-8f7b-8b2cef4ac260.png",
+      "/lovable-uploads/a8410def-d105-4c3e-acd4-8bff54b0c794.png",
+      "/lovable-uploads/0c739ce3-f5bc-485d-b661-807f20a0c958.png",
+      "/lovable-uploads/5ac3941d-a8c6-4e87-a719-657b70a3c01f.png",
+      "/lovable-uploads/835760af-9ec1-442f-91d6-4aa2ce55415d.png",
+      "/lovable-uploads/4aaeb7d8-8a8f-47c5-81d7-d1cffeac9b1f.png",
+      "/lovable-uploads/4a4ec402-ae85-44e6-8c3f-9cc24d90ec61.png",
+      "/lovable-uploads/ffe0d831-bee7-4a21-aa0a-a08b806d4699.png"
+    ],
     capacity: 15,
     price: "R$ 7.000",
     rating: 4.7,
     duration: "5h",
     location: "Marina da Glória",
-    description: "Lancha intermarine 44 pés com embarque na Marina da Glória",
+    description: "Lancha SEVEN Intermarine 44 com duração de 5 horas de passeio",
+    specs: {
+      model: "Lancha SEVEN Intermarine 44",
+      capacity: "15 passageiros + 2 marinheiros",
+      duration: "5 horas de passeio",
+      boarding: "Marina da Glória"
+    },
+    amenities: [
+      "Som Bluetooth",
+      "Flutuadores para banho"
+    ],
+    inclusions: [
+      "Combustível",
+      "Marinheiro",
+      "Som Bluetooth",
+      "Flutuadores para banho"
+    ],
+    routes: [
+      { name: "Roteiro Urca", price: "R$ 7.000" },
+      { name: "Roteiro Praia Vermelha", price: "R$ 7.800" },
+      { name: "Roteiro Ilha Cagarras", price: "R$ 8.900" }
+    ],
     category: "lancha"
   },
   senna: {
@@ -2080,7 +2112,123 @@ Aguardo confirmação! 🌊
                         </div>
                       )}
 
-                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && (
+                      {/* Informações específicas do SEVEN */}
+                      {vessel.id === "seven" && (
+                        <div className="space-y-6">
+                          {/* Especificações Técnicas */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Anchor className="h-5 w-5 mr-2" />
+                              Especificações Técnicas
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Modelo</span>
+                                <p className="text-lg font-semibold mt-1">Lancha SEVEN Intermarine 44</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                                <p className="text-lg font-semibold mt-1">15 passageiros + 2 marinheiros</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                                <p className="text-lg font-semibold mt-1">5 horas de passeio</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Saída</span>
+                                <p className="text-lg font-semibold mt-1">Marina da Glória</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Comodidades */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Waves className="h-5 w-5 mr-2" />
+                              Comodidades
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-3">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Music className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Som Bluetooth</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Waves className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Flutuadores para banho</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Incluso */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <CheckCircle className="h-5 w-5 mr-2" />
+                              Incluso
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-3">
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Fuel className="h-6 w-6 text-green-600 mr-3" />
+                                <div><p className="font-medium text-green-800">Combustível</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Users className="h-6 w-6 text-green-600 mr-3" />
+                                <div><p className="font-medium text-green-800">Marinheiro</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Music className="h-6 w-6 text-green-600 mr-3" />
+                                <div><p className="font-medium text-green-800">Som Bluetooth</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Waves className="h-6 w-6 text-green-600 mr-3" />
+                                <div><p className="font-medium text-green-800">Flutuadores para banho</p></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Roteiros e Preços */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <MapPin className="h-5 w-5 mr-2" />
+                              Roteiros Disponíveis
+                            </h4>
+                            <div className="grid gap-4">
+                              <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100">
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <h5 className="font-semibold text-blue-800">Roteiro Urca</h5>
+                                    <p className="text-sm text-blue-600">Passeio pela região da Urca</p>
+                                  </div>
+                                  <span className="font-bold text-xl text-blue-700">R$ 7.000</span>
+                                </div>
+                              </div>
+                              <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-orange-50 to-orange-100">
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <h5 className="font-semibold text-orange-800">Roteiro Praia Vermelha</h5>
+                                    <p className="text-sm text-orange-600">Exploração da Praia Vermelha</p>
+                                  </div>
+                                  <span className="font-bold text-xl text-orange-700">R$ 7.800</span>
+                                </div>
+                              </div>
+                              <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-emerald-50 to-emerald-100">
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <h5 className="font-semibold text-emerald-800">Roteiro Ilha Cagarras</h5>
+                                    <p className="text-sm text-emerald-600">Aventura nas Ilhas Cagarras</p>
+                                  </div>
+                                  <span className="font-bold text-xl text-emerald-700">R$ 8.900</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>

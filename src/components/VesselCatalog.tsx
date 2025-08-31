@@ -405,7 +405,7 @@ const vessels = [
     id: "seven",
     name: "SEVEN",
     type: "Lancha Premium",
-    image: sevenImage,
+    image: "/lovable-uploads/0e8ef52a-4cbd-4c90-8602-90019c49b129.png",
     capacity: 15,
     price: "R$ 7.000",
     rating: 4.7,
@@ -413,11 +413,11 @@ const vessels = [
     location: "Marina da Glória",
     features: [
       { icon: Anchor, label: "44 Pés" },
-      { icon: Music, label: "Som" },
-      { icon: Coffee, label: "Combustível Incluso" },
+      { icon: Music, label: "Som Bluetooth" },
+      { icon: Coffee, label: "Flutuadores" },
       { icon: Shield, label: "Marinheiro" }
     ],
-    description: "Lancha intermarine 44 pés com embarque na Marina da Glória",
+    description: "Lancha SEVEN Intermarine 44 com duração de 5 horas de passeio",
     category: "lancha"
   },
   {
