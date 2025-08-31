@@ -150,7 +150,7 @@ const vesselsData = {
     specs: {
       type: "Iate 38 Pés",
       capacity: "13 passageiros",
-      duration: "5 horas de passeio"
+      duration: "5 horas"
     },
     amenities: [
       "Combustível incluso",
@@ -160,10 +160,15 @@ const vesselsData = {
       "Caixa de som de altíssima qualidade"
     ],
     pricing: {
-      urca: "R$ 3.200,00 (Roteiro Urca)",
-      praia_vermelha: "R$ 4.100,00 (Praia Vermelha)",
-      cagarras: "R$ 5.000,00 (Ilha Cagarras)"
+      urca: "R$ 3.200,00",
+      praia_vermelha: "R$ 4.100,00",
+      cagarras: "R$ 5.000,00"
     },
+    destinations: [
+      { name: "Roteiro Urca", price: "R$ 3.200,00" },
+      { name: "Praia Vermelha", price: "R$ 4.100,00" },
+      { name: "Ilha Cagarras", price: "R$ 5.000,00" }
+    ],
     category: "iate"
   },
   mcell: {
@@ -1240,9 +1245,69 @@ Aguardo confirmação! 🌊
                           </div>
                         </div>
                       </div>
-                    )}
-                    
-                    {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && (
+                     )}
+                     
+                     {vessel.id === "flyhi" && (
+                       <div className="space-y-8">
+                         {/* Especificações Técnicas */}
+                         <div>
+                           <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                             <Waves className="h-5 w-5 mr-2" />
+                             Especificações Técnicas
+                           </h4>
+                           <div className="grid md:grid-cols-3 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tipo</span>
+                                <p className="text-lg font-semibold">{(vessel as any).specs?.type}</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                                <p className="text-lg font-semibold">{(vessel as any).specs?.capacity}</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                                <p className="text-lg font-semibold">{(vessel as any).specs?.duration}</p>
+                              </div>
+                           </div>
+                         </div>
+
+                         {/* Comodidades */}
+                         <div>
+                           <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                             <Coffee className="h-5 w-5 mr-2" />
+                             Comodidades Incluídas
+                           </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              {(vessel as any).amenities?.map((amenity: string, index: number) => (
+                               <div key={index} className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                 <Coffee className="h-6 w-6 text-primary mr-3" />
+                                 <div>
+                                   <p className="font-medium">{amenity}</p>
+                                 </div>
+                               </div>
+                             ))}
+                           </div>
+                         </div>
+
+                         {/* Preços por Roteiro */}
+                         <div>
+                           <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                             <Sun className="h-5 w-5 mr-2" />
+                             Preços por Roteiro
+                           </h4>
+                            <div className="grid md:grid-cols-3 gap-4">
+                              {(vessel as any).destinations?.map((destination: any, index: number) => (
+                               <div key={index} className="border border-primary/20 p-4 rounded-lg text-center">
+                                 <h5 className="font-semibold text-primary mb-2">{destination.name}</h5>
+                                 <span className="text-2xl font-bold text-green-600">{destination.price}</span>
+                               </div>
+                             ))}
+                           </div>
+                         </div>
+                       </div>
+                     )}
+                     
+                    {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>
