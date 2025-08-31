@@ -386,6 +386,66 @@ const vessels = [
     ],
     description: "Perfeição em cada detalhe.",
     highlight: false
+  },
+  {
+    id: "tecnomarine",
+    name: "Tecnomarine",
+    type: "Sport Yacht",
+    image: tecnomarineYacht,
+    images: [tecnomarineYacht],
+    capacity: 10,
+    price: "R$ 2.700",
+    rating: 4.7,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Tecnologia e performance em alto mar.",
+    highlight: false
+  },
+  {
+    id: "segue",
+    name: "Segue",
+    type: "Luxury Yacht",
+    image: segueYacht,
+    images: [segueYacht],
+    capacity: 8,
+    price: "R$ 2.500",
+    rating: 4.6,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Elegância e conforto em cada detalhe.",
+    highlight: false
+  },
+  {
+    id: "catamara-luxury",
+    name: "Catamarã Luxury",
+    type: "Catamaran",
+    image: catamaraLuxury,
+    images: [catamaraLuxury],
+    capacity: 25,
+    price: "R$ 5.000",
+    rating: 4.9,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "O máximo em luxo e espaço para grandes grupos.",
+    highlight: false
   }
 ];
 

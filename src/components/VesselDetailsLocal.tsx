@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Users, Clock, Star, Anchor, Phone, Mail, ArrowLeft, MessageCircle } from 'lucide-react';
 import VesselImageCarousel from '@/components/VesselImageCarousel';
 
@@ -394,6 +393,66 @@ const vesselsData = {
       engine: "Twin 580HP",
       year: "2023"
     }
+  },
+  "tecnomarine": {
+    id: "tecnomarine",
+    name: "Tecnomarine",
+    type: "Sport Yacht",
+    image: tecnomarineYacht,
+    images: [tecnomarineYacht],
+    capacity: 10,
+    price: "R$ 2.700",
+    originalPrice: undefined,
+    rating: 4.7,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: ["Premium", "Som", "Bar", "Seguro"],
+    description: "Tecnologia e performance em alto mar. Design inovador com sistemas avançados de navegação.",
+    specifications: {
+      length: "56 pés",
+      engine: "Twin 480HP",
+      year: "2023"
+    }
+  },
+  "segue": {
+    id: "segue",
+    name: "Segue",
+    type: "Luxury Yacht",
+    image: segueYacht,
+    images: [segueYacht],
+    capacity: 8,
+    price: "R$ 2.500",
+    originalPrice: undefined,
+    rating: 4.6,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: ["Premium", "Som", "Bar", "Seguro"],
+    description: "Elegância e conforto em cada detalhe. Yacht sofisticado para experiências exclusivas.",
+    specifications: {
+      length: "48 pés",
+      engine: "Twin 400HP",
+      year: "2022"
+    }
+  },
+  "catamara-luxury": {
+    id: "catamara-luxury",
+    name: "Catamarã Luxury",
+    type: "Catamaran",
+    image: catamaraLuxury,
+    images: [catamaraLuxury],
+    capacity: 25,
+    price: "R$ 5.000",
+    originalPrice: undefined,
+    rating: 4.9,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: ["Premium", "Som", "Bar", "Seguro"],
+    description: "O máximo em luxo e espaço para grandes grupos. Catamarã de luxo com todas as comodidades.",
+    specifications: {
+      length: "65 pés",
+      engine: "Twin 400HP",
+      year: "2023"
+    }
   }
 };
 
@@ -613,51 +672,51 @@ Aguardo retorno para confirmar a reserva!`;
             </div>
             <div className="space-y-2">
               <Label htmlFor="passengers">Número de Passageiros</Label>
-              <Select onValueChange={(value) => handleInputChange('passengers', value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione" />
-                </SelectTrigger>
-                <SelectContent>
-                  {Array.from({ length: vessel.capacity }, (_, i) => (
-                    <SelectItem key={i + 1} value={String(i + 1)}>
-                      {i + 1} {i + 1 === 1 ? 'pessoa' : 'pessoas'}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <select 
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                value={formData.passengers}
+                onChange={(e) => handleInputChange('passengers', e.target.value)}
+              >
+                <option value="">Selecione</option>
+                {Array.from({ length: vessel.capacity }, (_, i) => (
+                  <option key={i + 1} value={String(i + 1)}>
+                    {i + 1} {i + 1 === 1 ? 'pessoa' : 'pessoas'}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="route">Roteiro Preferido</Label>
-              <Select onValueChange={(value) => handleInputChange('route', value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione o roteiro" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="copacabana-ipanema">Copacabana - Ipanema</SelectItem>
-                  <SelectItem value="baía-guanabara">Baía de Guanabara</SelectItem>
-                  <SelectItem value="ilhas-tijucas">Ilhas Tijucas</SelectItem>
-                  <SelectItem value="angra-reis">Angra dos Reis</SelectItem>
-                  <SelectItem value="búzios">Búzios</SelectItem>
-                  <SelectItem value="personalizado">Roteiro Personalizado</SelectItem>
-                </SelectContent>
-              </Select>
+              <select 
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                value={formData.route}
+                onChange={(e) => handleInputChange('route', e.target.value)}
+              >
+                <option value="">Selecione o roteiro</option>
+                <option value="copacabana-ipanema">Copacabana - Ipanema</option>
+                <option value="baía-guanabara">Baía de Guanabara</option>
+                <option value="ilhas-tijucas">Ilhas Tijucas</option>
+                <option value="angra-reis">Angra dos Reis</option>
+                <option value="búzios">Búzios</option>
+                <option value="personalizado">Roteiro Personalizado</option>
+              </select>
             </div>
             <div className="space-y-2">
               <Label htmlFor="duration">Duração</Label>
-              <Select onValueChange={(value) => handleInputChange('duration', value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione a duração" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="4-horas">4 horas</SelectItem>
-                  <SelectItem value="6-horas">6 horas</SelectItem>
-                  <SelectItem value="8-horas">8 horas (Full Day)</SelectItem>
-                  <SelectItem value="personalizado">Duração Personalizada</SelectItem>
-                </SelectContent>
-              </Select>
+              <select 
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                value={formData.duration}
+                onChange={(e) => handleInputChange('duration', e.target.value)}
+              >
+                <option value="">Selecione a duração</option>
+                <option value="4-horas">4 horas</option>
+                <option value="6-horas">6 horas</option>
+                <option value="8-horas">8 horas (Full Day)</option>
+                <option value="personalizado">Duração Personalizada</option>
+              </select>
             </div>
           </div>
 

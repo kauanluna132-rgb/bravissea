@@ -178,36 +178,67 @@ const AdminVessels = () => {
     
     input.onchange = async (e) => {
       const files = (e.target as HTMLInputElement).files;
-      if (!files) return;
+      if (!files || files.length === 0) return;
+
+      console.log('AdminVessels: Starting image upload for vessel:', vesselId);
+      console.log('AdminVessels: Number of files:', files.length);
 
       try {
+        let successCount = 0;
+        
         for (const file of Array.from(files)) {
-          const fileExt = file.name.split('.').pop();
+          console.log('AdminVessels: Processing file:', file.name, 'Size:', file.size);
+          
+          const fileExt = file.name.split('.').pop()?.toLowerCase();
+          if (!fileExt || !['jpg', 'jpeg', 'png', 'webp'].includes(fileExt)) {
+            console.error('AdminVessels: Invalid file type:', fileExt);
+            toast.error(`Arquivo ${file.name} não é uma imagem válida`);
+            continue;
+          }
+
           const fileName = `${vesselId}/${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+          console.log('AdminVessels: Uploading to path:', fileName);
           
           // Upload to Supabase Storage
           const { data: uploadData, error: uploadError } = await supabase.storage
             .from('vessel-images')
-            .upload(fileName, file);
+            .upload(fileName, file, {
+              cacheControl: '3600',
+              upsert: false
+            });
 
-          if (uploadError) throw uploadError;
+          if (uploadError) {
+            console.error('AdminVessels: Upload error:', uploadError);
+            toast.error(`Erro ao fazer upload de ${file.name}: ${uploadError.message}`);
+            continue;
+          }
+
+          console.log('AdminVessels: Upload successful:', uploadData);
 
           // Get public URL
           const { data: { publicUrl } } = supabase.storage
             .from('vessel-images')
             .getPublicUrl(fileName);
 
+          console.log('AdminVessels: Public URL:', publicUrl);
+
           // Get current max display order
-          const { data: currentImages } = await supabase
+          const { data: currentImages, error: orderError } = await supabase
             .from('vessel_images')
             .select('display_order')
             .eq('vessel_id', vesselId)
             .order('display_order', { ascending: false })
             .limit(1);
 
+          if (orderError) {
+            console.error('AdminVessels: Error getting display order:', orderError);
+          }
+
           const nextOrder = currentImages && currentImages.length > 0 
             ? (currentImages[0].display_order || 0) + 1 
             : 0;
+
+          console.log('AdminVessels: Next display order:', nextOrder);
 
           // Save image record to database
           const { error: dbError } = await supabase
@@ -215,18 +246,32 @@ const AdminVessels = () => {
             .insert({
               vessel_id: vesselId,
               image_url: publicUrl,
-              alt_text: file.name,
+              alt_text: file.name.split('.')[0],
               display_order: nextOrder
             });
 
-          if (dbError) throw dbError;
+          if (dbError) {
+            console.error('AdminVessels: Database error:', dbError);
+            toast.error(`Erro ao salvar ${file.name} no banco de dados: ${dbError.message}`);
+            
+            // Try to cleanup uploaded file if DB insert failed
+            await supabase.storage
+              .from('vessel-images')
+              .remove([fileName]);
+            continue;
+          }
+
+          successCount++;
+          console.log('AdminVessels: Successfully saved image:', file.name);
         }
 
-        await loadVessels();
-        toast.success(`${files.length} imagem(ns) adicionada(s) com sucesso!`);
+        if (successCount > 0) {
+          await loadVessels();
+          toast.success(`${successCount} imagem(ns) adicionada(s) com sucesso!`);
+        }
       } catch (error) {
-        console.error('Error uploading images:', error);
-        toast.error('Erro ao fazer upload das imagens');
+        console.error('AdminVessels: Unexpected error during upload:', error);
+        toast.error('Erro inesperado ao fazer upload das imagens');
       }
     };
     
