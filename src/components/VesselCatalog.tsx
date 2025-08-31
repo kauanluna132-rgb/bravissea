@@ -456,7 +456,7 @@ const vessels = [
       { icon: Coffee, label: "Churrasqueira" },
       { icon: Shield, label: "Marinheiro Incluso" }
     ],
-    description: "LUÍSA V - Roteiro principal Marina da Glória x Flamengo x Aeroporto x Urca",
+    description: "Horários: 08:00-13:00 ou 13:00-19:00. Roteiro Marina da Glória x Flamengo x Aeroporto x Urca. Incluso: Marinheiro, combustível, coolers, macarrão flutuantes e churrasqueira.",
     category: "iate"
   }
 ];
