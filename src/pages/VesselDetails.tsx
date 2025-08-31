@@ -335,13 +335,43 @@ const vesselsData = {
     id: "grandraray",
     name: "GRAND RARAY",
     type: "Iate Premium",
-    images: [grandrarayImage],
-    capacity: 18,
-    price: "R$ 6.000",
+    images: [
+      "/lovable-uploads/ab7f00cd-e5bd-490d-8dce-6f179460fd9a.png",
+      "/lovable-uploads/5f13a524-9591-48f4-abe1-09142e977c0b.png",
+      "/lovable-uploads/87e26afc-23c1-4292-ac39-21654e2a4ae2.png",
+      "/lovable-uploads/f148fa7f-081a-47aa-8a2f-6f9046d29202.png",
+      "/lovable-uploads/98566a09-7cb2-424d-9275-585f86b768be.png",
+      "/lovable-uploads/35e990d5-bd3d-4d00-9f4f-3de667a6597a.png",
+      "/lovable-uploads/ae433d73-bf31-480e-826a-aef5e2f3a095.png",
+      "/lovable-uploads/51031733-29b0-4420-9a6f-066c4d3edf2a.png",
+      "/lovable-uploads/e9cb95c3-5a83-457a-b4a9-7a2fa8f54b7c.png",
+      "/lovable-uploads/0ecc8726-94be-4e12-81c5-38126a0da8e4.png"
+    ],
+    capacity: 20,
+    price: "R$ 7.000",
     rating: 4.8,
-    duration: "8h",
+    duration: "5h",
     location: "Marina da Glória",
-    description: "GRAND RARAY com embarque na Marina da Glória",
+    description: "GRAND RARAY - Iate de luxo com equipamentos de primeira qualidade para passeios inesquecíveis de 5 horas.",
+    specifications: [
+      { label: "Capacidade", value: "20 passageiros" },
+      { label: "Duração", value: "5 horas de passeio" },
+      { label: "Embarque", value: "Marina da Glória - RJ" },
+      { label: "Tipo", value: "Iate Premium" }
+    ],
+    amenities: [
+      "Combustível incluído",
+      "Marinheiro experiente",
+      "Coolers para bebidas",
+      "Caixa de som de altíssima qualidade",
+      "Tapetão flutuante"
+    ],
+    routes: [
+      { name: "Roteiro Urca", price: "R$ 7.000,00" },
+      { name: "Roteiro Praia Vermelha", price: "R$ 8.000,00" },
+      { name: "Roteiro Niterói", price: "R$ 8.000,00" },
+      { name: "Roteiro Ilha Cagarras/Copacabana", price: "R$ 9.500,00" }
+    ],
     category: "iate"
   },
   "lady-ruth": {

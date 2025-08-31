@@ -238,19 +238,19 @@ const vessels = [
     id: "grandraray",
     name: "GRAND RARAY",
     type: "Iate Premium",
-    image: grandrarayImage,
-    capacity: 18,
-    price: "R$ 6.000",
+    image: "/lovable-uploads/ab7f00cd-e5bd-490d-8dce-6f179460fd9a.png",
+    capacity: 20,
+    price: "R$ 7.000",
     rating: 4.8,
-    duration: "8h",
+    duration: "5h",
     location: "Marina da Glória",
     features: [
-      { icon: Anchor, label: "Design Premium" },
-      { icon: Music, label: "Som Surround" },
-      { icon: Coffee, label: "Cozinha Gourmet" },
-      { icon: Waves, label: "Vista Panorâmica" }
+      { icon: Anchor, label: "20 Passageiros" },
+      { icon: Music, label: "Som Altíssima Qualidade" },
+      { icon: Coffee, label: "Coolers" },
+      { icon: Waves, label: "Tapetão Flutuante" }
     ],
-    description: "GRAND RARAY com embarque na Marina da Glória",
+    description: "GRAND RARAY com 5 horas de passeio e equipamentos de primeira qualidade",
     category: "iate"
   },
   // Novas embarcações
