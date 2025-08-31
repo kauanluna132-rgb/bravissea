@@ -75,19 +75,31 @@ const vessels = [
     id: "tecnomarine",
     name: "Iate Tecnomarine",
     type: "Iate Executive",
-    image: tecnomarineImage,
+    image: "/lovable-uploads/tecnomarine-1.png",
+    images: [
+      "/lovable-uploads/tecnomarine-1.png",
+      "/lovable-uploads/tecnomarine-2.png",
+      "/lovable-uploads/tecnomarine-3.png",
+      "/lovable-uploads/tecnomarine-4.png",
+      "/lovable-uploads/tecnomarine-5.png",
+      "/lovable-uploads/tecnomarine-6.png",
+      "/lovable-uploads/tecnomarine-7.png",
+      "/lovable-uploads/tecnomarine-8.png",
+      "/lovable-uploads/tecnomarine-9.png"
+    ],
     capacity: 20,
     price: "R$ 10.000",
     rating: 4.8,
-    duration: "8h",
+    duration: "5h",
     location: "Marina da Glória",
+    size: "52 pés",
     features: [
-      { icon: Anchor, label: "Tecnologia Avançada" },
+      { icon: Anchor, label: "52 Pés" },
       { icon: Music, label: "Sistema de Som" },
-      { icon: Coffee, label: "Cozinha Gourmet" },
-      { icon: Shield, label: "Segurança Total" }
+      { icon: Coffee, label: "Cozinha Equipada" },
+      { icon: Shield, label: "Marinheiro Incluso" }
     ],
-    description: "Iate Tecnomarine com alta tecnologia para 20 passageiros",
+    description: "Iate Tecnomarine 52 pés com capacidade para 20 passageiros",
     category: "iate"
   },
   {

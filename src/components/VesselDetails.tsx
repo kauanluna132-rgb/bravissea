@@ -103,30 +103,75 @@ const vesselData = {
     id: "tecnomarine",
     name: "Iate Tecnomarine",
     type: "Iate Executive",
-    image: tecnomarineImage,
+    image: "/lovable-uploads/tecnomarine-1.png",
     capacity: 20,
     price: "R$ 10.000",
     originalPrice: undefined,
     rating: 4.8,
-    duration: "8h",
+    duration: "5h",
     location: "Marina da Glória",
-    description: "Iate Tecnomarine com alta tecnologia e design moderno, ideal para grupos de até 20 pessoas.",
+    size: "52 pés",
+    description: "Iate Tecnomarine 52 pés com capacidade para 20 passageiros, embarque na Marina da Glória-RJ.",
     specifications: {
-      comprimento: "42 pés",
-      motor: "Caterpillar 450hp",
-      combustivel: "Diesel",
-      capacidadeTanque: "350L"
+      comprimento: "52 pés",
+      passageiros: "20 passageiros",
+      duracao: "5 horas",
+      embarque: "Marina da Glória-RJ"
     },
     included: [
-      "Capitão profissional",
-      "Tripulação completa",
-      "Seguro total",
-      "Equipamentos náuticos",
-      "Sistema de navegação GPS",
-      "Cozinha equipada"
+      "Combustível",
+      "Marinheiro",
+      "5 horas de passeio",
+      "Embarque na Marina da Glória-RJ"
     ],
-    gallery: [tecnomarineImage],
-    images: [tecnomarineImage]
+    schedules: {
+      manha: { 
+        time: "08:00 - 13:00", 
+        priceUrca: "R$ 10.000,00",
+        pricePraiaVermelha: "R$ 11.000,00",
+        priceCopacabana: "R$ 13.800,00",
+        priceCagarras: "R$ 15.000,00"
+      },
+      tarde: { 
+        time: "13:00 - 18:00", 
+        priceUrca: "R$ 10.000,00",
+        pricePraiaVermelha: "R$ 11.000,00",
+        priceCopacabana: "R$ 13.800,00",
+        priceCagarras: "R$ 15.000,00"
+      }
+    },
+    routes: [
+      { name: "Roteiro Urca", price: "R$ 10.000,00", duration: "5h" },
+      { name: "Roteiro Praia Vermelha", price: "R$ 11.000,00", duration: "5h" },
+      { name: "Copacabana", price: "R$ 13.800,00", duration: "5h" },
+      { name: "Cagarras", price: "R$ 15.000,00", duration: "5h" }
+    ],
+    pricing: {
+      taxaEmbarque: "R$ 200,00",
+      taxaChurrasqueiro: "R$ 200,00"
+    },
+    gallery: [
+      "/lovable-uploads/tecnomarine-1.png",
+      "/lovable-uploads/tecnomarine-2.png",
+      "/lovable-uploads/tecnomarine-3.png",
+      "/lovable-uploads/tecnomarine-4.png",
+      "/lovable-uploads/tecnomarine-5.png",
+      "/lovable-uploads/tecnomarine-6.png",
+      "/lovable-uploads/tecnomarine-7.png",
+      "/lovable-uploads/tecnomarine-8.png",
+      "/lovable-uploads/tecnomarine-9.png"
+    ],
+    images: [
+      "/lovable-uploads/tecnomarine-1.png",
+      "/lovable-uploads/tecnomarine-2.png",
+      "/lovable-uploads/tecnomarine-3.png",
+      "/lovable-uploads/tecnomarine-4.png",
+      "/lovable-uploads/tecnomarine-5.png",
+      "/lovable-uploads/tecnomarine-6.png",
+      "/lovable-uploads/tecnomarine-7.png",
+      "/lovable-uploads/tecnomarine-8.png",
+      "/lovable-uploads/tecnomarine-9.png"
+    ]
   },
   myway: {
     id: "myway",
