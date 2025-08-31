@@ -77,7 +77,7 @@ const Navbar = () => {
                 </button>)}
               <div className="flex items-center text-sm text-muted-foreground pt-2">
                 <Phone className="h-4 w-4 mr-1" />
-                <span>(21) 99999-9999</span>
+                <span>(21) 97400-4415</span>
               </div>
               <Button onClick={() => scrollToSection("#embarcacoes")} className="bg-primary hover:bg-primary-dark w-full">
                 Reservar Agora
