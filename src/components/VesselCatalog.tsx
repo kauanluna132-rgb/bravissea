@@ -405,20 +405,31 @@ const vessels = [
     id: "luisa",
     name: "LUÍSA V",
     type: "Iate Premium",
-    image: luisaImage,
+    image: "/lovable-uploads/luisa-1.png",
+    images: [
+      "/lovable-uploads/luisa-1.png",
+      "/lovable-uploads/luisa-2.png",
+      "/lovable-uploads/luisa-3.png",
+      "/lovable-uploads/luisa-4.png",
+      "/lovable-uploads/luisa-5.png",
+      "/lovable-uploads/luisa-6.png",
+      "/lovable-uploads/luisa-7.png",
+      "/lovable-uploads/luisa-8.png",
+      "/lovable-uploads/luisa-9.png",
+      "/lovable-uploads/luisa-10.png"
+    ],
     capacity: 15,
-    price: "R$ 2.800",
-    originalPrice: "R$ 3.200",
+    price: "R$ 3.200",
     rating: 4.6,
     duration: "6h",
     location: "Marina da Glória",
     features: [
       { icon: Anchor, label: "15 Passageiros" },
-      { icon: Music, label: "Som" },
-      { icon: Coffee, label: "Combustível Incluso" },
-      { icon: Shield, label: "Churrasqueira" }
+      { icon: Music, label: "Som Bluetooth" },
+      { icon: Coffee, label: "Churrasqueira" },
+      { icon: Shield, label: "Marinheiro Incluso" }
     ],
-    description: "Luísa V com roteiro Marina da Glória x Flamengo x Aeroporto x Urca",
+    description: "LUÍSA V - Roteiro principal Marina da Glória x Flamengo x Aeroporto x Urca",
     category: "iate"
   }
 ];

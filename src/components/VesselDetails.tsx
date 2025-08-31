@@ -696,35 +696,66 @@ const vesselData = {
     id: "luisa",
     name: "LUÍSA V",
     type: "Iate Premium",
-    image: luisaImage,
+    image: "/lovable-uploads/luisa-1.png",
     capacity: 15,
-    price: "R$ 2.800",
-    originalPrice: "R$ 3.200",
+    price: "R$ 3.200",
+    originalPrice: undefined,
     rating: 4.6,
     duration: "6h",
     location: "Marina da Glória",
-    description: "Luísa V com roteiro Marina da Glória x Flamengo x Aeroporto x Urca. Incluso: Marinheiro, combustível e churrasqueira.",
+    description: "LUÍSA V oferece roteiros exclusivos saindo da Marina da Glória, incluindo combustível, marinheiro, coolers, macarrão flutuantes e churrasqueira.",
     specifications: {
-      comprimento: "42 pés",
-      motor: "2x Caterpillar 350hp",
-      combustivel: "Diesel",
-      capacidadeTanque: "400L"
+      horarios: "08:00 às 13:00 / 13:00 às 19:00",
+      inclusos: "Marinheiro, combustível, coolers, macarrão flutuantes e churrasqueira",
+      taxaChurrasqueiro: "R$ 200,00",
+      taxaEmbarque: "R$ 200,00"
     },
     included: [
-      "Marinheiro",
-      "Combustível",
+      "Marinheiro experiente",
+      "Combustível incluso",
+      "Coolers",
+      "Macarrão flutuantes",
       "Churrasqueira",
-      "08:00 as 13:00 = R$3.200,00",
-      "13:00 as 19:00 = R$3.200,00",
-      "Roteiro: Marina da Glória X Flamengo X Aeroporto X Urca",
-      "Praia de Copacabana adicional = R$600",
-      "Ilhas cagarras ou Itaipu adicional = R$1.000,00",
-      "Taxa de Churrasqueiro= R$200,00",
-      "Taxa de Embarque = R$200,00",
-      "Coolers/macarrão flutuantes / churrasqueira"
+      "Equipamentos de segurança"
     ],
-    gallery: [luisaImage],
-    images: [luisaImage]
+    schedules: [
+      { time: "08:00 - 13:00", price: "R$ 3.200,00" },
+      { time: "13:00 - 19:00", price: "R$ 3.200,00" }
+    ],
+    routes: [
+      { name: "Roteiro principal: Marina da Gloria X Flamengo X Aeroporto X Urca", price: "R$ 3.200,00" },
+      { name: "Praia vermelha", price: "R$ 4.500,00" },
+      { name: "Ilhas cagarras ou Itaipu adicional", price: "R$ 5.500,00" }
+    ],
+    pricing: {
+      embarque: "Marina da Glória",
+      taxaEmbarque: "R$ 200,00",
+      taxaChurrasqueiro: "R$ 200,00"
+    },
+    gallery: [
+      "/lovable-uploads/luisa-1.png",
+      "/lovable-uploads/luisa-2.png",
+      "/lovable-uploads/luisa-3.png",
+      "/lovable-uploads/luisa-4.png",
+      "/lovable-uploads/luisa-5.png",
+      "/lovable-uploads/luisa-6.png",
+      "/lovable-uploads/luisa-7.png",
+      "/lovable-uploads/luisa-8.png",
+      "/lovable-uploads/luisa-9.png",
+      "/lovable-uploads/luisa-10.png"
+    ],
+    images: [
+      "/lovable-uploads/luisa-1.png",
+      "/lovable-uploads/luisa-2.png",
+      "/lovable-uploads/luisa-3.png",
+      "/lovable-uploads/luisa-4.png",
+      "/lovable-uploads/luisa-5.png",
+      "/lovable-uploads/luisa-6.png",
+      "/lovable-uploads/luisa-7.png",
+      "/lovable-uploads/luisa-8.png",
+      "/lovable-uploads/luisa-9.png",
+      "/lovable-uploads/luisa-10.png"
+    ]
   }
 };
 
