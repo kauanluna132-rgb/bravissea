@@ -93,22 +93,29 @@ const vessels = [
   {
     id: "myway",
     name: "IATE MY WAY",
-    type: "Iate Luxury",
-    image: mywayImage,
+    type: "Lancha 60 pés",
+    image: "/lovable-uploads/myway-1.png",
+    images: [
+      "/lovable-uploads/myway-1.png",
+      "/lovable-uploads/myway-2.png",
+      "/lovable-uploads/myway-3.png",
+      "/lovable-uploads/myway-4.png",
+      "/lovable-uploads/myway-5.png"
+    ],
     capacity: 20,
     price: "R$ 12.000",
     rating: 4.9,
-    duration: "8h",
+    duration: "5h",
     location: "Marina da Glória",
     features: [
-      { icon: Anchor, label: "Design Exclusivo" },
-      { icon: Music, label: "Som Ambiente" },
-      { icon: Coffee, label: "Bar Premium" },
-      { icon: Waves, label: "Deck Espaçoso" }
+      { icon: Anchor, label: "60 Pés" },
+      { icon: Music, label: "Caixa de Som" },
+      { icon: Coffee, label: "Cozinha Equipada" },
+      { icon: Waves, label: "Flybrigde" }
     ],
-    description: "Iate MY WAY com design exclusivo para 20 passageiros",
+    description: "Lancha 60 pés com 3 quartos, 2 banheiros, sala 2 ambientes e cozinha equipada",
     highlight: true,
-    category: "iate"
+    category: "lancha"
   },
   {
     id: "flyhi",

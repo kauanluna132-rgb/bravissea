@@ -131,31 +131,64 @@ const vesselData = {
   myway: {
     id: "myway",
     name: "IATE MY WAY",
-    type: "Iate Luxury",
-    image: mywayImage,
+    type: "Lancha 60 pés",
+    image: "/lovable-uploads/myway-1.png",
     capacity: 20,
     price: "R$ 12.000",
     originalPrice: undefined,
     rating: 4.9,
-    duration: "8h",
+    duration: "5h",
     location: "Marina da Glória",
-    description: "Iate MY WAY com design exclusivo e amenidades premium para até 20 passageiros.",
+    description: "Lancha 60 pés com 3 quartos, 2 banheiros, sala 2 ambientes, cozinha equipada, flybrigde com sofá e mesinha, coolers disponíveis e caixa de som.",
     specifications: {
-      comprimento: "44 pés",
-      motor: "MAN 520hp",
-      combustivel: "Diesel",
-      capacidadeTanque: "420L"
+      comprimento: "60 pés",
+      quartos: "3 Quartos",
+      banheiros: "2 Banheiros",
+      sala: "2 ambientes",
+      cozinha: "Equipada",
+      flybrigde: "Com sofá e mesinha"
     },
     included: [
-      "Capitão certificado",
-      "Marinheiro",
-      "Seguro náutico",
-      "Kit segurança",
-      "Som ambiente",
-      "Bar premium"
+      "Lancha 60 pés",
+      "3 Quartos",
+      "2 Banheiros", 
+      "Sala 2 ambientes",
+      "Cozinha equipada",
+      "Flybrigde com sofá e mesinha",
+      "Coolers disponíveis",
+      "Caixa de som"
     ],
-    gallery: [mywayImage],
-    images: [mywayImage]
+    schedules: {
+      manha: "08:00 às 13:00",
+      tarde: "14:00 às 19:00"
+    },
+    pricing: {
+      taxaChurrasco: "R$ 200",
+      duracao: "5 horas",
+      horaExtra: "R$ 3.500,00",
+      gerador: "R$ 3.000,00"
+    },
+    routes: [
+      { name: "Mureta da Urca", price: "R$ 12.000" },
+      { name: "Praia Vermelha", price: "R$ 13.000,00" },
+      { name: "Adão e Eva (Niterói)", price: "R$ 13.000,00" },
+      { name: "Copacabana", price: "R$ 15.000,00" },
+      { name: "Ilhas Cagarras", price: "R$ 17.000,00" }
+    ],
+    gallery: [
+      "/lovable-uploads/myway-1.png",
+      "/lovable-uploads/myway-2.png",
+      "/lovable-uploads/myway-3.png",
+      "/lovable-uploads/myway-4.png",
+      "/lovable-uploads/myway-5.png"
+    ],
+    images: [
+      "/lovable-uploads/myway-1.png",
+      "/lovable-uploads/myway-2.png",
+      "/lovable-uploads/myway-3.png",
+      "/lovable-uploads/myway-4.png",
+      "/lovable-uploads/myway-5.png"
+    ]
   },
   flyhi: {
     id: "flyhi",
@@ -831,6 +864,62 @@ Aguardo retorno!`;
                 <div className="text-sm text-muted-foreground">da Glória</div>
               </div>
             </div>
+
+            {/* My Way Specific Information */}
+            {vessel.id === 'myway' && (
+              <>
+                {/* Horários */}
+                <div className="bg-white p-6 rounded-xl border shadow-sm">
+                  <h3 className="text-xl font-bold mb-4">Horários Disponíveis</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="p-4 bg-blue-50 rounded-lg">
+                      <h4 className="font-semibold text-blue-800">Manhã</h4>
+                      <p className="text-blue-600">{(vessel as any).schedules?.manha}</p>
+                    </div>
+                    <div className="p-4 bg-orange-50 rounded-lg">
+                      <h4 className="font-semibold text-orange-800">Tarde</h4>
+                      <p className="text-orange-600">{(vessel as any).schedules?.tarde}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Preços e Taxas */}
+                <div className="bg-white p-6 rounded-xl border shadow-sm">
+                  <h3 className="text-xl font-bold mb-4">Preços e Taxas</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <span>Taxa de churrasco:</span>
+                      <span className="font-semibold">{(vessel as any).pricing?.taxaChurrasco}</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <span>Duração:</span>
+                      <span className="font-semibold">{(vessel as any).pricing?.duracao}</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <span>Hora extra:</span>
+                      <span className="font-semibold">{(vessel as any).pricing?.horaExtra}</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <span>Gerador (ar, geladeira, etc):</span>
+                      <span className="font-semibold">{(vessel as any).pricing?.gerador}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Roteiros */}
+                <div className="bg-white p-6 rounded-xl border shadow-sm">
+                  <h3 className="text-xl font-bold mb-4">Roteiros Disponíveis</h3>
+                  <div className="space-y-3">
+                    {(vessel as any).routes?.map((route: any, index: number) => (
+                      <div key={index} className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
+                        <span className="font-medium text-blue-800">{route.name}</span>
+                        <span className="font-bold text-blue-600">{route.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Booking Form */}
