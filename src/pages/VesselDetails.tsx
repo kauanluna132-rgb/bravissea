@@ -320,23 +320,53 @@ const vesselsData = {
     name: "SENNA",
     type: "Iate Premium",
     images: [
-      "/lovable-uploads/da929e32-33ee-4fc1-97c0-d366d63ff457.png",
-      "/lovable-uploads/37823d8f-2d16-402c-8a0a-cfbaacd8c14d.png",
-      "/lovable-uploads/2e6b1dea-bd55-448e-b56a-417204d37f78.png",
-      "/lovable-uploads/3e2e65a7-195a-4f5e-9cf9-39c176c713cd.png",
-      "/lovable-uploads/ca7513a8-7ca6-4c74-94eb-e69fde091b96.png",
-      "/lovable-uploads/56562047-b47a-4a19-a6cd-ca765e9bae68.png",
-      "/lovable-uploads/d5183a03-42a3-40b8-b960-998e51ffb87f.png",
-      "/lovable-uploads/8ce2e68b-6ed0-47b8-9f7b-df5ab588c7d2.png",
-      "/lovable-uploads/8e8c7ca9-eb50-4a92-8e06-cbcc8616d15c.png",
-      "/lovable-uploads/2b635aac-c2f0-4db3-a82a-e8c116893024.png"
+      "/lovable-uploads/senna-1.png",
+      "/lovable-uploads/senna-2.png",
+      "/lovable-uploads/senna-3.png",
+      "/lovable-uploads/senna-4.png",
+      "/lovable-uploads/senna-5.png",
+      "/lovable-uploads/senna-6.png",
+      "/lovable-uploads/senna-7.png",
+      "/lovable-uploads/senna-8.png",
+      "/lovable-uploads/senna-9.png",
+      "/lovable-uploads/senna-10.png"
     ],
-    capacity: 20,
+    capacity: 18,
     price: "R$ 7.700",
     rating: 4.8,
     duration: "5h",
     location: "Marina da Glória (Pier Nobre)",
-    description: "Som conexão Bluetooth, 2 quartos, 2 banheiros (1 suíte), sala ampla, cozinha completa, fly e solário de proa muito espaçosos",
+    description: "SENNA - Iate Premium com motores diesel 500HP para até 18 passageiros + 2 tripulantes",
+    specs: {
+      type: "Iate Premium",
+      engines: "Motores de centro diesel 500HP",
+      rooms: "2 Quartos",
+      bathrooms: "2 Banheiros (1 suíte)",
+      living: "Sala ampla",
+      kitchen: "Cozinha completa"
+    },
+    amenities: [
+      "Som conexão Bluetooth",
+      "Fly e solário de proa muito espaçosos",
+      "Combustível incluso",
+      "Comandante incluso",
+      "Limpeza inclusa",
+      "Macarrão e tapete flutuante"
+    ],
+    schedule: {
+      weekday: "Horário flexível",
+      weekend: "09:00 às 14:00 e 14:30 às 19:30"
+    },
+    pricing: {
+      base: "R$ 7.700,00",
+      barbecue: "R$ 200,00"
+    },
+    destinations: [
+      { name: "Urca", price: "R$ 7.700,00" },
+      { name: "Praia Vermelha e Urca ou Adão & Eva e Urca", price: "R$ 8.500,00" },
+      { name: "Praia de Copacabana", price: "R$ 9.500,00" },
+      { name: "Baía de Guanabara ou Ilhas Cagarras ou Praia de Itaipu", price: "R$ 10.000,00" }
+    ],
     category: "iate"
   },
   luisa: {
