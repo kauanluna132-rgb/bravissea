@@ -1164,12 +1164,12 @@ Aguardo confirmação! 🌊
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid lg:grid-cols-3 gap-12">
+        <div className="container mx-auto px-4 py-4 sm:py-12">
+          <div className="grid lg:grid-cols-3 gap-4 sm:gap-12">
             {/* Galeria e Detalhes */}
             <div className="lg:col-span-2">
               {/* Galeria com Carrossel */}
-              <div className="mb-8">
+              <div className="mb-4 sm:mb-8">
                 <VesselImageCarousel
                   images={vessel.images}
                   vesselName={vessel.name}
@@ -1194,7 +1194,7 @@ Aguardo confirmação! 🌊
                           <Waves className="h-5 w-5 mr-2" />
                           Especificações Técnicas
                         </h4>
-                        <div className="grid md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                           <div className="bg-muted/50 p-4 rounded-lg">
                             <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Comprimento</span>
                             <p className="text-lg font-semibold">58 Pés</p>
@@ -3631,22 +3631,22 @@ Aguardo confirmação! 🌊
                   <CardTitle>Informações Gerais</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="flex flex-col items-center text-center p-4 border rounded-lg">
-                      <Users className="h-8 w-8 text-primary mb-2" />
-                      <span className="text-sm font-medium">{vessel.capacity} pessoas</span>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
+                    <div className="flex flex-col items-center text-center p-2 sm:p-4 border rounded-lg">
+                      <Users className="h-6 w-6 sm:h-8 sm:w-8 text-primary mb-2" />
+                      <span className="text-xs sm:text-sm font-medium">{vessel.capacity} pessoas</span>
                     </div>
-                    <div className="flex flex-col items-center text-center p-4 border rounded-lg">
-                      <Clock className="h-8 w-8 text-primary mb-2" />
-                      <span className="text-sm font-medium">{vessel.duration}</span>
+                    <div className="flex flex-col items-center text-center p-2 sm:p-4 border rounded-lg">
+                      <Clock className="h-6 w-6 sm:h-8 sm:w-8 text-primary mb-2" />
+                      <span className="text-xs sm:text-sm font-medium">{vessel.duration}</span>
                     </div>
-                    <div className="flex flex-col items-center text-center p-4 border rounded-lg">
-                      <MapPin className="h-8 w-8 text-primary mb-2" />
-                      <span className="text-sm font-medium">{vessel.location}</span>
+                    <div className="flex flex-col items-center text-center p-2 sm:p-4 border rounded-lg">
+                      <MapPin className="h-6 w-6 sm:h-8 sm:w-8 text-primary mb-2" />
+                      <span className="text-xs sm:text-sm font-medium">{vessel.location}</span>
                     </div>
-                    <div className="flex flex-col items-center text-center p-4 border rounded-lg">
-                      <Star className="h-8 w-8 text-primary mb-2" />
-                      <span className="text-sm font-medium">⭐ {vessel.rating}</span>
+                    <div className="flex flex-col items-center text-center p-2 sm:p-4 border rounded-lg">
+                      <Star className="h-6 w-6 sm:h-8 sm:w-8 text-primary mb-2" />
+                      <span className="text-xs sm:text-sm font-medium">⭐ {vessel.rating}</span>
                     </div>
                   </div>
                 </CardContent>
@@ -3655,7 +3655,7 @@ Aguardo confirmação! 🌊
 
             {/* Formulário de Reserva */}
             <div className="lg:col-span-1">
-              <Card className="sticky top-24">
+              <Card className="sticky top-4 lg:top-24">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Waves className="h-5 w-5 mr-2 text-primary" />

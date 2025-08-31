@@ -123,12 +123,12 @@ const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) =
 
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-2">
+        <div className="flex gap-1 sm:gap-2 overflow-x-auto pb-2 scrollbar-hide">
           {images.map((image, index) => (
             <button
               key={index}
               onClick={() => setCurrentImage(index)}
-              className={`flex-shrink-0 w-20 h-16 rounded-md overflow-hidden border-2 transition-all ${
+              className={`flex-shrink-0 w-16 h-12 sm:w-20 sm:h-16 rounded-md overflow-hidden border-2 transition-all ${
                 index === currentImage
                   ? "border-primary"
                   : "border-gray-200 hover:border-gray-300"
