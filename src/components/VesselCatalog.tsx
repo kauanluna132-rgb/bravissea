@@ -1,368 +1,497 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import VesselCard from './VesselCard';
-import { supabase } from '@/integrations/supabase/client';
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import VesselCard from "./VesselCard";
+import { 
+  Search, 
+  Filter, 
+  Users, 
+  Wifi, 
+  Coffee, 
+  Music, 
+  Shield, 
+  Waves,
+  Anchor,
+  Sun
+} from "lucide-react";
 
-// Import all vessel images for fallback
-import dragaoImage from '@/assets/dragao-yacht.jpg';
-import blauImage from '@/assets/blau-catamaran.jpg';
-import comendadorImage from '@/assets/comendador-yacht.jpg';
-import flyHiImage from '@/assets/flyhi-boat.jpg';
-import grandRarayImage from '@/assets/grandraray-yacht.jpg';
-import iateExecutiveImage from '@/assets/iate-executive.jpg';
-import ladyRuthImage from '@/assets/lady-ruth-yacht.jpg';
-import lanchaPremiumImage from '@/assets/lancha-premium.jpg';
-import luisaImage from '@/assets/luisa-yacht.jpg';
-import mangataImage from '@/assets/mangata-yacht.jpg';
-import mcellImage from '@/assets/mcell-boat.jpg';
-import mywayImage from '@/assets/myway-yacht.jpg';
-import nossaImage from '@/assets/nossa-yacht.jpg';
-import oceanoImage from '@/assets/oceano-catamaran.jpg';
-import prestigeImage from '@/assets/prestige-yacht.jpg';
-import rebecaImage from '@/assets/rebeca-yacht.jpg';
-import sennaImage from '@/assets/senna-yacht.jpg';
-import sevenImage from '@/assets/seven-yacht.jpg';
-import catamataLuxuryImage from '@/assets/catamara-luxury.jpg';
-import tecnomarine from '@/assets/tecnomarine-yacht.jpg';
-import segueImage from '@/assets/segue-yacht.jpg';
+// Importar as imagens das embarcações
+import segueImage from "@/assets/segue-yacht.jpg";
+import tecnomarineImage from "@/assets/tecnomarine-yacht.jpg";
+import mywayImage from "@/assets/myway-yacht.jpg";
+import flyhiImage from "@/assets/flyhi-boat.jpg";
+import mcellImage from "@/assets/mcell-boat.jpg";
+import comendadorImage from "@/assets/comendador-yacht.jpg";
+import dragaoImage from "@/assets/dragao-yacht.jpg";
+import grandrarayImage from "@/assets/grandraray-yacht.jpg";
+// Novas embarcações
+import ladyRuthImage from "@/assets/lady-ruth-yacht.jpg";
+import mangataImage from "@/assets/mangata-yacht.jpg";
+import prestigeImage from "@/assets/prestige-yacht.jpg";
+import rebecaImage from "@/assets/rebeca-yacht.jpg";
+import oceanoImage from "@/assets/oceano-catamaran.jpg";
+import blauImage from "@/assets/blau-catamaran.jpg";
+import nossaImage from "@/assets/nossa-yacht.jpg";
+import sevenImage from "@/assets/seven-yacht.jpg";
+import sennaImage from "@/assets/senna-yacht.jpg";
+import luisaImage from "@/assets/luisa-yacht.jpg";
 
-interface Vessel {
-  id: string;
-  name: string;
-  description: string | null;
-  capacity: number | null;
-  price_per_hour: number | null;
-  features: string[];
-  specifications: any;
-  category: string;
-  images: VesselImage[];
-}
-
-interface VesselImage {
-  id: string;
-  image_url: string;
-  alt_text?: string;
-  display_order: number;
-}
-
-// Fallback vessel data with local images - all 21 vessels
-const fallbackVesselData = [
+const vessels = [
   {
-    id: 'mangata',
-    name: 'Mangata',
-    price_per_hour: 2500,
-    capacity: 8,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: mangataImage,
-    description: 'Luxo e sofisticação em alto mar. Perfeita para celebrações especiais.',
-    specifications: { length: '55 pés', engine: 'Twin 450HP', year: '2023' }
-  },
-  {
-    id: 'grandraray',
-    name: 'Grandraray',
-    price_per_hour: 3200,
-    capacity: 12,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: grandRarayImage,
-    description: 'Elite em experiências marítimas.',
-    specifications: { length: '62 pés', engine: 'Twin 550HP', year: '2023' }
-  },
-  {
-    id: 'senna',
-    name: 'Senna',
-    price_per_hour: 2800,
-    capacity: 10,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: sennaImage,
-    description: 'Velocidade e estilo em uma única embarcação.',
-    specifications: { length: '58 pés', engine: 'Twin 600HP', year: '2023' }
-  },
-  {
-    id: 'lady-ruth',
-    name: 'Lady Ruth',
-    price_per_hour: 2400,
-    capacity: 8,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: ladyRuthImage,
-    description: 'Elegância clássica e conforto moderno.',
-    specifications: { length: '42 pés', engine: 'Twin 320HP', year: '2022' }
-  },
-  {
-    id: 'oceano',
-    name: 'Oceano',
-    price_per_hour: 4500,
-    capacity: 20,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Catamarã',
-    image: oceanoImage,
-    description: 'Espaço amplo e estabilidade superior.',
-    specifications: { length: '50 pés', engine: 'Twin 300HP', year: '2021' }
-  },
-  {
-    id: 'nossa',
-    name: 'Nossa',
-    price_per_hour: 2800,
-    capacity: 12,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: nossaImage,
-    description: 'Perfeita para reunir família e amigos.',
-    specifications: { length: '48 pés', engine: 'Twin 380HP', year: '2022' }
-  },
-  {
-    id: 'blau',
-    name: 'Blau Catamaran',
-    price_per_hour: 3800,
-    capacity: 20,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Catamarã',
-    image: blauImage,
-    description: 'Catamarã espaçoso para grupos grandes.',
-    specifications: { length: '50 pés', engine: 'Twin 300HP', year: '2021' }
-  },
-  {
-    id: 'comendador',
-    name: 'Comendador',
-    price_per_hour: 2200,
-    capacity: 10,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: comendadorImage,
-    description: 'Yacht tradicional com elegância.',
-    specifications: { length: '52 pés', engine: 'Twin 380HP', year: '2021' }
-  },
-  {
-    id: 'dragao',
-    name: 'Dragão dos Mares',
-    price_per_hour: 3500,
-    capacity: 12,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: dragaoImage,
-    description: 'Potência e velocidade no mar.',
-    specifications: { length: '58 pés', engine: 'Twin 600HP', year: '2023' }
-  },
-  {
-    id: 'flyhi',
-    name: 'Flyhi Adventure',
-    price_per_hour: 1800,
-    capacity: 8,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Lancha',
-    image: flyHiImage,
-    description: 'Aventura e adrenalina no mar.',
-    specifications: { length: '44 pés', engine: 'Twin 340HP', year: '2022' }
-  },
-  {
-    id: 'iate-executive',
-    name: 'Iate Executive',
-    price_per_hour: 3000,
-    capacity: 12,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: iateExecutiveImage,
-    description: 'Iate executivo para eventos corporativos.',
-    specifications: { length: '60 pés', engine: 'Twin 500HP', year: '2022' }
-  },
-  {
-    id: 'lancha-premium',
-    name: 'Lancha Premium',
-    price_per_hour: 2000,
-    capacity: 8,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Lancha',
-    image: lanchaPremiumImage,
-    description: 'Embarcação de luxo para passeios exclusivos.',
-    specifications: { length: '45 pés', engine: 'Twin 350HP', year: '2023' }
-  },
-  {
-    id: 'luisa',
-    name: 'Luisa Elegance',
-    price_per_hour: 2900,
-    capacity: 10,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: luisaImage,
-    description: 'Elegância e sofisticação.',
-    specifications: { length: '54 pés', engine: 'Twin 460HP', year: '2023' }
-  },
-  {
-    id: 'mcell',
-    name: 'MCéll',
-    price_per_hour: 1600,
-    capacity: 6,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Lancha',
-    image: mcellImage,
-    description: 'Esportividade e agilidade.',
-    specifications: { length: '38 pés', engine: 'Twin 280HP', year: '2022' }
-  },
-  {
-    id: 'myway',
-    name: 'MyWay',
-    price_per_hour: 2600,
-    capacity: 10,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: mywayImage,
-    description: 'Seu caminho para o luxo.',
-    specifications: { length: '52 pés', engine: 'Twin 420HP', year: '2023' }
-  },
-  {
-    id: 'prestige',
-    name: 'Prestige',
-    price_per_hour: 3100,
-    capacity: 12,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: prestigeImage,
-    description: 'Prestígio e exclusividade.',
-    specifications: { length: '58 pés', engine: 'Twin 520HP', year: '2023' }
-  },
-  {
-    id: 'rebeca',
-    name: 'Rebeca',
-    price_per_hour: 2300,
-    capacity: 8,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: rebecaImage,
-    description: 'Conforto familiar no mar.',
-    specifications: { length: '46 pés', engine: 'Twin 360HP', year: '2022' }
-  },
-  {
-    id: 'seven',
-    name: 'Seven',
-    price_per_hour: 3400,
-    capacity: 12,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: sevenImage,
-    description: 'Perfeição em cada detalhe.',
-    specifications: { length: '64 pés', engine: 'Twin 580HP', year: '2023' }
-  },
-  {
-    id: 'tecnomarine',
-    name: 'Tecnomarine',
-    price_per_hour: 2700,
-    capacity: 10,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
-    image: tecnomarine,
-    description: 'Tecnologia e performance em alto mar.',
-    specifications: { length: '56 pés', engine: 'Twin 480HP', year: '2023' }
-  },
-  {
-    id: 'segue',
-    name: 'Segue',
-    price_per_hour: 2500,
-    capacity: 8,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Yacht',
+    id: "segue",
+    name: "SEGUE",
+    type: "Iate Premium",
     image: segueImage,
-    description: 'Elegância e conforto em cada detalhe.',
-    specifications: { length: '48 pés', engine: 'Twin 400HP', year: '2022' }
+    images: [segueImage],
+    capacity: 18,
+    price: "R$ 18.000",
+    originalPrice: "R$ 20.000",
+    rating: 4.9,
+    duration: "8h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "Luxo Premium" },
+      { icon: Music, label: "Som Premium" },
+      { icon: Coffee, label: "Bar Completo" },
+      { icon: Shield, label: "Capitão Incluso" }
+    ],
+    description: "Iate premium com capacidade para 18 passageiros",
+    highlight: true,
+    category: "iate"
   },
   {
-    id: 'catamara-luxury',
-    name: 'Catamarã Luxury',
-    price_per_hour: 5000,
+    id: "tecnomarine",
+    name: "Iate Tecnomarine",
+    type: "Iate Executive",
+    image: tecnomarineImage,
+    capacity: 20,
+    price: "R$ 10.000",
+    rating: 4.8,
+    duration: "8h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "Tecnologia Avançada" },
+      { icon: Music, label: "Sistema de Som" },
+      { icon: Coffee, label: "Cozinha Gourmet" },
+      { icon: Shield, label: "Segurança Total" }
+    ],
+    description: "Iate Tecnomarine com alta tecnologia para 20 passageiros",
+    category: "iate"
+  },
+  {
+    id: "myway",
+    name: "IATE MY WAY",
+    type: "Iate Luxury",
+    image: mywayImage,
+    capacity: 20,
+    price: "R$ 12.000",
+    rating: 4.9,
+    duration: "8h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "Design Exclusivo" },
+      { icon: Music, label: "Som Ambiente" },
+      { icon: Coffee, label: "Bar Premium" },
+      { icon: Waves, label: "Deck Espaçoso" }
+    ],
+    description: "Iate MY WAY com design exclusivo para 20 passageiros",
+    highlight: true,
+    category: "iate"
+  },
+  {
+    id: "flyhi",
+    name: "FLY HI",
+    type: "Lancha Premium",
+    image: flyhiImage,
+    capacity: 15,
+    price: "R$ 3.200",
+    originalPrice: "R$ 3.700",
+    rating: 4.7,
+    duration: "6h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Waves, label: "Alta Velocidade" },
+      { icon: Music, label: "Som Premium" },
+      { icon: Sun, label: "Área Solar" },
+      { icon: Shield, label: "Segurança" }
+    ],
+    description: "Lancha FLY HI ideal para passeios emocionantes",
+    category: "lancha"
+  },
+  {
+    id: "mcell",
+    name: "M CELL",
+    type: "Lancha Compacta",
+    image: mcellImage,
+    capacity: 9,
+    price: "R$ 1.999",
+    originalPrice: "R$ 2.400",
+    rating: 4.6,
+    duration: "4h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Users, label: "Grupos Pequenos" },
+      { icon: Music, label: "Som" },
+      { icon: Sun, label: "Deck Aberto" },
+      { icon: Shield, label: "Seguro" }
+    ],
+    description: "Lancha compacta M CELL perfeita para grupos pequenos",
+    category: "lancha"
+  },
+  {
+    id: "comendador",
+    name: "COMENDADOR",
+    type: "Iate Executivo",
+    image: comendadorImage,
     capacity: 25,
-    features: ['Premium', 'Som', 'Bar', 'Seguro'],
-    category: 'Catamarã',
-    image: catamataLuxuryImage,
-    description: 'O máximo em luxo e espaço para grandes grupos.',
-    specifications: { length: '65 pés', engine: 'Twin 400HP', year: '2023' }
+    price: "R$ 7.700",
+    rating: 4.8,
+    duration: "8h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "Grande Capacidade" },
+      { icon: Music, label: "Som Profissional" },
+      { icon: Coffee, label: "Cozinha Completa" },
+      { icon: Waves, label: "Múltiplos Decks" }
+    ],
+    description: "Iate COMENDADOR com capacidade para 25 passageiros",
+    category: "iate"
+  },
+  {
+    id: "dragao",
+    name: "Dragão",
+    type: "Iate Médio",
+    image: dragaoImage,
+    capacity: 17,
+    price: "R$ 4.000",
+    rating: 4.7,
+    duration: "6h",
+    location: "Marina da Glória",
+    size: "41 pés",
+    features: [
+      { icon: Anchor, label: "41 Pés" },
+      { icon: Music, label: "Sistema de Audio" },
+      { icon: Coffee, label: "Bar" },
+      { icon: Shield, label: "Tripulação" }
+    ],
+    description: "Iate Dragão de 41 pés para 17 passageiros",
+    category: "iate"
+  },
+  {
+    id: "grandraray",
+    name: "GRAND RARAY",
+    type: "Iate Premium",
+    image: grandrarayImage,
+    capacity: 18,
+    price: "R$ 6.000",
+    rating: 4.8,
+    duration: "8h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "Design Premium" },
+      { icon: Music, label: "Som Surround" },
+      { icon: Coffee, label: "Cozinha Gourmet" },
+      { icon: Waves, label: "Vista Panorâmica" }
+    ],
+    description: "GRAND RARAY com embarque na Marina da Glória",
+    category: "iate"
+  },
+  // Novas embarcações
+  {
+    id: "lady-ruth",
+    name: "LADY RUTH",
+    type: "Lancha Premium",
+    image: ladyRuthImage,
+    capacity: 13,
+    price: "R$ 1.999",
+    originalPrice: "R$ 2.500",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "13 Passageiros" },
+      { icon: Music, label: "Som" },
+      { icon: Coffee, label: "Combustível Incluso" },
+      { icon: Shield, label: "Marinheiro" }
+    ],
+    description: "Lady Ruth com 5 horas de excelente passeio",
+    category: "lancha"
+  },
+  {
+    id: "mangata",
+    name: "MANGATA",
+    type: "Iate Premium",
+    image: mangataImage,
+    capacity: 12,
+    price: "R$ 11.500",
+    originalPrice: "R$ 12.000",
+    rating: 4.9,
+    duration: "5h",
+    location: "Iate Clube Rio de Janeiro",
+    features: [
+      { icon: Anchor, label: "44 Pés" },
+      { icon: Music, label: "Som 3 Ambientes" },
+      { icon: Coffee, label: "Geladeira" },
+      { icon: Shield, label: "2 Quartos" }
+    ],
+    description: "Sessa Marine c44 - Mangata com copacabana/cagarras",
+    category: "iate"
+  },
+  {
+    id: "prestige",
+    name: "PRESTIGE",
+    type: "Lancha Premium",
+    image: prestigeImage,
+    capacity: 20,
+    price: "R$ 20.000",
+    rating: 4.9,
+    duration: "6h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "600 Fly" },
+      { icon: Music, label: "Som Bluetooth" },
+      { icon: Coffee, label: "Cozinha Completa" },
+      { icon: Shield, label: "3 Quartos" }
+    ],
+    description: "Lancha Prestige 600 fly, dois motores volvo d 13",
+    category: "lancha"
+  },
+  {
+    id: "rebeca",
+    name: "YACHT REBECA",
+    type: "Iate Luxury",
+    image: rebecaImage,
+    capacity: 16,
+    price: "R$ 20.000",
+    rating: 4.9,
+    duration: "6h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "62 Pés" },
+      { icon: Music, label: "Pininfarina" },
+      { icon: Coffee, label: "Cozinha Gourmet" },
+      { icon: Shield, label: "Design Italiano" }
+    ],
+    description: "Phantom 620 Pininfarina de 62 pés com design italiano",
+    category: "iate"
+  },
+  {
+    id: "oceano",
+    name: "OCEANO",
+    type: "Catamarã",
+    image: oceanoImage,
+    capacity: 65,
+    price: "R$ 16.000",
+    rating: 4.7,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "65 Passageiros" },
+      { icon: Music, label: "Horários Flexíveis" },
+      { icon: Coffee, label: "Roteiro Interno" },
+      { icon: Shield, label: "Marinheiro" }
+    ],
+    description: "Catamarã de até 65 passageiros com horários válidos por 30 dias",
+    category: "catamara"
+  },
+  {
+    id: "blau",
+    name: "CATAMARÃ BLAU",
+    type: "Catamarã Premium",
+    image: blauImage,
+    capacity: 20,
+    price: "R$ 7.000",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "20 Passageiros" },
+      { icon: Music, label: "Som" },
+      { icon: Coffee, label: "Combustível Incluso" },
+      { icon: Shield, label: "Marinheiro" }
+    ],
+    description: "Catamarã Blau com embarque na Marina da Glória",
+    category: "catamara"
+  },
+  {
+    id: "nossa",
+    name: "NOSSA",
+    type: "Iate Premium",
+    image: nossaImage,
+    capacity: 25,
+    price: "R$ 7.500",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "52HT" },
+      { icon: Music, label: "TV" },
+      { icon: Coffee, label: "Frigobar" },
+      { icon: Shield, label: "Churrasqueira" }
+    ],
+    description: "Pershing 52HT com gerador 110v e equipamentos completos",
+    category: "iate"
+  },
+  {
+    id: "seven",
+    name: "SEVEN",
+    type: "Lancha Premium",
+    image: sevenImage,
+    capacity: 15,
+    price: "R$ 7.000",
+    rating: 4.7,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "44 Pés" },
+      { icon: Music, label: "Som" },
+      { icon: Coffee, label: "Combustível Incluso" },
+      { icon: Shield, label: "Marinheiro" }
+    ],
+    description: "Lancha intermarine 44 pés com embarque na Marina da Glória",
+    category: "lancha"
+  },
+  {
+    id: "senna",
+    name: "SENNA",
+    type: "Iate Premium",
+    image: sennaImage,
+    capacity: 20,
+    price: "R$ 7.000",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "46 Pés" },
+      { icon: Music, label: "Som" },
+      { icon: Coffee, label: "2 Suítes" },
+      { icon: Shield, label: "2 Motores Volvo" }
+    ],
+    description: "46 pés com 2 motores volvo a diesel, 2 suítes completas",
+    category: "iate"
+  },
+  {
+    id: "luisa",
+    name: "LUÍSA V",
+    type: "Iate Premium",
+    image: luisaImage,
+    capacity: 15,
+    price: "R$ 2.800",
+    originalPrice: "R$ 3.200",
+    rating: 4.6,
+    duration: "6h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "15 Passageiros" },
+      { icon: Music, label: "Som" },
+      { icon: Coffee, label: "Combustível Incluso" },
+      { icon: Shield, label: "Churrasqueira" }
+    ],
+    description: "Luísa V com roteiro Marina da Glória x Flamengo x Aeroporto x Urca",
+    category: "iate"
   }
 ];
 
 const VesselCatalog = () => {
-  const [selectedCategory, setSelectedCategory] = useState('Todos');
-  const [vessels, setVessels] = useState<Vessel[]>([]);
-  const [loading, setLoading] = useState(true);
-  
-  const categories = ['Todos', 'Yacht', 'Catamarã', 'Lancha'];
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("featured");
+  const [vesselsData, setVesselsData] = useState(vessels);
 
+  // Carregar dados salvos do admin se existirem
   useEffect(() => {
-    loadVessels();
+    const loadVesselData = () => {
+      const savedData = localStorage.getItem('adminVesselsData');
+      const hasCustomData = localStorage.getItem('hasCustomVesselData');
+      
+      console.log('VesselCatalog - Verificando dados salvos:', { savedData: !!savedData, hasCustomData });
+      
+      if (savedData && hasCustomData === 'true') {
+        try {
+          const customVessels = JSON.parse(savedData);
+          console.log('VesselCatalog - Dados customizados carregados:', customVessels);
+          
+          // Converter objeto para array mantendo a estrutura original
+          const vesselArray = Object.values(customVessels).map((vessel: any) => ({
+            ...vessel,
+            image: vessel.images?.[0] || vessel.image, // Primeira imagem como image principal
+            features: vessels.find(v => v.id === vessel.id)?.features || []
+          }));
+          
+          console.log('VesselCatalog - Array de vessels criado:', vesselArray);
+          setVesselsData(vesselArray);
+        } catch (error) {
+          console.error('Erro ao carregar dados customizados:', error);
+        }
+      }
+    };
+
+    // Carregar dados inicialmente
+    loadVesselData();
+
+    // Ouvir por atualizações do admin
+    const handleVesselsUpdate = (event: any) => {
+      console.log('VesselCatalog - Evento de atualização recebido:', event);
+      loadVesselData();
+    };
+
+    // Escutar eventos de atualização
+    window.addEventListener('vesselsDataUpdated', handleVesselsUpdate);
+    window.addEventListener('storage', handleVesselsUpdate);
+
+    // Limpar listeners ao desmontar
+    return () => {
+      window.removeEventListener('vesselsDataUpdated', handleVesselsUpdate);
+      window.removeEventListener('storage', handleVesselsUpdate);
+    };
   }, []);
 
-  const loadVessels = async () => {
-    try {
-      const { data: vesselsData, error: vesselsError } = await supabase
-        .from('vessels')
-        .select('*')
-        .order('name');
+  const categories = [
+    { id: "all", name: "Todas", count: vesselsData.length },
+    { id: "lancha", name: "Lanchas", count: vesselsData.filter(v => v.category === "lancha").length },
+    { id: "iate", name: "Iates", count: vesselsData.filter(v => v.category === "iate").length },
+    { id: "catamara", name: "Catamarãs", count: vesselsData.filter(v => v.category === "catamara").length }
+  ];
 
-      if (vesselsError) throw vesselsError;
-
-      if (vesselsData && vesselsData.length > 0) {
-        const vesselsWithImages = await Promise.all(
-          vesselsData.map(async (vessel) => {
-            const { data: imagesData, error: imagesError } = await supabase
-              .from('vessel_images')
-              .select('*')
-              .eq('vessel_id', vessel.id)
-              .order('display_order');
-
-            if (imagesError) {
-              console.error('Error loading images for vessel:', vessel.id, imagesError);
-              return { ...vessel, images: [] };
-            }
-
-            return { ...vessel, images: imagesData || [] };
-          })
-        );
-        setVessels(vesselsWithImages);
-      } else {
-        // Use fallback data if no vessels in database
-        const fallbackWithImages = fallbackVesselData.map(vessel => ({
-          ...vessel,
-          images: []
-        }));
-        setVessels(fallbackWithImages);
+  const filteredVessels = vesselsData
+    .filter(vessel => {
+      const matchesSearch = vessel.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          vessel.type.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = selectedCategory === "all" || vessel.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    })
+    .sort((a, b) => {
+      switch (sortBy) {
+        case "price-low":
+          return parseInt(a.price.replace(/\D/g, "")) - parseInt(b.price.replace(/\D/g, ""));
+        case "price-high":
+          return parseInt(b.price.replace(/\D/g, "")) - parseInt(a.price.replace(/\D/g, ""));
+        case "capacity":
+          return b.capacity - a.capacity;
+        case "rating":
+          return b.rating - a.rating;
+        default:
+          return b.highlight ? 1 : -1;
       }
-    } catch (error) {
-      console.error('Error loading vessels:', error);
-      // Use fallback data on error
-      const fallbackWithImages = fallbackVesselData.map(vessel => ({
-        ...vessel,
-        images: []
-      }));
-      setVessels(fallbackWithImages);
-    } finally {
-      setLoading(false);
-    }
-  };
-  
-  const filteredVessels = selectedCategory === 'Todos' 
-    ? vessels 
-    : vessels.filter(vessel => vessel.category === selectedCategory);
-
-  if (loading) {
-    return (
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Carregando embarcações...</h2>
-          </div>
-        </div>
-      </section>
-    );
-  }
+    });
 
   return (
     <section id="embarcacoes" className="py-20 bg-gradient-to-br from-background to-muted/30">
       <div className="container mx-auto px-6">
+        {/* Header */}
         <div className="text-center mb-12">
+          {localStorage.getItem('hasCustomVesselData') === 'true' && (
+            <Badge variant="outline" className="mb-4 px-4 py-2 bg-green-50 text-green-700 border-green-200">
+              ✨ Dados customizados carregados do painel admin
+            </Badge>
+          )}
+          <Badge variant="secondary" className="mb-4 px-4 py-2">
+            Nossa Frota Premium
+          </Badge>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Nossa Frota
-            <span className="text-gradient-ocean"> Premium</span>
+            Escolha Sua
+            <span className="text-gradient-ocean"> Embarcação</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Oferecemos uma frota diversificada de embarcações premium, todas equipadas com os melhores 
@@ -370,42 +499,105 @@ const VesselCatalog = () => {
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex justify-center mb-8">
-          <div className="flex gap-2 p-1 bg-muted rounded-lg">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-md transition-all ${
-                  selectedCategory === category
-                    ? 'bg-primary text-primary-foreground shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+        {/* Filters and Search */}
+        <div className="mb-10">
+          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+            {/* Search */}
+            <div className="relative flex-1 max-w-md">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+              <Input
+                placeholder="Buscar embarcação..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 h-12 bg-background border-border/50 focus:border-primary"
+              />
+            </div>
+
+            {/* Category Filters */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <Button
+                  key={category.id}
+                  variant={selectedCategory === category.id ? "default" : "outline"}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`${
+                    selectedCategory === category.id 
+                      ? "bg-primary text-primary-foreground" 
+                      : "hover:bg-primary/10 hover:text-primary"
+                  }`}
+                >
+                  {category.name} ({category.count})
+                </Button>
+              ))}
+            </div>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-3 bg-background border border-border/50 rounded-lg focus:border-primary focus:outline-none"
+            >
+              <option value="featured">Destaques</option>
+              <option value="price-low">Menor Preço</option>
+              <option value="price-high">Maior Preço</option>
+              <option value="capacity">Capacidade</option>
+              <option value="rating">Avaliação</option>
+            </select>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Results Counter */}
+        <div className="mb-8">
+          <p className="text-muted-foreground">
+            {filteredVessels.length} embarcação{filteredVessels.length !== 1 ? 'ões' : ''} encontrada{filteredVessels.length !== 1 ? 's' : ''}
+          </p>
+        </div>
+
+        {/* Vessel Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {filteredVessels.map((vessel) => (
-              <VesselCard
-                key={vessel.id}
-                id={vessel.id}
-                name={vessel.name}
-                type={vessel.category}
-                price={vessel.price_per_hour ? `R$ ${vessel.price_per_hour}` : 'Consulte preço'}
-                capacity={vessel.capacity || 0}
-                features={vessel.features.map(f => ({ icon: '⚓', label: f }))}
-                image={vessel.images.length > 0 ? vessel.images[0].image_url : fallbackVesselData.find(f => f.id === vessel.id)?.image || dragaoImage}
-                rating={4.8}
-                duration="Full Day"
-                location="Marina da Glória"
-                description={vessel.description || ''}
-              />
+            <VesselCard
+              key={vessel.id}
+              {...vessel}
+            />
           ))}
+        </div>
+
+        {/* Empty State */}
+        {filteredVessels.length === 0 && (
+          <div className="text-center py-12">
+            <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+              <Search className="w-8 h-8 text-muted-foreground" />
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Nenhuma embarcação encontrada</h3>
+            <p className="text-muted-foreground mb-6">
+              Tente ajustar os filtros ou termo de busca
+            </p>
+            <Button 
+              onClick={() => {
+                setSearchTerm("");
+                setSelectedCategory("all");
+              }}
+              variant="outline"
+            >
+              Limpar Filtros
+            </Button>
+          </div>
+        )}
+
+        {/* Call to Action */}
+        <div className="text-center">
+          <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold mb-4">Não encontrou o que procurava?</h3>
+            <p className="text-muted-foreground mb-6">
+              Entre em contato conosco e criaremos uma experiência personalizada para você!
+            </p>
+            <Button asChild className="btn-ocean">
+              <a href="https://wa.me/5521974004415?text=Olá! Gostaria de uma experiência personalizada." target="_blank" rel="noopener noreferrer">
+                Falar com Especialista
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
