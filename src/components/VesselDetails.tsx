@@ -272,28 +272,28 @@ const vesselData = {
       { time: "Horário flexível", description: "5 horas de passeio" }
     ],
     gallery: [
-      "/lovable-uploads/luisa-1.png",
-      "/lovable-uploads/luisa-2.png",
-      "/lovable-uploads/luisa-3.png",
-      "/lovable-uploads/luisa-4.png",
-      "/lovable-uploads/luisa-5.png",
-      "/lovable-uploads/luisa-6.png",
-      "/lovable-uploads/luisa-7.png",
-      "/lovable-uploads/luisa-8.png",
-      "/lovable-uploads/luisa-9.png",
-      "/lovable-uploads/luisa-10.png"
+      "/lovable-uploads/03c21177-517e-46bb-ba14-3d5e3e92b548.png",
+      "/lovable-uploads/5b46ecc7-6d2f-49f9-97e1-18cd69e70334.png",
+      "/lovable-uploads/971d60d5-6cd7-46b1-80e0-b22fc9971ecf.png",
+      "/lovable-uploads/f445fc67-3320-4ec8-9fb4-242ae592d18c.png",
+      "/lovable-uploads/729365c1-b3c2-4db7-8b9d-931a2f7fb1f7.png",
+      "/lovable-uploads/3e2e65a7-195a-4f5e-9cf9-39c176c713cd.png",
+      "/lovable-uploads/2b635aac-c2f0-4db3-a82a-e8c116893024.png",
+      "/lovable-uploads/c84fec1a-ab0f-4007-ae85-08012b4590c2.png",
+      "/lovable-uploads/da929e32-33ee-4fc1-97c0-d366d63ff457.png",
+      "/lovable-uploads/8ce2e68b-6ed0-47b8-9f7b-df5ab588c7d2.png"
     ],
     images: [
-      "/lovable-uploads/luisa-1.png",
-      "/lovable-uploads/luisa-2.png",
-      "/lovable-uploads/luisa-3.png",
-      "/lovable-uploads/luisa-4.png",
-      "/lovable-uploads/luisa-5.png",
-      "/lovable-uploads/luisa-6.png",
-      "/lovable-uploads/luisa-7.png",
-      "/lovable-uploads/luisa-8.png",
-      "/lovable-uploads/luisa-9.png",
-      "/lovable-uploads/luisa-10.png"
+      "/lovable-uploads/03c21177-517e-46bb-ba14-3d5e3e92b548.png",
+      "/lovable-uploads/5b46ecc7-6d2f-49f9-97e1-18cd69e70334.png",
+      "/lovable-uploads/971d60d5-6cd7-46b1-80e0-b22fc9971ecf.png",
+      "/lovable-uploads/f445fc67-3320-4ec8-9fb4-242ae592d18c.png",
+      "/lovable-uploads/729365c1-b3c2-4db7-8b9d-931a2f7fb1f7.png",
+      "/lovable-uploads/3e2e65a7-195a-4f5e-9cf9-39c176c713cd.png",
+      "/lovable-uploads/2b635aac-c2f0-4db3-a82a-e8c116893024.png",
+      "/lovable-uploads/c84fec1a-ab0f-4007-ae85-08012b4590c2.png",
+      "/lovable-uploads/da929e32-33ee-4fc1-97c0-d366d63ff457.png",
+      "/lovable-uploads/8ce2e68b-6ed0-47b8-9f7b-df5ab588c7d2.png"
     ]
   },
   mcell: {
@@ -320,20 +320,20 @@ const vesselData = {
       "Combustível"
     ],
     gallery: [
-      "/lovable-uploads/mcell-1.png",
-      "/lovable-uploads/mcell-2.png",
-      "/lovable-uploads/mcell-3.png",
-      "/lovable-uploads/mcell-4.png",
-      "/lovable-uploads/mcell-5.png",
-      "/lovable-uploads/mcell-6.png"
+      "/lovable-uploads/d1d17103-7ce7-4643-b993-81e04a1468e7.png",
+      "/lovable-uploads/75a5ef56-8357-438c-8af1-e6bcba02d684.png",
+      "/lovable-uploads/f50de78c-4e90-4465-b038-9c65c849667e.png",
+      "/lovable-uploads/f5ee604f-918b-48d0-b36e-336f92696161.png",
+      "/lovable-uploads/f5641c4d-f492-468c-8763-40c37a38705b.png",
+      "/lovable-uploads/908cf142-ad3f-42d0-8e09-aae748064acb.png"
     ],
     images: [
-      "/lovable-uploads/mcell-1.png",
-      "/lovable-uploads/mcell-2.png",
-      "/lovable-uploads/mcell-3.png",
-      "/lovable-uploads/mcell-4.png",
-      "/lovable-uploads/mcell-5.png",
-      "/lovable-uploads/mcell-6.png"
+      "/lovable-uploads/d1d17103-7ce7-4643-b993-81e04a1468e7.png",
+      "/lovable-uploads/75a5ef56-8357-438c-8af1-e6bcba02d684.png",
+      "/lovable-uploads/f50de78c-4e90-4465-b038-9c65c849667e.png",
+      "/lovable-uploads/f5ee604f-918b-48d0-b36e-336f92696161.png",
+      "/lovable-uploads/f5641c4d-f492-468c-8763-40c37a38705b.png",
+      "/lovable-uploads/908cf142-ad3f-42d0-8e09-aae748064acb.png"
     ]
   },
   comendador: {
@@ -774,28 +774,28 @@ const vesselData = {
       "Churrasqueira: R$200"
     ],
     gallery: [
-      "/lovable-uploads/senna-1.png",
-      "/lovable-uploads/senna-2.png",
-      "/lovable-uploads/senna-3.png",
-      "/lovable-uploads/senna-4.png",
-      "/lovable-uploads/senna-5.png",
-      "/lovable-uploads/senna-6.png",
-      "/lovable-uploads/senna-7.png",
-      "/lovable-uploads/senna-8.png",
-      "/lovable-uploads/senna-9.png",
-      "/lovable-uploads/senna-10.png"
+      "/lovable-uploads/da929e32-33ee-4fc1-97c0-d366d63ff457.png",
+      "/lovable-uploads/37823d8f-2d16-402c-8a0a-cfbaacd8c14d.png",
+      "/lovable-uploads/2e6b1dea-bd55-448e-b56a-417204d37f78.png",
+      "/lovable-uploads/3e2e65a7-195a-4f5e-9cf9-39c176c713cd.png",
+      "/lovable-uploads/ca7513a8-7ca6-4c74-94eb-e69fde091b96.png",
+      "/lovable-uploads/56562047-b47a-4a19-a6cd-ca765e9bae68.png",
+      "/lovable-uploads/d5183a03-42a3-40b8-b960-998e51ffb87f.png",
+      "/lovable-uploads/8ce2e68b-6ed0-47b8-9f7b-df5ab588c7d2.png",
+      "/lovable-uploads/8e8c7ca9-eb50-4a92-8e06-cbcc8616d15c.png",
+      "/lovable-uploads/2b635aac-c2f0-4db3-a82a-e8c116893024.png"
     ],
     images: [
-      "/lovable-uploads/senna-1.png",
-      "/lovable-uploads/senna-2.png",
-      "/lovable-uploads/senna-3.png",
-      "/lovable-uploads/senna-4.png",
-      "/lovable-uploads/senna-5.png",
-      "/lovable-uploads/senna-6.png",
-      "/lovable-uploads/senna-7.png",
-      "/lovable-uploads/senna-8.png",
-      "/lovable-uploads/senna-9.png",
-      "/lovable-uploads/senna-10.png"
+      "/lovable-uploads/da929e32-33ee-4fc1-97c0-d366d63ff457.png",
+      "/lovable-uploads/37823d8f-2d16-402c-8a0a-cfbaacd8c14d.png",
+      "/lovable-uploads/2e6b1dea-bd55-448e-b56a-417204d37f78.png",
+      "/lovable-uploads/3e2e65a7-195a-4f5e-9cf9-39c176c713cd.png",
+      "/lovable-uploads/ca7513a8-7ca6-4c74-94eb-e69fde091b96.png",
+      "/lovable-uploads/56562047-b47a-4a19-a6cd-ca765e9bae68.png",
+      "/lovable-uploads/d5183a03-42a3-40b8-b960-998e51ffb87f.png",
+      "/lovable-uploads/8ce2e68b-6ed0-47b8-9f7b-df5ab588c7d2.png",
+      "/lovable-uploads/8e8c7ca9-eb50-4a92-8e06-cbcc8616d15c.png",
+      "/lovable-uploads/2b635aac-c2f0-4db3-a82a-e8c116893024.png"
     ]
   },
   luisa: {
