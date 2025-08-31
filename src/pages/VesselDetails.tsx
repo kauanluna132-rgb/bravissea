@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import VesselImageCarousel from "@/components/VesselImageCarousel";
 
 // Importar as imagens das embarcações
 import segueImage from "@/assets/segue-yacht.jpg";
@@ -318,7 +319,6 @@ const vesselsData = {
 const VesselDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState(0);
   const [bookingForm, setBookingForm] = useState({
     name: "",
     email: "",
@@ -419,40 +419,12 @@ Aguardo confirmação! 🌊
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Galeria e Detalhes */}
             <div className="lg:col-span-2">
-              {/* Galeria */}
+              {/* Galeria com Carrossel */}
               <div className="mb-8">
-                <div className="mb-4">
-                  <img 
-                    src={vessel.images[selectedImage]} 
-                    alt={vessel.name}
-                    className="w-full h-96 object-cover rounded-2xl"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = "/placeholder.svg";
-                    }}
-                  />
-                </div>
-                <div className="grid grid-cols-3 gap-4">
-                  {vessel.images.map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedImage(index)}
-                      className={`h-24 rounded-lg overflow-hidden border-2 transition-colors ${
-                        selectedImage === index ? 'border-primary' : 'border-transparent'
-                      }`}
-                    >
-                      <img 
-                        src={image} 
-                        alt={`${vessel.name} ${index + 1}`}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = "/placeholder.svg";
-                        }}
-                      />
-                    </button>
-                  ))}
-                </div>
+                <VesselImageCarousel
+                  images={vessel.images}
+                  vesselName={vessel.name}
+                />
               </div>
 
               {/* Descrição */}
