@@ -632,10 +632,14 @@ const VesselDetails = () => {
   }
 
   const handleInputChange = (field: string, value: string) => {
-    setBookingForm(prev => ({
-      ...prev,
-      [field]: value
-    }));
+    try {
+      setBookingForm(prev => ({
+        ...prev,
+        [field]: value || ""
+      }));
+    } catch (error) {
+      console.error("Erro ao atualizar formulário:", error);
+    }
   };
 
   const handleBooking = () => {
@@ -854,11 +858,20 @@ Aguardo retorno!`;
 
                   <div>
                     <Label htmlFor="duration">Duração</Label>
-                    <Select value={bookingForm.duration} onValueChange={(value) => handleInputChange("duration", value)}>
-                      <SelectTrigger>
+                    <Select 
+                      value={bookingForm.duration || ""} 
+                      onValueChange={(value) => {
+                        try {
+                          handleInputChange("duration", value);
+                        } catch (error) {
+                          console.error("Erro ao selecionar duração:", error);
+                        }
+                      }}
+                    >
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Selecione a duração" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent position="popper" className="w-full">
                         <SelectItem value="4h">4 horas</SelectItem>
                         <SelectItem value="6h">6 horas</SelectItem>
                         <SelectItem value="8h">8 horas</SelectItem>
@@ -869,12 +882,21 @@ Aguardo retorno!`;
 
                   <div>
                     <Label htmlFor="guests">Número de Pessoas</Label>
-                    <Select value={bookingForm.guests} onValueChange={(value) => handleInputChange("guests", value)}>
-                      <SelectTrigger>
+                    <Select 
+                      value={bookingForm.guests || ""} 
+                      onValueChange={(value) => {
+                        try {
+                          handleInputChange("guests", value);
+                        } catch (error) {
+                          console.error("Erro ao selecionar número de pessoas:", error);
+                        }
+                      }}
+                    >
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Quantas pessoas?" />
                       </SelectTrigger>
-                      <SelectContent>
-                        {Array.from({ length: vessel.capacity }, (_, i) => i + 1).map((num) => (
+                      <SelectContent position="popper" className="w-full max-h-60 overflow-y-auto">
+                        {Array.from({ length: Math.min(vessel?.capacity || 10, 50) }, (_, i) => i + 1).map((num) => (
                           <SelectItem key={num} value={num.toString()}>
                             {num} pessoa{num > 1 ? 's' : ''}
                           </SelectItem>
@@ -885,11 +907,20 @@ Aguardo retorno!`;
 
                   <div>
                     <Label htmlFor="route">Roteiro Preferido</Label>
-                    <Select value={bookingForm.route} onValueChange={(value) => handleInputChange("route", value)}>
-                      <SelectTrigger>
+                    <Select 
+                      value={bookingForm.route || ""} 
+                      onValueChange={(value) => {
+                        try {
+                          handleInputChange("route", value);
+                        } catch (error) {
+                          console.error("Erro ao selecionar roteiro:", error);
+                        }
+                      }}
+                    >
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Escolha um roteiro" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent position="popper" className="w-full">
                         <SelectItem value="urca">Urca</SelectItem>
                         <SelectItem value="praia-vermelha">Praia Vermelha</SelectItem>
                         <SelectItem value="praia-morcego">Praia do Morcego</SelectItem>
