@@ -696,7 +696,7 @@ const vesselData = {
     id: "luisa",
     name: "LUÍSA V",
     type: "Iate Premium",
-    image: "/lovable-uploads/luisa-1.png",
+    image: luisaImage,
     capacity: 15,
     price: "R$ 3.200",
     originalPrice: undefined,
@@ -732,30 +732,8 @@ const vesselData = {
       taxaEmbarque: "R$ 200,00",
       taxaChurrasqueiro: "R$ 200,00"
     },
-    gallery: [
-      "/lovable-uploads/luisa-1.png",
-      "/lovable-uploads/luisa-2.png",
-      "/lovable-uploads/luisa-3.png",
-      "/lovable-uploads/luisa-4.png",
-      "/lovable-uploads/luisa-5.png",
-      "/lovable-uploads/luisa-6.png",
-      "/lovable-uploads/luisa-7.png",
-      "/lovable-uploads/luisa-8.png",
-      "/lovable-uploads/luisa-9.png",
-      "/lovable-uploads/luisa-10.png"
-    ],
-    images: [
-      "/lovable-uploads/luisa-1.png",
-      "/lovable-uploads/luisa-2.png",
-      "/lovable-uploads/luisa-3.png",
-      "/lovable-uploads/luisa-4.png",
-      "/lovable-uploads/luisa-5.png",
-      "/lovable-uploads/luisa-6.png",
-      "/lovable-uploads/luisa-7.png",
-      "/lovable-uploads/luisa-8.png",
-      "/lovable-uploads/luisa-9.png",
-      "/lovable-uploads/luisa-10.png"
-    ]
+    gallery: [luisaImage],
+    images: [luisaImage]
   }
 };
 
