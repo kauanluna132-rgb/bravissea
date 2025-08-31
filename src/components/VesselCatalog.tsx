@@ -337,7 +337,17 @@ const vessels = [
     id: "rebeca",
     name: "YACHT REBECA",
     type: "Iate Luxury",
-    image: rebecaImage,
+    image: "/lovable-uploads/rebeca-1.png",
+    images: [
+      "/lovable-uploads/rebeca-1.png",
+      "/lovable-uploads/rebeca-2.png",
+      "/lovable-uploads/rebeca-3.png",
+      "/lovable-uploads/rebeca-4.png",
+      "/lovable-uploads/rebeca-5.png",
+      "/lovable-uploads/rebeca-6.png",
+      "/lovable-uploads/rebeca-7.png",
+      "/lovable-uploads/rebeca-8.png"
+    ],
     capacity: 16,
     price: "R$ 20.000",
     rating: 4.9,

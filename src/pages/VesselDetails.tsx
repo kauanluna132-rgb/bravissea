@@ -571,14 +571,54 @@ const vesselsData = {
     id: "rebeca",
     name: "YACHT REBECA",
     type: "Iate Luxury",
-    images: [rebecaImage],
+    images: [
+      "/lovable-uploads/rebeca-1.png",
+      "/lovable-uploads/rebeca-2.png",
+      "/lovable-uploads/rebeca-3.png",
+      "/lovable-uploads/rebeca-4.png",
+      "/lovable-uploads/rebeca-5.png",
+      "/lovable-uploads/rebeca-6.png",
+      "/lovable-uploads/rebeca-7.png",
+      "/lovable-uploads/rebeca-8.png"
+    ],
     capacity: 16,
     price: "R$ 20.000",
     rating: 4.9,
     duration: "6h",
     location: "Marina da Glória",
-    description: "Phantom 620 Pininfarina de 62 pés com design italiano",
-    category: "iate"
+    description: "Phantom 620 Pininfarina de 62 pés com design assinado pelo estúdio italiano responsável por Ferrari e Maserati",
+    category: "iate",
+    specifications: {
+      model: "Phantom 620 Pininfarina",
+      length: "62 pés", 
+      capacity: "16 passageiros",
+      overnight: "Até 7 passageiros",
+      duration: "6 horas",
+      departure: "Marina da Glória"
+    },
+    amenities: [
+      "Espaço de convivência",
+      "Cabines e quartos", 
+      "Banheiros completos",
+      "Sala de jantar",
+      "Cozinha completa",
+      "Amplo cockpit",
+      "Solário na proa com duas opções",
+      "Cozinha gourmet na plataforma",
+      "Fly-bridge espaçoso",
+      "Design interno Pininfarina"
+    ],
+    included: [
+      "Combustível",
+      "Marinheiro profissional",
+      "Passeio de 6 horas",
+      "Seguro da embarcação"
+    ],
+    additionalServices: [
+      { name: "Serviço de Barman", price: "Não incluso", required: false },
+      { name: "Churrasqueiro", price: "Não incluso", required: false },
+      { name: "Catering personalizado", price: "Sob consulta", required: false }
+    ]
   },
   oceano: {
     id: "oceano",
