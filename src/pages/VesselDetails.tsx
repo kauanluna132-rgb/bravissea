@@ -391,15 +391,70 @@ const vesselsData = {
   mangata: {
     id: "mangata",
     name: "MANGATA",
-    type: "Iate Premium",
-    images: [mangataImage],
+    type: "Sessa Marine C44",
+    images: [
+      "/lovable-uploads/8e04365e-545e-47e3-a14d-2cf6b644e2f4.png",
+      "/lovable-uploads/573e02ed-2755-4218-b4ae-59587be20f1f.png",
+      "/lovable-uploads/c4d8a843-a471-4f01-bfde-70dcc59e78fc.png",
+      "/lovable-uploads/9f2b0b5a-591e-4e81-8dc0-d2adf30704f5.png",
+      "/lovable-uploads/196fb554-9eaf-4ec8-83fd-da7bba0e29a6.png",
+      "/lovable-uploads/5f810146-e5c7-4dbb-a4d8-2c19d4ed864c.png",
+      "/lovable-uploads/fd531e0d-a5e6-4d20-a1c0-9f8d20807efe.png",
+      "/lovable-uploads/469716cc-1617-43e4-bb71-3e407cbe189b.png",
+      "/lovable-uploads/ce6010dd-9d14-4611-a976-9b8a0c6da58b.png",
+      "/lovable-uploads/a3fe145a-ff25-4b11-a5a6-5acffa9abdd0.png"
+    ],
     capacity: 12,
     price: "R$ 11.500",
-    originalPrice: "R$ 12.000",
     rating: 4.9,
     duration: "5h",
-    location: "Iate Clube Rio de Janeiro",
-    description: "Sessa Marine c44 - Mangata com copacabana/cagarras",
+    location: "Late Clube Rio de Janeiro",
+    description: "Sessa Marine C44 - Iate de luxo com 44 pés oferecendo máximo conforto e elegância para até 12 passageiros.",
+    specs: {
+      model: "Sessa Marine C44",
+      length: "44 pés",
+      capacity: "12 passageiros + marinheiro",
+      duration: "5 horas de passeio",
+      boarding: "Late Clube Rio de Janeiro"
+    },
+    amenities: [
+      "Gerador Mase 10.5",
+      "Antena Digital",
+      "2 Quartos",
+      "2 Banheiros", 
+      "1 Cozinha + Mesa de Jantar",
+      "TV e Sistema de Som Independente nos 3 Ambientes",
+      "2 Freezers",
+      "1 Geladeira",
+      "1 Microondas",
+      "Ar Condicionado",
+      "Boiler",
+      "Área Gourmet Elétrica na Popa",
+      "Churrasqueira Elétrica e Pia",
+      "Churrasqueira a Carvão",
+      "HT Elétrico",
+      "GPS",
+      "Som",
+      "Plataforma Submergível",
+      "Luzes Subaquáticas"
+    ],
+    pricing: {
+      complete_tour: "R$ 11.500,00"
+    },
+    destinations: [
+      { 
+        name: "Roteiro Completo", 
+        price: "R$ 11.500,00",
+        description: "Urca / Botafogo / Copacabana x Cagarras ou Ilhas Tijucas (Roteiro completo mediante condições do mar)"
+      }
+    ],
+    additionalFees: [
+      {
+        name: "Taxa de Churrasqueiro",
+        price: "R$ 200,00",
+        description: "Serviço de churrasqueiro profissional"
+      }
+    ],
     category: "iate"
   },
   prestige: {

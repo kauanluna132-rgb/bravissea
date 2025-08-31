@@ -278,20 +278,20 @@ const vessels = [
     id: "mangata",
     name: "MANGATA",
     type: "Iate Premium",
-    image: mangataImage,
+    image: "/lovable-uploads/8e04365e-545e-47e3-a14d-2cf6b644e2f4.png",
     capacity: 12,
     price: "R$ 11.500",
     originalPrice: "R$ 12.000",
     rating: 4.9,
     duration: "5h",
-    location: "Iate Clube Rio de Janeiro",
+    location: "Late Clube Rio de Janeiro",
     features: [
       { icon: Anchor, label: "44 Pés" },
       { icon: Music, label: "Som 3 Ambientes" },
-      { icon: Coffee, label: "Geladeira" },
+      { icon: Coffee, label: "2 Freezers" },
       { icon: Shield, label: "2 Quartos" }
     ],
-    description: "Sessa Marine c44 - Mangata com copacabana/cagarras",
+    description: "Sessa Marine C44 - Iate de luxo com área gourmet e plataforma submergível",
     category: "iate"
   },
   {
