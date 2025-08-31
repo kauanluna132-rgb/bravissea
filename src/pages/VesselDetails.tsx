@@ -893,8 +893,124 @@ Aguardo confirmação! 🌊
                            ))}
                          </div>
                        </div>
-                     </div>
-                    )}
+                      </div>
+                     )}
+
+                     {vessel.id === "tecnomarine" && (
+                       <div className="space-y-8">
+                         {/* Especificações Técnicas */}
+                         <div>
+                           <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                             <Waves className="h-5 w-5 mr-2" />
+                             Especificações Técnicas
+                           </h4>
+                           <div className="grid md:grid-cols-2 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tamanho</span>
+                                <p className="text-lg font-semibold">52 pés</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                                <p className="text-lg font-semibold">20 passageiros</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                                <p className="text-lg font-semibold">5 horas</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Embarque</span>
+                                <p className="text-lg font-semibold">Marina da Glória - RJ</p>
+                              </div>
+                           </div>
+                         </div>
+
+                         {/* Valores Inclusos */}
+                         <div>
+                           <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                             <Coffee className="h-5 w-5 mr-2" />
+                             Valores Inclusos
+                           </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Combustível incluído</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Marinheiro profissional</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">5 horas de passeio</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Embarque na Marina da Glória</p>
+                                </div>
+                              </div>
+                           </div>
+                         </div>
+
+                         {/* Roteiros e Preços */}
+                         <div>
+                           <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                             <MapPin className="h-5 w-5 mr-2" />
+                             Roteiros e Preços
+                           </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="border border-primary/20 p-4 rounded-lg">
+                                <div className="flex justify-between items-center">
+                                  <h5 className="font-semibold text-primary">Roteiro Urca</h5>
+                                  <span className="font-bold text-lg">R$ 10.000,00</span>
+                                </div>
+                              </div>
+                              <div className="border border-primary/20 p-4 rounded-lg">
+                                <div className="flex justify-between items-center">
+                                  <h5 className="font-semibold text-primary">Roteiro Praia Vermelha</h5>
+                                  <span className="font-bold text-lg">R$ 11.000,00</span>
+                                </div>
+                              </div>
+                              <div className="border border-primary/20 p-4 rounded-lg">
+                                <div className="flex justify-between items-center">
+                                  <h5 className="font-semibold text-primary">Copacabana</h5>
+                                  <span className="font-bold text-lg">R$ 13.800,00</span>
+                                </div>
+                              </div>
+                              <div className="border border-primary/20 p-4 rounded-lg">
+                                <div className="flex justify-between items-center">
+                                  <h5 className="font-semibold text-primary">Cagarras</h5>
+                                  <span className="font-bold text-lg">R$ 15.000,00</span>
+                                </div>
+                              </div>
+                           </div>
+                         </div>
+
+                         {/* Taxas Adicionais */}
+                         <div>
+                           <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                             <Sun className="h-5 w-5 mr-2" />
+                             Taxas Adicionais
+                           </h4>
+                           <div className="grid md:grid-cols-2 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa do Churrasqueiro</span>
+                                <p className="text-lg font-semibold">R$ 200,00</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa de Embarque</span>
+                                <p className="text-lg font-semibold">R$ 200,00</p>
+                              </div>
+                           </div>
+                         </div>
+                       </div>
+                     )}
 
                     {vessel.id === "senna" && (
                       <div className="space-y-8">
