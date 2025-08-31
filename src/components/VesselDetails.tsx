@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +20,8 @@ import {
   Calendar,
   Phone,
   Mail,
-  User
+  User,
+  ChevronDown
 } from "lucide-react";
 
 // Import vessel images
@@ -603,9 +604,27 @@ const vesselData = {
   }
 };
 
+// Hook para detectar dispositivos móveis
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile;
+};
+
 const VesselDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [selectedImage, setSelectedImage] = useState(0);
   const [bookingForm, setBookingForm] = useState({
     name: "",
@@ -858,78 +877,106 @@ Aguardo retorno!`;
 
                   <div>
                     <Label htmlFor="duration">Duração</Label>
-                    <Select 
-                      value={bookingForm.duration || ""} 
-                      onValueChange={(value) => {
-                        try {
-                          handleInputChange("duration", value);
-                        } catch (error) {
-                          console.error("Erro ao selecionar duração:", error);
-                        }
-                      }}
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Selecione a duração" />
-                      </SelectTrigger>
-                      <SelectContent position="popper" className="w-full">
-                        <SelectItem value="4h">4 horas</SelectItem>
-                        <SelectItem value="6h">6 horas</SelectItem>
-                        <SelectItem value="8h">8 horas</SelectItem>
-                        <SelectItem value="custom">Personalizado</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    {isMobile ? (
+                      <select
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        value={bookingForm.duration}
+                        onChange={(e) => handleInputChange("duration", e.target.value)}
+                      >
+                        <option value="">Selecione a duração</option>
+                        <option value="4h">4 horas</option>
+                        <option value="6h">6 horas</option>
+                        <option value="8h">8 horas</option>
+                        <option value="custom">Personalizado</option>
+                      </select>
+                    ) : (
+                      <div className="relative">
+                        <select
+                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
+                          value={bookingForm.duration}
+                          onChange={(e) => handleInputChange("duration", e.target.value)}
+                        >
+                          <option value="">Selecione a duração</option>
+                          <option value="4h">4 horas</option>
+                          <option value="6h">6 horas</option>
+                          <option value="8h">8 horas</option>
+                          <option value="custom">Personalizado</option>
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                      </div>
+                    )}
                   </div>
 
                   <div>
                     <Label htmlFor="guests">Número de Pessoas</Label>
-                    <Select 
-                      value={bookingForm.guests || ""} 
-                      onValueChange={(value) => {
-                        try {
-                          handleInputChange("guests", value);
-                        } catch (error) {
-                          console.error("Erro ao selecionar número de pessoas:", error);
-                        }
-                      }}
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Quantas pessoas?" />
-                      </SelectTrigger>
-                      <SelectContent position="popper" className="w-full max-h-60 overflow-y-auto">
+                    {isMobile ? (
+                      <select
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        value={bookingForm.guests}
+                        onChange={(e) => handleInputChange("guests", e.target.value)}
+                      >
+                        <option value="">Quantas pessoas?</option>
                         {Array.from({ length: Math.min(vessel?.capacity || 10, 50) }, (_, i) => i + 1).map((num) => (
-                          <SelectItem key={num} value={num.toString()}>
+                          <option key={num} value={num.toString()}>
                             {num} pessoa{num > 1 ? 's' : ''}
-                          </SelectItem>
+                          </option>
                         ))}
-                      </SelectContent>
-                    </Select>
+                      </select>
+                    ) : (
+                      <div className="relative">
+                        <select
+                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
+                          value={bookingForm.guests}
+                          onChange={(e) => handleInputChange("guests", e.target.value)}
+                        >
+                          <option value="">Quantas pessoas?</option>
+                          {Array.from({ length: Math.min(vessel?.capacity || 10, 50) }, (_, i) => i + 1).map((num) => (
+                            <option key={num} value={num.toString()}>
+                              {num} pessoa{num > 1 ? 's' : ''}
+                            </option>
+                          ))}
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                      </div>
+                    )}
                   </div>
 
                   <div>
                     <Label htmlFor="route">Roteiro Preferido</Label>
-                    <Select 
-                      value={bookingForm.route || ""} 
-                      onValueChange={(value) => {
-                        try {
-                          handleInputChange("route", value);
-                        } catch (error) {
-                          console.error("Erro ao selecionar roteiro:", error);
-                        }
-                      }}
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Escolha um roteiro" />
-                      </SelectTrigger>
-                      <SelectContent position="popper" className="w-full">
-                        <SelectItem value="urca">Urca</SelectItem>
-                        <SelectItem value="praia-vermelha">Praia Vermelha</SelectItem>
-                        <SelectItem value="praia-morcego">Praia do Morcego</SelectItem>
-                        <SelectItem value="adao-eva">Adão e Eva</SelectItem>
-                        <SelectItem value="ilha-cagarras">Ilha Cagarras</SelectItem>
-                        <SelectItem value="ilha-tijuca">Ilha Tijuca</SelectItem>
-                        <SelectItem value="personalizado">Personalizado</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    {isMobile ? (
+                      <select
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        value={bookingForm.route}
+                        onChange={(e) => handleInputChange("route", e.target.value)}
+                      >
+                        <option value="">Escolha um roteiro</option>
+                        <option value="urca">Urca</option>
+                        <option value="praia-vermelha">Praia Vermelha</option>
+                        <option value="praia-morcego">Praia do Morcego</option>
+                        <option value="adao-eva">Adão e Eva</option>
+                        <option value="ilha-cagarras">Ilha Cagarras</option>
+                        <option value="ilha-tijuca">Ilha Tijuca</option>
+                        <option value="personalizado">Personalizado</option>
+                      </select>
+                    ) : (
+                      <div className="relative">
+                        <select
+                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
+                          value={bookingForm.route}
+                          onChange={(e) => handleInputChange("route", e.target.value)}
+                        >
+                          <option value="">Escolha um roteiro</option>
+                          <option value="urca">Urca</option>
+                          <option value="praia-vermelha">Praia Vermelha</option>
+                          <option value="praia-morcego">Praia do Morcego</option>
+                          <option value="adao-eva">Adão e Eva</option>
+                          <option value="ilha-cagarras">Ilha Cagarras</option>
+                          <option value="ilha-tijuca">Ilha Tijuca</option>
+                          <option value="personalizado">Personalizado</option>
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                      </div>
+                    )}
                   </div>
 
                   <div>
