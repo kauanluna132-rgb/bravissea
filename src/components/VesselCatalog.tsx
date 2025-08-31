@@ -94,13 +94,13 @@ const vessels = [
     id: "myway",
     name: "IATE MY WAY",
     type: "Lancha 60 pés",
-    image: "/lovable-uploads/myway-1.png",
+    image: "/lovable-uploads/d54253e7-7ccf-4adb-af17-e81020696795.png",
     images: [
-      "/lovable-uploads/myway-1.png",
-      "/lovable-uploads/myway-2.png",
-      "/lovable-uploads/myway-3.png",
-      "/lovable-uploads/myway-4.png",
-      "/lovable-uploads/myway-5.png"
+      "/lovable-uploads/d54253e7-7ccf-4adb-af17-e81020696795.png",
+      "/lovable-uploads/1741780f-1cda-4856-a568-6004932119ad.png",
+      "/lovable-uploads/613c8065-c109-4371-8b70-a14cdc1634ab.png",
+      "/lovable-uploads/9b466995-31e9-4a1a-919b-21fdcce224a2.png",
+      "/lovable-uploads/794f66a3-fe29-46b6-ab32-9d36ceee92af.png"
     ],
     capacity: 20,
     price: "R$ 12.000",
