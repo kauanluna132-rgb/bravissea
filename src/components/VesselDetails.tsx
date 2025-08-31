@@ -315,48 +315,53 @@ Aguardo retorno!`;
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <Button 
-            variant="outline" 
-            size="sm"
-            onClick={() => navigate("/")}
-            className="flex items-center gap-2"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Voltar
-          </Button>
-          
-          <div className="flex-1">
-            <div className="flex items-center gap-3 mb-2">
-              <h1 className="text-3xl font-bold">{vessel.name}</h1>
-              <Badge variant="secondary">{vessel.type}</Badge>
-            </div>
-            <div className="flex items-center gap-4 text-muted-foreground">
-              <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                <span>{vessel.rating}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <MapPin className="w-4 h-4" />
-                <span>{vessel.location}</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="text-right">
-            <div className="text-3xl font-bold text-primary">{vessel.price}</div>
-            {vessel.originalPrice && (
-              <div className="text-lg text-muted-foreground line-through">{vessel.originalPrice}</div>
-            )}
-            <div className="text-sm text-muted-foreground">por passeio</div>
-          </div>
-        </div>
-
+      {/* Container com padding-top para evitar sobreposição da navbar */}
+      <div className="container mx-auto px-4 pt-24 pb-8">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
+            {/* Header movido para dentro do main content */}
+            <div className="space-y-6">
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => navigate("/")}
+                className="flex items-center gap-2 w-fit"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Voltar
+              </Button>
+              
+              <div className="space-y-4">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h1 className="text-3xl font-bold">{vessel.name}</h1>
+                      <Badge variant="secondary">{vessel.type}</Badge>
+                    </div>
+                    <div className="flex items-center gap-4 text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                        <span>{vessel.rating}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <MapPin className="w-4 h-4" />
+                        <span>{vessel.location}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="text-left md:text-right">
+                    <div className="text-3xl font-bold text-primary">{vessel.price}</div>
+                    {vessel.originalPrice && (
+                      <div className="text-lg text-muted-foreground line-through">{vessel.originalPrice}</div>
+                    )}
+                    <div className="text-sm text-muted-foreground">por passeio</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
             {/* Image Gallery */}
             <div className="space-y-4">
               <img 
