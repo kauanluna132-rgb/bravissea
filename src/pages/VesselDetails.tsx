@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Users, Clock, Star, MapPin, Waves, Coffee, Music, Sun, Shield, Anchor, Zap, Box } from "lucide-react";
+import { ArrowLeft, Users, Clock, Star, MapPin, Waves, Coffee, Music, Sun, Shield, Anchor, Zap, Box, Monitor, Smartphone, Droplets, Sparkles, Fuel } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -1904,7 +1904,183 @@ Aguardo confirmação! 🌊
                         </div>
                       )}
 
-                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && (
+                      {/* Informações específicas do COMENDADOR */}
+                      {vessel.id === "comendador" && (
+                        <div className="space-y-6">
+                          {/* Especificações Técnicas */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Anchor className="h-5 w-5 mr-2" />
+                              Especificações Técnicas
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tipo</span>
+                                <p className="text-lg font-semibold">Lancha 55 Pés</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                                <p className="text-lg font-semibold">25 passageiros + 2 tripulantes</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                                <p className="text-lg font-semibold">5 horas</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Embarque</span>
+                                <p className="text-lg font-semibold">Late Clube Rio de Janeiro</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Comodidades */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Coffee className="h-5 w-5 mr-2" />
+                              Comodidades
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Shield className="h-6 w-6 text-primary mr-3" />
+                                <div><p className="font-medium">Quarto</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div><p className="font-medium">Salão</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Waves className="h-6 w-6 text-primary mr-3" />
+                                <div><p className="font-medium">Flybridge</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Shield className="h-6 w-6 text-primary mr-3" />
+                                <div><p className="font-medium">Banheiro</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Sun className="h-6 w-6 text-primary mr-3" />
+                                <div><p className="font-medium">Solarium de proa</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Music className="h-6 w-6 text-primary mr-3" />
+                                <div><p className="font-medium">Som Bluetooth</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Monitor className="h-6 w-6 text-primary mr-3" />
+                                <div><p className="font-medium">TV</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Smartphone className="h-6 w-6 text-primary mr-3" />
+                                <div><p className="font-medium">Tomadas USB</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div><p className="font-medium">Cooler</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Droplets className="h-6 w-6 text-primary mr-3" />
+                                <div><p className="font-medium">Ducha de água doce</p></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Horários Disponíveis */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Clock className="h-5 w-5 mr-2" />
+                              Horários Disponíveis
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Manhã</span>
+                                <p className="text-lg font-semibold">08h às 13h</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tarde</span>
+                                <p className="text-lg font-semibold">14h às 19h</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Incluso */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Shield className="h-5 w-5 mr-2" />
+                              Incluso para seu conforto
+                            </h4>
+                            <div className="grid md:grid-cols-3 gap-4">
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Users className="h-6 w-6 text-green-600 mr-3" />
+                                <div><p className="font-medium text-green-800">Tripulação</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Sparkles className="h-6 w-6 text-green-600 mr-3" />
+                                <div><p className="font-medium text-green-800">Limpeza</p></div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Fuel className="h-6 w-6 text-green-600 mr-3" />
+                                <div><p className="font-medium text-green-800">Combustível</p></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Roteiros e Preços */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <MapPin className="h-5 w-5 mr-2" />
+                              Roteiros Disponíveis
+                            </h4>
+                            <div className="grid gap-4">
+                              <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100">
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <h5 className="font-semibold text-blue-800">Roteiro Urca</h5>
+                                    <p className="text-sm text-blue-600">Passeio pela região da Urca</p>
+                                  </div>
+                                  <span className="font-bold text-xl text-blue-700">R$ 7.700</span>
+                                </div>
+                              </div>
+                              <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-green-50 to-green-100">
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <h5 className="font-semibold text-green-800">Roteiro Praia do Morcego</h5>
+                                    <p className="text-sm text-green-600">Visita à Praia do Morcego</p>
+                                  </div>
+                                  <span className="font-bold text-xl text-green-700">R$ 8.500</span>
+                                </div>
+                              </div>
+                              <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-orange-50 to-orange-100">
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <h5 className="font-semibold text-orange-800">Roteiro Praia Vermelha</h5>
+                                    <p className="text-sm text-orange-600">Exploração da Praia Vermelha</p>
+                                  </div>
+                                  <span className="font-bold text-xl text-orange-700">R$ 9.000</span>
+                                </div>
+                              </div>
+                              <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-purple-50 to-purple-100">
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <h5 className="font-semibold text-purple-800">Roteiro Copacabana</h5>
+                                    <p className="text-sm text-purple-600">Passeio pela costa de Copacabana</p>
+                                  </div>
+                                  <span className="font-bold text-xl text-purple-700">R$ 9.500</span>
+                                </div>
+                              </div>
+                              <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-emerald-50 to-emerald-100">
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <h5 className="font-semibold text-emerald-800">Roteiro Ilha Cagarras</h5>
+                                    <p className="text-sm text-emerald-600">Aventura nas Ilhas Cagarras</p>
+                                  </div>
+                                  <span className="font-bold text-xl text-emerald-700">R$ 11.000</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>
