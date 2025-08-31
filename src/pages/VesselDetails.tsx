@@ -360,7 +360,28 @@ const vesselsData = {
     rating: 4.6,
     duration: "5h",
     location: "Marina da Glória",
-    description: "R$ 3.200,00 - Horário: 08:00 às 13:00 / 13:00 às 19:00. Roteiro principal: Marina da Gloria x Flamengo x Aeroporto x Urca = R$ 3.200,00. Praia vermelha = R$ 4.500,00. Ilhas cagarras ou Itaipu adicional = R$ 5.500,00. Incluso: Marinheiro, combustível, coolers, macarrão flutuantes e churrasqueira. Taxa de Churrasqueiro = R$ 200,00. Taxa de Embarque = R$ 200,00.",
+    description: "LUÍSA V - Iate Premium para até 15 passageiros com comodidades completas",
+    schedule: {
+      morning: "08:00 às 13:00",
+      afternoon: "13:00 às 19:00"
+    },
+    pricing: {
+      base: "R$ 3.200,00",
+      barbecueStaff: "R$ 200,00",
+      boardingFee: "R$ 200,00"
+    },
+    destinations: [
+      { name: "Marina da Gloria x Flamengo x Aeroporto x Urca", price: "R$ 3.200,00" },
+      { name: "Praia Vermelha", price: "R$ 4.500,00" },
+      { name: "Ilhas Cagarras ou Itaipu (adicional)", price: "R$ 5.500,00" }
+    ],
+    amenities: [
+      "Marinheiro incluso",
+      "Combustível incluso",
+      "Coolers disponíveis",
+      "Macarrão flutuantes",
+      "Churrasqueira"
+    ],
     category: "iate"
   }
 };
