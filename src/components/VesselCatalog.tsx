@@ -178,9 +178,21 @@ const vessels = [
   },
   {
     id: "dragao",
-    name: "Dragão",
-    type: "Iate Médio",
-    image: dragaoImage,
+    name: "DRAGÃO",
+    type: "Iate 41 pés",
+    image: "/lovable-uploads/ca7513a8-7ca6-4c74-94eb-e69fde091b96.png",
+    images: [
+      "/lovable-uploads/ca7513a8-7ca6-4c74-94eb-e69fde091b96.png",
+      "/lovable-uploads/56562047-b47a-4a19-a6cd-ca765e9bae68.png",
+      "/lovable-uploads/d5183a03-42a3-40b8-b960-998e51ffb87f.png",
+      "/lovable-uploads/87793615-17b2-46cd-83e8-f0060a012b57.png",
+      "/lovable-uploads/50fccc66-cb1b-4412-8c54-fe679bfbf080.png",
+      "/lovable-uploads/7c580f4c-ea10-4abc-804c-6ef4081f3a6e.png",
+      "/lovable-uploads/8e8c7ca9-eb50-4a92-8e06-cbcc8616d15c.png",
+      "/lovable-uploads/67f82209-8ce4-40b3-a168-8e083dfe39ac.png",
+      "/lovable-uploads/55828aaa-059f-4efd-88ec-d8f9ac9c138a.png",
+      "/lovable-uploads/485c2828-9c1a-47b5-b3b6-b9e7a73b53f0.png"
+    ],
     capacity: 17,
     price: "R$ 4.000",
     rating: 4.7,
@@ -189,11 +201,11 @@ const vessels = [
     size: "41 pés",
     features: [
       { icon: Anchor, label: "41 Pés" },
-      { icon: Music, label: "Sistema de Audio" },
-      { icon: Coffee, label: "Bar" },
-      { icon: Shield, label: "Tripulação" }
+      { icon: Music, label: "Som Bluetooth" },
+      { icon: Coffee, label: "Churrasqueira" },
+      { icon: Shield, label: "2 Tripulantes" }
     ],
-    description: "Iate Dragão de 41 pés para 17 passageiros",
+    description: "Iate de 41 pés com capacidade para 17 passageiros + 2 tripulantes",
     category: "iate"
   },
   {

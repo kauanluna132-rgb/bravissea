@@ -276,31 +276,81 @@ const vesselData = {
   },
   dragao: {
     id: "dragao",
-    name: "Dragão",
-    type: "Iate Médio",
-    image: dragaoImage,
+    name: "DRAGÃO",
+    type: "Iate 41 pés",
+    image: "/lovable-uploads/ca7513a8-7ca6-4c74-94eb-e69fde091b96.png",
     capacity: 17,
     price: "R$ 4.000",
     originalPrice: undefined,
     rating: 4.7,
     duration: "6h",
     location: "Marina da Glória",
-    description: "Iate Dragão de 41 pés com design clássico e conforto moderno.",
+    description: "Iate de 41 pés com capacidade para 17 passageiros + 2 tripulantes, equipado com todas as comodidades para um passeio inesquecível.",
     specifications: {
       comprimento: "41 pés",
-      motor: "Volvo 380hp",
-      combustivel: "Diesel",
-      capacidadeTanque: "320L"
+      motores: "2x Mercedes 366",
+      suites: "1 suíte cama de casal",
+      quartos: "1 quarto com beliche",
+      salas: "1 sala",
+      banheiros: "1 banheiro",
+      cozinha: "Microondas, 1 geladeira, Fogão tipo Cooktop",
+      churrasqueira: "Churrasqueira",
+      coolers: "Cooler em fibra / cooler portátil",
+      extras: "Reversor, Som bluetooth, Macarrões de flutuação, 1 TV"
     },
     included: [
-      "Capitão qualificado",
-      "Tripulação",
-      "Seguro náutico",
-      "Sistema de audio",
-      "Bar básico"
+      "1 suíte cama de casal",
+      "1 quarto com beliche",
+      "1 sala",
+      "1 banheiro",
+      "Microondas",
+      "1 geladeira", 
+      "Fogão tipo Cooktop",
+      "Churrasqueira",
+      "Cooler em fibra / cooler portátil",
+      "Reversor",
+      "Som bluetooth",
+      "Macarrões de flutuação",
+      "1 TV"
     ],
-    gallery: [dragaoImage],
-    images: [dragaoImage]
+    schedules: [
+      { time: "09:00 - 14:00", price: "R$ 4.000,00" },
+      { time: "15:00 - 20:00", price: "R$ 4.500,00" }
+    ],
+    routes: [
+      { name: "Marina da Glória", price: "R$ 4.000,00" },
+      { name: "Baía de Guanabara", price: "R$ 4.200,00" },
+      { name: "Niterói", price: "R$ 4.500,00" }
+    ],
+    pricing: {
+      embarque: "Marina da Glória",
+      taxaEmbarque: "R$ 200",
+      taxaChurrasqueiro: "R$ 200"
+    },
+    gallery: [
+      "/lovable-uploads/ca7513a8-7ca6-4c74-94eb-e69fde091b96.png",
+      "/lovable-uploads/56562047-b47a-4a19-a6cd-ca765e9bae68.png",
+      "/lovable-uploads/d5183a03-42a3-40b8-b960-998e51ffb87f.png",
+      "/lovable-uploads/87793615-17b2-46cd-83e8-f0060a012b57.png",
+      "/lovable-uploads/50fccc66-cb1b-4412-8c54-fe679bfbf080.png",
+      "/lovable-uploads/7c580f4c-ea10-4abc-804c-6ef4081f3a6e.png",
+      "/lovable-uploads/8e8c7ca9-eb50-4a92-8e06-cbcc8616d15c.png",
+      "/lovable-uploads/67f82209-8ce4-40b3-a168-8e083dfe39ac.png",
+      "/lovable-uploads/55828aaa-059f-4efd-88ec-d8f9ac9c138a.png",
+      "/lovable-uploads/485c2828-9c1a-47b5-b3b6-b9e7a73b53f0.png"
+    ],
+    images: [
+      "/lovable-uploads/ca7513a8-7ca6-4c74-94eb-e69fde091b96.png",
+      "/lovable-uploads/56562047-b47a-4a19-a6cd-ca765e9bae68.png",
+      "/lovable-uploads/d5183a03-42a3-40b8-b960-998e51ffb87f.png",
+      "/lovable-uploads/87793615-17b2-46cd-83e8-f0060a012b57.png",
+      "/lovable-uploads/50fccc66-cb1b-4412-8c54-fe679bfbf080.png",
+      "/lovable-uploads/7c580f4c-ea10-4abc-804c-6ef4081f3a6e.png",
+      "/lovable-uploads/8e8c7ca9-eb50-4a92-8e06-cbcc8616d15c.png",
+      "/lovable-uploads/67f82209-8ce4-40b3-a168-8e083dfe39ac.png",
+      "/lovable-uploads/55828aaa-059f-4efd-88ec-d8f9ac9c138a.png",
+      "/lovable-uploads/485c2828-9c1a-47b5-b3b6-b9e7a73b53f0.png"
+    ]
   },
   grandraray: {
     id: "grandraray",
