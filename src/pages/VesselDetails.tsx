@@ -790,16 +790,133 @@ const vesselsData = {
   },
   nossa: {
     id: "nossa",
-    name: "NOSSA",
-    type: "Iate Premium",
-    images: [nossaImage],
-    capacity: 25,
-    price: "R$ 7.500",
-    rating: 4.8,
-    duration: "5h",
+    name: "YACHT CATAMARÃ ATLANTIS",
+    type: "Catamarã Luxury 120 pés",
+    images: [
+      "/lovable-uploads/915a115f-06cd-4dae-a14b-eb03cbc20e7d.png",
+      "/lovable-uploads/9f780e41-4856-4456-9fab-80487c0685eb.png",
+      "/lovable-uploads/c5d5f157-e28f-4121-9f34-69f1caddf1d5.png",
+      "/lovable-uploads/a2b629cd-b6ab-4130-9a2d-96729da50c69.png",
+      "/lovable-uploads/99fbb3fe-f920-4c5d-9f3f-35e0b9d8774a.png",
+      "/lovable-uploads/49db391e-eb94-424f-ad6e-eff2a493496c.png",
+      "/lovable-uploads/71b743d5-77eb-483f-aa1a-11aa91816205.png",
+      "/lovable-uploads/c3154822-ac51-4128-ac23-e5f9f76151b1.png",
+      "/lovable-uploads/89402a3c-0e13-40f0-9956-49d4122bc96d.png",
+      "/lovable-uploads/df483e11-a701-463a-8b0c-b1750bef604f.png"
+    ],
+    capacity: 80,
+    price: "R$ 80.000",
+    rating: 5.0,
+    duration: "6h",
     location: "Marina da Glória",
-    description: "Pershing 52HT com gerador 110v e equipamentos completos",
-    category: "iate"
+    description: "Catamarã de luxo de 120 pés para grandes eventos - capacidade para até 100 convidados",
+    
+    // Especificações Técnicas
+    specifications: [
+      { label: "Tipo", value: "Iate Catamarã de Luxo" },
+      { label: "Tamanho", value: "120 pés" },
+      { label: "Preço Base", value: "R$ 80.000,00" },
+      { label: "Duração", value: "6 horas" },
+      { label: "Capacidade", value: "80 passageiros (máx. 100)" },
+      { label: "Passageiros Extras", value: "R$ 1.500,00 por pessoa" },
+      { label: "Roteiro", value: "Urca" }
+    ],
+    
+    // Comodidades
+    amenities: [
+      "Espaços amplos para grandes eventos",
+      "Múltiplos níveis e áreas de convivência",
+      "Área de solarium expansiva",
+      "Salão interno climatizado",
+      "Áreas de deck com vista panorâmica",
+      "Estrutura para até 100 convidados",
+      "Design moderno e elegante",
+      "Iluminação ambiente sofisticada"
+    ],
+    
+    // Inclusos
+    inclusions: [
+      "Marinheiro profissional",
+      "Passeio de 6 horas",
+      "Seguro náutico",
+      "Combustível incluso"
+    ],
+    
+    // Serviços Adicionais
+    additionalServices: [
+      "Finger Food: Consulte valores",
+      "Barbecue Experience: R$ 1.500,00 por pessoa",
+      "Experiência de churrasco completa",
+      "Cerveja e drinks inclusos no BBQ",
+      "Serviços de bordo personalizados"
+    ],
+    
+    category: "catamara"
+  },
+  atlantis: {
+    id: "atlantis",
+    name: "YACHT CATAMARÃ ATLANTIS",
+    type: "Catamarã Luxury 120 pés",
+    images: [
+      "/lovable-uploads/915a115f-06cd-4dae-a14b-eb03cbc20e7d.png",
+      "/lovable-uploads/9f780e41-4856-4456-9fab-80487c0685eb.png",
+      "/lovable-uploads/c5d5f157-e28f-4121-9f34-69f1caddf1d5.png",
+      "/lovable-uploads/a2b629cd-b6ab-4130-9a2d-96729da50c69.png",
+      "/lovable-uploads/99fbb3fe-f920-4c5d-9f3f-35e0b9d8774a.png",
+      "/lovable-uploads/49db391e-eb94-424f-ad6e-eff2a493496c.png",
+      "/lovable-uploads/71b743d5-77eb-483f-aa1a-11aa91816205.png",
+      "/lovable-uploads/c3154822-ac51-4128-ac23-e5f9f76151b1.png",
+      "/lovable-uploads/89402a3c-0e13-40f0-9956-49d4122bc96d.png",
+      "/lovable-uploads/df483e11-a701-463a-8b0c-b1750bef604f.png"
+    ],
+    capacity: 80,
+    price: "R$ 80.000",
+    rating: 5.0,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Catamarã de luxo de 120 pés para grandes eventos - capacidade para até 100 convidados",
+    
+    // Especificações Técnicas
+    specifications: [
+      { label: "Tipo", value: "Iate Catamarã de Luxo" },
+      { label: "Tamanho", value: "120 pés" },
+      { label: "Preço Base", value: "R$ 80.000,00" },
+      { label: "Duração", value: "6 horas" },
+      { label: "Capacidade", value: "80 passageiros (máx. 100)" },
+      { label: "Passageiros Extras", value: "R$ 1.500,00 por pessoa" },
+      { label: "Roteiro", value: "Urca" }
+    ],
+    
+    // Comodidades
+    amenities: [
+      "Espaços amplos para grandes eventos",
+      "Múltiplos níveis e áreas de convivência",
+      "Área de solarium expansiva",
+      "Salão interno climatizado",
+      "Áreas de deck com vista panorâmica",
+      "Estrutura para até 100 convidados",
+      "Design moderno e elegante",
+      "Iluminação ambiente sofisticada"
+    ],
+    
+    // Inclusos
+    inclusions: [
+      "Marinheiro profissional",
+      "Passeio de 6 horas",
+      "Seguro náutico",
+      "Combustível incluso"
+    ],
+    
+    // Serviços Adicionais
+    additionalServices: [
+      "Finger Food: Consulte valores",
+      "Barbecue Experience: R$ 1.500,00 por pessoa",
+      "Experiência de churrasco completa",
+      "Cerveja e drinks inclusos no BBQ",
+      "Serviços de bordo personalizados"
+    ],
+    
+    category: "catamara"
   },
   seven: {
     id: "seven",
@@ -3289,7 +3406,194 @@ Aguardo confirmação! 🌊
                         </div>
                       )}
 
-                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && vessel.id !== "oceano" && vessel.id !== "lady-ruth" && vessel.id !== "rebeca" && vessel.id !== "blau" && vessel.id !== "prestige" && (
+                      {/* Informações específicas do YACHT CATAMARÃ ATLANTIS */}
+                      {(vessel.id === "atlantis" || vessel.id === "nossa") && (
+                        <div className="space-y-6">
+                          {/* Especificações Técnicas */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Anchor className="h-5 w-5 mr-2" />
+                              Especificações Técnicas
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tipo</span>
+                                <p className="text-lg font-semibold">Iate Catamarã de Luxo</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tamanho</span>
+                                <p className="text-lg font-semibold">120 pés</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Preço Base</span>
+                                <p className="text-lg font-semibold">R$ 80.000,00</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                                <p className="text-lg font-semibold">6 horas</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                                <p className="text-lg font-semibold">80 passageiros (máx. 100)</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Roteiro</span>
+                                <p className="text-lg font-semibold">Urca</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Comodidades */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Coffee className="h-5 w-5 mr-2" />
+                              Comodidades e Ambientes
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Users className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Espaços Amplos para Grandes Eventos</p>
+                                  <p className="text-sm text-muted-foreground">Ideal para celebrações</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Sun className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Múltiplos Níveis</p>
+                                  <p className="text-sm text-muted-foreground">Áreas de convivência variadas</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Waves className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Área de Solarium Expansiva</p>
+                                  <p className="text-sm text-muted-foreground">Espaço para banho de sol</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Monitor className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Salão Interno Climatizado</p>
+                                  <p className="text-sm text-muted-foreground">Ambiente confortável</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Star className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Áreas de Deck Panorâmicas</p>
+                                  <p className="text-sm text-muted-foreground">Vista 360° do mar</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Award className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Design Moderno e Elegante</p>
+                                  <p className="text-sm text-muted-foreground">Arquitetura sofisticada</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Sparkles className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Iluminação Ambiente Sofisticada</p>
+                                  <p className="text-sm text-muted-foreground">Ambientação perfeita</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Users className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Estrutura para Até 100 Convidados</p>
+                                  <p className="text-sm text-muted-foreground">Capacidade máxima</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Inclusos */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <CheckCircle className="h-5 w-5 mr-2" />
+                              Serviços Inclusos
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Anchor className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Marinheiro Profissional</p>
+                                  <p className="text-sm text-green-600">Tripulação experiente</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Clock className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Passeio de 6 Horas</p>
+                                  <p className="text-sm text-green-600">Duração completa incluída</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Shield className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Seguro Náutico</p>
+                                  <p className="text-sm text-green-600">Cobertura completa</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Fuel className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Combustível Incluso</p>
+                                  <p className="text-sm text-green-600">Sem custos adicionais</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Serviços Adicionais */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Plus className="h-5 w-5 mr-2" />
+                              Serviços Adicionais
+                            </h4>
+                            <div className="space-y-4">
+                              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <div className="flex items-center mb-3">
+                                  <Users className="h-5 w-5 text-blue-600 mr-2" />
+                                  <h5 className="font-semibold text-blue-800">Passageiros Extras</h5>
+                                </div>
+                                <p className="text-blue-700 mb-2">Capacidade para até 100 convidados</p>
+                                <div className="flex justify-between items-center p-2 bg-white rounded border">
+                                  <span className="text-sm font-medium">Passageiros adicionais (acima de 80)</span>
+                                  <span className="font-bold text-primary">R$ 1.500,00 por pessoa</span>
+                                </div>
+                              </div>
+                              
+                              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                                <div className="flex items-center mb-3">
+                                  <ChefHat className="h-5 w-5 text-orange-600 mr-2" />
+                                  <h5 className="font-semibold text-orange-800">Experiências Gastronômicas</h5>
+                                </div>
+                                <div className="space-y-3">
+                                  <div className="flex justify-between items-center p-2 bg-white rounded border">
+                                    <div>
+                                      <p className="font-medium">Finger Food</p>
+                                      <p className="text-xs text-muted-foreground">Consulte valores e opções</p>
+                                    </div>
+                                    <span className="text-sm text-orange-600">Sob consulta</span>
+                                  </div>
+                                  <div className="flex justify-between items-center p-2 bg-white rounded border">
+                                    <div>
+                                      <p className="font-medium">Barbecue Experience</p>
+                                      <p className="text-xs text-muted-foreground">Experiência completa com cerveja e drinks</p>
+                                    </div>
+                                    <span className="font-bold text-primary">R$ 1.500,00/pessoa</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && vessel.id !== "oceano" && vessel.id !== "lady-ruth" && vessel.id !== "rebeca" && vessel.id !== "blau" && vessel.id !== "prestige" && vessel.id !== "atlantis" && vessel.id !== "nossa" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>

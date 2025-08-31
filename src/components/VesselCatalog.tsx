@@ -429,23 +429,24 @@ const vessels = [
     category: "catamara"
   },
   {
-    id: "nossa",
-    name: "NOSSA",
-    type: "Iate Premium",
-    image: nossaImage,
-    capacity: 25,
-    price: "R$ 7.500",
-    rating: 4.8,
-    duration: "5h",
+    id: "atlantis",
+    name: "YACHT CATAMARÃ ATLANTIS",
+    type: "Catamarã Luxury",
+    image: "/lovable-uploads/915a115f-06cd-4dae-a14b-eb03cbc20e7d.png",
+    capacity: 80,
+    price: "R$ 80.000",
+    rating: 5.0,
+    duration: "6h",
     location: "Marina da Glória",
     features: [
-      { icon: Anchor, label: "52HT" },
-      { icon: Music, label: "TV" },
-      { icon: Coffee, label: "Frigobar" },
-      { icon: Shield, label: "Churrasqueira" }
+      { icon: Anchor, label: "120 Pés" },
+      { icon: Users, label: "80-100 Passageiros" },
+      { icon: Coffee, label: "BBQ Experience" },
+      { icon: Shield, label: "Catamarã de Luxo" }
     ],
-    description: "Pershing 52HT com gerador 110v e equipamentos completos",
-    category: "iate"
+    description: "Catamarã de luxo de 120 pés para grandes eventos e celebrações",
+    highlight: true,
+    category: "catamara"
   },
   {
     id: "seven",
