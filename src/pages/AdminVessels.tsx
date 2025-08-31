@@ -317,36 +317,69 @@ const AdminVessels = () => {
 
   const handleAddImage = (vesselId: string) => {
     setSelectedVessel(vesselId);
-    fileInputRef.current?.click();
+    // Adicionar um pequeno delay para garantir que o selectedVessel seja definido
+    setTimeout(() => {
+      fileInputRef.current?.click();
+    }, 100);
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
-    if (files && selectedVessel) {
-      const newImages: string[] = [];
-      
-      Array.from(files).forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const imageUrl = e.target?.result as string;
-          newImages.push(imageUrl);
-          
-          // Atualiza quando todas as imagens foram processadas
-          if (newImages.length === files.length) {
-            setVessels(prev => ({
-              ...prev,
-              [selectedVessel]: {
-                ...prev[selectedVessel],
-                images: [...(prev[selectedVessel]?.images || []), ...newImages]
-              }
-            }));
-            setHasUnsavedChanges(true);
-            toast.success(`${files.length} imagem${files.length > 1 ? 'ns' : ''} adicionada${files.length > 1 ? 's' : ''} com sucesso!`);
-          }
-        };
-        reader.readAsDataURL(file);
-      });
+    if (!files || files.length === 0 || !selectedVessel) {
+      console.log('Nenhum arquivo selecionado ou vessel não selecionado');
+      return;
     }
+
+    console.log(`Processando ${files.length} arquivo(s) para vessel: ${selectedVessel}`);
+
+    const processedImages: string[] = [];
+    let processedCount = 0;
+
+    Array.from(files).forEach((file, index) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const imageUrl = e.target?.result as string;
+        processedImages[index] = imageUrl;
+        processedCount++;
+        
+        console.log(`Imagem ${processedCount}/${files.length} processada`);
+        
+        // Quando todas as imagens foram processadas
+        if (processedCount === files.length) {
+          console.log('Todas as imagens processadas, atualizando estado...');
+          
+          setVessels(prev => {
+            const currentVessel = prev[selectedVessel];
+            if (!currentVessel) {
+              console.error('Vessel não encontrado:', selectedVessel);
+              return prev;
+            }
+
+            const updatedVessel = {
+              ...currentVessel,
+              images: [...(currentVessel.images || []), ...processedImages.filter(Boolean)]
+            };
+
+            console.log('Vessel atualizado:', updatedVessel);
+
+            return {
+              ...prev,
+              [selectedVessel]: updatedVessel
+            };
+          });
+          
+          setHasUnsavedChanges(true);
+          toast.success(`${files.length} imagem${files.length > 1 ? 'ns' : ''} adicionada${files.length > 1 ? 's' : ''} com sucesso!`);
+        }
+      };
+      
+      reader.onerror = (error) => {
+        console.error('Erro ao ler arquivo:', error);
+        toast.error(`Erro ao processar imagem ${index + 1}`);
+      };
+      
+      reader.readAsDataURL(file);
+    });
     
     // Reset file input
     if (event.target) {
@@ -496,7 +529,10 @@ const AdminVessels = () => {
                     images={vessel.images || []}
                     vesselName={vessel.name}
                     isAdminMode={true}
-                    onAddImage={() => handleAddImage(vesselId)}
+                    onAddImage={() => {
+                      console.log('onAddImage chamado para vessel:', vesselId);
+                      handleAddImage(vesselId);
+                    }}
                     onEditImage={(index) => handleEditImage(vesselId, index)}
                     onDeleteImage={(index) => handleDeleteImage(vesselId, index)}
                   />
@@ -560,10 +596,11 @@ const AdminVessels = () => {
         <input
           ref={fileInputRef}
           type="file"
-          accept="image/*"
+          accept="image/jpeg,image/jpg,image/png,image/webp"
           multiple
           className="hidden"
           onChange={handleFileUpload}
+          key={selectedVessel} // Force re-render when vessel changes
         />
       </div>
     </div>

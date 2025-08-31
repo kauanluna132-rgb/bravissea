@@ -123,12 +123,16 @@ const VesselImageCarousel = ({
             <CarouselItem>
               <div 
                 className="w-full h-[400px] border-2 border-dashed border-primary/50 rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-primary/5 transition-colors group"
-                onClick={onAddImage}
+                onClick={() => {
+                  console.log('Botão adicionar imagem clicado');
+                  onAddImage?.();
+                }}
               >
                 <div className="text-center">
                   <Plus className="w-12 h-12 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
                   <p className="text-primary font-medium text-lg mb-2">Adicionar Nova Foto</p>
                   <p className="text-muted-foreground text-sm">Clique para fazer upload de múltiplas imagens</p>
+                  <p className="text-xs text-muted-foreground mt-2">Formatos: JPG, PNG, WEBP</p>
                 </div>
               </div>
             </CarouselItem>
