@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Users, Clock, Star, MapPin, Wifi, Car, Utensils, Waves } from "lucide-react";
+import { ArrowLeft, Users, Clock, Star, MapPin, Waves } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -32,8 +32,8 @@ import sevenImage from "@/assets/seven-yacht.jpg";
 import sennaImage from "@/assets/senna-yacht.jpg";
 import luisaImage from "@/assets/luisa-yacht.jpg";
 
-// Dados iniciais das embarcações (mesmo formato do admin)
-const initialVesselsData = {
+// Dados das embarcações
+const vesselsData = {
   segue: {
     id: "segue",
     name: "SEGUE",
@@ -76,33 +76,43 @@ const initialVesselsData = {
   },
   flyhi: {
     id: "flyhi",
-    name: "FLY HI",
-    type: "Lancha Premium",
-    images: [flyhiImage],
-    capacity: 15,
-    price: "R$ 3.200",
-    originalPrice: "R$ 3.700",
+    name: "LUÍSA VIII",
+    type: "Iate 38 Pés",
+    images: [
+      "/lovable-uploads/03c21177-517e-46bb-ba14-3d5e3e92b548.png",
+      "/lovable-uploads/5b46ecc7-6d2f-49f9-97e1-18cd69e70334.png",
+      "/lovable-uploads/971d60d5-6cd7-46b1-80e0-b22fc9971ecf.png",
+      "/lovable-uploads/f445fc67-3320-4ec8-9fb4-242ae592d18c.png",
+      "/lovable-uploads/729365c1-b3c2-4db7-8b9d-931a2f7fb1f7.png",
+      "/lovable-uploads/3e2e65a7-195a-4f5e-9cf9-39c176c713cd.png",
+      "/lovable-uploads/2b635aac-c2f0-4db3-a82a-e8c116893024.png",
+      "/lovable-uploads/c84fec1a-ab0f-4007-ae85-08012b4590c2.png",
+      "/lovable-uploads/da929e32-33ee-4fc1-97c0-d366d63ff457.png",
+      "/lovable-uploads/8ce2e68b-6ed0-47b8-9f7b-df5ab588c7d2.png"
+    ],
+    capacity: 13,
+    price: "R$ 4.100",
+    originalPrice: "R$ 5.000",
     rating: 4.7,
-    duration: "6h",
+    duration: "5h",
     location: "Marina da Glória",
-    description: "Lancha FLY HI ideal para passeios emocionantes",
-    category: "lancha"
+    description: "Luisa VIII 38 Pés - 5 horas de passeio com combustível, marinheiro, tapetão flutuante, coolers e caixa de som de altíssima qualidade",
+    category: "iate"
   },
   mcell: {
     id: "mcell",
     name: "Lancha M Cell",
     type: "Lancha",
     images: [
-      "/lovable-uploads/mcell-1.png",
-      "/lovable-uploads/mcell-2.png",
-      "/lovable-uploads/mcell-3.png",
-      "/lovable-uploads/mcell-4.png",
-      "/lovable-uploads/mcell-5.png",
-      "/lovable-uploads/mcell-6.png"
+      "/lovable-uploads/d1d17103-7ce7-4643-b993-81e04a1468e7.png",
+      "/lovable-uploads/75a5ef56-8357-438c-8af1-e6bcba02d684.png",
+      "/lovable-uploads/f50de78c-4e90-4465-b038-9c65c849667e.png",
+      "/lovable-uploads/f5ee604f-918b-48d0-b36e-336f92696161.png",
+      "/lovable-uploads/f5641c4d-f492-468c-8763-40c37a38705b.png",
+      "/lovable-uploads/908cf142-ad3f-42d0-8e09-aae748064acb.png"
     ],
     capacity: 9,
     price: "R$ 2.500",
-    originalPrice: undefined,
     rating: 4.8,
     duration: "5h",
     location: "Marina da Glória",
@@ -258,27 +268,49 @@ const initialVesselsData = {
     id: "senna",
     name: "SENNA",
     type: "Iate Premium",
-    images: ["/lovable-uploads/senna-1.png", "/lovable-uploads/senna-2.png", "/lovable-uploads/senna-3.png", "/lovable-uploads/senna-4.png", "/lovable-uploads/senna-5.png", "/lovable-uploads/senna-6.png", "/lovable-uploads/senna-7.png", "/lovable-uploads/senna-8.png", "/lovable-uploads/senna-9.png", "/lovable-uploads/senna-10.png"],
+    images: [
+      "/lovable-uploads/da929e32-33ee-4fc1-97c0-d366d63ff457.png",
+      "/lovable-uploads/37823d8f-2d16-402c-8a0a-cfbaacd8c14d.png",
+      "/lovable-uploads/2e6b1dea-bd55-448e-b56a-417204d37f78.png",
+      "/lovable-uploads/3e2e65a7-195a-4f5e-9cf9-39c176c713cd.png",
+      "/lovable-uploads/ca7513a8-7ca6-4c74-94eb-e69fde091b96.png",
+      "/lovable-uploads/56562047-b47a-4a19-a6cd-ca765e9bae68.png",
+      "/lovable-uploads/d5183a03-42a3-40b8-b960-998e51ffb87f.png",
+      "/lovable-uploads/8ce2e68b-6ed0-47b8-9f7b-df5ab588c7d2.png",
+      "/lovable-uploads/8e8c7ca9-eb50-4a92-8e06-cbcc8616d15c.png",
+      "/lovable-uploads/2b635aac-c2f0-4db3-a82a-e8c116893024.png"
+    ],
     capacity: 20,
-    price: "R$ 7.000",
+    price: "R$ 7.700",
     rating: 4.8,
     duration: "5h",
-    location: "Marina da Glória",
-    description: "46 pés com 2 motores volvo a diesel, 2 suítes completas",
+    location: "Marina da Glória (Pier Nobre)",
+    description: "Som conexão Bluetooth, 2 quartos, 2 banheiros (1 suíte), sala ampla, cozinha completa, fly e solário de proa muito espaçosos",
     category: "iate"
   },
   luisa: {
     id: "luisa",
     name: "LUÍSA V",
     type: "Iate Premium",
-    images: ["/lovable-uploads/luisa-1.png", "/lovable-uploads/luisa-2.png", "/lovable-uploads/luisa-3.png", "/lovable-uploads/luisa-4.png", "/lovable-uploads/luisa-5.png", "/lovable-uploads/luisa-6.png", "/lovable-uploads/luisa-7.png", "/lovable-uploads/luisa-8.png", "/lovable-uploads/luisa-9.png", "/lovable-uploads/luisa-10.png"],
+    images: [
+      "/lovable-uploads/03c21177-517e-46bb-ba14-3d5e3e92b548.png",
+      "/lovable-uploads/5b46ecc7-6d2f-49f9-97e1-18cd69e70334.png",
+      "/lovable-uploads/971d60d5-6cd7-46b1-80e0-b22fc9971ecf.png",
+      "/lovable-uploads/f445fc67-3320-4ec8-9fb4-242ae592d18c.png",
+      "/lovable-uploads/729365c1-b3c2-4db7-8b9d-931a2f7fb1f7.png",
+      "/lovable-uploads/3e2e65a7-195a-4f5e-9cf9-39c176c713cd.png",
+      "/lovable-uploads/2b635aac-c2f0-4db3-a82a-e8c116893024.png",
+      "/lovable-uploads/c84fec1a-ab0f-4007-ae85-08012b4590c2.png",
+      "/lovable-uploads/da929e32-33ee-4fc1-97c0-d366d63ff457.png",
+      "/lovable-uploads/8ce2e68b-6ed0-47b8-9f7b-df5ab588c7d2.png"
+    ],
     capacity: 15,
     price: "R$ 2.800",
     originalPrice: "R$ 3.200",
     rating: 4.6,
     duration: "6h",
     location: "Marina da Glória",
-    description: "Luísa V com roteiro Marina da Glória x Flamengo x Aeroporto x Urca",
+    description: "LUÍSA V - Roteiro principal Marina da Glória x Flamengo x Aeroporto x Urca",
     category: "iate"
   }
 };
@@ -287,7 +319,6 @@ const VesselDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(0);
-  const [vesselsData, setVesselsData] = useState(initialVesselsData);
   const [bookingForm, setBookingForm] = useState({
     name: "",
     email: "",
@@ -298,45 +329,6 @@ const VesselDetails = () => {
     route: "",
     message: ""
   });
-
-  // Carregar dados salvos do admin se existirem
-  useEffect(() => {
-    const loadVesselData = () => {
-      const savedData = localStorage.getItem('adminVesselsData');
-      const hasCustomData = localStorage.getItem('hasCustomVesselData');
-      
-      console.log('VesselDetails - Verificando dados salvos:', { savedData: !!savedData, hasCustomData });
-      
-      if (savedData && hasCustomData === 'true') {
-        try {
-          const customVessels = JSON.parse(savedData);
-          console.log('VesselDetails - Dados customizados carregados:', customVessels);
-          setVesselsData(customVessels);
-        } catch (error) {
-          console.error('Erro ao carregar dados customizados no VesselDetails:', error);
-        }
-      }
-    };
-
-    // Carregar dados inicialmente
-    loadVesselData();
-
-    // Ouvir por atualizações do admin
-    const handleVesselsUpdate = (event: any) => {
-      console.log('VesselDetails - Evento de atualização recebido:', event);
-      loadVesselData();
-    };
-
-    // Escutar eventos de atualização
-    window.addEventListener('vesselsDataUpdated', handleVesselsUpdate);
-    window.addEventListener('storage', handleVesselsUpdate);
-
-    // Limpar listeners ao desmontar
-    return () => {
-      window.removeEventListener('vesselsDataUpdated', handleVesselsUpdate);
-      window.removeEventListener('storage', handleVesselsUpdate);
-    };
-  }, []);
 
   const vessel = id ? vesselsData[id as keyof typeof vesselsData] : null;
 
@@ -434,6 +426,10 @@ Aguardo confirmação! 🌊
                     src={vessel.images[selectedImage]} 
                     alt={vessel.name}
                     className="w-full h-96 object-cover rounded-2xl"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "/placeholder.svg";
+                    }}
                   />
                 </div>
                 <div className="grid grid-cols-3 gap-4">
@@ -449,6 +445,10 @@ Aguardo confirmação! 🌊
                         src={image} 
                         alt={`${vessel.name} ${index + 1}`}
                         className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = "/placeholder.svg";
+                        }}
                       />
                     </button>
                   ))}

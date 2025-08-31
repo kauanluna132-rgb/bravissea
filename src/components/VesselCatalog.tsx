@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -462,64 +462,15 @@ const VesselCatalog = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortBy, setSortBy] = useState("featured");
-  const [vesselsData, setVesselsData] = useState(vessels);
-
-  // Carregar dados salvos do admin se existirem
-  useEffect(() => {
-    const loadVesselData = () => {
-      const savedData = localStorage.getItem('adminVesselsData');
-      const hasCustomData = localStorage.getItem('hasCustomVesselData');
-      
-      console.log('VesselCatalog - Verificando dados salvos:', { savedData: !!savedData, hasCustomData });
-      
-      if (savedData && hasCustomData === 'true') {
-        try {
-          const customVessels = JSON.parse(savedData);
-          console.log('VesselCatalog - Dados customizados carregados:', customVessels);
-          
-          // Converter objeto para array mantendo a estrutura original
-          const vesselArray = Object.values(customVessels).map((vessel: any) => ({
-            ...vessel,
-            image: vessel.images?.[0] || vessel.image, // Primeira imagem como image principal
-            features: vessels.find(v => v.id === vessel.id)?.features || []
-          }));
-          
-          console.log('VesselCatalog - Array de vessels criado:', vesselArray);
-          setVesselsData(vesselArray);
-        } catch (error) {
-          console.error('Erro ao carregar dados customizados:', error);
-        }
-      }
-    };
-
-    // Carregar dados inicialmente
-    loadVesselData();
-
-    // Ouvir por atualizações do admin
-    const handleVesselsUpdate = (event: any) => {
-      console.log('VesselCatalog - Evento de atualização recebido:', event);
-      loadVesselData();
-    };
-
-    // Escutar eventos de atualização
-    window.addEventListener('vesselsDataUpdated', handleVesselsUpdate);
-    window.addEventListener('storage', handleVesselsUpdate);
-
-    // Limpar listeners ao desmontar
-    return () => {
-      window.removeEventListener('vesselsDataUpdated', handleVesselsUpdate);
-      window.removeEventListener('storage', handleVesselsUpdate);
-    };
-  }, []);
 
   const categories = [
-    { id: "all", name: "Todas", count: vesselsData.length },
-    { id: "lancha", name: "Lanchas", count: vesselsData.filter(v => v.category === "lancha").length },
-    { id: "iate", name: "Iates", count: vesselsData.filter(v => v.category === "iate").length },
-    { id: "catamara", name: "Catamarãs", count: vesselsData.filter(v => v.category === "catamara").length }
+    { id: "all", name: "Todas", count: vessels.length },
+    { id: "lancha", name: "Lanchas", count: vessels.filter(v => v.category === "lancha").length },
+    { id: "iate", name: "Iates", count: vessels.filter(v => v.category === "iate").length },
+    { id: "catamara", name: "Catamarãs", count: vessels.filter(v => v.category === "catamara").length }
   ];
 
-  const filteredVessels = vesselsData
+  const filteredVessels = vessels
     .filter(vessel => {
       const matchesSearch = vessel.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           vessel.type.toLowerCase().includes(searchTerm.toLowerCase());
@@ -546,11 +497,6 @@ const VesselCatalog = () => {
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          {localStorage.getItem('hasCustomVesselData') === 'true' && (
-            <Badge variant="outline" className="mb-4 px-4 py-2 bg-green-50 text-green-700 border-green-200">
-              ✨ Dados customizados carregados do painel admin
-            </Badge>
-          )}
           <Badge variant="secondary" className="mb-4 px-4 py-2">
             Nossa Frota Premium
           </Badge>

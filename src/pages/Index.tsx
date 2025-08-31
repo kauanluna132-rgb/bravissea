@@ -6,7 +6,6 @@ import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import AdminButton from "@/components/AdminButton";
 
 const Index = () => {
   return (
@@ -31,7 +30,6 @@ const Index = () => {
       <Testimonials />
       <Footer />
       <WhatsAppFloat />
-      <AdminButton />
     </div>
   );
 };

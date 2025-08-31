@@ -992,12 +992,10 @@ Aguardo retorno!`;
               </div>
             </div>
             
-            {/* Image Gallery */}
             <div className="space-y-4">
               <VesselImageCarousel
                 images={vessel.images || vessel.gallery}
                 vesselName={vessel.name}
-                isAdminMode={false}
               />
             </div>
 
