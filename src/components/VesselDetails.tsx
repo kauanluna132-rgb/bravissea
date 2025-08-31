@@ -32,6 +32,17 @@ import mcellImage from "@/assets/mcell-boat.jpg";
 import comendadorImage from "@/assets/comendador-yacht.jpg";
 import dragaoImage from "@/assets/dragao-yacht.jpg";
 import grandrarayImage from "@/assets/grandraray-yacht.jpg";
+// Novas embarcações
+import ladyRuthImage from "@/assets/lady-ruth-yacht.jpg";
+import mangataImage from "@/assets/mangata-yacht.jpg";
+import prestigeImage from "@/assets/prestige-yacht.jpg";
+import rebecaImage from "@/assets/rebeca-yacht.jpg";
+import oceanoImage from "@/assets/oceano-catamaran.jpg";
+import blauImage from "@/assets/blau-catamaran.jpg";
+import nossaImage from "@/assets/nossa-yacht.jpg";
+import sevenImage from "@/assets/seven-yacht.jpg";
+import sennaImage from "@/assets/senna-yacht.jpg";
+import luisaImage from "@/assets/luisa-yacht.jpg";
 
 // Vessel data
 const vesselData = {
@@ -254,6 +265,341 @@ const vesselData = {
       "Vista panorâmica"
     ],
     gallery: [grandrarayImage]
+  },
+  "lady-ruth": {
+    id: "lady-ruth",
+    name: "LADY RUTH",
+    type: "Lancha Premium",
+    image: ladyRuthImage,
+    capacity: 13,
+    price: "R$ 1.999",
+    originalPrice: "R$ 2.500",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Lady Ruth oferece 5 horas de excelente passeio com combustível incluso, marinheiro experiente e toda segurança para até 13 passageiros.",
+    specifications: {
+      comprimento: "38 pés",
+      motor: "2x Mercury 250hp",
+      combustivel: "Gasolina",
+      capacidadeTanque: "300L"
+    },
+    included: [
+      "5 horas de excelente passeio",
+      "Combustível incluso",
+      "Marinheiro experiente",
+      "Equipamentos de segurança",
+      "Seguro náutico"
+    ],
+    gallery: [ladyRuthImage]
+  },
+  mangata: {
+    id: "mangata",
+    name: "MANGATA",
+    type: "Iate Premium",
+    image: mangataImage,
+    capacity: 12,
+    price: "R$ 11.500",
+    originalPrice: "R$ 12.000",
+    rating: 4.9,
+    duration: "5h",
+    location: "Iate Clube Rio de Janeiro",
+    description: "Sessa Marine c44 de 44 pés com capacidade para 12 pessoas + marinheiro. Localizado na Marina da Glória com espaço de convivência, cabine, quartos e banheiro.",
+    specifications: {
+      comprimento: "44 pés",
+      motor: "2x Volvo Penta 370hp",
+      combustivel: "Diesel",
+      capacidadeTanque: "400L"
+    },
+    included: [
+      "Gerador mase 10.5",
+      "Antena digital",
+      "2 quartos",
+      "2 banheiros",
+      "1 cozinha + mesa de jantar",
+      "TV e sistema de som independente nos 3 ambientes",
+      "2 freezer",
+      "1 geladeira",
+      "1 microondas",
+      "Ar condicionado",
+      "Boiler",
+      "Área gourmet elétrica na popa",
+      "Churrasqueira elétrica e pia",
+      "Churrasqueira a carvão",
+      "HT elétrico",
+      "GPS",
+      "Som",
+      "Plataforma submergível",
+      "Luzes subaquáticas",
+      "Taxa de churrasqueiro R$200"
+    ],
+    gallery: [mangataImage]
+  },
+  prestige: {
+    id: "prestige",
+    name: "PRESTIGE",
+    type: "Lancha Premium",
+    image: prestigeImage,
+    capacity: 20,
+    price: "R$ 20.000",
+    originalPrice: undefined,
+    rating: 4.9,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Lancha Prestige 600 fly com dois motores Volvo D13, três quartos sendo uma suíte, uma cabine de solteiro que também pode se transformar em casal, e uma cabine de proa com banheiro social.",
+    specifications: {
+      comprimento: "60 pés",
+      motor: "2x Volvo D13 900hp",
+      combustivel: "Diesel",
+      capacidadeTanque: "800L"
+    },
+    included: [
+      "Cozinha completa com duas geladeiras",
+      "2 mini freezer",
+      "Microondas",
+      "Fogão elétrico",
+      "Sala espaçosa com dois sofás",
+      "Armários nos quartos e na sala",
+      "Água quente em todas as torneiras",
+      "Gerador de 15",
+      "Churrasqueira elétrica",
+      "Máquina de gelo",
+      "Som Bluetooth com automação independente em todos os ambientes",
+      "Fly com pia!"
+    ],
+    gallery: [prestigeImage]
+  },
+  rebeca: {
+    id: "rebeca",
+    name: "YACHT REBECA",
+    type: "Iate Luxury",
+    image: rebecaImage,
+    capacity: 16,
+    price: "R$ 20.000",
+    originalPrice: undefined,
+    rating: 4.9,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Phantom 620 Pininfarina de 62 pés com capacidade para até 16 passageiros e pernoite para até 7 passageiros. Design italiano responsável pelo desenho de marcas como Ferrari e Maserati.",
+    specifications: {
+      comprimento: "62 pés",
+      motor: "2x MAN V12 1200hp",
+      combustivel: "Diesel",
+      capacidadeTanque: "1000L"
+    },
+    included: [
+      "Espaço de convivência",
+      "Cabine",
+      "Quartos e banheiro",
+      "Sala de jantar",
+      "Cozinha",
+      "Amplo cockpit",
+      "Solário na proa com duas opções de distribuição",
+      "Cozinha gourmet na plataforma",
+      "Fly-bridge bastante espaçoso",
+      "Design italiano Pininfarina",
+      "Passei com duração de 6 horas com combustível incluso"
+    ],
+    gallery: [rebecaImage]
+  },
+  oceano: {
+    id: "oceano",
+    name: "OCEANO",
+    type: "Catamarã",
+    image: oceanoImage,
+    capacity: 65,
+    price: "R$ 16.000",
+    originalPrice: undefined,
+    rating: 4.7,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Catamarã de até 65 passageiros com horários válidos por 30 dias. Período de 5hrs com roteiro interno.",
+    specifications: {
+      comprimento: "65 pés",
+      motor: "2x Caterpillar 350hp",
+      combustivel: "Diesel",
+      capacidadeTanque: "600L"
+    },
+    included: [
+      "Marinheiro e combustível",
+      "Horário manhã: 10hs às 15hs",
+      "Horário Tarde: 16hs às 21hs",
+      "Noite/Livre: a combinar",
+      "Até 50 passageiros - R$16.000,00",
+      "Até 65 passageiros - R$18.000,00"
+    ],
+    gallery: [oceanoImage]
+  },
+  blau: {
+    id: "blau",
+    name: "CATAMARÃ BLAU",
+    type: "Catamarã Premium",
+    image: blauImage,
+    capacity: 20,
+    price: "R$ 7.000",
+    originalPrice: undefined,
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Catamarã Blau para 20 passageiros com 5 horas de passeio. Marinheiro e churrasqueiro inclusos, combustível incluso.",
+    specifications: {
+      comprimento: "45 pés",
+      motor: "2x Yanmar 150hp",
+      combustivel: "Diesel",
+      capacidadeTanque: "400L"
+    },
+    included: [
+      "Marinheiro e churrasqueiro",
+      "Combustível incluso",
+      "Embarque: Marina da Glória",
+      "Roteiro: Urca X Praia Vermelha",
+      "Itaipu ou cagarras acréscimo de R$2.000,00"
+    ],
+    gallery: [blauImage]
+  },
+  nossa: {
+    id: "nossa",
+    name: "NOSSA",
+    type: "Iate Premium",
+    image: nossaImage,
+    capacity: 25,
+    price: "R$ 7.500",
+    originalPrice: undefined,
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Pershing 52HT com gerador 110v, TV, frigobar, churrasqueira a gás, sala, camarote (quarto), banheiro, marinheiro e combustível.",
+    specifications: {
+      comprimento: "52 pés",
+      motor: "2x MAN V8 800hp",
+      combustivel: "Diesel",
+      capacidadeTanque: "600L"
+    },
+    included: [
+      "Gerador 110v",
+      "TV",
+      "Frigobar",
+      "Churrasqueira a gás",
+      "Sala",
+      "Camarote (quarto)",
+      "Banheiro",
+      "Marinheiro",
+      "Combustível",
+      "Prancha Stand-up",
+      "Teto solar",
+      "5 horas de passeio",
+      "08:00 as 13:00",
+      "13:30 as 18:30"
+    ],
+    gallery: [nossaImage]
+  },
+  seven: {
+    id: "seven",
+    name: "SEVEN",
+    type: "Lancha Premium",
+    image: sevenImage,
+    capacity: 15,
+    price: "R$ 7.000",
+    originalPrice: undefined,
+    rating: 4.7,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Lancha intermarine 44 pés com embarque na Marina da Glória. Diversos roteiros disponíveis com taxa de churrasco de R$200,00.",
+    specifications: {
+      comprimento: "44 pés",
+      motor: "2x Volvo Penta 435hp",
+      combustivel: "Diesel",
+      capacidadeTanque: "450L"
+    },
+    included: [
+      "Embarque: Marina da Glória",
+      "Roteiro 1: Marina da glória x Flamengo x Botafogo x mureta x marina da glória R$7.000,00",
+      "Roteiro 2: Marina da glória x Flamengo x Botafogo x mureta x praia vermelha x marina da glória R$7.500,00",
+      "Roteiro 3: Marina da glória x Flamengo x Botafogo x mureta x praia vermelha x Copacabana x marina da glória R$7.900,00",
+      "Roteiro 4: Marina da glória x Flamengo x Botafogo x mureta x praia vermelha x ilhas cagarras x marina da glória R$8.400,00",
+      "Roteiro 5: Marina da glória x Flamengo x Botafogo x piratininga x Camboinhas x itaipu x marina da glória R$8.400,00",
+      "Taxa de churrasco R$200,0"
+    ],
+    gallery: [sevenImage]
+  },
+  senna: {
+    id: "senna",
+    name: "SENNA",
+    type: "Iate Premium",
+    image: sennaImage,
+    capacity: 20,
+    price: "R$ 7.000",
+    originalPrice: undefined,
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "46 pés com 2 motores volvo a diesel, com capacidade para 20 pessoas, com 2 suítes, ar condicionado, gerador, som, geladeira, microondas, tv, boiler, fogão, cooler, sala, fly.",
+    specifications: {
+      comprimento: "46 pés",
+      motor: "2x Volvo Penta 435hp",
+      combustivel: "Diesel",
+      capacidadeTanque: "500L"
+    },
+    included: [
+      "2 suítes",
+      "Ar condicionado",
+      "Gerador",
+      "Som",
+      "Geladeira",
+      "Microondas",
+      "TV",
+      "Boiler",
+      "Fogão",
+      "Cooler",
+      "Sala",
+      "Fly",
+      "Horários alta temporada",
+      "08:00 às 14:00",
+      "14:30 às 19:30",
+      "Marina x mureta da Urca R$7000",
+      "Marina x praia de Adão e Eva ou morcego R$10.000,00",
+      "Marina x praia vermelha R$10.000,00",
+      "Marina x Copacabana R$12.000,00",
+      "Marina x praia de Itaipu R$12.000,00",
+      "Marina x cagarras R$ 12.500,00",
+      "Hora extra R$2.000",
+      "R$200,00 taxa churrasqueiro",
+      "Está incluso diesel, comandante e auxiliar"
+    ],
+    gallery: [sennaImage]
+  },
+  luisa: {
+    id: "luisa",
+    name: "LUÍSA V",
+    type: "Iate Premium",
+    image: luisaImage,
+    capacity: 15,
+    price: "R$ 2.800",
+    originalPrice: "R$ 3.200",
+    rating: 4.6,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Luísa V com roteiro Marina da Glória x Flamengo x Aeroporto x Urca. Incluso: Marinheiro, combustível e churrasqueira.",
+    specifications: {
+      comprimento: "42 pés",
+      motor: "2x Caterpillar 350hp",
+      combustivel: "Diesel",
+      capacidadeTanque: "400L"
+    },
+    included: [
+      "Marinheiro",
+      "Combustível",
+      "Churrasqueira",
+      "08:00 as 13:00 = R$3.200,00",
+      "13:00 as 19:00 = R$3.200,00",
+      "Roteiro: Marina da Glória X Flamengo X Aeroporto X Urca",
+      "Praia de Copacabana adicional = R$600",
+      "Ilhas cagarras ou Itaipu adicional = R$1.000,00",
+      "Taxa de Churrasqueiro= R$200,00",
+      "Taxa de Embarque = R$200,00",
+      "Coolers/macarrão flutuantes / churrasqueira"
+    ],
+    gallery: [luisaImage]
   }
 };
 

@@ -25,6 +25,17 @@ import mcellImage from "@/assets/mcell-boat.jpg";
 import comendadorImage from "@/assets/comendador-yacht.jpg";
 import dragaoImage from "@/assets/dragao-yacht.jpg";
 import grandrarayImage from "@/assets/grandraray-yacht.jpg";
+// Novas embarcações
+import ladyRuthImage from "@/assets/lady-ruth-yacht.jpg";
+import mangataImage from "@/assets/mangata-yacht.jpg";
+import prestigeImage from "@/assets/prestige-yacht.jpg";
+import rebecaImage from "@/assets/rebeca-yacht.jpg";
+import oceanoImage from "@/assets/oceano-catamaran.jpg";
+import blauImage from "@/assets/blau-catamaran.jpg";
+import nossaImage from "@/assets/nossa-yacht.jpg";
+import sevenImage from "@/assets/seven-yacht.jpg";
+import sennaImage from "@/assets/senna-yacht.jpg";
+import luisaImage from "@/assets/luisa-yacht.jpg";
 
 const vessels = [
   {
@@ -183,6 +194,200 @@ const vessels = [
       { icon: Waves, label: "Vista Panorâmica" }
     ],
     description: "GRAND RARAY com embarque na Marina da Glória",
+    category: "iate"
+  },
+  // Novas embarcações
+  {
+    id: "lady-ruth",
+    name: "LADY RUTH",
+    type: "Lancha Premium",
+    image: ladyRuthImage,
+    capacity: 13,
+    price: "R$ 1.999",
+    originalPrice: "R$ 2.500",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "13 Passageiros" },
+      { icon: Music, label: "Som" },
+      { icon: Coffee, label: "Combustível Incluso" },
+      { icon: Shield, label: "Marinheiro" }
+    ],
+    description: "Lady Ruth com 5 horas de excelente passeio",
+    category: "lancha"
+  },
+  {
+    id: "mangata",
+    name: "MANGATA",
+    type: "Iate Premium",
+    image: mangataImage,
+    capacity: 12,
+    price: "R$ 11.500",
+    originalPrice: "R$ 12.000",
+    rating: 4.9,
+    duration: "5h",
+    location: "Iate Clube Rio de Janeiro",
+    features: [
+      { icon: Anchor, label: "44 Pés" },
+      { icon: Music, label: "Som 3 Ambientes" },
+      { icon: Coffee, label: "Geladeira" },
+      { icon: Shield, label: "2 Quartos" }
+    ],
+    description: "Sessa Marine c44 - Mangata com copacabana/cagarras",
+    category: "iate"
+  },
+  {
+    id: "prestige",
+    name: "PRESTIGE",
+    type: "Lancha Premium",
+    image: prestigeImage,
+    capacity: 20,
+    price: "R$ 20.000",
+    rating: 4.9,
+    duration: "6h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "600 Fly" },
+      { icon: Music, label: "Som Bluetooth" },
+      { icon: Coffee, label: "Cozinha Completa" },
+      { icon: Shield, label: "3 Quartos" }
+    ],
+    description: "Lancha Prestige 600 fly, dois motores volvo d 13",
+    category: "lancha"
+  },
+  {
+    id: "rebeca",
+    name: "YACHT REBECA",
+    type: "Iate Luxury",
+    image: rebecaImage,
+    capacity: 16,
+    price: "R$ 20.000",
+    rating: 4.9,
+    duration: "6h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "62 Pés" },
+      { icon: Music, label: "Pininfarina" },
+      { icon: Coffee, label: "Cozinha Gourmet" },
+      { icon: Shield, label: "Design Italiano" }
+    ],
+    description: "Phantom 620 Pininfarina de 62 pés com design italiano",
+    category: "iate"
+  },
+  {
+    id: "oceano",
+    name: "OCEANO",
+    type: "Catamarã",
+    image: oceanoImage,
+    capacity: 65,
+    price: "R$ 16.000",
+    rating: 4.7,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "65 Passageiros" },
+      { icon: Music, label: "Horários Flexíveis" },
+      { icon: Coffee, label: "Roteiro Interno" },
+      { icon: Shield, label: "Marinheiro" }
+    ],
+    description: "Catamarã de até 65 passageiros com horários válidos por 30 dias",
+    category: "iate"
+  },
+  {
+    id: "blau",
+    name: "CATAMARÃ BLAU",
+    type: "Catamarã Premium",
+    image: blauImage,
+    capacity: 20,
+    price: "R$ 7.000",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "20 Passageiros" },
+      { icon: Music, label: "Som" },
+      { icon: Coffee, label: "Combustível Incluso" },
+      { icon: Shield, label: "Marinheiro" }
+    ],
+    description: "Catamarã Blau com embarque na Marina da Glória",
+    category: "iate"
+  },
+  {
+    id: "nossa",
+    name: "NOSSA",
+    type: "Iate Premium",
+    image: nossaImage,
+    capacity: 25,
+    price: "R$ 7.500",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "52HT" },
+      { icon: Music, label: "TV" },
+      { icon: Coffee, label: "Frigobar" },
+      { icon: Shield, label: "Churrasqueira" }
+    ],
+    description: "Pershing 52HT com gerador 110v e equipamentos completos",
+    category: "iate"
+  },
+  {
+    id: "seven",
+    name: "SEVEN",
+    type: "Lancha Premium",
+    image: sevenImage,
+    capacity: 15,
+    price: "R$ 7.000",
+    rating: 4.7,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "44 Pés" },
+      { icon: Music, label: "Som" },
+      { icon: Coffee, label: "Combustível Incluso" },
+      { icon: Shield, label: "Marinheiro" }
+    ],
+    description: "Lancha intermarine 44 pés com embarque na Marina da Glória",
+    category: "lancha"
+  },
+  {
+    id: "senna",
+    name: "SENNA",
+    type: "Iate Premium",
+    image: sennaImage,
+    capacity: 20,
+    price: "R$ 7.000",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "46 Pés" },
+      { icon: Music, label: "Som" },
+      { icon: Coffee, label: "2 Suítes" },
+      { icon: Shield, label: "2 Motores Volvo" }
+    ],
+    description: "46 pés com 2 motores volvo a diesel, 2 suítes completas",
+    category: "iate"
+  },
+  {
+    id: "luisa",
+    name: "LUÍSA V",
+    type: "Iate Premium",
+    image: luisaImage,
+    capacity: 15,
+    price: "R$ 2.800",
+    originalPrice: "R$ 3.200",
+    rating: 4.6,
+    duration: "6h",
+    location: "Marina da Glória",
+    features: [
+      { icon: Anchor, label: "15 Passageiros" },
+      { icon: Music, label: "Som" },
+      { icon: Coffee, label: "Combustível Incluso" },
+      { icon: Shield, label: "Churrasqueira" }
+    ],
+    description: "Luísa V com roteiro Marina da Glória x Flamengo x Aeroporto x Urca",
     category: "iate"
   }
 ];
