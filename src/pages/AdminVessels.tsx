@@ -316,66 +316,90 @@ const AdminVessels = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleAddImage = (vesselId: string) => {
+    console.log('handleAddImage chamado para:', vesselId);
     setSelectedVessel(vesselId);
-    // Adicionar um pequeno delay para garantir que o selectedVessel seja definido
-    setTimeout(() => {
-      fileInputRef.current?.click();
-    }, 100);
+    // Forçar click direto no input
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
-    if (!files || files.length === 0 || !selectedVessel) {
-      console.log('Nenhum arquivo selecionado ou vessel não selecionado');
+    console.log('handleFileUpload - files:', files?.length, 'selectedVessel:', selectedVessel);
+    
+    if (!files || files.length === 0) {
+      console.log('Nenhum arquivo selecionado');
+      toast.error('Nenhum arquivo selecionado');
+      return;
+    }
+
+    if (!selectedVessel) {
+      console.log('Nenhum vessel selecionado');
+      toast.error('Erro: embarcação não selecionada');
       return;
     }
 
     console.log(`Processando ${files.length} arquivo(s) para vessel: ${selectedVessel}`);
+    toast.info(`Processando ${files.length} imagem${files.length > 1 ? 'ns' : ''}...`);
 
     const processedImages: string[] = [];
     let processedCount = 0;
 
     Array.from(files).forEach((file, index) => {
+      console.log(`Processando arquivo ${index + 1}:`, file.name, file.type, file.size);
+      
+      if (!file.type.startsWith('image/')) {
+        console.error('Arquivo não é uma imagem:', file.type);
+        toast.error(`Arquivo ${file.name} não é uma imagem válida`);
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (e) => {
         const imageUrl = e.target?.result as string;
-        processedImages[index] = imageUrl;
-        processedCount++;
-        
-        console.log(`Imagem ${processedCount}/${files.length} processada`);
-        
-        // Quando todas as imagens foram processadas
-        if (processedCount === files.length) {
-          console.log('Todas as imagens processadas, atualizando estado...');
+        if (imageUrl) {
+          processedImages[index] = imageUrl;
+          processedCount++;
           
-          setVessels(prev => {
-            const currentVessel = prev[selectedVessel];
-            if (!currentVessel) {
-              console.error('Vessel não encontrado:', selectedVessel);
-              return prev;
-            }
-
-            const updatedVessel = {
-              ...currentVessel,
-              images: [...(currentVessel.images || []), ...processedImages.filter(Boolean)]
-            };
-
-            console.log('Vessel atualizado:', updatedVessel);
-
-            return {
-              ...prev,
-              [selectedVessel]: updatedVessel
-            };
-          });
+          console.log(`Imagem ${processedCount}/${files.length} processada com sucesso`);
           
-          setHasUnsavedChanges(true);
-          toast.success(`${files.length} imagem${files.length > 1 ? 'ns' : ''} adicionada${files.length > 1 ? 's' : ''} com sucesso!`);
+          // Quando todas as imagens foram processadas
+          if (processedCount === files.length) {
+            console.log('Todas as imagens processadas, atualizando estado...');
+            
+            setVessels(prev => {
+              const currentVessel = prev[selectedVessel];
+              if (!currentVessel) {
+                console.error('Vessel não encontrado:', selectedVessel);
+                toast.error('Erro: embarcação não encontrada');
+                return prev;
+              }
+
+              const filteredImages = processedImages.filter(Boolean);
+              const updatedVessel = {
+                ...currentVessel,
+                images: [...(currentVessel.images || []), ...filteredImages]
+              };
+
+              console.log('Vessel atualizado:', updatedVessel);
+              console.log('Total de imagens após atualização:', updatedVessel.images.length);
+
+              return {
+                ...prev,
+                [selectedVessel]: updatedVessel
+              };
+            });
+            
+            setHasUnsavedChanges(true);
+            toast.success(`${processedCount} imagem${processedCount > 1 ? 'ns' : ''} adicionada${processedCount > 1 ? 's' : ''} com sucesso!`);
+          }
         }
       };
       
       reader.onerror = (error) => {
         console.error('Erro ao ler arquivo:', error);
-        toast.error(`Erro ao processar imagem ${index + 1}`);
+        toast.error(`Erro ao processar ${file.name}`);
       };
       
       reader.readAsDataURL(file);
@@ -463,62 +487,67 @@ const AdminVessels = () => {
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/30">
       <div className="container mx-auto px-6 py-8">
         {/* Header com botões de ação */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-primary rounded-lg">
               <Ship className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold">Administração de Embarcações</h1>
-              <p className="text-muted-foreground">Gerencie fotos e informações das embarcações</p>
+              <h1 className="text-2xl lg:text-3xl font-bold">Administração de Embarcações</h1>
+              <p className="text-muted-foreground text-sm lg:text-base">Gerencie fotos e informações das embarcações</p>
             </div>
           </div>
           
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full lg:w-auto">
             {hasUnsavedChanges && (
-              <Badge variant="destructive" className="px-4 py-2">
-                <X className="w-4 h-4 mr-2" />
+              <Badge variant="destructive" className="px-3 py-2 text-xs">
+                <X className="w-3 h-3 mr-2" />
                 Alterações não salvas
               </Badge>
             )}
             
-            <Button
-              variant="outline"
-              onClick={handleExitAdmin}
-              className="border-muted-foreground/30"
-            >
-              <Home className="w-4 h-4 mr-2" />
-              Voltar ao Site
-            </Button>
-            
-            <Button
-              variant="secondary"
-              onClick={handleResetData}
-              className="bg-orange-500/10 text-orange-600 hover:bg-orange-500/20"
-            >
-              <Settings className="w-4 h-4 mr-2" />
-              Resetar Dados
-            </Button>
-            
-            <Button
-              onClick={handleSaveAllChanges}
-              disabled={!hasUnsavedChanges}
-              className="bg-green-600 hover:bg-green-700 text-white"
-            >
-              <Check className="w-4 h-4 mr-2" />
-              Salvar no Site
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+              <Button
+                variant="outline"
+                onClick={handleExitAdmin}
+                className="border-muted-foreground/30 w-full sm:w-auto text-sm"
+                size="sm"
+              >
+                <Home className="w-4 h-4 mr-2" />
+                Voltar ao Site
+              </Button>
+              
+              <Button
+                variant="secondary"
+                onClick={handleResetData}
+                className="bg-orange-500/10 text-orange-600 hover:bg-orange-500/20 w-full sm:w-auto text-sm"
+                size="sm"
+              >
+                <Settings className="w-4 h-4 mr-2" />
+                Resetar Dados
+              </Button>
+              
+              <Button
+                onClick={handleSaveAllChanges}
+                disabled={!hasUnsavedChanges}
+                className="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto text-sm"
+                size="sm"
+              >
+                <Check className="w-4 h-4 mr-2" />
+                Salvar no Site
+              </Button>
+            </div>
           </div>
         </div>
 
         {/* Grid de embarcações */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
           {Object.entries(vessels).map(([vesselId, vessel]) => (
             <Card key={vesselId} className="card-luxury overflow-hidden">
-              <CardHeader className="pb-4">
+              <CardHeader className="pb-3 lg:pb-4">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg">{vessel.name}</CardTitle>
-                  <Badge variant="secondary">{vessel.type}</Badge>
+                  <CardTitle className="text-base lg:text-lg truncate">{vessel.name}</CardTitle>
+                  <Badge variant="secondary" className="text-xs">{vessel.type}</Badge>
                 </div>
               </CardHeader>
               
@@ -538,14 +567,14 @@ const AdminVessels = () => {
                   />
                   
                   {/* Informações básicas */}
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="grid grid-cols-2 gap-3 lg:gap-4 text-xs lg:text-sm">
                     <div>
                       <p className="text-muted-foreground">Capacidade</p>
                       <p className="font-medium">{vessel.capacity} pessoas</p>
                     </div>
                     <div>
                       <p className="text-muted-foreground">Preço</p>
-                      <p className="font-medium">{vessel.price}</p>
+                      <p className="font-medium truncate">{vessel.price}</p>
                     </div>
                     <div>
                       <p className="text-muted-foreground">Duração</p>
@@ -558,15 +587,15 @@ const AdminVessels = () => {
                   </div>
                   
                   {/* Botões de ação */}
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button variant="outline" size="sm" className="flex-1">
-                          <Edit3 className="w-4 h-4 mr-2" />
+                        <Button variant="outline" size="sm" className="flex-1 text-xs">
+                          <Edit3 className="w-3 h-3 mr-2" />
                           Editar Info
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="max-w-2xl">
+                      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
                         <DialogHeader>
                           <DialogTitle>Editar {vessel.name}</DialogTitle>
                         </DialogHeader>
@@ -580,9 +609,10 @@ const AdminVessels = () => {
                     <Button 
                       variant="outline" 
                       size="sm" 
+                      className="text-xs"
                       onClick={() => window.open(`/vessel/${vesselId}`, '_blank')}
                     >
-                      <Eye className="w-4 h-4 mr-2" />
+                      <Eye className="w-3 h-3 mr-2" />
                       Preview
                     </Button>
                   </div>
@@ -596,11 +626,11 @@ const AdminVessels = () => {
         <input
           ref={fileInputRef}
           type="file"
-          accept="image/jpeg,image/jpg,image/png,image/webp"
+          accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
           multiple
           className="hidden"
           onChange={handleFileUpload}
-          key={selectedVessel} // Force re-render when vessel changes
+          style={{ display: 'none' }}
         />
       </div>
     </div>

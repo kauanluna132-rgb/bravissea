@@ -25,20 +25,23 @@ const VesselImageCarousel = ({
 
   if (!images || images.length === 0) {
     return (
-      <div className="w-full h-[400px] bg-muted rounded-lg flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 bg-muted-foreground/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <ZoomIn className="w-8 h-8 text-muted-foreground" />
+      <div className="w-full h-[300px] lg:h-[400px] bg-muted rounded-lg flex items-center justify-center">
+        <div className="text-center p-4">
+          <div className="w-12 h-12 lg:w-16 lg:h-16 bg-muted-foreground/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <ZoomIn className="w-6 h-6 lg:w-8 lg:h-8 text-muted-foreground" />
           </div>
-          <p className="text-muted-foreground">Nenhuma imagem disponível</p>
+          <p className="text-muted-foreground text-sm lg:text-base mb-4">Nenhuma imagem disponível</p>
           {isAdminMode && (
             <Button 
-              onClick={onAddImage} 
+              onClick={() => {
+                console.log('Botão primeira foto clicado');
+                onAddImage?.();
+              }} 
               variant="outline" 
               size="sm" 
-              className="mt-4"
+              className="text-xs lg:text-sm"
             >
-              <Plus className="w-4 h-4 mr-2" />
+              <Plus className="w-3 h-3 lg:w-4 lg:h-4 mr-2" />
               Adicionar Primeira Foto
             </Button>
           )}
@@ -57,7 +60,7 @@ const VesselImageCarousel = ({
                 <img
                   src={image}
                   alt={`${vesselName} - Foto ${index + 1}`}
-                  className="w-full h-[400px] object-cover rounded-lg"
+                  className="w-full h-[300px] lg:h-[400px] object-cover rounded-lg"
                   onError={(e) => {
                     console.error('Erro ao carregar imagem:', image);
                     e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0yMDAgMTUwQzE3NS44IDEzNSAxNjAuMiAxNTEgMTYwIDIwMEMxNjAgMjQ5IDE3NS44IDI2NSAyMDAgMjUwQzIyNC4yIDI2NSAyNDAgMjQ5IDI0MCAyMDBDMjQwIDE1MSAyMjQuMiAxMzUgMjAwIDE1MFoiIGZpbGw9IiM5Q0E5QjQiLz4KPC9zdmc+';
@@ -122,16 +125,16 @@ const VesselImageCarousel = ({
           {isAdminMode && (
             <CarouselItem>
               <div 
-                className="w-full h-[400px] border-2 border-dashed border-primary/50 rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-primary/5 transition-colors group"
+                className="w-full h-[300px] lg:h-[400px] border-2 border-dashed border-primary/50 rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-primary/5 transition-colors group"
                 onClick={() => {
-                  console.log('Botão adicionar imagem clicado');
+                  console.log('Botão adicionar imagem clicado - carousel');
                   onAddImage?.();
                 }}
               >
-                <div className="text-center">
-                  <Plus className="w-12 h-12 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                  <p className="text-primary font-medium text-lg mb-2">Adicionar Nova Foto</p>
-                  <p className="text-muted-foreground text-sm">Clique para fazer upload de múltiplas imagens</p>
+                <div className="text-center p-4">
+                  <Plus className="w-8 h-8 lg:w-12 lg:h-12 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                  <p className="text-primary font-medium text-sm lg:text-lg mb-2">Adicionar Nova Foto</p>
+                  <p className="text-muted-foreground text-xs lg:text-sm">Clique para fazer upload de múltiplas imagens</p>
                   <p className="text-xs text-muted-foreground mt-2">Formatos: JPG, PNG, WEBP</p>
                 </div>
               </div>
