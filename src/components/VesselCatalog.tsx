@@ -348,7 +348,7 @@ const vessels = [
     id: "oceano",
     name: "OCEANO",
     type: "Catamarã",
-    image: oceanoImage,
+    image: "/lovable-uploads/2402bb41-ddc9-4cfa-96e5-b21a00722ecb.png",
     capacity: 65,
     price: "R$ 16.000",
     rating: 4.7,

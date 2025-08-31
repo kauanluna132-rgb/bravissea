@@ -532,14 +532,66 @@ const vesselsData = {
     id: "oceano",
     name: "OCEANO",
     type: "Catamarã",
-    images: [oceanoImage],
+    images: [
+      "/lovable-uploads/2402bb41-ddc9-4cfa-96e5-b21a00722ecb.png",
+      "/lovable-uploads/b08d133a-7b0d-4dcb-951d-45b3c561eb8e.png",
+      "/lovable-uploads/cc1ce7a4-f296-4701-812e-353e93d07867.png",
+      "/lovable-uploads/0953df0c-2627-4cce-986e-0a23651b3b33.png",
+      "/lovable-uploads/4f85c8f6-1bbc-481f-8f43-624e5c4cfb7b.png",
+      "/lovable-uploads/7c0d8ffc-ec95-4679-998a-9ee8c583087e.png",
+      "/lovable-uploads/5d9146e9-e131-4187-9156-a083126176d8.png",
+      "/lovable-uploads/31824218-deb4-4ca4-8dba-6b7ff28592ab.png"
+    ],
     capacity: 65,
     price: "R$ 16.000",
     rating: 4.7,
     duration: "5h",
     location: "Marina da Glória",
-    description: "Catamarã de até 65 passageiros com horários válidos por 30 dias",
-    category: "catamara"
+    description: "Catamarã OCEANO | 65 PASSAGEIROS - Período de 5hrs - Roteiro interno com horários válidos por 30 dias",
+    category: "catamara",
+    specs: {
+      type: "Catamarã",
+      capacity: "até 65 passageiros",
+      duration: "5 horas - Roteiro interno",
+      boarding: "Marina da Glória",
+      validity: "30 dias"
+    },
+    schedule: {
+      morning: "10h às 15h",
+      afternoon: "16h às 21h",
+      night: "a combinar"
+    },
+    amenities: [
+      "Bar Oceano com iluminação LED",
+      "Área lounge com sofás",
+      "Cozinha completa equipada",
+      "Deck superior com vista panorâmica",
+      "Área de churrasqueira",
+      "Grama sintética",
+      "Som ambiente"
+    ],
+    included: [
+      "Marinheiro",
+      "Combustível"
+    ],
+    pricing: {
+      up50: "R$ 16.000",
+      up65: "R$ 18.000"
+    },
+    additionalServices: [
+      { service: "Churrasqueiro", price: "R$ 600" },
+      { service: "Barman", price: "R$ 600" },
+      { service: "Guarda-vidas", price: "R$ 400", note: "obrigatório para mergulho" },
+      { service: "Roteiro externo (Itaipu/Cagarras)", price: "R$ 5.000" },
+      { service: "Hora extra", price: "R$ 3.200/hora" },
+      { service: "Serviço de Buffet/decoração", price: "a combinar" }
+    ],
+    notes: [
+      "Roteiro externo limitado a 50 passageiros",
+      "Eventos especiais: roteiro Urca, Praia do Morcego e Adão e Eva",
+      "Por questão de segurança somente nosso churrasqueiro está autorizado a preparar o churrasco",
+      "Roteiro externo é obrigatório a presença do guarda-vidas"
+    ]
   },
   blau: {
     id: "blau",
@@ -2228,7 +2280,156 @@ Aguardo confirmação! 🌊
                         </div>
                       )}
 
-                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && (
+                      {vessel.id === "oceano" && (
+                        <div className="space-y-8">
+                          {/* Especificações Técnicas */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Waves className="h-5 w-5 mr-2" />
+                              Especificações Técnicas
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tipo</span>
+                                <p className="text-lg font-semibold">{(vessel as any).specs?.type}</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                                <p className="text-lg font-semibold">{(vessel as any).specs?.capacity}</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                                <p className="text-lg font-semibold">{(vessel as any).specs?.duration}</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Validade</span>
+                                <p className="text-lg font-semibold">{(vessel as any).specs?.validity}</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Horários */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Clock className="h-5 w-5 mr-2" />
+                              Horários Disponíveis
+                            </h4>
+                            <div className="grid md:grid-cols-3 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Manhã</span>
+                                <p className="text-lg font-semibold">{(vessel as any).schedule?.morning}</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tarde</span>
+                                <p className="text-lg font-semibold">{(vessel as any).schedule?.afternoon}</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Noite</span>
+                                <p className="text-lg font-semibold">{(vessel as any).schedule?.night}</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Comodidades */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Coffee className="h-5 w-5 mr-2" />
+                              Comodidades
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              {(vessel as any).amenities?.map((amenity: string, index: number) => (
+                                <div key={index} className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                  <Coffee className="h-6 w-6 text-primary mr-3" />
+                                  <div>
+                                    <p className="font-medium">{amenity}</p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Incluso */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <CheckCircle className="h-5 w-5 mr-2" />
+                              Incluso no Passeio
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              {(vessel as any).included?.map((item: string, index: number) => (
+                                <div key={index} className="flex items-center p-3 bg-green-50 rounded-lg">
+                                  <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
+                                  <div>
+                                    <p className="font-medium text-green-800">{item}</p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Preços */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Sun className="h-5 w-5 mr-2" />
+                              Preços Base
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="bg-emerald-50 p-6 rounded-lg border border-emerald-200">
+                                <div className="text-center">
+                                  <h5 className="font-semibold text-emerald-800 mb-2">Até 50 passageiros</h5>
+                                  <span className="text-3xl font-bold text-emerald-700">{(vessel as any).pricing?.up50}</span>
+                                </div>
+                              </div>
+                              <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                                <div className="text-center">
+                                  <h5 className="font-semibold text-blue-800 mb-2">Até 65 passageiros</h5>
+                                  <span className="text-3xl font-bold text-blue-700">{(vessel as any).pricing?.up65}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Serviços Adicionais */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Sparkles className="h-5 w-5 mr-2" />
+                              Serviços Adicionais
+                            </h4>
+                            <div className="space-y-3">
+                              {(vessel as any).additionalServices?.map((service: any, index: number) => (
+                                <div key={index} className="border border-primary/20 p-4 rounded-lg">
+                                  <div className="flex justify-between items-center">
+                                    <div>
+                                      <h5 className="font-semibold">{service.service}</h5>
+                                      {service.note && (
+                                        <p className="text-sm text-muted-foreground">{service.note}</p>
+                                      )}
+                                    </div>
+                                    <span className="font-bold text-primary">{service.price}</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Observações */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Shield className="h-5 w-5 mr-2" />
+                              Observações Importantes
+                            </h4>
+                            <div className="space-y-2">
+                              {(vessel as any).notes?.map((note: string, index: number) => (
+                                <div key={index} className="flex items-start p-3 bg-yellow-50 rounded-lg">
+                                  <Shield className="h-5 w-5 text-yellow-600 mr-3 mt-0.5 flex-shrink-0" />
+                                  <p className="text-sm text-yellow-800">{note}</p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && vessel.id !== "oceano" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>
