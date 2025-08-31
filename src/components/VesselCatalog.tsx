@@ -168,7 +168,7 @@ const vessels = [
     id: "mcell",
     name: "Lancha M Cell",
     type: "Lancha",
-    image: "/lovable-uploads/d1d17103-7ce7-4643-b993-81e04a1468e7.png",
+    image: "/lovable-uploads/fe22476e-95ca-419b-b283-9a55cd96b7a9.png",
     capacity: 9,
     price: "R$ 2.500",
     originalPrice: undefined,

@@ -155,19 +155,52 @@ const vesselsData = {
     name: "Lancha M Cell",
     type: "Lancha",
     images: [
-      "/lovable-uploads/d1d17103-7ce7-4643-b993-81e04a1468e7.png",
-      "/lovable-uploads/75a5ef56-8357-438c-8af1-e6bcba02d684.png",
-      "/lovable-uploads/f50de78c-4e90-4465-b038-9c65c849667e.png",
-      "/lovable-uploads/f5ee604f-918b-48d0-b36e-336f92696161.png",
-      "/lovable-uploads/f5641c4d-f492-468c-8763-40c37a38705b.png",
-      "/lovable-uploads/908cf142-ad3f-42d0-8e09-aae748064acb.png"
+      "/lovable-uploads/fe22476e-95ca-419b-b283-9a55cd96b7a9.png",
+      "/lovable-uploads/e5534f93-7891-4fda-a6bc-5a690e3a8b07.png",
+      "/lovable-uploads/b8119bf3-2ad4-4039-a641-241141e5a271.png",
+      "/lovable-uploads/78a35fe0-9b73-49eb-a38f-276e7598a61c.png",
+      "/lovable-uploads/0963c6ee-2248-45c5-a0b9-f0b690766e70.png",
+      "/lovable-uploads/df6a16d5-de3e-41f1-ac3a-0cd65592878e.png"
     ],
     capacity: 9,
     price: "R$ 2.500",
     rating: 4.8,
     duration: "5h",
     location: "Marina da Glória",
-    description: "Lancha M Cell com cabine, churrasqueira e todas as comodidades para um passeio perfeito",
+    description: "Lancha M Cell R$ 2.500,00 - Capacidade para 9 passageiros + 1 tripulante",
+    specs: {
+      type: "Lancha",
+      capacity: "9 passageiros + 1 tripulante",
+      departure: "Marina da Glória"
+    },
+    amenities: [
+      "Cabine",
+      "Som Bluetooth",
+      "Churrasqueira",
+      "Banheiro",
+      "Ducha de Água Doce",
+      "Flutuadores para banho de mar",
+      "Tripulante incluso",
+      "Limpeza inclusa",
+      "Combustível incluso"
+    ],
+    schedule: {
+      morning: "08h às 13h",
+      afternoon: "14h às 19h"
+    },
+    pricing: {
+      base: "R$ 2.500,00",
+      barbecueStaff: "R$ 200,00",
+      boardingFee: "R$ 200,00"
+    },
+    destinations: [
+      { name: "Praia do Flamengo", price: "Incluso" },
+      { name: "Enseada de Botafogo", price: "Incluso" },
+      { name: "Mureta da Urca", price: "Incluso" },
+      { name: "Flutuante Rio", price: "Incluso" },
+      { name: "Praia da Bandeira", price: "Incluso" },
+      { name: "Vista do Pão de Açúcar e Cristo Redentor", price: "Incluso" }
+    ],
     category: "lancha"
   },
   comendador: {
@@ -1090,7 +1123,110 @@ Aguardo confirmação! 🌊
                       </div>
                     )}
                     
-                    {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && (
+                    {vessel.id === "mcell" && (
+                      <div className="space-y-8">
+                        {/* Especificações Técnicas */}
+                        <div>
+                          <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                            <Waves className="h-5 w-5 mr-2" />
+                            Especificações Técnicas
+                          </h4>
+                          <div className="grid md:grid-cols-2 gap-4">
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tipo</span>
+                               <p className="text-lg font-semibold">{(vessel as any).specs?.type}</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                               <p className="text-lg font-semibold">{(vessel as any).specs?.capacity}</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Embarque</span>
+                               <p className="text-lg font-semibold">{(vessel as any).specs?.departure}</p>
+                             </div>
+                          </div>
+                        </div>
+
+                        {/* Comodidades */}
+                        <div>
+                          <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                            <Coffee className="h-5 w-5 mr-2" />
+                            Comodidades
+                          </h4>
+                           <div className="grid md:grid-cols-2 gap-4">
+                             {(vessel as any).amenities?.map((amenity: string, index: number) => (
+                              <div key={index} className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">{amenity}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Horários */}
+                        <div>
+                          <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                            <Clock className="h-5 w-5 mr-2" />
+                            Horários Disponíveis
+                          </h4>
+                          <div className="grid md:grid-cols-2 gap-4">
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Manhã</span>
+                               <p className="text-lg font-semibold">{(vessel as any).schedule?.morning}</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tarde</span>
+                               <p className="text-lg font-semibold">{(vessel as any).schedule?.afternoon}</p>
+                             </div>
+                          </div>
+                        </div>
+
+                        {/* Tarifas */}
+                        <div>
+                          <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                            <Sun className="h-5 w-5 mr-2" />
+                            Tarifas e Extras
+                          </h4>
+                          <div className="grid md:grid-cols-3 gap-4">
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Valor Base</span>
+                               <p className="text-lg font-semibold">{(vessel as any).pricing?.base}</p>
+                               <p className="text-xs text-muted-foreground">5 horas</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa Churrasqueiro</span>
+                               <p className="text-lg font-semibold">{(vessel as any).pricing?.barbecueStaff}</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa de Embarque</span>
+                               <p className="text-lg font-semibold">{(vessel as any).pricing?.boardingFee}</p>
+                             </div>
+                          </div>
+                        </div>
+
+                        {/* Roteiro */}
+                        <div>
+                          <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                            <MapPin className="h-5 w-5 mr-2" />
+                            Roteiro Urca
+                          </h4>
+                           <div className="grid md:grid-cols-2 gap-4">
+                             {(vessel as any).destinations?.map((destination: any, index: number) => (
+                              <div key={index} className="border border-primary/20 p-4 rounded-lg">
+                                <div className="flex justify-between items-center">
+                                  <h5 className="font-semibold text-primary">{destination.name}</h5>
+                                  <span className="font-bold text-sm text-green-600">{destination.price}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>
