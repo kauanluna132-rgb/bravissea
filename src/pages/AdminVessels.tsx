@@ -340,18 +340,27 @@ const AdminVessels = () => {
       return;
     }
 
-    console.log(`Processando ${files.length} arquivo(s) para vessel: ${selectedVessel}`);
-    toast.info(`Processando ${files.length} imagem${files.length > 1 ? 'ns' : ''}...`);
+    const filesArray = Array.from(files);
+    const totalFiles = filesArray.length;
+    
+    console.log(`Processando ${totalFiles} arquivo(s) para vessel: ${selectedVessel}`);
+    toast.info(`Processando ${totalFiles} imagem${totalFiles > 1 ? 'ns' : ''}...`);
 
     const processedImages: string[] = [];
     let processedCount = 0;
 
-    Array.from(files).forEach((file, index) => {
+    filesArray.forEach((file, index) => {
       console.log(`Processando arquivo ${index + 1}:`, file.name, file.type, file.size);
       
       if (!file.type.startsWith('image/')) {
         console.error('Arquivo não é uma imagem:', file.type);
         toast.error(`Arquivo ${file.name} não é uma imagem válida`);
+        processedCount++;
+        
+        // Verificar se todos foram processados (mesmo com erro)
+        if (processedCount === totalFiles) {
+          updateVesselImages();
+        }
         return;
       }
 
@@ -362,37 +371,11 @@ const AdminVessels = () => {
           processedImages[index] = imageUrl;
           processedCount++;
           
-          console.log(`Imagem ${processedCount}/${files.length} processada com sucesso`);
+          console.log(`Imagem ${processedCount}/${totalFiles} processada com sucesso`);
           
           // Quando todas as imagens foram processadas
-          if (processedCount === files.length) {
-            console.log('Todas as imagens processadas, atualizando estado...');
-            
-            setVessels(prev => {
-              const currentVessel = prev[selectedVessel];
-              if (!currentVessel) {
-                console.error('Vessel não encontrado:', selectedVessel);
-                toast.error('Erro: embarcação não encontrada');
-                return prev;
-              }
-
-              const filteredImages = processedImages.filter(Boolean);
-              const updatedVessel = {
-                ...currentVessel,
-                images: [...(currentVessel.images || []), ...filteredImages]
-              };
-
-              console.log('Vessel atualizado:', updatedVessel);
-              console.log('Total de imagens após atualização:', updatedVessel.images.length);
-
-              return {
-                ...prev,
-                [selectedVessel]: updatedVessel
-              };
-            });
-            
-            setHasUnsavedChanges(true);
-            toast.success(`${processedCount} imagem${processedCount > 1 ? 'ns' : ''} adicionada${processedCount > 1 ? 's' : ''} com sucesso!`);
+          if (processedCount === totalFiles) {
+            updateVesselImages();
           }
         }
       };
@@ -400,10 +383,57 @@ const AdminVessels = () => {
       reader.onerror = (error) => {
         console.error('Erro ao ler arquivo:', error);
         toast.error(`Erro ao processar ${file.name}`);
+        processedCount++;
+        
+        // Verificar se todos foram processados (mesmo com erro)
+        if (processedCount === totalFiles) {
+          updateVesselImages();
+        }
       };
       
       reader.readAsDataURL(file);
     });
+
+    function updateVesselImages() {
+      console.log('updateVesselImages chamada, processedImages:', processedImages);
+      
+      const validImages = processedImages.filter(Boolean);
+      console.log('Imagens válidas encontradas:', validImages.length);
+      
+      if (validImages.length === 0) {
+        toast.error('Nenhuma imagem válida foi processada');
+        return;
+      }
+      
+      setVessels(prev => {
+        const currentVessel = prev[selectedVessel];
+        if (!currentVessel) {
+          console.error('Vessel não encontrado:', selectedVessel);
+          toast.error('Erro: embarcação não encontrada');
+          return prev;
+        }
+
+        const updatedVessel = {
+          ...currentVessel,
+          images: [...(currentVessel.images || []), ...validImages]
+        };
+
+        console.log('Vessel antes da atualização:', currentVessel);
+        console.log('Vessel após atualização:', updatedVessel);
+        console.log('Total de imagens após atualização:', updatedVessel.images.length);
+
+        const newState = {
+          ...prev,
+          [selectedVessel]: updatedVessel
+        };
+        
+        console.log('Novo estado completo:', newState);
+        return newState;
+      });
+      
+      setHasUnsavedChanges(true);
+      toast.success(`${validImages.length} imagem${validImages.length > 1 ? 'ns' : ''} adicionada${validImages.length > 1 ? 's' : ''} com sucesso!`);
+    }
     
     // Reset file input
     if (event.target) {
