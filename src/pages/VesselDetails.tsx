@@ -1650,10 +1650,216 @@ Aguardo confirmação! 🌊
                              </div>
                            </div>
                          </div>
-                       </div>
-                     )}
+                        </div>
+                      )}
 
-                     {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && (
+                      {/* Informações específicas da MANGATA */}
+                      {vessel.id === "mangata" && (
+                        <div className="space-y-6">
+                          {/* Especificações Técnicas */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Anchor className="h-5 w-5 mr-2" />
+                              Especificações Técnicas
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Shield className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Modelo: Sessa Marine C44</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Anchor className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Tamanho: 44 pés</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Users className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Capacidade: 12 pessoas + marinheiro</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Clock className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Duração: 5 horas de passeio</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <MapPin className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Embarque: Late Clube Rio de Janeiro</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Equipamentos e Acessórios */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Zap className="h-5 w-5 mr-2" />
+                              Equipamentos e Acessórios
+                            </h4>
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Zap className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Gerador Mase 10.5</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Waves className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Antena Digital</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Shield className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">2 Quartos</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">2 Banheiros</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">1 Cozinha + Mesa de Jantar</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Music className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">TV e Som nos 3 Ambientes</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Box className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">2 Freezers</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Box className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">1 Geladeira</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">1 Microondas</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Sun className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Ar Condicionado</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Boiler</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Shield className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Área Gourmet Elétrica na Popa</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Churrasqueira Elétrica e Pia</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Shield className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Churrasqueira a Carvão</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Waves className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">HT Elétrico</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <MapPin className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">GPS</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Music className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Som</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Waves className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Plataforma Submergível</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Sun className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Luzes Subaquáticas</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Roteiro e Preços */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <MapPin className="h-5 w-5 mr-2" />
+                              Roteiro e Preços
+                            </h4>
+                            <div className="border border-primary/20 p-6 rounded-lg bg-gradient-to-r from-primary/5 to-secondary/5">
+                              <div className="text-center">
+                                <h5 className="font-semibold text-primary text-xl mb-2">Roteiro Completo</h5>
+                                <p className="text-muted-foreground mb-4">
+                                  Urca / Botafogo / Copacabana x Cagarras ou Ilhas Tijucas
+                                </p>
+                                <p className="text-sm text-muted-foreground mb-4">
+                                  (Roteiro completo mediante condições do mar)
+                                </p>
+                                <span className="font-bold text-3xl text-green-600">R$ 11.500,00</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Taxas Adicionais */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Coffee className="h-5 w-5 mr-2" />
+                              Taxas Adicionais
+                            </h4>
+                            <div className="border border-orange-200 p-4 rounded-lg bg-orange-50">
+                              <div className="flex justify-between items-center">
+                                <div>
+                                  <h5 className="font-semibold text-orange-800">Taxa de Churrasqueiro</h5>
+                                  <p className="text-sm text-orange-600">Serviço de churrasqueiro profissional</p>
+                                </div>
+                                <span className="font-bold text-lg text-orange-600">R$ 200,00</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>
