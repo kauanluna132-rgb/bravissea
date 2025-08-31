@@ -105,13 +105,17 @@ const vessels = [
     id: "myway",
     name: "IATE MY WAY",
     type: "Lancha 60 pés",
-    image: "/lovable-uploads/d54253e7-7ccf-4adb-af17-e81020696795.png",
+    image: "/lovable-uploads/myway-1.png",
     images: [
-      "/lovable-uploads/d54253e7-7ccf-4adb-af17-e81020696795.png",
-      "/lovable-uploads/1741780f-1cda-4856-a568-6004932119ad.png",
-      "/lovable-uploads/613c8065-c109-4371-8b70-a14cdc1634ab.png",
-      "/lovable-uploads/9b466995-31e9-4a1a-919b-21fdcce224a2.png",
-      "/lovable-uploads/794f66a3-fe29-46b6-ab32-9d36ceee92af.png"
+      "/lovable-uploads/myway-1.png",
+      "/lovable-uploads/myway-2.png",
+      "/lovable-uploads/myway-3.png",
+      "/lovable-uploads/myway-4.png",
+      "/lovable-uploads/myway-5.png",
+      "/lovable-uploads/myway-6.png",
+      "/lovable-uploads/myway-7.png",
+      "/lovable-uploads/myway-8.png",
+      "/lovable-uploads/myway-9.png"
     ],
     capacity: 20,
     price: "R$ 12.000",
@@ -124,7 +128,7 @@ const vessels = [
       { icon: Coffee, label: "Cozinha Equipada" },
       { icon: Waves, label: "Flybrigde" }
     ],
-    description: "Lancha 60 pés com 3 quartos, 2 banheiros, sala 2 ambientes e cozinha equipada",
+    description: "Iate my way - Lancha 60 pés com 3 quartos, 2 banheiros, sala 2 ambientes e cozinha equipada",
     highlight: true,
     category: "lancha"
   },

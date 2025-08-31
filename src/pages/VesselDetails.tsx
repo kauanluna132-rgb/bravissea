@@ -75,14 +75,54 @@ const vesselsData = {
   myway: {
     id: "myway",
     name: "IATE MY WAY",
-    type: "Iate Luxury",
-    images: [mywayImage],
+    type: "Iate 60 pés",
+    images: [
+      "/lovable-uploads/myway-1.png",
+      "/lovable-uploads/myway-2.png",
+      "/lovable-uploads/myway-3.png",
+      "/lovable-uploads/myway-4.png",
+      "/lovable-uploads/myway-5.png",
+      "/lovable-uploads/myway-6.png",
+      "/lovable-uploads/myway-7.png",
+      "/lovable-uploads/myway-8.png",
+      "/lovable-uploads/myway-9.png"
+    ],
     capacity: 20,
     price: "R$ 12.000",
     rating: 4.9,
-    duration: "8h",
+    duration: "5h",
     location: "Marina da Glória",
-    description: "Iate MY WAY com design exclusivo para 20 passageiros",
+    description: "Iate my way - Uma experiência de luxo incomparável na Baía de Guanabara.",
+    specs: {
+      type: "Iate 60 pés",
+      rooms: "3 Quartos",
+      bathrooms: "2 Banheiros",
+      living: "Sala 2 ambientes",
+      kitchen: "Cozinha equipada"
+    },
+    amenities: [
+      "Flybrigde com sofá e mesinha",
+      "Coolers disponíveis", 
+      "Caixa de som"
+    ],
+    schedule: {
+      morning: "08:00 às 13:00",
+      afternoon: "14:00 às 19:00"
+    },
+    pricing: {
+      base: "R$ 12.000",
+      barbecue: "R$ 200",
+      duration: "5 horas",
+      extraHour: "R$ 3.500,00",
+      generator: "R$ 3.000,00"
+    },
+    destinations: [
+      { name: "Mureta da Urca", price: "R$ 12.000" },
+      { name: "Praia Vermelha", price: "R$ 13.000,00" },
+      { name: "Adão e Eva (Niterói)", price: "R$ 13.000,00" },
+      { name: "Copacabana", price: "R$ 15.000,00" },
+      { name: "Ilhas Cagarras", price: "R$ 17.000,00" }
+    ],
     category: "iate"
   },
   flyhi: {
@@ -555,10 +595,122 @@ Aguardo confirmação! 🌊
                           </div>
                         </div>
                       </div>
-                    </div>
-                  )}
-                  
-                  {vessel.id !== "segue" && (
+                     </div>
+                   )}
+                   
+                   {vessel.id === "myway" && (
+                     <div className="space-y-8">
+                       {/* Especificações Técnicas */}
+                       <div>
+                         <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                           <Waves className="h-5 w-5 mr-2" />
+                           Especificações Técnicas
+                         </h4>
+                         <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-muted/50 p-4 rounded-lg">
+                              <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tipo</span>
+                              <p className="text-lg font-semibold">{(vessel as any).specs?.type}</p>
+                            </div>
+                            <div className="bg-muted/50 p-4 rounded-lg">
+                              <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Quartos</span>
+                              <p className="text-lg font-semibold">{(vessel as any).specs?.rooms}</p>
+                            </div>
+                            <div className="bg-muted/50 p-4 rounded-lg">
+                              <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Banheiros</span>
+                              <p className="text-lg font-semibold">{(vessel as any).specs?.bathrooms}</p>
+                            </div>
+                            <div className="bg-muted/50 p-4 rounded-lg">
+                              <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Sala</span>
+                              <p className="text-lg font-semibold">{(vessel as any).specs?.living}</p>
+                            </div>
+                         </div>
+                       </div>
+
+                       {/* Comodidades */}
+                       <div>
+                         <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                           <Coffee className="h-5 w-5 mr-2" />
+                           Comodidades
+                         </h4>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            {(vessel as any).amenities?.map((amenity: string, index: number) => (
+                             <div key={index} className="flex items-center p-3 bg-muted/30 rounded-lg">
+                               <Coffee className="h-6 w-6 text-primary mr-3" />
+                               <div>
+                                 <p className="font-medium">{amenity}</p>
+                               </div>
+                             </div>
+                           ))}
+                         </div>
+                       </div>
+
+                       {/* Horários */}
+                       <div>
+                         <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                           <Clock className="h-5 w-5 mr-2" />
+                           Horários Disponíveis
+                         </h4>
+                         <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-muted/50 p-4 rounded-lg">
+                              <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Manhã</span>
+                              <p className="text-lg font-semibold">{(vessel as any).schedule?.morning}</p>
+                            </div>
+                            <div className="bg-muted/50 p-4 rounded-lg">
+                              <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tarde</span>
+                              <p className="text-lg font-semibold">{(vessel as any).schedule?.afternoon}</p>
+                            </div>
+                         </div>
+                       </div>
+
+                       {/* Tarifas */}
+                       <div>
+                         <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                           <Sun className="h-5 w-5 mr-2" />
+                           Tarifas e Extras
+                         </h4>
+                         <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-muted/50 p-4 rounded-lg">
+                              <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Valor Base</span>
+                              <p className="text-lg font-semibold">{(vessel as any).pricing?.base}</p>
+                              <p className="text-xs text-muted-foreground">{(vessel as any).pricing?.duration}</p>
+                            </div>
+                            <div className="bg-muted/50 p-4 rounded-lg">
+                              <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa Churrasco</span>
+                              <p className="text-lg font-semibold">{(vessel as any).pricing?.barbecue}</p>
+                            </div>
+                            <div className="bg-muted/50 p-4 rounded-lg">
+                              <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Hora Extra</span>
+                              <p className="text-lg font-semibold">{(vessel as any).pricing?.extraHour}</p>
+                            </div>
+                            <div className="bg-muted/50 p-4 rounded-lg">
+                              <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Gerador</span>
+                              <p className="text-lg font-semibold">{(vessel as any).pricing?.generator}</p>
+                              <p className="text-xs text-muted-foreground">Ar-condicionado, geladeira, microondas e fogão</p>
+                            </div>
+                         </div>
+                       </div>
+
+                       {/* Destinos */}
+                       <div>
+                         <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                           <MapPin className="h-5 w-5 mr-2" />
+                           Roteiros e Preços
+                         </h4>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            {(vessel as any).destinations?.map((destination: any, index: number) => (
+                             <div key={index} className="border border-primary/20 p-4 rounded-lg">
+                               <div className="flex justify-between items-center">
+                                 <h5 className="font-semibold text-primary">{destination.name}</h5>
+                                 <span className="font-bold text-lg">{destination.price}</span>
+                               </div>
+                             </div>
+                           ))}
+                         </div>
+                       </div>
+                     </div>
+                   )}
+                   
+                   {vessel.id !== "segue" && vessel.id !== "myway" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>
