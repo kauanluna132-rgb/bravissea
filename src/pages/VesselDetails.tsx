@@ -185,15 +185,55 @@ const vesselsData = {
   },
   dragao: {
     id: "dragao",
-    name: "Dragão",
-    type: "Iate Médio",
-    images: [dragaoImage],
+    name: "DRAGÃO",
+    type: "Iate 41 pés",
+    images: [
+      "/lovable-uploads/063d534d-72c1-4861-964e-1013f7b5e1fb.png",
+      "/lovable-uploads/78e24106-0662-4b8f-b957-01c6446386f0.png",
+      "/lovable-uploads/e0c8a5e9-c885-4aaa-8a4e-2f6e32b615eb.png",
+      "/lovable-uploads/206b8791-35ce-478d-b0ce-50f36209cdbb.png",
+      "/lovable-uploads/811fbc3c-bbbb-49d6-9ef2-6b047f5dee31.png",
+      "/lovable-uploads/991fc380-07b8-4ab0-869a-af16900c15e0.png",
+      "/lovable-uploads/9b059d47-e2ac-4f6a-bccf-b5d9f4b6a2ae.png",
+      "/lovable-uploads/b7ece9f5-ac8c-4875-8123-350d6f0bbae6.png",
+      "/lovable-uploads/4babac2a-c5e7-4a90-a06f-af9ef7824b00.png",
+      "/lovable-uploads/6dd56391-2365-43bd-9ac8-52d83aec7bbf.png"
+    ],
     capacity: 17,
     price: "R$ 4.000",
     rating: 4.7,
-    duration: "6h",
+    duration: "5h",
     location: "Marina da Glória",
-    description: "Iate Dragão de 41 pés para 17 passageiros",
+    description: "DRAGÃO - Iate 41 pés com capacidade para 17 passageiros + 2 tripulantes",
+    specs: {
+      type: "Iate 41 pés",
+      capacity: "17 passageiros + 2 tripulantes",
+      engines: "2x Mercedes 366",
+      suite: "1 suíte cama de casal",
+      bedroom: "1 quarto com beliche",
+      living: "1 sala",
+      bathrooms: "1 banheiro"
+    },
+    amenities: [
+      "Microondas",
+      "1 geladeira",
+      "Fogão tipo Cooktop",
+      "Churrasqueira",
+      "Cooler em fibra / cooler portátil",
+      "Reversor",
+      "Som bluetooth",
+      "Macarrões de flutuação",
+      "1 TV"
+    ],
+    schedule: {
+      morning: "09:00 às 14:00",
+      afternoon: "15:00 às 20:00"
+    },
+    pricing: {
+      base: "R$ 4.000,00",
+      boardingFee: "R$ 200,00",
+      barbecueStaff: "R$ 200,00"
+    },
     category: "iate"
   },
   grandraray: {
@@ -953,7 +993,104 @@ Aguardo confirmação! 🌊
                       </div>
                     )}
                     
-                    {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && (
+                    {vessel.id === "dragao" && (
+                      <div className="space-y-8">
+                        {/* Especificações Técnicas */}
+                        <div>
+                          <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                            <Waves className="h-5 w-5 mr-2" />
+                            Especificações Técnicas
+                          </h4>
+                          <div className="grid md:grid-cols-2 gap-4">
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tipo</span>
+                               <p className="text-lg font-semibold">{(vessel as any).specs?.type}</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                               <p className="text-lg font-semibold">{(vessel as any).specs?.capacity}</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Motores</span>
+                               <p className="text-lg font-semibold">{(vessel as any).specs?.engines}</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Suíte</span>
+                               <p className="text-lg font-semibold">{(vessel as any).specs?.suite}</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Quarto</span>
+                               <p className="text-lg font-semibold">{(vessel as any).specs?.bedroom}</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Banheiros</span>
+                               <p className="text-lg font-semibold">{(vessel as any).specs?.bathrooms}</p>
+                             </div>
+                          </div>
+                        </div>
+
+                        {/* Comodidades */}
+                        <div>
+                          <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                            <Coffee className="h-5 w-5 mr-2" />
+                            Comodidades
+                          </h4>
+                           <div className="grid md:grid-cols-2 gap-4">
+                             {(vessel as any).amenities?.map((amenity: string, index: number) => (
+                              <div key={index} className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">{amenity}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Horários */}
+                        <div>
+                          <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                            <Clock className="h-5 w-5 mr-2" />
+                            Horários Disponíveis
+                          </h4>
+                          <div className="grid md:grid-cols-2 gap-4">
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Manhã</span>
+                               <p className="text-lg font-semibold">{(vessel as any).schedule?.morning}</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tarde</span>
+                               <p className="text-lg font-semibold">{(vessel as any).schedule?.afternoon}</p>
+                             </div>
+                          </div>
+                        </div>
+
+                        {/* Tarifas */}
+                        <div>
+                          <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                            <Sun className="h-5 w-5 mr-2" />
+                            Tarifas e Extras
+                          </h4>
+                          <div className="grid md:grid-cols-3 gap-4">
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Valor Base</span>
+                               <p className="text-lg font-semibold">{(vessel as any).pricing?.base}</p>
+                               <p className="text-xs text-muted-foreground">5 horas</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa de Embarque</span>
+                               <p className="text-lg font-semibold">{(vessel as any).pricing?.boardingFee}</p>
+                             </div>
+                             <div className="bg-muted/50 p-4 rounded-lg">
+                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa Churrasqueiro</span>
+                               <p className="text-lg font-semibold">{(vessel as any).pricing?.barbecueStaff}</p>
+                             </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>
