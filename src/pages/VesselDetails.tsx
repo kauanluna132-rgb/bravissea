@@ -294,18 +294,41 @@ const VesselDetails = () => {
 
   // Carregar dados salvos do admin se existirem
   useEffect(() => {
-    const savedData = localStorage.getItem('adminVesselsData');
-    const hasCustomData = localStorage.getItem('hasCustomVesselData');
-    
-    if (savedData && hasCustomData === 'true') {
-      try {
-        const customVessels = JSON.parse(savedData);
-        console.log('Dados customizados carregados no VesselDetails:', customVessels);
-        setVesselsData(customVessels);
-      } catch (error) {
-        console.error('Erro ao carregar dados customizados no VesselDetails:', error);
+    const loadVesselData = () => {
+      const savedData = localStorage.getItem('adminVesselsData');
+      const hasCustomData = localStorage.getItem('hasCustomVesselData');
+      
+      console.log('VesselDetails - Verificando dados salvos:', { savedData: !!savedData, hasCustomData });
+      
+      if (savedData && hasCustomData === 'true') {
+        try {
+          const customVessels = JSON.parse(savedData);
+          console.log('VesselDetails - Dados customizados carregados:', customVessels);
+          setVesselsData(customVessels);
+        } catch (error) {
+          console.error('Erro ao carregar dados customizados no VesselDetails:', error);
+        }
       }
-    }
+    };
+
+    // Carregar dados inicialmente
+    loadVesselData();
+
+    // Ouvir por atualizações do admin
+    const handleVesselsUpdate = (event: any) => {
+      console.log('VesselDetails - Evento de atualização recebido:', event);
+      loadVesselData();
+    };
+
+    // Escutar eventos de atualização
+    window.addEventListener('vesselsDataUpdated', handleVesselsUpdate);
+    window.addEventListener('storage', handleVesselsUpdate);
+
+    // Limpar listeners ao desmontar
+    return () => {
+      window.removeEventListener('vesselsDataUpdated', handleVesselsUpdate);
+      window.removeEventListener('storage', handleVesselsUpdate);
+    };
   }, []);
 
   const vessel = id ? vesselsData[id as keyof typeof vesselsData] : null;

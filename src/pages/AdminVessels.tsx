@@ -318,7 +318,7 @@ const AdminVessels = () => {
   const handleAddImage = (vesselId: string) => {
     console.log('handleAddImage chamado para:', vesselId);
     setSelectedVessel(vesselId);
-    // Forçar click direto no input
+    // Forçar click direto no input sem limite
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
@@ -500,9 +500,19 @@ const AdminVessels = () => {
         throw new Error("Falha ao verificar dados salvos");
       }
       
+      // FORÇAR ATUALIZAÇÃO DO SITE - Disparar evento personalizado
+      window.dispatchEvent(new CustomEvent('vesselsDataUpdated', { 
+        detail: vessels 
+      }));
+      
+      // Também recarregar a página principal se estiver aberta em outra aba
+      if (window.opener) {
+        window.opener.postMessage({ type: 'vesselsUpdated', data: vessels }, '*');
+      }
+      
       setHasUnsavedChanges(false);
       console.log('Estado atualizado - salvamento concluído');
-      toast.success("Todas as alterações foram salvas no site!");
+      toast.success("✅ Alterações salvas! Site atualizado automaticamente!");
       
     } catch (error) {
       console.error('Erro ao salvar alterações:', error);
@@ -676,7 +686,7 @@ const AdminVessels = () => {
           ))}
         </div>
         
-        {/* Input de arquivo oculto para múltiplas imagens */}
+        {/* Input de arquivo oculto para MÚLTIPLAS imagens SEM LIMITE */}
         <input
           ref={fileInputRef}
           type="file"
@@ -685,6 +695,7 @@ const AdminVessels = () => {
           className="hidden"
           onChange={handleFileUpload}
           style={{ display: 'none' }}
+          title="Adicionar múltiplas imagens - sem limite"
         />
       </div>
     </div>

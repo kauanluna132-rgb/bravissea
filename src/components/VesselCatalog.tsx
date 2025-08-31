@@ -401,22 +401,50 @@ const VesselCatalog = () => {
 
   // Carregar dados salvos do admin se existirem
   useEffect(() => {
-    const savedData = localStorage.getItem('adminVesselsData');
-    const hasCustomData = localStorage.getItem('hasCustomVesselData');
-    
-    if (savedData && hasCustomData === 'true') {
-      try {
-        const customVessels = JSON.parse(savedData);
-        // Converter objeto para array mantendo a estrutura original
-        const vesselArray = Object.values(customVessels).map((vessel: any) => ({
-          ...vessel,
-          features: vessels.find(v => v.id === vessel.id)?.features || []
-        }));
-        setVesselsData(vesselArray);
-      } catch (error) {
-        console.error('Erro ao carregar dados customizados:', error);
+    const loadVesselData = () => {
+      const savedData = localStorage.getItem('adminVesselsData');
+      const hasCustomData = localStorage.getItem('hasCustomVesselData');
+      
+      console.log('VesselCatalog - Verificando dados salvos:', { savedData: !!savedData, hasCustomData });
+      
+      if (savedData && hasCustomData === 'true') {
+        try {
+          const customVessels = JSON.parse(savedData);
+          console.log('VesselCatalog - Dados customizados carregados:', customVessels);
+          
+          // Converter objeto para array mantendo a estrutura original
+          const vesselArray = Object.values(customVessels).map((vessel: any) => ({
+            ...vessel,
+            image: vessel.images?.[0] || vessel.image, // Primeira imagem como image principal
+            features: vessels.find(v => v.id === vessel.id)?.features || []
+          }));
+          
+          console.log('VesselCatalog - Array de vessels criado:', vesselArray);
+          setVesselsData(vesselArray);
+        } catch (error) {
+          console.error('Erro ao carregar dados customizados:', error);
+        }
       }
-    }
+    };
+
+    // Carregar dados inicialmente
+    loadVesselData();
+
+    // Ouvir por atualizações do admin
+    const handleVesselsUpdate = (event: any) => {
+      console.log('VesselCatalog - Evento de atualização recebido:', event);
+      loadVesselData();
+    };
+
+    // Escutar eventos de atualização
+    window.addEventListener('vesselsDataUpdated', handleVesselsUpdate);
+    window.addEventListener('storage', handleVesselsUpdate);
+
+    // Limpar listeners ao desmontar
+    return () => {
+      window.removeEventListener('vesselsDataUpdated', handleVesselsUpdate);
+      window.removeEventListener('storage', handleVesselsUpdate);
+    };
   }, []);
 
   const categories = [
