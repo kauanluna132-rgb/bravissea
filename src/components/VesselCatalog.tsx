@@ -103,7 +103,12 @@ const VesselCatalog = () => {
               rating={4.8}
               duration="Full Day"
               location="Marina da Glória"
-              features={[]}
+              features={[
+                { icon: () => <span>⚓</span>, label: "Premium" },
+                { icon: () => <span>🎵</span>, label: "Som" },
+                { icon: () => <span>☕</span>, label: "Bar" },
+                { icon: () => <span>🛡️</span>, label: "Seguro" }
+              ]}
               description={vessel.description || ''}
               highlight={false}
             />
