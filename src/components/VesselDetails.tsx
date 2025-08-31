@@ -237,31 +237,61 @@ const vesselData = {
   },
   flyhi: {
     id: "flyhi",
-    name: "FLY HI",
-    type: "Lancha Premium",
-    image: flyhiImage,
-    capacity: 15,
+    name: "LUÍSA VIII",
+    type: "Iate 38 Pés",
+    image: "/lovable-uploads/luisa-1.png",
+    capacity: 18,
     price: "R$ 3.200",
-    originalPrice: "R$ 3.700",
+    originalPrice: undefined,
     rating: 4.7,
-    duration: "6h",
+    duration: "5h",
     location: "Marina da Glória",
-    description: "Lancha FLY HI ideal para passeios emocionantes com velocidade e adrenalina.",
+    description: "Luisa VIII 38 Pés - 5 horas de passeio com combustível, marinheiro, tapetão flutuante, coolers e caixa de som de altíssima qualidade.",
     specifications: {
-      comprimento: "32 pés",
-      motor: "Mercury 300hp",
-      combustivel: "Gasolina",
-      capacidadeTanque: "200L"
+      comprimento: "38 pés",
+      capacidade: "18 passageiros + 2 tripulantes",
+      duracao: "5 horas",
+      embarque: "Marina da Glória"
     },
     included: [
-      "Piloto experiente",
-      "Seguro",
-      "Equipamentos de segurança",
-      "Som premium",
-      "Cooler com gelo"
+      "Combustível",
+      "Marinheiro",
+      "Tapetão flutuante",
+      "Coolers",
+      "Caixa de som de altíssima qualidade"
     ],
-    gallery: [flyhiImage],
-    images: [flyhiImage]
+    routes: [
+      { name: "Roteiro Urca", price: "R$ 3.200,00", duration: "5h" },
+      { name: "Praia Vermelha", price: "R$ 4.100,00", duration: "5h" },
+      { name: "Ilha Cagarras", price: "R$ 5.000,00", duration: "5h" }
+    ],
+    schedules: [
+      { time: "Horário flexível", description: "5 horas de passeio" }
+    ],
+    gallery: [
+      "/lovable-uploads/luisa-1.png",
+      "/lovable-uploads/luisa-2.png",
+      "/lovable-uploads/luisa-3.png",
+      "/lovable-uploads/luisa-4.png",
+      "/lovable-uploads/luisa-5.png",
+      "/lovable-uploads/luisa-6.png",
+      "/lovable-uploads/luisa-7.png",
+      "/lovable-uploads/luisa-8.png",
+      "/lovable-uploads/luisa-9.png",
+      "/lovable-uploads/luisa-10.png"
+    ],
+    images: [
+      "/lovable-uploads/luisa-1.png",
+      "/lovable-uploads/luisa-2.png",
+      "/lovable-uploads/luisa-3.png",
+      "/lovable-uploads/luisa-4.png",
+      "/lovable-uploads/luisa-5.png",
+      "/lovable-uploads/luisa-6.png",
+      "/lovable-uploads/luisa-7.png",
+      "/lovable-uploads/luisa-8.png",
+      "/lovable-uploads/luisa-9.png",
+      "/lovable-uploads/luisa-10.png"
+    ]
   },
   mcell: {
     id: "mcell",

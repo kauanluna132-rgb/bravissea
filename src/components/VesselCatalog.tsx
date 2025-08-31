@@ -131,23 +131,35 @@ const vessels = [
   },
   {
     id: "flyhi",
-    name: "FLY HI",
-    type: "Lancha Premium",
-    image: flyhiImage,
-    capacity: 15,
+    name: "LUÍSA VIII",
+    type: "Iate 38 Pés",
+    image: "/lovable-uploads/luisa-1.png",
+    images: [
+      "/lovable-uploads/luisa-1.png",
+      "/lovable-uploads/luisa-2.png",
+      "/lovable-uploads/luisa-3.png",
+      "/lovable-uploads/luisa-4.png",
+      "/lovable-uploads/luisa-5.png",
+      "/lovable-uploads/luisa-6.png",
+      "/lovable-uploads/luisa-7.png",
+      "/lovable-uploads/luisa-8.png",
+      "/lovable-uploads/luisa-9.png",
+      "/lovable-uploads/luisa-10.png"
+    ],
+    capacity: 18,
     price: "R$ 3.200",
-    originalPrice: "R$ 3.700",
+    originalPrice: undefined,
     rating: 4.7,
-    duration: "6h",
+    duration: "5h",
     location: "Marina da Glória",
     features: [
-      { icon: Waves, label: "Alta Velocidade" },
-      { icon: Music, label: "Som Premium" },
-      { icon: Sun, label: "Área Solar" },
-      { icon: Shield, label: "Segurança" }
+      { icon: Anchor, label: "38 Pés" },
+      { icon: Music, label: "Som Altíssima Qualidade" },
+      { icon: Coffee, label: "Coolers" },
+      { icon: Shield, label: "Marinheiro Incluso" }
     ],
-    description: "Lancha FLY HI ideal para passeios emocionantes",
-    category: "lancha"
+    description: "Luisa VIII 38 Pés - 5 horas de passeio com combustível, marinheiro, tapetão flutuante, coolers e caixa de som de altíssima qualidade",
+    category: "iate"
   },
   {
     id: "mcell",
