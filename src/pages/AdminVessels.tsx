@@ -19,13 +19,33 @@ import {
   Ship
 } from "lucide-react";
 
-// Dados das embarcações com múltiplas imagens
+// Import vessel images
+import segueImage from "@/assets/segue-yacht.jpg";
+import tecnomarineImage from "@/assets/tecnomarine-yacht.jpg";
+import mywayImage from "@/assets/myway-yacht.jpg";
+import flyhiImage from "@/assets/flyhi-boat.jpg";
+import mcellImage from "@/assets/mcell-boat.jpg";
+import comendadorImage from "@/assets/comendador-yacht.jpg";
+import dragaoImage from "@/assets/dragao-yacht.jpg";
+import grandrarayImage from "@/assets/grandraray-yacht.jpg";
+import ladyRuthImage from "@/assets/lady-ruth-yacht.jpg";
+import mangataImage from "@/assets/mangata-yacht.jpg";
+import prestigeImage from "@/assets/prestige-yacht.jpg";
+import rebecaImage from "@/assets/rebeca-yacht.jpg";
+import oceanoImage from "@/assets/oceano-catamaran.jpg";
+import blauImage from "@/assets/blau-catamaran.jpg";
+import nossaImage from "@/assets/nossa-yacht.jpg";
+import sevenImage from "@/assets/seven-yacht.jpg";
+import sennaImage from "@/assets/senna-yacht.jpg";
+import luisaImage from "@/assets/luisa-yacht.jpg";
+
+// Dados completos das embarcações com múltiplas imagens
 const initialVesselsData = {
   segue: {
     id: "segue",
     name: "SEGUE",
     type: "Iate Premium",
-    images: ["/src/assets/segue-yacht.jpg"],
+    images: [segueImage],
     capacity: 18,
     price: "R$ 18.000",
     originalPrice: "R$ 20.000",
@@ -35,7 +55,232 @@ const initialVesselsData = {
     description: "Iate premium com capacidade para 18 passageiros",
     category: "iate"
   },
-  // ... outros vessels
+  tecnomarine: {
+    id: "tecnomarine",
+    name: "Iate Tecnomarine",
+    type: "Iate Executive",
+    images: [tecnomarineImage],
+    capacity: 20,
+    price: "R$ 10.000",
+    rating: 4.8,
+    duration: "8h",
+    location: "Marina da Glória",
+    description: "Iate Tecnomarine com alta tecnologia para 20 passageiros",
+    category: "iate"
+  },
+  myway: {
+    id: "myway",
+    name: "IATE MY WAY",
+    type: "Iate Luxury",
+    images: [mywayImage],
+    capacity: 20,
+    price: "R$ 12.000",
+    rating: 4.9,
+    duration: "8h",
+    location: "Marina da Glória",
+    description: "Iate MY WAY com design exclusivo para 20 passageiros",
+    category: "iate"
+  },
+  flyhi: {
+    id: "flyhi",
+    name: "FLY HI",
+    type: "Lancha Premium",
+    images: [flyhiImage],
+    capacity: 15,
+    price: "R$ 3.200",
+    originalPrice: "R$ 3.700",
+    rating: 4.7,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Lancha FLY HI ideal para passeios emocionantes",
+    category: "lancha"
+  },
+  mcell: {
+    id: "mcell",
+    name: "M CELL",
+    type: "Lancha Compacta",
+    images: [mcellImage],
+    capacity: 9,
+    price: "R$ 1.999",
+    originalPrice: "R$ 2.400",
+    rating: 4.6,
+    duration: "4h",
+    location: "Marina da Glória",
+    description: "Lancha compacta M CELL perfeita para grupos pequenos",
+    category: "lancha"
+  },
+  comendador: {
+    id: "comendador",
+    name: "COMENDADOR",
+    type: "Iate Executivo",
+    images: [comendadorImage],
+    capacity: 25,
+    price: "R$ 7.700",
+    rating: 4.8,
+    duration: "8h",
+    location: "Marina da Glória",
+    description: "Iate COMENDADOR com capacidade para 25 passageiros",
+    category: "iate"
+  },
+  dragao: {
+    id: "dragao",
+    name: "Dragão",
+    type: "Iate Médio",
+    images: [dragaoImage],
+    capacity: 17,
+    price: "R$ 4.000",
+    rating: 4.7,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Iate Dragão de 41 pés para 17 passageiros",
+    category: "iate"
+  },
+  grandraray: {
+    id: "grandraray",
+    name: "GRAND RARAY",
+    type: "Iate Premium",
+    images: [grandrarayImage],
+    capacity: 18,
+    price: "R$ 6.000",
+    rating: 4.8,
+    duration: "8h",
+    location: "Marina da Glória",
+    description: "GRAND RARAY com embarque na Marina da Glória",
+    category: "iate"
+  },
+  "lady-ruth": {
+    id: "lady-ruth",
+    name: "LADY RUTH",
+    type: "Lancha Premium",
+    images: [ladyRuthImage],
+    capacity: 13,
+    price: "R$ 1.999",
+    originalPrice: "R$ 2.500",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Lady Ruth com 5 horas de excelente passeio",
+    category: "lancha"
+  },
+  mangata: {
+    id: "mangata",
+    name: "MANGATA",
+    type: "Iate Premium",
+    images: [mangataImage],
+    capacity: 12,
+    price: "R$ 11.500",
+    originalPrice: "R$ 12.000",
+    rating: 4.9,
+    duration: "5h",
+    location: "Iate Clube Rio de Janeiro",
+    description: "Sessa Marine c44 - Mangata com copacabana/cagarras",
+    category: "iate"
+  },
+  prestige: {
+    id: "prestige",
+    name: "PRESTIGE",
+    type: "Lancha Premium",
+    images: [prestigeImage],
+    capacity: 20,
+    price: "R$ 20.000",
+    rating: 4.9,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Lancha Prestige 600 fly, dois motores volvo d 13",
+    category: "lancha"
+  },
+  rebeca: {
+    id: "rebeca",
+    name: "YACHT REBECA",
+    type: "Iate Luxury",
+    images: [rebecaImage],
+    capacity: 16,
+    price: "R$ 20.000",
+    rating: 4.9,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Phantom 620 Pininfarina de 62 pés com design italiano",
+    category: "iate"
+  },
+  oceano: {
+    id: "oceano",
+    name: "OCEANO",
+    type: "Catamarã",
+    images: [oceanoImage],
+    capacity: 65,
+    price: "R$ 16.000",
+    rating: 4.7,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Catamarã de até 65 passageiros com horários válidos por 30 dias",
+    category: "catamara"
+  },
+  blau: {
+    id: "blau",
+    name: "CATAMARÃ BLAU",
+    type: "Catamarã Premium",
+    images: [blauImage],
+    capacity: 20,
+    price: "R$ 7.000",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Catamarã Blau com embarque na Marina da Glória",
+    category: "catamara"
+  },
+  nossa: {
+    id: "nossa",
+    name: "NOSSA",
+    type: "Iate Premium",
+    images: [nossaImage],
+    capacity: 25,
+    price: "R$ 7.500",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Pershing 52HT com gerador 110v e equipamentos completos",
+    category: "iate"
+  },
+  seven: {
+    id: "seven",
+    name: "SEVEN",
+    type: "Lancha Premium",
+    images: [sevenImage],
+    capacity: 15,
+    price: "R$ 7.000",
+    rating: 4.7,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Lancha intermarine 44 pés com embarque na Marina da Glória",
+    category: "lancha"
+  },
+  senna: {
+    id: "senna",
+    name: "SENNA",
+    type: "Iate Premium",
+    images: [sennaImage],
+    capacity: 20,
+    price: "R$ 7.000",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "46 pés com 2 motores volvo a diesel, 2 suítes completas",
+    category: "iate"
+  },
+  luisa: {
+    id: "luisa",
+    name: "LUÍSA V",
+    type: "Iate Premium",
+    images: [luisaImage],
+    capacity: 15,
+    price: "R$ 2.800",
+    originalPrice: "R$ 3.200",
+    rating: 4.6,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Luísa V com roteiro Marina da Glória x Flamengo x Aeroporto x Urca",
+    category: "iate"
+  }
 };
 
 const AdminVessels = () => {
@@ -45,31 +290,48 @@ const AdminVessels = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleAddImage = (vesselId: string) => {
+    setSelectedVessel(vesselId);
     fileInputRef.current?.click();
   };
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>, vesselId: string) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const imageUrl = e.target?.result as string;
-        setVessels(prev => ({
-          ...prev,
-          [vesselId]: {
-            ...prev[vesselId],
-            images: [...(prev[vesselId]?.images || []), imageUrl]
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && selectedVessel) {
+      const newImages: string[] = [];
+      
+      Array.from(files).forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const imageUrl = e.target?.result as string;
+          newImages.push(imageUrl);
+          
+          // Atualiza quando todas as imagens foram processadas
+          if (newImages.length === files.length) {
+            setVessels(prev => ({
+              ...prev,
+              [selectedVessel]: {
+                ...prev[selectedVessel],
+                images: [...(prev[selectedVessel]?.images || []), ...newImages]
+              }
+            }));
+            toast.success(`${files.length} imagem${files.length > 1 ? 'ns' : ''} adicionada${files.length > 1 ? 's' : ''} com sucesso!`);
           }
-        }));
-        toast.success("Imagem adicionada com sucesso!");
-      };
-      reader.readAsDataURL(file);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+    
+    // Reset file input
+    if (event.target) {
+      event.target.value = '';
     }
   };
 
   const handleEditImage = (vesselId: string, imageIndex: number) => {
-    // Implementar lógica de edição de imagem
-    toast.info("Funcionalidade de edição em desenvolvimento");
+    setSelectedVessel(vesselId);
+    fileInputRef.current?.click();
+    // Aqui você pode implementar lógica adicional para substituir a imagem específica
+    toast.info("Selecione uma nova imagem para substituir");
   };
 
   const handleDeleteImage = (vesselId: string, imageIndex: number) => {
@@ -134,10 +396,7 @@ const AdminVessels = () => {
                     images={vessel.images || []}
                     vesselName={vessel.name}
                     isAdminMode={true}
-                    onAddImage={() => {
-                      setSelectedVessel(vesselId);
-                      handleAddImage(vesselId);
-                    }}
+                    onAddImage={() => handleAddImage(vesselId)}
                     onEditImage={(index) => handleEditImage(vesselId, index)}
                     onDeleteImage={(index) => handleDeleteImage(vesselId, index)}
                   />
@@ -158,7 +417,7 @@ const AdminVessels = () => {
                     </div>
                     <div>
                       <p className="text-muted-foreground">Fotos</p>
-                      <p className="font-medium">{vessel.images?.length || 0} imagens</p>
+                      <p className="font-medium text-primary">{vessel.images?.length || 0} imagens</p>
                     </div>
                   </div>
                   
@@ -197,14 +456,14 @@ const AdminVessels = () => {
           ))}
         </div>
         
-        {/* Input de arquivo oculto */}
+        {/* Input de arquivo oculto para múltiplas imagens */}
         <input
           ref={fileInputRef}
           type="file"
           accept="image/*"
           multiple
           className="hidden"
-          onChange={(e) => selectedVessel && handleFileUpload(e, selectedVessel)}
+          onChange={handleFileUpload}
         />
       </div>
     </div>
