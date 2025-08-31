@@ -33,12 +33,16 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 md:justify-between">
           {/* Logo - Desktop */}
           <div className="hidden md:flex items-center space-x-2">
-            <img src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" />
+            <button onClick={() => scrollToSection("#home")} className="cursor-pointer">
+              <img src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" />
+            </button>
           </div>
 
           {/* Logo - Mobile (Centered) */}
           <div className="md:hidden flex-1 flex justify-center">
-            <img src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" />
+            <button onClick={() => scrollToSection("#home")} className="cursor-pointer">
+              <img src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" />
+            </button>
           </div>
 
           {/* Desktop Menu */}

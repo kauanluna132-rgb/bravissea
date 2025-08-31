@@ -9,7 +9,7 @@ const WhatsAppFloat = () => {
       <Button
         asChild
         size="lg"
-        className="whatsapp-pulse bg-green-500 hover:bg-green-600 text-white rounded-full w-16 h-16 shadow-luxury animate-bounce"
+        className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-16 h-16 shadow-luxury"
       >
         <a 
           href={whatsappLink}
