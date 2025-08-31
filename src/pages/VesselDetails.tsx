@@ -572,6 +572,7 @@ const vesselsData = {
     name: "YACHT REBECA",
     type: "Iate Luxury",
     images: [
+      "/lovable-uploads/f29c9b99-1624-4a05-a608-82a9c3a46f5e.png",
       "/lovable-uploads/37d8fc0a-3dca-4800-8ea3-a120ba77fd6c.png",
       "/lovable-uploads/e2c9c31d-7a16-4dd1-b3c3-27083fed6d7a.png",
       "/lovable-uploads/642a623e-b8b9-43fa-b668-9788940208a1.png",
