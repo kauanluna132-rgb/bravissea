@@ -38,16 +38,26 @@ const vesselsData = {
   segue: {
     id: "segue",
     name: "SEGUE",
-    type: "Iate Premium",
-    images: [segueImage],
+    type: "Lancha",
+    images: [
+      "/lovable-uploads/e52f0edd-5490-4210-9f1a-35b63fc3cf97.png",
+      "/lovable-uploads/dfe6175f-7118-4636-a1b0-a4ddc3109dc1.png",
+      "/lovable-uploads/fe41a6fd-0783-417f-b167-506aea17952e.png",
+      "/lovable-uploads/1c084d08-90e7-465f-a60d-01bc9b8e2c50.png",
+      "/lovable-uploads/aff73c70-ac4e-4f33-a275-7199028d5abe.png",
+      "/lovable-uploads/915d6ac3-d213-42f2-a532-21999a73e18b.png",
+      "/lovable-uploads/1a51455d-0fb7-450a-9aa2-8f47c4fbe235.png",
+      "/lovable-uploads/bdf8c013-2441-43f9-beaf-26ec4c1c805d.png",
+      "/lovable-uploads/05b3916b-9a80-45a7-9cc2-acf139866904.png",
+      "/lovable-uploads/b945f968-c86e-4010-9c3c-6454c94a319d.png"
+    ],
     capacity: 18,
     price: "R$ 18.000",
-    originalPrice: "R$ 20.000",
     rating: 4.9,
-    duration: "8h",
+    duration: "6h",
     location: "Marina da Glória",
-    description: "Iate premium com capacidade para 18 passageiros",
-    category: "iate"
+    description: "Lancha Segue 58 Pés - Motores: 2 x Volvo 950 IPS. 3 quartos (1 suíte, 1 cabine de solteiro/casal, 1 cabine de proa com banheiro social). Cozinha completa com geladeiras, sala espaçosa, som Bluetooth e churrasqueira a carvão. Destinos: Enseada da Urca ou Praia de Adão e Eva.",
+    category: "lancha"
   },
   tecnomarine: {
     id: "tecnomarine",
