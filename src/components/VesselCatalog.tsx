@@ -1,79 +1,155 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import VesselCard from './VesselCard';
-import { supabase } from '@/integrations/supabase/client';
 
-interface Vessel {
-  id: string;
-  name: string;
-  description: string | null;
-  capacity: number | null;
-  price_per_hour: number | null;
-  features: string[];
-  specifications: any;
-  images: VesselImage[];
-}
+// Import images
+import blauCatamaran from '@/assets/blau-catamaran.jpg';
+import comendadorYacht from '@/assets/comendador-yacht.jpg';
+import dragaoYacht from '@/assets/dragao-yacht.jpg';
+import flyhiboat from '@/assets/flyhi-boat.jpg';
+import grandrarayYacht from '@/assets/grandraray-yacht.jpg';
+import iateExecutive from '@/assets/iate-executive.jpg';
+import ladyRuthYacht from '@/assets/lady-ruth-yacht.jpg';
+import lanchaPremium from '@/assets/lancha-premium.jpg';
+import luisaYacht from '@/assets/luisa-yacht.jpg';
+import mangataYacht from '@/assets/mangata-yacht.jpg';
+import mcellBoat from '@/assets/mcell-boat.jpg';
+import mywayYacht from '@/assets/myway-yacht.jpg';
+import nossaYacht from '@/assets/nossa-yacht.jpg';
+import oceanoCatamaran from '@/assets/oceano-catamaran.jpg';
+import prestigeYacht from '@/assets/prestige-yacht.jpg';
+import rebecaYacht from '@/assets/rebeca-yacht.jpg';
+import segueYacht from '@/assets/segue-yacht.jpg';
+import sennaYacht from '@/assets/senna-yacht.jpg';
+import sevenYacht from '@/assets/seven-yacht.jpg';
+import tecnomarineYacht from '@/assets/tecnomarine-yacht.jpg';
+import catamaraLuxury from '@/assets/catamara-luxury.jpg';
 
-interface VesselImage {
-  id: string;
-  image_url: string;
-  alt_text?: string;
-  display_order: number;
-}
+// Vessel data with images
+const vessels = [
+  {
+    id: "mangata",
+    name: "Mangata",
+    type: "Luxury Yacht",
+    image: mangataYacht,
+    images: [mangataYacht],
+    capacity: 8,
+    price: "R$ 2.500",
+    originalPrice: "R$ 3.000",
+    rating: 4.9,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Luxo e sofisticação em alto mar. Perfect para celebrações especiais.",
+    highlight: true
+  },
+  {
+    id: "grandraray",
+    name: "Grandraray",
+    type: "Premium Yacht",
+    image: grandrarayYacht,
+    images: [grandrarayYacht],
+    capacity: 12,
+    price: "R$ 3.200",
+    rating: 4.8,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Elite em experiências marítimas.",
+    highlight: false
+  },
+  {
+    id: "senna",
+    name: "Senna",
+    type: "Sport Yacht",
+    image: sennaYacht,
+    images: [sennaYacht],
+    capacity: 10,
+    price: "R$ 2.800",
+    rating: 4.7,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Velocidade e estilo em uma única embarcação.",
+    highlight: false
+  },
+  {
+    id: "lady-ruth",
+    name: "Lady Ruth",
+    type: "Classic Yacht",
+    image: ladyRuthYacht,
+    images: [ladyRuthYacht],
+    capacity: 8,
+    price: "R$ 2.400",
+    rating: 4.8,
+    duration: "Full Day", 
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Elegância clássica e conforto moderno.",
+    highlight: false
+  },
+  {
+    id: "oceano",
+    name: "Oceano",
+    type: "Catamaran",
+    image: oceanoCatamaran,
+    images: [oceanoCatamaran],
+    capacity: 20,
+    price: "R$ 4.500",
+    rating: 4.9,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Espaço amplo e estabilidade superior.",
+    highlight: false
+  },
+  {
+    id: "nossa",
+    name: "Nossa",
+    type: "Family Yacht",
+    image: nossaYacht,
+    images: [nossaYacht],
+    capacity: 12,
+    price: "R$ 2.800",
+    rating: 4.7,
+    duration: "Full Day",
+    location: "Marina da Glória", 
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Perfeita para reunir família e amigos.",
+    highlight: false
+  }
+];
 
 const VesselCatalog = () => {
-  const [vessels, setVessels] = useState<Vessel[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    loadVessels();
-  }, []);
-
-  const loadVessels = async () => {
-    try {
-      const { data: vesselsData, error: vesselsError } = await supabase
-        .from('vessels')
-        .select('*')
-        .order('name');
-
-      if (vesselsError) throw vesselsError;
-
-      const vesselsWithImages = await Promise.all(
-        (vesselsData || []).map(async (vessel) => {
-          const { data: imagesData, error: imagesError } = await supabase
-            .from('vessel_images')
-            .select('*')
-            .eq('vessel_id', vessel.id)
-            .order('display_order');
-
-          if (imagesError) {
-            console.error('Error loading images for vessel:', vessel.id, imagesError);
-            return { ...vessel, images: [] };
-          }
-
-          return { ...vessel, images: imagesData || [] };
-        })
-      );
-
-      setVessels(vesselsWithImages);
-      console.log('VesselCatalog: Loaded vessels from database:', vesselsWithImages);
-    } catch (error) {
-      console.error('VesselCatalog: Error loading vessels:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return (
-      <section id="embarcacoes" className="py-20 bg-gradient-to-br from-background to-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="text-center">
-            <div className="text-lg">Carregando embarcações...</div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="embarcacoes" className="py-20 bg-gradient-to-br from-background to-muted/30">
@@ -95,22 +171,18 @@ const VesselCatalog = () => {
               key={vessel.id}
               id={vessel.id}
               name={vessel.name}
-              type="Premium"
-              image={vessel.images[0]?.image_url || '/placeholder.svg'}
-              images={vessel.images.map(img => img.image_url)}
-              capacity={vessel.capacity || 0}
-              price={`R$ ${vessel.price_per_hour || 0}`}
-              rating={4.8}
-              duration="Full Day"
-              location="Marina da Glória"
-              features={[
-                { icon: () => <span>⚓</span>, label: "Premium" },
-                { icon: () => <span>🎵</span>, label: "Som" },
-                { icon: () => <span>☕</span>, label: "Bar" },
-                { icon: () => <span>🛡️</span>, label: "Seguro" }
-              ]}
-              description={vessel.description || ''}
-              highlight={false}
+              type={vessel.type}
+              image={vessel.image}
+              images={vessel.images}
+              capacity={vessel.capacity}
+              price={vessel.price}
+              originalPrice={vessel.originalPrice}
+              rating={vessel.rating}
+              duration={vessel.duration}
+              location={vessel.location}
+              features={vessel.features}
+              description={vessel.description}
+              highlight={vessel.highlight}
             />
           ))}
         </div>
