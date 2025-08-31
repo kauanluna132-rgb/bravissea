@@ -423,15 +423,67 @@ const vesselsData = {
     id: "lady-ruth",
     name: "LADY RUTH",
     type: "Lancha Premium",
-    images: [ladyRuthImage],
+    images: [
+      "/lovable-uploads/030db542-183e-4ed7-bb19-0a6cd334cdb5.png",
+      "/lovable-uploads/d9a6c9b9-9fee-4e01-994c-ebe3035b166d.png",
+      "/lovable-uploads/88d5840c-c694-469c-b0b6-ebd172700c69.png",
+      "/lovable-uploads/266900b9-42c7-4b08-a0cd-c9cb1755d25e.png",
+      "/lovable-uploads/8ae1039c-db06-4d08-9021-8bdb576806e4.png",
+      "/lovable-uploads/5f54c9a8-1d11-43f6-b5fd-d5b2121a0144.png",
+      "/lovable-uploads/6db08f7a-905e-46d7-96a2-9854a88f7b02.png"
+    ],
     capacity: 13,
-    price: "R$ 1.999",
-    originalPrice: "R$ 2.500",
+    price: "R$ 2.500",
     rating: 4.8,
     duration: "5h",
     location: "Marina da Glória",
-    description: "Lady Ruth com 5 horas de excelente passeio",
-    category: "lancha"
+    description: "LADY RUTH | 13 PASSAGEIROS - 5 horas de um excelente passeio com equipamentos premium",
+    category: "lancha",
+    
+    // Especificações Técnicas
+    specs: {
+      type: "Lancha Premium",
+      capacity: "13 passageiros",
+      duration: "5 horas",
+      departure: "Marina da Glória - RJ"
+    },
+    
+    // Comodidades
+    amenities: [
+      "Combustível incluso",
+      "Marinheiro profissional",
+      "Tapetão flutuante",
+      "Prancha Stand Up"
+    ],
+    
+    // Inclusos no Passeio
+    included: [
+      "5 horas de um excelente passeio",
+      "Combustível",
+      "Marinheiro",
+      "Tapetão Flutuante",
+      "Prancha Stand Up"
+    ],
+    
+    // Roteiros Disponíveis
+    itineraries: [
+      { 
+        name: "Roteiro 1: Marina da Glória x Flamengo x Botafogo x Mureta da Urca", 
+        price: "R$ 2.500,00",
+        description: "Passeio completo pelos pontos mais icônicos da Baía de Guanabara"
+      },
+      { 
+        name: "Roteiro 2: Marina da Glória x Flamengo x Botafogo x Mureta da Urca x Praia Vermelha", 
+        price: "R$ 2.900,00",
+        description: "Roteiro estendido incluindo a paradisíaca Praia Vermelha"
+      }
+    ],
+    
+    // Serviços Adicionais
+    additionalServices: [
+      { service: "Taxa do Churrasqueiro", price: "R$ 200,00" },
+      { service: "Taxa de Embarque", price: "R$ 200,00" }
+    ]
   },
   mangata: {
     id: "mangata",

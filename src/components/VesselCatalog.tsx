@@ -270,20 +270,28 @@ const vessels = [
     id: "lady-ruth",
     name: "LADY RUTH",
     type: "Lancha Premium",
-    image: ladyRuthImage,
+    image: "/lovable-uploads/030db542-183e-4ed7-bb19-0a6cd334cdb5.png",
+    images: [
+      "/lovable-uploads/030db542-183e-4ed7-bb19-0a6cd334cdb5.png",
+      "/lovable-uploads/d9a6c9b9-9fee-4e01-994c-ebe3035b166d.png",
+      "/lovable-uploads/88d5840c-c694-469c-b0b6-ebd172700c69.png",
+      "/lovable-uploads/266900b9-42c7-4b08-a0cd-c9cb1755d25e.png",
+      "/lovable-uploads/8ae1039c-db06-4d08-9021-8bdb576806e4.png",
+      "/lovable-uploads/5f54c9a8-1d11-43f6-b5fd-d5b2121a0144.png",
+      "/lovable-uploads/6db08f7a-905e-46d7-96a2-9854a88f7b02.png"
+    ],
     capacity: 13,
-    price: "R$ 1.999",
-    originalPrice: "R$ 2.500",
+    price: "R$ 2.500",
     rating: 4.8,
     duration: "5h",
     location: "Marina da Glória",
     features: [
       { icon: Anchor, label: "13 Passageiros" },
-      { icon: Music, label: "Som" },
-      { icon: Coffee, label: "Combustível Incluso" },
-      { icon: Shield, label: "Marinheiro" }
+      { icon: Music, label: "Som Bluetooth" },
+      { icon: Coffee, label: "Tapetão Flutuante" },
+      { icon: Shield, label: "Marinheiro Incluso" }
     ],
-    description: "Lady Ruth com 5 horas de excelente passeio",
+    description: "LADY RUTH | 13 PASSAGEIROS - 5 horas de um excelente passeio",
     category: "lancha"
   },
   {
