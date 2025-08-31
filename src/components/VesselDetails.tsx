@@ -1046,6 +1046,39 @@ Aguardo retorno!`;
                 </div>
               </>
             )}
+
+            {/* Tecnomarine Specific Information */}
+            {vessel.id === 'tecnomarine' && (
+              <>
+                {/* Roteiros */}
+                <div className="bg-white p-6 rounded-xl border shadow-sm">
+                  <h3 className="text-xl font-bold mb-4">Roteiros Disponíveis</h3>
+                  <div className="space-y-3">
+                    {(vessel as any).routes?.map((route: any, index: number) => (
+                      <div key={index} className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
+                        <span className="font-medium text-blue-800">{route.name}</span>
+                        <span className="font-bold text-blue-600">{route.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Taxas */}
+                <div className="bg-white p-6 rounded-xl border shadow-sm">
+                  <h3 className="text-xl font-bold mb-4">Taxas Adicionais</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <span>Taxa de Embarque:</span>
+                      <span className="font-semibold">{(vessel as any).pricing?.taxaEmbarque}</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <span>Taxa do Churrasqueiro:</span>
+                      <span className="font-semibold">{(vessel as any).pricing?.taxaChurrasqueiro}</span>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Booking Form */}
