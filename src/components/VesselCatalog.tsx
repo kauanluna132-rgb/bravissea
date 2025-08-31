@@ -413,7 +413,7 @@ const vessels = [
     id: "senna",
     name: "SENNA",
     type: "Iate Premium",
-    image: "/lovable-uploads/senna-1.png",
+    image: "/lovable-uploads/758a21a0-0f35-4d63-8802-bf9fb5543f54.png",
     capacity: 18,
     price: "R$ 7.700",
     rating: 4.8,
@@ -425,7 +425,7 @@ const vessels = [
       { icon: Coffee, label: "2 quartos, 2 banheiros (1 suíte)" },
       { icon: Shield, label: "Fly e solário espaçosos" }
     ],
-    description: "SENNA - Iate Premium com motores diesel 500HP para até 18 passageiros + 2 tripulantes",
+    description: "Capacidade: 18 passageiros + 2 tripulantes. Motores de centro diesel 500HP",
     category: "iate"
   },
   {

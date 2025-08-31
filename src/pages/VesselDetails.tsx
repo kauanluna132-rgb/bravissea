@@ -320,46 +320,47 @@ const vesselsData = {
     name: "SENNA",
     type: "Iate Premium",
     images: [
-      "/lovable-uploads/senna-1.png",
-      "/lovable-uploads/senna-2.png",
-      "/lovable-uploads/senna-3.png",
-      "/lovable-uploads/senna-4.png",
-      "/lovable-uploads/senna-5.png",
-      "/lovable-uploads/senna-6.png",
-      "/lovable-uploads/senna-7.png",
-      "/lovable-uploads/senna-8.png",
-      "/lovable-uploads/senna-9.png",
-      "/lovable-uploads/senna-10.png"
+      "/lovable-uploads/758a21a0-0f35-4d63-8802-bf9fb5543f54.png",
+      "/lovable-uploads/8131796c-d7a3-477b-89a6-60494d308e84.png",
+      "/lovable-uploads/147de007-1602-410f-8662-c8a62f840359.png",
+      "/lovable-uploads/e98e201d-3cb5-471a-a4c6-8dcb022e66a2.png",
+      "/lovable-uploads/6c8c5d8f-8985-40ad-aedd-99f6b60b1951.png",
+      "/lovable-uploads/e22a0c7e-c9ab-46ef-8e0e-434f6629e895.png",
+      "/lovable-uploads/2fe01d15-281c-4460-bb7b-16f136ed1c04.png",
+      "/lovable-uploads/6dc8f7ff-d6f4-48b1-a368-3938b40c7971.png",
+      "/lovable-uploads/2d8ff364-27b0-4048-99fa-10922bf350ba.png",
+      "/lovable-uploads/c1acaf15-4572-4d26-a649-e6f61c8bedc2.png"
     ],
     capacity: 18,
     price: "R$ 7.700",
     rating: 4.8,
     duration: "5h",
     location: "Marina da Glória (Pier Nobre)",
-    description: "SENNA - Iate Premium com motores diesel 500HP para até 18 passageiros + 2 tripulantes",
+    description: "Senna R$ 7.700,00 - Capacidade: 18 passageiros + 2 tripulantes",
     specs: {
       type: "Iate Premium",
       engines: "Motores de centro diesel 500HP",
-      rooms: "2 Quartos",
-      bathrooms: "2 Banheiros (1 suíte)",
+      capacity: "18 passageiros + 2 tripulantes",
+      rooms: "2 quartos",
+      bathrooms: "2 banheiros (1 suíte)",
       living: "Sala ampla",
-      kitchen: "Cozinha completa"
+      kitchen: "Cozinha completa",
+      extras: "Fly e solário de proa muito espaçosos"
     },
     amenities: [
       "Som conexão Bluetooth",
-      "Fly e solário de proa muito espaçosos",
       "Combustível incluso",
       "Comandante incluso",
       "Limpeza inclusa",
       "Macarrão e tapete flutuante"
     ],
     schedule: {
-      weekday: "Horário flexível",
-      weekend: "09:00 às 14:00 e 14:30 às 19:30"
+      weekday: "Dia de semana horário flexível",
+      weekend: "Fins de semana e feriados das 09:00 às 14:00 e 14:30 às 19:30"
     },
     pricing: {
       base: "R$ 7.700,00",
-      barbecue: "R$ 200,00"
+      barbecue: "R$ 200,00 (opcional)"
     },
     destinations: [
       { name: "Urca", price: "R$ 7.700,00" },
