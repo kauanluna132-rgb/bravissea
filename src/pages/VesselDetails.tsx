@@ -2481,7 +2481,170 @@ Aguardo confirmação! 🌊
                         </div>
                       )}
 
-                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && vessel.id !== "oceano" && (
+                      {/* Informações específicas da LADY RUTH */}
+                      {vessel.id === "lady-ruth" && (
+                        <div className="space-y-6">
+                          {/* Especificações Técnicas */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Anchor className="h-5 w-5 mr-2" />
+                              Especificações Técnicas
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Shield className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Tipo: Lancha Premium</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Users className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Capacidade: 13 passageiros</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Clock className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Duração: 5 horas</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <MapPin className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Embarque: Marina da Glória - RJ</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Comodidades */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Waves className="h-5 w-5 mr-2" />
+                              Comodidades
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Fuel className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Combustível incluso</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Shield className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Marinheiro profissional</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Waves className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Tapetão flutuante</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Sun className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Prancha Stand Up</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Incluso no Passeio */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <CheckCircle className="h-5 w-5 mr-2" />
+                              Incluso no Passeio
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg">
+                                <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">5 horas de um excelente passeio</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg">
+                                <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Combustível</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg">
+                                <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Marinheiro</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg">
+                                <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Tapetão Flutuante</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg">
+                                <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Prancha Stand Up</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Roteiros e Preços */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <MapPin className="h-5 w-5 mr-2" />
+                              Roteiros Disponíveis
+                            </h4>
+                            <div className="space-y-4">
+                              <div className="border border-primary/20 p-4 rounded-lg">
+                                <div className="flex justify-between items-start mb-2">
+                                  <h5 className="font-semibold text-primary">Roteiro 1: Marina da Glória x Flamengo x Botafogo x Mureta da Urca</h5>
+                                  <span className="font-bold text-lg text-green-600">R$ 2.500,00</span>
+                                </div>
+                                <p className="text-sm text-muted-foreground">Passeio completo pelos pontos mais icônicos da Baía de Guanabara</p>
+                              </div>
+                              <div className="border border-primary/20 p-4 rounded-lg">
+                                <div className="flex justify-between items-start mb-2">
+                                  <h5 className="font-semibold text-primary">Roteiro 2: Marina da Glória x Flamengo x Botafogo x Mureta da Urca x Praia Vermelha</h5>
+                                  <span className="font-bold text-lg text-green-600">R$ 2.900,00</span>
+                                </div>
+                                <p className="text-sm text-muted-foreground">Roteiro estendido incluindo a paradisíaca Praia Vermelha</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Serviços Adicionais */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Sparkles className="h-5 w-5 mr-2" />
+                              Serviços Adicionais
+                            </h4>
+                            <div className="space-y-3">
+                              <div className="border border-primary/20 p-4 rounded-lg">
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <h5 className="font-semibold">Taxa do Churrasqueiro</h5>
+                                  </div>
+                                  <span className="font-bold text-primary">R$ 200,00</span>
+                                </div>
+                              </div>
+                              <div className="border border-primary/20 p-4 rounded-lg">
+                                <div className="flex justify-between items-center">
+                                  <div>
+                                    <h5 className="font-semibold">Taxa de Embarque</h5>
+                                  </div>
+                                  <span className="font-bold text-primary">R$ 200,00</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && vessel.id !== "oceano" && vessel.id !== "lady-ruth" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>
