@@ -696,7 +696,7 @@ const vesselData = {
     id: "luisa",
     name: "LUÍSA V",
     type: "Iate Premium",
-    image: luisaImage,
+    image: "/lovable-uploads/03c21177-517e-46bb-ba14-3d5e3e92b548.png",
     capacity: 15,
     price: "R$ 3.200",
     originalPrice: undefined,
@@ -732,8 +732,30 @@ const vesselData = {
       taxaEmbarque: "R$ 200,00",
       taxaChurrasqueiro: "R$ 200,00"
     },
-    gallery: [luisaImage],
-    images: [luisaImage]
+    gallery: [
+      "/lovable-uploads/03c21177-517e-46bb-ba14-3d5e3e92b548.png",
+      "/lovable-uploads/5b46ecc7-6d2f-49f9-97e1-18cd69e70334.png",
+      "/lovable-uploads/971d60d5-6cd7-46b1-80e0-b22fc9971ecf.png",
+      "/lovable-uploads/f445fc67-3320-4ec8-9fb4-242ae592d18c.png",
+      "/lovable-uploads/729365c1-b3c2-4db7-8b9d-931a2f7fb1f7.png",
+      "/lovable-uploads/3e2e65a7-195a-4f5e-9cf9-39c176c713cd.png",
+      "/lovable-uploads/2b635aac-c2f0-4db3-a82a-e8c116893024.png",
+      "/lovable-uploads/c84fec1a-ab0f-4007-ae85-08012b4590c2.png",
+      "/lovable-uploads/da929e32-33ee-4fc1-97c0-d366d63ff457.png",
+      "/lovable-uploads/8ce2e68b-6ed0-47b8-9f7b-df5ab588c7d2.png"
+    ],
+    images: [
+      "/lovable-uploads/03c21177-517e-46bb-ba14-3d5e3e92b548.png",
+      "/lovable-uploads/5b46ecc7-6d2f-49f9-97e1-18cd69e70334.png",
+      "/lovable-uploads/971d60d5-6cd7-46b1-80e0-b22fc9971ecf.png",
+      "/lovable-uploads/f445fc67-3320-4ec8-9fb4-242ae592d18c.png",
+      "/lovable-uploads/729365c1-b3c2-4db7-8b9d-931a2f7fb1f7.png",
+      "/lovable-uploads/3e2e65a7-195a-4f5e-9cf9-39c176c713cd.png",
+      "/lovable-uploads/2b635aac-c2f0-4db3-a82a-e8c116893024.png",
+      "/lovable-uploads/c84fec1a-ab0f-4007-ae85-08012b4590c2.png",
+      "/lovable-uploads/da929e32-33ee-4fc1-97c0-d366d63ff457.png",
+      "/lovable-uploads/8ce2e68b-6ed0-47b8-9f7b-df5ab588c7d2.png"
+    ]
   }
 };
 
