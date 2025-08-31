@@ -265,6 +265,9 @@ const vesselData = {
       { name: "Praia Vermelha", price: "R$ 4.100,00", duration: "5h" },
       { name: "Ilha Cagarras", price: "R$ 5.000,00", duration: "5h" }
     ],
+    additionalServices: [
+      { name: "Churrasqueira", price: "R$ 200,00" }
+    ],
     schedules: [
       { time: "Horário flexível", description: "5 horas de passeio" }
     ],
@@ -1119,11 +1122,44 @@ Aguardo retorno!`;
                     <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                       <span>Taxa do Churrasqueiro:</span>
                       <span className="font-semibold">{(vessel as any).pricing?.taxaChurrasqueiro}</span>
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
+                     </div>
+                   </div>
+                 </div>
+               </>
+             )}
+
+             {/* LUÍSA VIII Specific Information */}
+             {vessel.id === 'flyhi' && (
+               <>
+                 {/* Roteiros */}
+                 <div className="bg-white p-6 rounded-xl border shadow-sm">
+                   <h3 className="text-xl font-bold mb-4">Valores / Roteiros</h3>
+                   <div className="space-y-3">
+                     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
+                       <span className="font-medium text-blue-800">Urca</span>
+                       <span className="font-bold text-blue-600">R$ 3.200,00</span>
+                     </div>
+                     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
+                       <span className="font-medium text-blue-800">Praia Vermelha</span>
+                       <span className="font-bold text-blue-600">R$ 4.100,00</span>
+                     </div>
+                     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
+                       <span className="font-medium text-blue-800">Ilha Cagarras</span>
+                       <span className="font-bold text-blue-600">R$ 5.000,00</span>
+                     </div>
+                   </div>
+                 </div>
+
+                 {/* Serviços Adicionais */}
+                 <div className="bg-white p-6 rounded-xl border shadow-sm">
+                   <h3 className="text-xl font-bold mb-4">Serviços Adicionais (opcional)</h3>
+                   <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                     <span>Churrasqueira:</span>
+                     <span className="font-semibold">R$ 200,00</span>
+                   </div>
+                 </div>
+               </>
+             )}
 
             {/* Senna Specific Information */}
             {vessel.id === 'senna' && (
