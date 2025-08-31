@@ -1,45 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { ArrowLeft, Users, Star, Wifi, Car, Music, Wind, MapPin, Clock, User, Mail, Phone, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Users, Clock, Star, Anchor, Phone, Mail, ArrowLeft, MessageCircle } from 'lucide-react';
-import VesselImageCarousel from '@/components/VesselImageCarousel';
+import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
-// Import images
-import mangataYacht from '@/assets/mangata-yacht.jpg';
-import grandrarayYacht from '@/assets/grandraray-yacht.jpg';
-import sennaYacht from '@/assets/senna-yacht.jpg';
-import ladyRuthYacht from '@/assets/lady-ruth-yacht.jpg';
-import oceanoCatamaran from '@/assets/oceano-catamaran.jpg';
-import nossaYacht from '@/assets/nossa-yacht.jpg';
-import blauCatamaran from '@/assets/blau-catamaran.jpg';
-import comendadorYacht from '@/assets/comendador-yacht.jpg';
-import dragaoYacht from '@/assets/dragao-yacht.jpg';
-import flyhiboat from '@/assets/flyhi-boat.jpg';
-import iateExecutive from '@/assets/iate-executive.jpg';
-import lanchaPremium from '@/assets/lancha-premium.jpg';
-import luisaYacht from '@/assets/luisa-yacht.jpg';
-import mcellBoat from '@/assets/mcell-boat.jpg';
-import mywayYacht from '@/assets/myway-yacht.jpg';
-import prestigeYacht from '@/assets/prestige-yacht.jpg';
-import rebecaYacht from '@/assets/rebeca-yacht.jpg';
-import sevenYacht from '@/assets/seven-yacht.jpg';
-import tecnomarineYacht from '@/assets/tecnomarine-yacht.jpg';
-import catamaraLuxury from '@/assets/catamara-luxury.jpg';
-import segueYacht from '@/assets/segue-yacht.jpg';
+// Import all vessel images for fallback
+import dragaoImage from '@/assets/dragao-yacht.jpg';
+import blauImage from '@/assets/blau-catamaran.jpg';
+import comendadorImage from '@/assets/comendador-yacht.jpg';
+import flyHiImage from '@/assets/flyhi-boat.jpg';
+import grandRarayImage from '@/assets/grandraray-yacht.jpg';
+import iateExecutiveImage from '@/assets/iate-executive.jpg';
+import ladyRuthImage from '@/assets/lady-ruth-yacht.jpg';
+import lanchaPremiumImage from '@/assets/lancha-premium.jpg';
+import luisaImage from '@/assets/luisa-yacht.jpg';
+import mangataImage from '@/assets/mangata-yacht.jpg';
+import mcellImage from '@/assets/mcell-boat.jpg';
+import mywayImage from '@/assets/myway-yacht.jpg';
+import nossaImage from '@/assets/nossa-yacht.jpg';
+import oceanoImage from '@/assets/oceano-catamaran.jpg';
+import prestigeImage from '@/assets/prestige-yacht.jpg';
+import rebecaImage from '@/assets/rebeca-yacht.jpg';
+import sennaImage from '@/assets/senna-yacht.jpg';
+import sevenImage from '@/assets/seven-yacht.jpg';
+import catamataLuxuryImage from '@/assets/catamara-luxury.jpg';
+import tecnomarine from '@/assets/tecnomarine-yacht.jpg';
+import segueImage from '@/assets/segue-yacht.jpg';
 
-// Vessel data - complete with all 18 vessels
+interface Vessel {
+  id: string;
+  name: string;
+  description: string | null;
+  capacity: number | null;
+  price_per_hour: number | null;
+  features: string[];
+  specifications: any;
+  category: string;
+  images: VesselImage[];
+}
+
+interface VesselImage {
+  id: string;
+  image_url: string;
+  alt_text?: string;
+  display_order: number;
+}
+
+// Fallback vessel data
 const vesselsData = {
   "mangata": {
     id: "mangata",
     name: "Mangata",
     type: "Luxury Yacht",
-    image: mangataYacht,
-    images: [mangataYacht],
+    image: mangataImage,
+    images: [mangataImage],
     capacity: 8,
     price: "R$ 2.500",
     originalPrice: "R$ 3.000",
@@ -58,8 +76,8 @@ const vesselsData = {
     id: "grandraray",
     name: "Grandraray",
     type: "Premium Yacht",
-    image: grandrarayYacht,
-    images: [grandrarayYacht],
+    image: grandRarayImage,
+    images: [grandRarayImage],
     capacity: 12,
     price: "R$ 3.200",
     originalPrice: undefined,
@@ -78,8 +96,8 @@ const vesselsData = {
     id: "senna",
     name: "Senna",
     type: "Sport Yacht",
-    image: sennaYacht,
-    images: [sennaYacht],
+    image: sennaImage,
+    images: [sennaImage],
     capacity: 10,
     price: "R$ 2.800",
     originalPrice: undefined,
@@ -98,8 +116,8 @@ const vesselsData = {
     id: "lady-ruth",
     name: "Lady Ruth",
     type: "Classic Yacht",
-    image: ladyRuthYacht,
-    images: [ladyRuthYacht],
+    image: ladyRuthImage,
+    images: [ladyRuthImage],
     capacity: 8,
     price: "R$ 2.400",
     originalPrice: undefined,
@@ -118,8 +136,8 @@ const vesselsData = {
     id: "oceano",
     name: "Oceano",
     type: "Catamaran",
-    image: oceanoCatamaran,
-    images: [oceanoCatamaran],
+    image: oceanoImage,
+    images: [oceanoImage],
     capacity: 20,
     price: "R$ 4.500",
     originalPrice: undefined,
@@ -138,8 +156,8 @@ const vesselsData = {
     id: "nossa",
     name: "Nossa",
     type: "Family Yacht",
-    image: nossaYacht,
-    images: [nossaYacht],
+    image: nossaImage,
+    images: [nossaImage],
     capacity: 12,
     price: "R$ 2.800",
     originalPrice: undefined,
@@ -158,8 +176,8 @@ const vesselsData = {
     id: "blau",
     name: "Blau Catamaran",
     type: "Catamaran",
-    image: blauCatamaran,
-    images: [blauCatamaran],
+    image: blauImage,
+    images: [blauImage],
     capacity: 20,
     price: "R$ 3.800",
     originalPrice: undefined,
@@ -178,8 +196,8 @@ const vesselsData = {
     id: "comendador",
     name: "Comendador",
     type: "Classic Yacht",
-    image: comendadorYacht,
-    images: [comendadorYacht],
+    image: comendadorImage,
+    images: [comendadorImage],
     capacity: 10,
     price: "R$ 2.200",
     originalPrice: undefined,
@@ -198,8 +216,8 @@ const vesselsData = {
     id: "dragao",
     name: "Dragão dos Mares",
     type: "Sport Yacht",
-    image: dragaoYacht,
-    images: [dragaoYacht],
+    image: dragaoImage,
+    images: [dragaoImage],
     capacity: 12,
     price: "R$ 3.500",
     originalPrice: undefined,
@@ -218,8 +236,8 @@ const vesselsData = {
     id: "flyhi",
     name: "Flyhi Adventure",
     type: "Adventure Boat",
-    image: flyhiboat,
-    images: [flyhiboat],
+    image: flyHiImage,
+    images: [flyHiImage],
     capacity: 8,
     price: "R$ 1.800",
     originalPrice: undefined,
@@ -238,8 +256,8 @@ const vesselsData = {
     id: "iate-executive",
     name: "Iate Executive",
     type: "Executive Yacht",
-    image: iateExecutive,
-    images: [iateExecutive],
+    image: iateExecutiveImage,
+    images: [iateExecutiveImage],
     capacity: 12,
     price: "R$ 3.000",
     originalPrice: undefined,
@@ -258,8 +276,8 @@ const vesselsData = {
     id: "lancha-premium",
     name: "Lancha Premium",
     type: "Premium Boat",
-    image: lanchaPremium,
-    images: [lanchaPremium],
+    image: lanchaPremiumImage,
+    images: [lanchaPremiumImage],
     capacity: 8,
     price: "R$ 2.000",
     originalPrice: undefined,
@@ -278,8 +296,8 @@ const vesselsData = {
     id: "luisa",
     name: "Luisa Elegance",
     type: "Luxury Yacht",
-    image: luisaYacht,
-    images: [luisaYacht],
+    image: luisaImage,
+    images: [luisaImage],
     capacity: 10,
     price: "R$ 2.900",
     originalPrice: undefined,
@@ -298,8 +316,8 @@ const vesselsData = {
     id: "mcell",
     name: "MCéll",
     type: "Sport Boat",
-    image: mcellBoat,
-    images: [mcellBoat],
+    image: mcellImage,
+    images: [mcellImage],
     capacity: 6,
     price: "R$ 1.600",
     originalPrice: undefined,
@@ -318,8 +336,8 @@ const vesselsData = {
     id: "myway",
     name: "MyWay",
     type: "Luxury Yacht",
-    image: mywayYacht,
-    images: [mywayYacht],
+    image: mywayImage,
+    images: [mywayImage],
     capacity: 10,
     price: "R$ 2.600",
     originalPrice: undefined,
@@ -338,8 +356,8 @@ const vesselsData = {
     id: "prestige",
     name: "Prestige",
     type: "Luxury Yacht",
-    image: prestigeYacht,
-    images: [prestigeYacht],
+    image: prestigeImage,
+    images: [prestigeImage],
     capacity: 12,
     price: "R$ 3.100",
     originalPrice: undefined,
@@ -358,8 +376,8 @@ const vesselsData = {
     id: "rebeca",
     name: "Rebeca",
     type: "Family Yacht",
-    image: rebecaYacht,
-    images: [rebecaYacht],
+    image: rebecaImage,
+    images: [rebecaImage],
     capacity: 8,
     price: "R$ 2.300",
     originalPrice: undefined,
@@ -378,8 +396,8 @@ const vesselsData = {
     id: "seven",
     name: "Seven",
     type: "Luxury Yacht",
-    image: sevenYacht,
-    images: [sevenYacht],
+    image: sevenImage,
+    images: [sevenImage],
     capacity: 12,
     price: "R$ 3.400",
     originalPrice: undefined,
@@ -398,8 +416,8 @@ const vesselsData = {
     id: "tecnomarine",
     name: "Tecnomarine",
     type: "Sport Yacht",
-    image: tecnomarineYacht,
-    images: [tecnomarineYacht],
+    image: tecnomarine,
+    images: [tecnomarine],
     capacity: 10,
     price: "R$ 2.700",
     originalPrice: undefined,
@@ -418,8 +436,8 @@ const vesselsData = {
     id: "segue",
     name: "Segue",
     type: "Luxury Yacht",
-    image: segueYacht,
-    images: [segueYacht],
+    image: segueImage,
+    images: [segueImage],
     capacity: 8,
     price: "R$ 2.500",
     originalPrice: undefined,
@@ -438,8 +456,8 @@ const vesselsData = {
     id: "catamara-luxury",
     name: "Catamarã Luxury",
     type: "Catamaran",
-    image: catamaraLuxury,
-    images: [catamaraLuxury],
+    image: catamataLuxuryImage,
+    images: [catamataLuxuryImage],
     capacity: 25,
     price: "R$ 5.000",
     originalPrice: undefined,
@@ -459,9 +477,9 @@ const vesselsData = {
 const VesselDetailsLocal = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const vessel = id ? vesselsData[id as keyof typeof vesselsData] : null;
-
-  // Form state
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [vessel, setVessel] = useState<Vessel | null>(null);
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -469,287 +487,366 @@ const VesselDetailsLocal = () => {
     passengers: '',
     route: '',
     duration: '',
-    message: ''
+    observations: ''
   });
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
+  useEffect(() => {
+    loadVessel();
+  }, [id]);
 
-  const handleWhatsAppContact = () => {
-    if (!vessel) return;
+  const loadVessel = async () => {
+    if (!id) return;
     
-    const message = `*Reserva - ${vessel.name}*
+    try {
+      const { data: vesselData, error: vesselError } = await supabase
+        .from('vessels')
+        .select('*')
+        .eq('id', id)
+        .single();
 
-*Dados do Cliente:*
-Nome: ${formData.name || 'Não informado'}
-Email: ${formData.email || 'Não informado'}
-Telefone: ${formData.phone || 'Não informado'}
+      if (vesselError) throw vesselError;
 
-*Detalhes da Reserva:*
-Embarcação: ${vessel.name}
-Passageiros: ${formData.passengers || 'Não informado'}
-Roteiro: ${formData.route || 'Não informado'}
-Duração: ${formData.duration || 'Não informado'}
-Preço: ${vessel.price}/dia
+      if (vesselData) {
+        const { data: imagesData, error: imagesError } = await supabase
+          .from('vessel_images')
+          .select('*')
+          .eq('vessel_id', id)
+          .order('display_order');
 
-*Observações:*
-${formData.message || 'Nenhuma observação adicional'}
+        if (imagesError) {
+          console.error('Error loading images:', imagesError);
+        }
 
-Aguardo retorno para confirmar a reserva!`;
-
-    const whatsappLink = `https://wa.me/5521974004415?text=${encodeURIComponent(message)}`;
-    window.open(whatsappLink, '_blank');
+        setVessel({
+          ...vesselData,
+          images: imagesData || []
+        });
+      } else {
+        // Fallback to local data
+        const fallbackVessel = vesselsData[id as keyof typeof vesselsData];
+        if (fallbackVessel) {
+        setVessel({
+          ...fallbackVessel,
+          price_per_hour: parseInt(fallbackVessel.price.replace(/[^\d]/g, '')),
+          category: fallbackVessel.type === 'Catamaran' ? 'Catamarã' : 'Yacht',
+          images: []
+        });
+        }
+      }
+    } catch (error) {
+      console.error('Error loading vessel:', error);
+      // Fallback to local data
+      const fallbackVessel = vesselsData[id as keyof typeof vesselsData];
+      if (fallbackVessel) {
+        setVessel({
+          ...fallbackVessel,
+          price_per_hour: parseInt(fallbackVessel.price.replace(/[^\d]/g, '')),
+          category: fallbackVessel.type === 'Catamaran' ? 'Catamarã' : 'Yacht',
+          images: []
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
-  if (!vessel) {
+  if (loading) {
     return (
-      <div className="container mx-auto p-6">
-        <div className="flex justify-center items-center min-h-96">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold mb-4">Embarcação não encontrada</h2>
-            <Button onClick={() => navigate('/')}>Voltar ao início</Button>
-          </div>
+      <div className="container mx-auto px-4 py-20">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Carregando...</h1>
         </div>
       </div>
     );
   }
 
-  return (
-    <div className="container mx-auto p-6 space-y-8">
-      {/* Back Button */}
-      <Button 
-        variant="outline" 
-        onClick={() => navigate('/')}
-        className="mb-4"
-      >
-        <ArrowLeft className="h-4 w-4 mr-2" />
-        Voltar
-      </Button>
-
-      {/* Hero Section */}
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold">{vessel.name}</h1>
-        <div className="flex justify-center items-center gap-4">
-          <Badge variant="outline">
-            <Users className="h-4 w-4 mr-1" />
-            {vessel.capacity} pessoas
-          </Badge>
-          <Badge variant="outline">
-            <Star className="h-4 w-4 mr-1" />
-            {vessel.rating}
-          </Badge>
-          <Badge variant="outline">
-            {vessel.type}
-          </Badge>
+  if (!vessel) {
+    return (
+      <div className="container mx-auto px-4 py-20">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Embarcação não encontrada</h1>
+          <Button onClick={() => navigate('/')} variant="outline">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar ao início
+          </Button>
         </div>
-        <div className="space-y-2">
-          <p className="text-2xl font-bold text-primary">{vessel.price}/dia</p>
-          {vessel.originalPrice && (
-            <p className="text-lg text-muted-foreground line-through">{vessel.originalPrice}</p>
-          )}
+      </div>
+    );
+  }
+
+  const vesselImages = vessel.images.length > 0 
+    ? vessel.images.map(img => img.image_url)
+    : [vesselsData[vessel.id as keyof typeof vesselsData]?.image || dragaoImage];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % vesselImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + vesselImages.length) % vesselImages.length);
+  };
+
+  const handleWhatsAppContact = () => {
+    if (!formData.name || !formData.email || !formData.phone) {
+      toast.error('Por favor, preencha nome, email e telefone');
+      return;
+    }
+
+    const message = `*Reserva - ${vessel.name}*
+
+*Dados do Cliente:*
+Nome: ${formData.name}
+Email: ${formData.email}
+Telefone: ${formData.phone}
+
+*Detalhes da Reserva:*
+Embarcação: ${vessel.name}
+Passageiros: ${formData.passengers}
+Roteiro: ${formData.route}
+Duração: ${formData.duration}
+Preço: ${vessel.price_per_hour ? `R$ ${vessel.price_per_hour}/h` : 'Consulte preço'}
+
+*Observações:*
+${formData.observations || 'Nenhuma observação adicional'}
+
+Aguardo retorno para confirmar a reserva!`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/5521999999999?text=${encodedMessage}`;
+    
+    window.open(whatsappUrl, '_blank');
+    toast.success('Redirecionando para WhatsApp...');
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <div className="bg-muted/30 py-6 px-4">
+        <div className="container mx-auto">
+          <Button 
+            onClick={() => navigate('/')} 
+            variant="ghost" 
+            className="mb-4"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar
+          </Button>
         </div>
       </div>
 
-      {/* Image Gallery */}
-      <Card>
-        <CardContent className="p-6">
-          <VesselImageCarousel 
-            images={vessel.images} 
-            vesselName={vessel.name} 
-          />
-        </CardContent>
-      </Card>
-
-      {/* Details Grid */}
-      <div className="grid md:grid-cols-2 gap-8">
-        {/* Description */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Anchor className="h-5 w-5" />
-              Sobre esta embarcação
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground mb-4">{vessel.description}</p>
-            <div className="space-y-2">
-              <div className="flex justify-between">
-                <span>Capacidade:</span>
-                <span>{vessel.capacity} pessoas</span>
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Images Section */}
+          <div className="space-y-6">
+            <div className="relative">
+              <div className="aspect-[4/3] rounded-xl overflow-hidden bg-muted">
+                <img
+                  src={vesselImages[currentImageIndex]}
+                  alt={vessel.name}
+                  className="w-full h-full object-cover"
+                />
+                {vesselImages.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors"
+                    >
+                      ←
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors"
+                    >
+                      →
+                    </button>
+                  </>
+                )}
               </div>
-              <div className="flex justify-between">
-                <span>Duração:</span>
-                <span>{vessel.duration}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Local:</span>
-                <span>{vessel.location}</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Specifications & Features */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Especificações</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span>Comprimento:</span>
-                  <span>{vessel.specifications.length}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Motor:</span>
-                  <span>{vessel.specifications.engine}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Ano:</span>
-                  <span>{vessel.specifications.year}</span>
-                </div>
-              </div>
-              
-              <div className="pt-4 border-t">
-                <h4 className="font-semibold mb-2">Características</h4>
-                <div className="grid grid-cols-2 gap-2">
-                  {vessel.features.map((feature, index) => (
-                    <Badge key={index} variant="secondary" className="text-center">
-                      {feature}
-                    </Badge>
+              {vesselImages.length > 1 && (
+                <div className="flex justify-center mt-4 gap-2">
+                  {vesselImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-3 h-3 rounded-full transition-colors ${
+                        index === currentImageIndex ? 'bg-primary' : 'bg-muted-foreground/30'
+                      }`}
+                    />
                   ))}
                 </div>
+              )}
+            </div>
+          </div>
+
+          {/* Details Section */}
+          <div className="space-y-8">
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <h1 className="text-4xl font-bold">{vessel.name}</h1>
+                <div className="text-right">
+                  <div className="text-3xl font-bold text-primary">
+                    {vessel.price_per_hour ? `R$ ${vessel.price_per_hour}` : 'Consulte preço'}
+                  </div>
+                  <div className="text-sm text-gray-600">por hora</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center gap-2">
+                  <Users className="w-5 h-5 text-muted-foreground" />
+                  <span>Até {vessel.capacity} pessoas</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-5 h-5 text-muted-foreground" />
+                  <span>Marina da Glória</span>
+                </div>
+              </div>
+
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                {vessel.description}
+              </p>
+
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                {vessel.features.map((feature, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-sm">{feature}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          </CardContent>
-        </Card>
+
+            {/* Booking Form */}
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-6">Fazer Reserva</h3>
+                
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        <User className="w-4 h-4 inline mr-2" />
+                        Nome *
+                      </label>
+                      <Input
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Seu nome completo"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        <Mail className="w-4 h-4 inline mr-2" />
+                        Email *
+                      </label>
+                      <Input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="seu@email.com"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        <Phone className="w-4 h-4 inline mr-2" />
+                        Telefone *
+                      </label>
+                      <Input
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        placeholder="(21) 99999-9999"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        <Users className="w-4 h-4 inline mr-2" />
+                        Passageiros
+                      </label>
+                      <select
+                        value={formData.passengers}
+                        onChange={(e) => setFormData({ ...formData, passengers: e.target.value })}
+                        className="w-full px-3 py-2 border border-input bg-background rounded-md text-sm ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                      >
+                        <option value="">Selecione</option>
+                        {Array.from({ length: vessel.capacity || 10 }, (_, i) => i + 1).map(num => (
+                          <option key={num} value={num.toString()}>{num} pessoa{num > 1 ? 's' : ''}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        <MapPin className="w-4 h-4 inline mr-2" />
+                        Roteiro
+                      </label>
+                      <select
+                        value={formData.route}
+                        onChange={(e) => setFormData({ ...formData, route: e.target.value })}
+                        className="w-full px-3 py-2 border border-input bg-background rounded-md text-sm ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                      >
+                        <option value="">Selecione o roteiro</option>
+                        <option value="Baía de Guanabara">Baía de Guanabara</option>
+                        <option value="Ilhas Tijucas">Ilhas Tijucas</option>
+                        <option value="Angra dos Reis">Angra dos Reis</option>
+                        <option value="Ilha Grande">Ilha Grande</option>
+                        <option value="Cabo Frio">Cabo Frio</option>
+                        <option value="Búzios">Búzios</option>
+                        <option value="Customizado">Roteiro Customizado</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        <Clock className="w-4 h-4 inline mr-2" />
+                        Duração
+                      </label>
+                      <select
+                        value={formData.duration}
+                        onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                        className="w-full px-3 py-2 border border-input bg-background rounded-md text-sm ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                      >
+                        <option value="">Selecione a duração</option>
+                        <option value="4 horas">4 horas</option>
+                        <option value="6 horas">6 horas</option>
+                        <option value="8 horas">8 horas</option>
+                        <option value="Dia inteiro">Dia inteiro</option>
+                        <option value="2 dias">2 dias</option>
+                        <option value="3 dias">3 dias</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Observações</label>
+                    <Textarea
+                      value={formData.observations}
+                      onChange={(e) => setFormData({ ...formData, observations: e.target.value })}
+                      placeholder="Alguma observação especial para seu passeio..."
+                      rows={3}
+                    />
+                  </div>
+
+                  <Button 
+                    onClick={handleWhatsAppContact}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white"
+                    size="lg"
+                  >
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    Solicitar Reserva via WhatsApp
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
-
-      {/* Contact Form */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <MessageCircle className="h-5 w-5" />
-            Formulário de Reserva
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Nome Completo</Label>
-              <Input
-                id="name"
-                type="text"
-                placeholder="Seu nome completo"
-                value={formData.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="seu@email.com"
-                value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="phone">Telefone</Label>
-              <Input
-                id="phone"
-                type="tel"
-                placeholder="(21) 99999-9999"
-                value={formData.phone}
-                onChange={(e) => handleInputChange('phone', e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="passengers">Número de Passageiros</Label>
-              <select 
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                value={formData.passengers}
-                onChange={(e) => handleInputChange('passengers', e.target.value)}
-              >
-                <option value="">Selecione</option>
-                {Array.from({ length: vessel.capacity }, (_, i) => (
-                  <option key={i + 1} value={String(i + 1)}>
-                    {i + 1} {i + 1 === 1 ? 'pessoa' : 'pessoas'}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="route">Roteiro Preferido</Label>
-              <select 
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                value={formData.route}
-                onChange={(e) => handleInputChange('route', e.target.value)}
-              >
-                <option value="">Selecione o roteiro</option>
-                <option value="copacabana-ipanema">Copacabana - Ipanema</option>
-                <option value="baía-guanabara">Baía de Guanabara</option>
-                <option value="ilhas-tijucas">Ilhas Tijucas</option>
-                <option value="angra-reis">Angra dos Reis</option>
-                <option value="búzios">Búzios</option>
-                <option value="personalizado">Roteiro Personalizado</option>
-              </select>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="duration">Duração</Label>
-              <select 
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                value={formData.duration}
-                onChange={(e) => handleInputChange('duration', e.target.value)}
-              >
-                <option value="">Selecione a duração</option>
-                <option value="4-horas">4 horas</option>
-                <option value="6-horas">6 horas</option>
-                <option value="8-horas">8 horas (Full Day)</option>
-                <option value="personalizado">Duração Personalizada</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="message">Observações (Opcional)</Label>
-            <Textarea
-              id="message"
-              placeholder="Alguma observação especial ou solicitação..."
-              rows={4}
-              value={formData.message}
-              onChange={(e) => handleInputChange('message', e.target.value)}
-            />
-          </div>
-
-          <div className="flex gap-4">
-            <Button 
-              className="flex-1"
-              onClick={handleWhatsAppContact}
-            >
-              <MessageCircle className="h-4 w-4 mr-2" />
-              Enviar via WhatsApp
-            </Button>
-            <Button 
-              variant="outline" 
-              className="flex-1"
-              onClick={() => window.open('mailto:contato@bravissea.com.br', '_blank')}
-            >
-              <Mail className="h-4 w-4 mr-2" />
-              Enviar por Email
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };

@@ -18,6 +18,7 @@ interface Vessel {
   price_per_hour: number | null;
   features: string[];
   specifications: any;
+  category: string;
   images: VesselImage[];
 }
 
@@ -92,7 +93,8 @@ const AdminVessels = () => {
             capacity: formData.capacity || null,
             price_per_hour: formData.price_per_hour || null,
             features: formData.features || [],
-            specifications: formData.specifications || {}
+            specifications: formData.specifications || {},
+            category: formData.category || 'Yacht'
           })
           .eq('id', editingVessel);
 
@@ -108,7 +110,8 @@ const AdminVessels = () => {
             capacity: formData.capacity || null,
             price_per_hour: formData.price_per_hour || null,
             features: formData.features || [],
-            specifications: formData.specifications || {}
+            specifications: formData.specifications || {},
+            category: formData.category || 'Yacht'
           });
 
         if (error) throw error;
@@ -149,7 +152,8 @@ const AdminVessels = () => {
       capacity: vessel.capacity,
       price_per_hour: vessel.price_per_hour,
       features: vessel.features,
-      specifications: vessel.specifications
+      specifications: vessel.specifications,
+      category: vessel.category || 'Yacht'
     });
   };
 
@@ -439,7 +443,7 @@ const AdminVessels = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 <div>
                   <label className="text-sm font-medium">Capacidade</label>
                   <Input
@@ -458,6 +462,18 @@ const AdminVessels = () => {
                     onChange={(e) => setFormData({ ...formData, price_per_hour: Number(e.target.value) })}
                     placeholder="0.00"
                   />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Categoria</label>
+                  <select
+                    value={formData.category || 'Yacht'}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    className="w-full px-3 py-2 border border-input bg-background rounded-md text-sm ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                  >
+                    <option value="Yacht">Yacht</option>
+                    <option value="Catamarã">Catamarã</option>
+                    <option value="Lancha">Lancha</option>
+                  </select>
                 </div>
               </div>
 

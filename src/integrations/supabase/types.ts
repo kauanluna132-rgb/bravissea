@@ -52,6 +52,7 @@ export type Database = {
       vessels: {
         Row: {
           capacity: number | null
+          category: string | null
           created_at: string
           description: string | null
           features: string[] | null
@@ -63,6 +64,7 @@ export type Database = {
         }
         Insert: {
           capacity?: number | null
+          category?: string | null
           created_at?: string
           description?: string | null
           features?: string[] | null
@@ -74,6 +76,7 @@ export type Database = {
         }
         Update: {
           capacity?: number | null
+          category?: string | null
           created_at?: string
           description?: string | null
           features?: string[] | null
