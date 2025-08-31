@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X, Anchor, Phone, MapPin } from "lucide-react";
 import { Button } from "./ui/button";
+import ImageWithFallback from "@/components/ui/image-with-fallback";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuItems = [{
@@ -34,14 +35,14 @@ const Navbar = () => {
           {/* Logo - Desktop */}
           <div className="hidden md:flex items-center space-x-2">
             <button onClick={() => scrollToSection("#home")} className="cursor-pointer">
-              <img src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" />
+              <ImageWithFallback src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" showLoader={false} />
             </button>
           </div>
 
           {/* Logo - Mobile (Centered) */}
           <div className="md:hidden flex-1 flex justify-center">
             <button onClick={() => scrollToSection("#home")} className="cursor-pointer">
-              <img src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" />
+              <ImageWithFallback src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" showLoader={false} />
             </button>
           </div>
 

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { 
   Users, 
   Clock, 
@@ -61,10 +62,11 @@ const VesselCard = ({
     <Card className={`card-luxury overflow-hidden group ${highlight ? 'ring-2 ring-accent shadow-luxury' : ''}`}>
       {/* Image Container */}
       <div className="relative overflow-hidden h-64">
-        <img 
+        <ImageWithFallback
           src={image} 
           alt={name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          showLoader={true}
         />
         
         {/* Overlay com gradiente */}

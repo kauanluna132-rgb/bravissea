@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ZoomIn, AlertCircle } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import ImageWithFallback from "@/components/ui/image-with-fallback";
 
 interface VesselImageCarouselProps {
   images: string[];
@@ -61,14 +62,14 @@ const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) =
           </div>
         )}
         
-        <img
+        <ImageWithFallback
           src={images[currentImage]}
           alt={`${vesselName} - Imagem ${currentImage + 1}`}
           className={`w-full h-full object-cover transition-opacity duration-300 ${
             imageLoaded[currentImage] ? 'opacity-100' : 'opacity-0'
           }`}
-          onLoad={() => handleImageLoad(currentImage)}
-          onError={() => handleImageError(currentImage)}
+          onLoadingChange={(loading) => !loading && handleImageLoad(currentImage)}
+          showLoader={true}
         />
         
         {/* Navigation Buttons */}
@@ -105,10 +106,11 @@ const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) =
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-4xl p-0">
-            <img
+            <ImageWithFallback
               src={images[currentImage]}
               alt={`${vesselName} - Imagem ${currentImage + 1}`}
               className="w-full h-auto max-h-[80vh] object-contain"
+              showLoader={true}
             />
           </DialogContent>
         </Dialog>
@@ -132,12 +134,11 @@ const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) =
                   : "border-gray-200 hover:border-gray-300"
               }`}
             >
-              <img
+              <ImageWithFallback
                 src={image}
                 alt={`${vesselName} - Thumbnail ${index + 1}`}
                 className="w-full h-full object-cover"
-                onLoad={() => handleImageLoad(index)}
-                onError={() => handleImageError(index)}
+                showLoader={false}
               />
             </button>
           ))}

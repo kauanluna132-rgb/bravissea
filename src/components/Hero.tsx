@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Anchor, Star, Users } from "lucide-react";
+import ImageWithFallback from "@/components/ui/image-with-fallback";
 import heroYacht from "@/assets/hero-yacht.jpg";
 const Hero = () => {
   const whatsappLink = "https://wa.me/5521974004415?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
