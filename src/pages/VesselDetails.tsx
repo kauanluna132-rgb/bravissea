@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Users, Clock, Star, MapPin, Wifi, Car, Utensils, Waves } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,51 +12,267 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 
-// Mock data - em um app real, isso viria de uma API
-const vessels = {
-  "1": {
-    id: "1",
-    name: "Lancha Premium Executive",
-    type: "Lancha",
-    image: "/src/assets/lancha-premium.jpg",
-    capacity: 12,
-    price: 2500,
-    rating: 4.8,
-    duration: "4-8 horas",
+// Importar as imagens das embarcações
+import segueImage from "@/assets/segue-yacht.jpg";
+import tecnomarineImage from "@/assets/tecnomarine-yacht.jpg";
+import mywayImage from "@/assets/myway-yacht.jpg";
+import flyhiImage from "@/assets/flyhi-boat.jpg";
+import mcellImage from "@/assets/mcell-boat.jpg";
+import comendadorImage from "@/assets/comendador-yacht.jpg";
+import dragaoImage from "@/assets/dragao-yacht.jpg";
+import grandrarayImage from "@/assets/grandraray-yacht.jpg";
+import ladyRuthImage from "@/assets/lady-ruth-yacht.jpg";
+import mangataImage from "@/assets/mangata-yacht.jpg";
+import prestigeImage from "@/assets/prestige-yacht.jpg";
+import rebecaImage from "@/assets/rebeca-yacht.jpg";
+import oceanoImage from "@/assets/oceano-catamaran.jpg";
+import blauImage from "@/assets/blau-catamaran.jpg";
+import nossaImage from "@/assets/nossa-yacht.jpg";
+import sevenImage from "@/assets/seven-yacht.jpg";
+import sennaImage from "@/assets/senna-yacht.jpg";
+import luisaImage from "@/assets/luisa-yacht.jpg";
+
+// Dados iniciais das embarcações (mesmo formato do admin)
+const initialVesselsData = {
+  segue: {
+    id: "segue",
+    name: "SEGUE",
+    type: "Iate Premium",
+    images: [segueImage],
+    capacity: 18,
+    price: "R$ 18.000",
+    originalPrice: "R$ 20.000",
+    rating: 4.9,
+    duration: "8h",
     location: "Marina da Glória",
-    features: [
-      { icon: Users, label: "12 passageiros" },
-      { icon: Wifi, label: "Wi-Fi a bordo" },
-      { icon: Car, label: "Estacionamento" },
-      { icon: Utensils, label: "Área gourmet" }
-    ],
-    description: "Lancha premium perfeita para passeios executivos e celebrações especiais.",
-    gallery: [
-      "/src/assets/lancha-premium.jpg",
-      "/src/assets/hero-yacht.jpg",
-      "/src/assets/catamara-luxury.jpg"
-    ],
-    specifications: {
-      length: "45 pés",
-      cabins: 2,
-      bathrooms: 1,
-      fuel: "Diesel",
-      year: 2022
-    },
-    included: [
-      "Comandante experiente",
-      "Equipamentos de segurança",
-      "Som ambiente",
-      "Geladeira e freezer",
-      "Churrasqueira",
-      "Seguro total"
-    ],
-    routes: [
-      "Baía de Guanabara",
-      "Ilhas Tijucas", 
-      "Angra dos Reis",
-      "Búzios"
-    ]
+    description: "Iate premium com capacidade para 18 passageiros",
+    category: "iate"
+  },
+  tecnomarine: {
+    id: "tecnomarine",
+    name: "Iate Tecnomarine",
+    type: "Iate Executive",
+    images: [tecnomarineImage],
+    capacity: 20,
+    price: "R$ 10.000",
+    rating: 4.8,
+    duration: "8h",
+    location: "Marina da Glória",
+    description: "Iate Tecnomarine com alta tecnologia para 20 passageiros",
+    category: "iate"
+  },
+  myway: {
+    id: "myway",
+    name: "IATE MY WAY",
+    type: "Iate Luxury",
+    images: [mywayImage],
+    capacity: 20,
+    price: "R$ 12.000",
+    rating: 4.9,
+    duration: "8h",
+    location: "Marina da Glória",
+    description: "Iate MY WAY com design exclusivo para 20 passageiros",
+    category: "iate"
+  },
+  flyhi: {
+    id: "flyhi",
+    name: "FLY HI",
+    type: "Lancha Premium",
+    images: [flyhiImage],
+    capacity: 15,
+    price: "R$ 3.200",
+    originalPrice: "R$ 3.700",
+    rating: 4.7,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Lancha FLY HI ideal para passeios emocionantes",
+    category: "lancha"
+  },
+  mcell: {
+    id: "mcell",
+    name: "M CELL",
+    type: "Lancha Compacta",
+    images: [mcellImage],
+    capacity: 9,
+    price: "R$ 1.999",
+    originalPrice: "R$ 2.400",
+    rating: 4.6,
+    duration: "4h",
+    location: "Marina da Glória",
+    description: "Lancha compacta M CELL perfeita para grupos pequenos",
+    category: "lancha"
+  },
+  comendador: {
+    id: "comendador",
+    name: "COMENDADOR",
+    type: "Iate Executivo",
+    images: [comendadorImage],
+    capacity: 25,
+    price: "R$ 7.700",
+    rating: 4.8,
+    duration: "8h",
+    location: "Marina da Glória",
+    description: "Iate COMENDADOR com capacidade para 25 passageiros",
+    category: "iate"
+  },
+  dragao: {
+    id: "dragao",
+    name: "Dragão",
+    type: "Iate Médio",
+    images: [dragaoImage],
+    capacity: 17,
+    price: "R$ 4.000",
+    rating: 4.7,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Iate Dragão de 41 pés para 17 passageiros",
+    category: "iate"
+  },
+  grandraray: {
+    id: "grandraray",
+    name: "GRAND RARAY",
+    type: "Iate Premium",
+    images: [grandrarayImage],
+    capacity: 18,
+    price: "R$ 6.000",
+    rating: 4.8,
+    duration: "8h",
+    location: "Marina da Glória",
+    description: "GRAND RARAY com embarque na Marina da Glória",
+    category: "iate"
+  },
+  "lady-ruth": {
+    id: "lady-ruth",
+    name: "LADY RUTH",
+    type: "Lancha Premium",
+    images: [ladyRuthImage],
+    capacity: 13,
+    price: "R$ 1.999",
+    originalPrice: "R$ 2.500",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Lady Ruth com 5 horas de excelente passeio",
+    category: "lancha"
+  },
+  mangata: {
+    id: "mangata",
+    name: "MANGATA",
+    type: "Iate Premium",
+    images: [mangataImage],
+    capacity: 12,
+    price: "R$ 11.500",
+    originalPrice: "R$ 12.000",
+    rating: 4.9,
+    duration: "5h",
+    location: "Iate Clube Rio de Janeiro",
+    description: "Sessa Marine c44 - Mangata com copacabana/cagarras",
+    category: "iate"
+  },
+  prestige: {
+    id: "prestige",
+    name: "PRESTIGE",
+    type: "Lancha Premium",
+    images: [prestigeImage],
+    capacity: 20,
+    price: "R$ 20.000",
+    rating: 4.9,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Lancha Prestige 600 fly, dois motores volvo d 13",
+    category: "lancha"
+  },
+  rebeca: {
+    id: "rebeca",
+    name: "YACHT REBECA",
+    type: "Iate Luxury",
+    images: [rebecaImage],
+    capacity: 16,
+    price: "R$ 20.000",
+    rating: 4.9,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Phantom 620 Pininfarina de 62 pés com design italiano",
+    category: "iate"
+  },
+  oceano: {
+    id: "oceano",
+    name: "OCEANO",
+    type: "Catamarã",
+    images: [oceanoImage],
+    capacity: 65,
+    price: "R$ 16.000",
+    rating: 4.7,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Catamarã de até 65 passageiros com horários válidos por 30 dias",
+    category: "catamara"
+  },
+  blau: {
+    id: "blau",
+    name: "CATAMARÃ BLAU",
+    type: "Catamarã Premium",
+    images: [blauImage],
+    capacity: 20,
+    price: "R$ 7.000",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Catamarã Blau com embarque na Marina da Glória",
+    category: "catamara"
+  },
+  nossa: {
+    id: "nossa",
+    name: "NOSSA",
+    type: "Iate Premium",
+    images: [nossaImage],
+    capacity: 25,
+    price: "R$ 7.500",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Pershing 52HT com gerador 110v e equipamentos completos",
+    category: "iate"
+  },
+  seven: {
+    id: "seven",
+    name: "SEVEN",
+    type: "Lancha Premium",
+    images: [sevenImage],
+    capacity: 15,
+    price: "R$ 7.000",
+    rating: 4.7,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "Lancha intermarine 44 pés com embarque na Marina da Glória",
+    category: "lancha"
+  },
+  senna: {
+    id: "senna",
+    name: "SENNA",
+    type: "Iate Premium",
+    images: [sennaImage],
+    capacity: 20,
+    price: "R$ 7.000",
+    rating: 4.8,
+    duration: "5h",
+    location: "Marina da Glória",
+    description: "46 pés com 2 motores volvo a diesel, 2 suítes completas",
+    category: "iate"
+  },
+  luisa: {
+    id: "luisa",
+    name: "LUÍSA V",
+    type: "Iate Premium",
+    images: [luisaImage],
+    capacity: 15,
+    price: "R$ 2.800",
+    originalPrice: "R$ 3.200",
+    rating: 4.6,
+    duration: "6h",
+    location: "Marina da Glória",
+    description: "Luísa V com roteiro Marina da Glória x Flamengo x Aeroporto x Urca",
+    category: "iate"
   }
 };
 
@@ -64,6 +280,7 @@ const VesselDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(0);
+  const [vesselsData, setVesselsData] = useState(initialVesselsData);
   const [bookingForm, setBookingForm] = useState({
     name: "",
     email: "",
@@ -75,7 +292,23 @@ const VesselDetails = () => {
     message: ""
   });
 
-  const vessel = vessels[id as keyof typeof vessels];
+  // Carregar dados salvos do admin se existirem
+  useEffect(() => {
+    const savedData = localStorage.getItem('adminVesselsData');
+    const hasCustomData = localStorage.getItem('hasCustomVesselData');
+    
+    if (savedData && hasCustomData === 'true') {
+      try {
+        const customVessels = JSON.parse(savedData);
+        console.log('Dados customizados carregados no VesselDetails:', customVessels);
+        setVesselsData(customVessels);
+      } catch (error) {
+        console.error('Erro ao carregar dados customizados no VesselDetails:', error);
+      }
+    }
+  }, []);
+
+  const vessel = id ? vesselsData[id as keyof typeof vesselsData] : null;
 
   if (!vessel) {
     return (
@@ -152,7 +385,7 @@ Aguardo confirmação! 🌊
               
               <div className="mt-4 md:mt-0 text-right">
                 <div className="text-3xl font-bold text-primary">
-                  R$ {vessel.price.toLocaleString('pt-BR')}
+                  {vessel.price}
                 </div>
                 <div className="text-sm text-muted-foreground">por dia</div>
               </div>
@@ -168,13 +401,13 @@ Aguardo confirmação! 🌊
               <div className="mb-8">
                 <div className="mb-4">
                   <img 
-                    src={vessel.gallery[selectedImage]} 
+                    src={vessel.images[selectedImage]} 
                     alt={vessel.name}
                     className="w-full h-96 object-cover rounded-2xl"
                   />
                 </div>
                 <div className="grid grid-cols-3 gap-4">
-                  {vessel.gallery.map((image, index) => (
+                  {vessel.images.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImage(index)}
@@ -205,24 +438,24 @@ Aguardo confirmação! 🌊
                       <h4 className="font-semibold mb-3">Especificações</h4>
                       <ul className="space-y-2 text-sm">
                         <li className="flex justify-between">
-                          <span>Comprimento:</span>
-                          <span>{vessel.specifications.length}</span>
+                          <span>Capacidade:</span>
+                          <span>{vessel.capacity} pessoas</span>
                         </li>
                         <li className="flex justify-between">
-                          <span>Cabines:</span>
-                          <span>{vessel.specifications.cabins}</span>
+                          <span>Duração:</span>
+                          <span>{vessel.duration}</span>
                         </li>
                         <li className="flex justify-between">
-                          <span>Banheiros:</span>
-                          <span>{vessel.specifications.bathrooms}</span>
+                          <span>Localização:</span>
+                          <span>{vessel.location}</span>
                         </li>
                         <li className="flex justify-between">
-                          <span>Combustível:</span>
-                          <span>{vessel.specifications.fuel}</span>
+                          <span>Avaliação:</span>
+                          <span>⭐ {vessel.rating}</span>
                         </li>
                         <li className="flex justify-between">
-                          <span>Ano:</span>
-                          <span>{vessel.specifications.year}</span>
+                          <span>Categoria:</span>
+                          <span className="capitalize">{vessel.category}</span>
                         </li>
                       </ul>
                     </div>
@@ -230,12 +463,26 @@ Aguardo confirmação! 🌊
                     <div>
                       <h4 className="font-semibold mb-3">Incluso</h4>
                       <ul className="space-y-2 text-sm">
-                        {vessel.included.map((item, index) => (
-                          <li key={index} className="flex items-center">
-                            <span className="w-1 h-1 bg-primary rounded-full mr-2"></span>
-                            {item}
-                          </li>
-                        ))}
+                        <li className="flex items-center">
+                          <span className="w-1 h-1 bg-primary rounded-full mr-2"></span>
+                          Comandante experiente
+                        </li>
+                        <li className="flex items-center">
+                          <span className="w-1 h-1 bg-primary rounded-full mr-2"></span>
+                          Equipamentos de segurança
+                        </li>
+                        <li className="flex items-center">
+                          <span className="w-1 h-1 bg-primary rounded-full mr-2"></span>
+                          Som ambiente
+                        </li>
+                        <li className="flex items-center">
+                          <span className="w-1 h-1 bg-primary rounded-full mr-2"></span>
+                          Seguro total
+                        </li>
+                        <li className="flex items-center">
+                          <span className="w-1 h-1 bg-primary rounded-full mr-2"></span>
+                          Combustível incluso
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -249,12 +496,22 @@ Aguardo confirmação! 🌊
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {vessel.features.map((feature, index) => (
-                      <div key={index} className="flex flex-col items-center text-center p-4 border rounded-lg">
-                        <feature.icon className="h-8 w-8 text-primary mb-2" />
-                        <span className="text-sm">{feature.label}</span>
-                      </div>
-                    ))}
+                    <div className="flex flex-col items-center text-center p-4 border rounded-lg">
+                      <Users className="h-8 w-8 text-primary mb-2" />
+                      <span className="text-sm">{vessel.capacity} pessoas</span>
+                    </div>
+                    <div className="flex flex-col items-center text-center p-4 border rounded-lg">
+                      <Clock className="h-8 w-8 text-primary mb-2" />
+                      <span className="text-sm">{vessel.duration}</span>
+                    </div>
+                    <div className="flex flex-col items-center text-center p-4 border rounded-lg">
+                      <MapPin className="h-8 w-8 text-primary mb-2" />
+                      <span className="text-sm">{vessel.location}</span>
+                    </div>
+                    <div className="flex flex-col items-center text-center p-4 border rounded-lg">
+                      <Star className="h-8 w-8 text-primary mb-2" />
+                      <span className="text-sm">⭐ {vessel.rating}</span>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -349,11 +606,12 @@ Aguardo confirmação! 🌊
                         <SelectValue placeholder="Escolha um roteiro" />
                       </SelectTrigger>
                       <SelectContent>
-                        {vessel.routes.map((route) => (
-                          <SelectItem key={route} value={route}>
-                            {route}
-                          </SelectItem>
-                        ))}
+                        <SelectItem value="Baía de Guanabara">Baía de Guanabara</SelectItem>
+                        <SelectItem value="Ilhas Tijucas">Ilhas Tijucas</SelectItem>
+                        <SelectItem value="Angra dos Reis">Angra dos Reis</SelectItem>
+                        <SelectItem value="Búzios">Búzios</SelectItem>
+                        <SelectItem value="Copacabana/Cagarras">Copacabana/Cagarras</SelectItem>
+                        <SelectItem value="Personalizado">Personalizado</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
