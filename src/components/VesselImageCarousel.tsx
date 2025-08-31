@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { ChevronLeft, ChevronRight, ZoomIn, AlertCircle } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 interface VesselImageCarouselProps {
@@ -10,14 +10,27 @@ interface VesselImageCarouselProps {
 
 const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState<Record<number, boolean>>({});
+  const [imageError, setImageError] = useState<Record<number, boolean>>({});
 
   if (!images || images.length === 0) {
     return (
-      <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-        <p className="text-gray-500">Nenhuma imagem disponível</p>
+      <div className="w-full h-96 bg-muted rounded-lg flex items-center justify-center">
+        <div className="text-center">
+          <AlertCircle className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
+          <p className="text-muted-foreground">Nenhuma imagem disponível</p>
+        </div>
       </div>
     );
   }
+
+  const handleImageLoad = (index: number) => {
+    setImageLoaded(prev => ({ ...prev, [index]: true }));
+  };
+
+  const handleImageError = (index: number) => {
+    setImageError(prev => ({ ...prev, [index]: true }));
+  };
 
   const nextImage = () => {
     setCurrentImage((prev) => (prev + 1) % images.length);
@@ -30,15 +43,32 @@ const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) =
   return (
     <div className="space-y-4">
       {/* Main Image */}
-      <div className="relative w-full h-96 bg-gray-100 rounded-lg overflow-hidden group">
+      <div className="relative w-full h-96 bg-muted rounded-lg overflow-hidden group">
+        {/* Loading State */}
+        {!imageLoaded[currentImage] && !imageError[currentImage] && (
+          <div className="absolute inset-0 flex items-center justify-center bg-muted">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          </div>
+        )}
+        
+        {/* Error State */}
+        {imageError[currentImage] && (
+          <div className="absolute inset-0 flex items-center justify-center bg-muted">
+            <div className="text-center">
+              <AlertCircle className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
+              <p className="text-sm text-muted-foreground">Erro ao carregar imagem</p>
+            </div>
+          </div>
+        )}
+        
         <img
           src={images[currentImage]}
           alt={`${vesselName} - Imagem ${currentImage + 1}`}
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = "/placeholder.svg";
-          }}
+          className={`w-full h-full object-cover transition-opacity duration-300 ${
+            imageLoaded[currentImage] ? 'opacity-100' : 'opacity-0'
+          }`}
+          onLoad={() => handleImageLoad(currentImage)}
+          onError={() => handleImageError(currentImage)}
         />
         
         {/* Navigation Buttons */}
@@ -106,10 +136,8 @@ const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) =
                 src={image}
                 alt={`${vesselName} - Thumbnail ${index + 1}`}
                 className="w-full h-full object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "/placeholder.svg";
-                }}
+                onLoad={() => handleImageLoad(index)}
+                onError={() => handleImageError(index)}
               />
             </button>
           ))}
