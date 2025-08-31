@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -393,19 +393,40 @@ const vessels = [
   }
 ];
 
-const categories = [
-  { id: "all", name: "Todas", count: vessels.length },
-  { id: "lancha", name: "Lanchas", count: vessels.filter(v => v.category === "lancha").length },
-  { id: "iate", name: "Iates", count: vessels.filter(v => v.category === "iate").length },
-  { id: "catamara", name: "Catamarãs", count: vessels.filter(v => v.category === "catamara").length }
-];
-
 const VesselCatalog = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortBy, setSortBy] = useState("featured");
+  const [vesselsData, setVesselsData] = useState(vessels);
 
-  const filteredVessels = vessels
+  // Carregar dados salvos do admin se existirem
+  useEffect(() => {
+    const savedData = localStorage.getItem('adminVesselsData');
+    const hasCustomData = localStorage.getItem('hasCustomVesselData');
+    
+    if (savedData && hasCustomData === 'true') {
+      try {
+        const customVessels = JSON.parse(savedData);
+        // Converter objeto para array mantendo a estrutura original
+        const vesselArray = Object.values(customVessels).map((vessel: any) => ({
+          ...vessel,
+          features: vessels.find(v => v.id === vessel.id)?.features || []
+        }));
+        setVesselsData(vesselArray);
+      } catch (error) {
+        console.error('Erro ao carregar dados customizados:', error);
+      }
+    }
+  }, []);
+
+  const categories = [
+    { id: "all", name: "Todas", count: vesselsData.length },
+    { id: "lancha", name: "Lanchas", count: vesselsData.filter(v => v.category === "lancha").length },
+    { id: "iate", name: "Iates", count: vesselsData.filter(v => v.category === "iate").length },
+    { id: "catamara", name: "Catamarãs", count: vesselsData.filter(v => v.category === "catamara").length }
+  ];
+
+  const filteredVessels = vesselsData
     .filter(vessel => {
       const matchesSearch = vessel.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           vessel.type.toLowerCase().includes(searchTerm.toLowerCase());
@@ -432,6 +453,11 @@ const VesselCatalog = () => {
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
+          {localStorage.getItem('hasCustomVesselData') === 'true' && (
+            <Badge variant="outline" className="mb-4 px-4 py-2 bg-green-50 text-green-700 border-green-200">
+              ✨ Dados customizados carregados do painel admin
+            </Badge>
+          )}
           <Badge variant="secondary" className="mb-4 px-4 py-2">
             Nossa Frota Premium
           </Badge>

@@ -16,8 +16,12 @@ import {
   Edit3, 
   Eye,
   Plus,
-  Ship
+  Ship,
+  Home,
+  Check,
+  X
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Import vessel images
 import segueImage from "@/assets/segue-yacht.jpg";
@@ -39,8 +43,24 @@ import sevenImage from "@/assets/seven-yacht.jpg";
 import sennaImage from "@/assets/senna-yacht.jpg";
 import luisaImage from "@/assets/luisa-yacht.jpg";
 
+// Interface para os dados das embarcações
+interface VesselData {
+  id: string;
+  name: string;
+  type: string;
+  images: string[];
+  capacity: number;
+  price: string;
+  originalPrice?: string;
+  rating: number;
+  duration: string;
+  location: string;
+  description: string;
+  category: string;
+}
+
 // Dados completos das embarcações com múltiplas imagens
-const initialVesselsData = {
+const initialVesselsData: Record<string, VesselData> = {
   segue: {
     id: "segue",
     name: "SEGUE",
@@ -284,9 +304,15 @@ const initialVesselsData = {
 };
 
 const AdminVessels = () => {
-  const [vessels, setVessels] = useState(initialVesselsData);
+  const navigate = useNavigate();
+  const [vessels, setVessels] = useState<Record<string, VesselData>>(() => {
+    // Carregar dados salvos do localStorage ou usar dados iniciais
+    const savedData = localStorage.getItem('adminVesselsData');
+    return savedData ? JSON.parse(savedData) : initialVesselsData;
+  });
   const [selectedVessel, setSelectedVessel] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleAddImage = (vesselId: string) => {
@@ -314,6 +340,7 @@ const AdminVessels = () => {
                 images: [...(prev[selectedVessel]?.images || []), ...newImages]
               }
             }));
+            setHasUnsavedChanges(true);
             toast.success(`${files.length} imagem${files.length > 1 ? 'ns' : ''} adicionada${files.length > 1 ? 's' : ''} com sucesso!`);
           }
         };
@@ -330,7 +357,6 @@ const AdminVessels = () => {
   const handleEditImage = (vesselId: string, imageIndex: number) => {
     setSelectedVessel(vesselId);
     fileInputRef.current?.click();
-    // Aqui você pode implementar lógica adicional para substituir a imagem específica
     toast.info("Selecione uma nova imagem para substituir");
   };
 
@@ -342,6 +368,7 @@ const AdminVessels = () => {
         images: prev[vesselId]?.images?.filter((_, index) => index !== imageIndex) || []
       }
     }));
+    setHasUnsavedChanges(true);
     toast.success("Imagem removida com sucesso!");
   };
 
@@ -353,14 +380,56 @@ const AdminVessels = () => {
         ...data
       }
     }));
+    setHasUnsavedChanges(true);
     setIsEditing(false);
     toast.success("Embarcação atualizada com sucesso!");
+  };
+
+  const handleSaveAllChanges = () => {
+    try {
+      // Salvar no localStorage
+      localStorage.setItem('adminVesselsData', JSON.stringify(vessels));
+      
+      // Também salvar uma flag indicando que há dados customizados
+      localStorage.setItem('hasCustomVesselData', 'true');
+      
+      setHasUnsavedChanges(false);
+      toast.success("Todas as alterações foram salvas no site!");
+    } catch (error) {
+      toast.error("Erro ao salvar alterações. Tente novamente.");
+    }
+  };
+
+  const handleExitAdmin = () => {
+    if (hasUnsavedChanges) {
+      const confirmExit = window.confirm(
+        "Você tem alterações não salvas. Deseja realmente sair sem salvar?"
+      );
+      if (!confirmExit) return;
+    }
+    
+    navigate('/');
+    toast.info("Voltando ao site principal...");
+  };
+
+  const handleResetData = () => {
+    const confirmReset = window.confirm(
+      "Isso irá resetar todas as modificações e voltar aos dados originais. Confirma?"
+    );
+    
+    if (confirmReset) {
+      localStorage.removeItem('adminVesselsData');
+      localStorage.removeItem('hasCustomVesselData');
+      setVessels(initialVesselsData);
+      setHasUnsavedChanges(false);
+      toast.success("Dados resetados para o padrão original!");
+    }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/30">
       <div className="container mx-auto px-6 py-8">
-        {/* Header */}
+        {/* Header com botões de ação */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-primary rounded-lg">
@@ -372,10 +441,41 @@ const AdminVessels = () => {
             </div>
           </div>
           
-          <Badge variant="outline" className="px-4 py-2">
-            <Settings className="w-4 h-4 mr-2" />
-            Admin Panel
-          </Badge>
+          <div className="flex items-center gap-3">
+            {hasUnsavedChanges && (
+              <Badge variant="destructive" className="px-4 py-2">
+                <X className="w-4 h-4 mr-2" />
+                Alterações não salvas
+              </Badge>
+            )}
+            
+            <Button
+              variant="outline"
+              onClick={handleExitAdmin}
+              className="border-muted-foreground/30"
+            >
+              <Home className="w-4 h-4 mr-2" />
+              Voltar ao Site
+            </Button>
+            
+            <Button
+              variant="secondary"
+              onClick={handleResetData}
+              className="bg-orange-500/10 text-orange-600 hover:bg-orange-500/20"
+            >
+              <Settings className="w-4 h-4 mr-2" />
+              Resetar Dados
+            </Button>
+            
+            <Button
+              onClick={handleSaveAllChanges}
+              disabled={!hasUnsavedChanges}
+              className="bg-green-600 hover:bg-green-700 text-white"
+            >
+              <Check className="w-4 h-4 mr-2" />
+              Salvar no Site
+            </Button>
+          </div>
         </div>
 
         {/* Grid de embarcações */}
@@ -471,12 +571,16 @@ const AdminVessels = () => {
 };
 
 // Componente para editar informações da embarcação
-const VesselEditForm = ({ vessel, onSave }: { vessel: any; onSave: (data: any) => void }) => {
-  const [formData, setFormData] = useState(vessel);
+const VesselEditForm = ({ vessel, onSave }: { vessel: VesselData; onSave: (data: VesselData) => void }) => {
+  const [formData, setFormData] = useState<VesselData>(vessel);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSave(formData);
+  };
+
+  const handleFieldChange = (field: string, value: any) => {
+    setFormData({ ...formData, [field]: value });
   };
 
   return (
