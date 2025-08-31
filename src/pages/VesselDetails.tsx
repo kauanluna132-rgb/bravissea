@@ -1195,21 +1195,21 @@ Aguardo confirmação! 🌊
                           Especificações Técnicas
                         </h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
-                          <div className="bg-muted/50 p-4 rounded-lg">
-                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Comprimento</span>
-                            <p className="text-lg font-semibold">58 Pés</p>
+                          <div className="bg-muted/50 p-2 sm:p-4 rounded-lg">
+                            <span className="font-medium text-xs sm:text-sm text-muted-foreground uppercase tracking-wide">Comprimento</span>
+                            <p className="text-sm sm:text-lg font-semibold">58 Pés</p>
                           </div>
-                          <div className="bg-muted/50 p-4 rounded-lg">
-                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Motores</span>
-                            <p className="text-lg font-semibold">2 x Volvo 950 IPS</p>
+                          <div className="bg-muted/50 p-2 sm:p-4 rounded-lg">
+                            <span className="font-medium text-xs sm:text-sm text-muted-foreground uppercase tracking-wide">Motores</span>
+                            <p className="text-sm sm:text-lg font-semibold">2 x Volvo 950 IPS</p>
                           </div>
-                          <div className="bg-muted/50 p-4 rounded-lg">
-                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
-                            <p className="text-lg font-semibold">{vessel.capacity} pessoas</p>
+                          <div className="bg-muted/50 p-2 sm:p-4 rounded-lg">
+                            <span className="font-medium text-xs sm:text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                            <p className="text-sm sm:text-lg font-semibold">{vessel.capacity} pessoas</p>
                           </div>
-                          <div className="bg-muted/50 p-4 rounded-lg">
-                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
-                            <p className="text-lg font-semibold">{vessel.duration}</p>
+                          <div className="bg-muted/50 p-2 sm:p-4 rounded-lg">
+                            <span className="font-medium text-xs sm:text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                            <p className="text-sm sm:text-lg font-semibold">{vessel.duration}</p>
                           </div>
                         </div>
                       </div>
@@ -1220,20 +1220,20 @@ Aguardo confirmação! 🌊
                           <Users className="h-5 w-5 mr-2" />
                           Acomodações
                         </h4>
-                        <div className="grid md:grid-cols-3 gap-4">
-                          <div className="bg-muted/50 p-4 rounded-lg text-center">
-                            <div className="text-2xl font-bold text-primary mb-1">3</div>
-                            <p className="text-sm font-medium">Quartos</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
+                          <div className="bg-muted/50 p-2 sm:p-4 rounded-lg text-center">
+                            <div className="text-lg sm:text-2xl font-bold text-primary mb-1">3</div>
+                            <p className="text-xs sm:text-sm font-medium">Quartos</p>
                             <p className="text-xs text-muted-foreground">1 suíte, 1 cabine solteiro/casal, 1 cabine de proa</p>
                           </div>
-                          <div className="bg-muted/50 p-4 rounded-lg text-center">
-                            <div className="text-2xl font-bold text-primary mb-1">2</div>
-                            <p className="text-sm font-medium">Banheiros</p>
+                          <div className="bg-muted/50 p-2 sm:p-4 rounded-lg text-center">
+                            <div className="text-lg sm:text-2xl font-bold text-primary mb-1">2</div>
+                            <p className="text-xs sm:text-sm font-medium">Banheiros</p>
                             <p className="text-xs text-muted-foreground">1 banheiro social</p>
                           </div>
-                          <div className="bg-muted/50 p-4 rounded-lg text-center">
-                            <div className="text-2xl font-bold text-primary mb-1">1</div>
-                            <p className="text-sm font-medium">Cozinha</p>
+                          <div className="bg-muted/50 p-2 sm:p-4 rounded-lg text-center">
+                            <div className="text-lg sm:text-2xl font-bold text-primary mb-1">1</div>
+                            <p className="text-xs sm:text-sm font-medium">Cozinha</p>
                             <p className="text-xs text-muted-foreground">Completa com geladeiras</p>
                           </div>
                         </div>
@@ -1245,33 +1245,33 @@ Aguardo confirmação! 🌊
                           <Coffee className="h-5 w-5 mr-2" />
                           Comodidades e Entretenimento
                         </h4>
-                        <div className="grid md:grid-cols-2 gap-4">
-                          <div className="flex items-center p-3 bg-muted/30 rounded-lg">
-                            <Music className="h-6 w-6 text-primary mr-3" />
-                            <div>
-                              <p className="font-medium">Som Bluetooth</p>
-                              <p className="text-sm text-muted-foreground">Sistema de áudio conectado</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
+                          <div className="flex items-center p-2 sm:p-3 bg-muted/30 rounded-lg">
+                            <Music className="h-4 w-4 sm:h-6 sm:w-6 text-primary mr-2 sm:mr-3 flex-shrink-0" />
+                            <div className="min-w-0 flex-1">
+                              <p className="text-xs sm:text-sm font-medium truncate">Som Bluetooth</p>
+                              <p className="text-xs text-muted-foreground truncate">Sistema de áudio conectado</p>
                             </div>
                           </div>
-                          <div className="flex items-center p-3 bg-muted/30 rounded-lg">
-                            <Sun className="h-6 w-6 text-primary mr-3" />
-                            <div>
-                              <p className="font-medium">Churrasqueira a Carvão</p>
-                              <p className="text-sm text-muted-foreground">Para refeições a bordo</p>
+                          <div className="flex items-center p-2 sm:p-3 bg-muted/30 rounded-lg">
+                            <Sun className="h-4 w-4 sm:h-6 sm:w-6 text-primary mr-2 sm:mr-3 flex-shrink-0" />
+                            <div className="min-w-0 flex-1">
+                              <p className="text-xs sm:text-sm font-medium truncate">Churrasqueira a Carvão</p>
+                              <p className="text-xs text-muted-foreground truncate">Para refeições a bordo</p>
                             </div>
                           </div>
-                          <div className="flex items-center p-3 bg-muted/30 rounded-lg">
-                            <Coffee className="h-6 w-6 text-primary mr-3" />
-                            <div>
-                              <p className="font-medium">Sala Espaçosa</p>
-                              <p className="text-sm text-muted-foreground">Ambiente confortável</p>
+                          <div className="flex items-center p-2 sm:p-3 bg-muted/30 rounded-lg">
+                            <Coffee className="h-4 w-4 sm:h-6 sm:w-6 text-primary mr-2 sm:mr-3 flex-shrink-0" />
+                            <div className="min-w-0 flex-1">
+                              <p className="text-xs sm:text-sm font-medium truncate">Sala Espaçosa</p>
+                              <p className="text-xs text-muted-foreground truncate">Ambiente confortável</p>
                             </div>
                           </div>
-                          <div className="flex items-center p-3 bg-muted/30 rounded-lg">
-                            <MapPin className="h-6 w-6 text-primary mr-3" />
-                            <div>
-                              <p className="font-medium">Localização Premium</p>
-                              <p className="text-sm text-muted-foreground">{vessel.location}</p>
+                          <div className="flex items-center p-2 sm:p-3 bg-muted/30 rounded-lg">
+                            <MapPin className="h-4 w-4 sm:h-6 sm:w-6 text-primary mr-2 sm:mr-3 flex-shrink-0" />
+                            <div className="min-w-0 flex-1">
+                              <p className="text-xs sm:text-sm font-medium truncate">Localização Premium</p>
+                              <p className="text-xs text-muted-foreground truncate">{vessel.location}</p>
                             </div>
                           </div>
                         </div>
