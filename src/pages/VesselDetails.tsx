@@ -572,14 +572,14 @@ const vesselsData = {
     name: "YACHT REBECA",
     type: "Iate Luxury",
     images: [
-      "/lovable-uploads/rebeca-1.png",
-      "/lovable-uploads/rebeca-2.png",
-      "/lovable-uploads/rebeca-3.png",
-      "/lovable-uploads/rebeca-4.png",
-      "/lovable-uploads/rebeca-5.png",
-      "/lovable-uploads/rebeca-6.png",
-      "/lovable-uploads/rebeca-7.png",
-      "/lovable-uploads/rebeca-8.png"
+      "/lovable-uploads/37d8fc0a-3dca-4800-8ea3-a120ba77fd6c.png",
+      "/lovable-uploads/e2c9c31d-7a16-4dd1-b3c3-27083fed6d7a.png",
+      "/lovable-uploads/642a623e-b8b9-43fa-b668-9788940208a1.png",
+      "/lovable-uploads/260e64f1-d533-416d-a9a3-553ef2bc58f1.png",
+      "/lovable-uploads/d73b8c23-47c6-4e6f-a37c-bc753b9b9a2a.png",
+      "/lovable-uploads/a0d6795e-3c20-45cb-9f90-29bd99912ab9.png",
+      "/lovable-uploads/cf856525-328b-4f76-8889-9925830ac08b.png",
+      "/lovable-uploads/87821562-8761-4226-8364-6d7a846d5dda.png"
     ],
     capacity: 16,
     price: "R$ 20.000",
