@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Users, Clock, Star, MapPin, Waves } from "lucide-react";
+import { ArrowLeft, Users, Clock, Star, MapPin, Waves, Coffee, Music, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -437,92 +437,181 @@ Aguardo confirmação! 🌊
                 />
               </div>
 
-              {/* Descrição */}
+              {/* Descrição Organizada */}
               <Card className="mb-8">
                 <CardHeader>
-                  <CardTitle>Sobre esta embarcação</CardTitle>
+                  <CardTitle>Sobre a {vessel.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-6">{vessel.description}</p>
+                  <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
+                    {vessel.description}
+                  </p>
                   
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-semibold mb-3">Especificações</h4>
-                      <ul className="space-y-2 text-sm">
-                        <li className="flex justify-between">
-                          <span>Capacidade:</span>
-                          <span>{vessel.capacity} pessoas</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span>Duração:</span>
-                          <span>{vessel.duration}</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span>Localização:</span>
-                          <span>{vessel.location}</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span>Avaliação:</span>
-                          <span>⭐ {vessel.rating}</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span>Categoria:</span>
-                          <span className="capitalize">{vessel.category}</span>
-                        </li>
-                      </ul>
+                  {vessel.id === "segue" && (
+                    <div className="space-y-8">
+                      {/* Especificações Técnicas */}
+                      <div>
+                        <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                          <Waves className="h-5 w-5 mr-2" />
+                          Especificações Técnicas
+                        </h4>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="bg-muted/50 p-4 rounded-lg">
+                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Comprimento</span>
+                            <p className="text-lg font-semibold">58 Pés</p>
+                          </div>
+                          <div className="bg-muted/50 p-4 rounded-lg">
+                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Motores</span>
+                            <p className="text-lg font-semibold">2 x Volvo 950 IPS</p>
+                          </div>
+                          <div className="bg-muted/50 p-4 rounded-lg">
+                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                            <p className="text-lg font-semibold">{vessel.capacity} pessoas</p>
+                          </div>
+                          <div className="bg-muted/50 p-4 rounded-lg">
+                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                            <p className="text-lg font-semibold">{vessel.duration}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Acomodações */}
+                      <div>
+                        <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                          <Users className="h-5 w-5 mr-2" />
+                          Acomodações
+                        </h4>
+                        <div className="grid md:grid-cols-3 gap-4">
+                          <div className="bg-muted/50 p-4 rounded-lg text-center">
+                            <div className="text-2xl font-bold text-primary mb-1">3</div>
+                            <p className="text-sm font-medium">Quartos</p>
+                            <p className="text-xs text-muted-foreground">1 suíte, 1 cabine solteiro/casal, 1 cabine de proa</p>
+                          </div>
+                          <div className="bg-muted/50 p-4 rounded-lg text-center">
+                            <div className="text-2xl font-bold text-primary mb-1">2</div>
+                            <p className="text-sm font-medium">Banheiros</p>
+                            <p className="text-xs text-muted-foreground">1 banheiro social</p>
+                          </div>
+                          <div className="bg-muted/50 p-4 rounded-lg text-center">
+                            <div className="text-2xl font-bold text-primary mb-1">1</div>
+                            <p className="text-sm font-medium">Cozinha</p>
+                            <p className="text-xs text-muted-foreground">Completa com geladeiras</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Comodidades */}
+                      <div>
+                        <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                          <Coffee className="h-5 w-5 mr-2" />
+                          Comodidades e Entretenimento
+                        </h4>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                            <Music className="h-6 w-6 text-primary mr-3" />
+                            <div>
+                              <p className="font-medium">Som Bluetooth</p>
+                              <p className="text-sm text-muted-foreground">Sistema de áudio conectado</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                            <Sun className="h-6 w-6 text-primary mr-3" />
+                            <div>
+                              <p className="font-medium">Churrasqueira a Carvão</p>
+                              <p className="text-sm text-muted-foreground">Para refeições a bordo</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                            <Coffee className="h-6 w-6 text-primary mr-3" />
+                            <div>
+                              <p className="font-medium">Sala Espaçosa</p>
+                              <p className="text-sm text-muted-foreground">Ambiente confortável</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                            <MapPin className="h-6 w-6 text-primary mr-3" />
+                            <div>
+                              <p className="font-medium">Localização Premium</p>
+                              <p className="text-sm text-muted-foreground">{vessel.location}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Destinos */}
+                      <div>
+                        <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                          <MapPin className="h-5 w-5 mr-2" />
+                          Destinos Disponíveis
+                        </h4>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="border border-primary/20 p-4 rounded-lg">
+                            <h5 className="font-semibold text-primary mb-2">Enseada da Urca</h5>
+                            <p className="text-sm text-muted-foreground">Águas calmas e vista privilegiada do Pão de Açúcar</p>
+                          </div>
+                          <div className="border border-primary/20 p-4 rounded-lg">
+                            <h5 className="font-semibold text-primary mb-2">Praia de Adão e Eva</h5>
+                            <p className="text-sm text-muted-foreground">Praia paradisíaca para relaxar e curtir o dia</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    
-                    <div>
-                      <h4 className="font-semibold mb-3">Incluso</h4>
-                      <ul className="space-y-2 text-sm">
-                        <li className="flex items-center">
-                          <span className="w-1 h-1 bg-primary rounded-full mr-2"></span>
-                          Comandante experiente
-                        </li>
-                        <li className="flex items-center">
-                          <span className="w-1 h-1 bg-primary rounded-full mr-2"></span>
-                          Equipamentos de segurança
-                        </li>
-                        <li className="flex items-center">
-                          <span className="w-1 h-1 bg-primary rounded-full mr-2"></span>
-                          Som ambiente
-                        </li>
-                        <li className="flex items-center">
-                          <span className="w-1 h-1 bg-primary rounded-full mr-2"></span>
-                          Seguro total
-                        </li>
-                        <li className="flex items-center">
-                          <span className="w-1 h-1 bg-primary rounded-full mr-2"></span>
-                          Combustível incluso
-                        </li>
-                      </ul>
+                  )}
+                  
+                  {vessel.id !== "segue" && (
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="font-semibold mb-3">Especificações</h4>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex justify-between">
+                            <span>Capacidade:</span>
+                            <span>{vessel.capacity} pessoas</span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span>Duração:</span>
+                            <span>{vessel.duration}</span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span>Localização:</span>
+                            <span>{vessel.location}</span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span>Avaliação:</span>
+                            <span>⭐ {vessel.rating}</span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span>Categoria:</span>
+                            <span className="capitalize">{vessel.category}</span>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </CardContent>
               </Card>
 
-              {/* Recursos */}
+              {/* Recursos Gerais */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Recursos e Comodidades</CardTitle>
+                  <CardTitle>Informações Gerais</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="flex flex-col items-center text-center p-4 border rounded-lg">
                       <Users className="h-8 w-8 text-primary mb-2" />
-                      <span className="text-sm">{vessel.capacity} pessoas</span>
+                      <span className="text-sm font-medium">{vessel.capacity} pessoas</span>
                     </div>
                     <div className="flex flex-col items-center text-center p-4 border rounded-lg">
                       <Clock className="h-8 w-8 text-primary mb-2" />
-                      <span className="text-sm">{vessel.duration}</span>
+                      <span className="text-sm font-medium">{vessel.duration}</span>
                     </div>
                     <div className="flex flex-col items-center text-center p-4 border rounded-lg">
                       <MapPin className="h-8 w-8 text-primary mb-2" />
-                      <span className="text-sm">{vessel.location}</span>
+                      <span className="text-sm font-medium">{vessel.location}</span>
                     </div>
                     <div className="flex flex-col items-center text-center p-4 border rounded-lg">
                       <Star className="h-8 w-8 text-primary mb-2" />
-                      <span className="text-sm">⭐ {vessel.rating}</span>
+                      <span className="text-sm font-medium">⭐ {vessel.rating}</span>
                     </div>
                   </div>
                 </CardContent>

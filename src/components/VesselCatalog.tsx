@@ -41,35 +41,34 @@ const vessels = [
   {
     id: "segue",
     name: "SEGUE",
-    type: "Iate Premium",
-    image: "/lovable-uploads/4eb88489-9d37-44c7-bb1a-547255829476.png",
+    type: "Lancha",
+    image: "/lovable-uploads/e52f0edd-5490-4210-9f1a-35b63fc3cf97.png",
     images: [
-      "/lovable-uploads/4eb88489-9d37-44c7-bb1a-547255829476.png",
-      "/lovable-uploads/5fb2c34b-d3b5-457d-bc6a-d39fcf8d281f.png",
-      "/lovable-uploads/e209f3ee-4882-462f-83a4-b531d46d4efc.png",
-      "/lovable-uploads/cac40335-6a5a-41e2-adfb-43fffc758a17.png",
-      "/lovable-uploads/04916aad-37e7-4b88-8cd2-b80513033416.png",
-      "/lovable-uploads/924e7658-9396-476b-8c54-f5eecf84cb9f.png",
-      "/lovable-uploads/c26f0a9f-f83b-49ec-936f-772e609da02e.png",
-      "/lovable-uploads/5d794707-588b-4644-adf5-8125a31abe64.png",
-      "/lovable-uploads/7322c1ba-e0c3-4f27-be58-1af0b49e4beb.png",
-      "/lovable-uploads/44323201-dca2-4c5f-ad47-833a22a0162c.png"
+      "/lovable-uploads/e52f0edd-5490-4210-9f1a-35b63fc3cf97.png",
+      "/lovable-uploads/dfe6175f-7118-4636-a1b0-a4ddc3109dc1.png",
+      "/lovable-uploads/fe41a6fd-0783-417f-b167-506aea17952e.png",
+      "/lovable-uploads/1c084d08-90e7-465f-a60d-01bc9b8e2c50.png",
+      "/lovable-uploads/aff73c70-ac4e-4f33-a275-7199028d5abe.png",
+      "/lovable-uploads/915d6ac3-d213-42f2-a532-21999a73e18b.png",
+      "/lovable-uploads/1a51455d-0fb7-450a-9aa2-8f47c4fbe235.png",
+      "/lovable-uploads/bdf8c013-2441-43f9-beaf-26ec4c1c805d.png",
+      "/lovable-uploads/05b3916b-9a80-45a7-9cc2-acf139866904.png",
+      "/lovable-uploads/b945f968-c86e-4010-9c3c-6454c94a319d.png"
     ],
     capacity: 18,
     price: "R$ 18.000",
-    originalPrice: "R$ 20.000",
     rating: 4.9,
     duration: "6h",
     location: "Marina da Glória",
     features: [
-      { icon: Anchor, label: "Luxo Premium" },
-      { icon: Music, label: "Som Premium" },
-      { icon: Coffee, label: "Bar Completo" },
-      { icon: Shield, label: "Capitão Incluso" }
+      { icon: Anchor, label: "58 Pés" },
+      { icon: Music, label: "Som Bluetooth" },
+      { icon: Coffee, label: "Churrasqueira" },
+      { icon: Shield, label: "3 Quartos" }
     ],
-    description: "Iate premium com capacidade para 18 passageiros",
+    description: "Lancha Segue 58 Pés com capacidade para 18 passageiros",
     highlight: true,
-    category: "iate"
+    category: "lancha"
   },
   {
     id: "tecnomarine",
