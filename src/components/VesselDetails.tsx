@@ -132,7 +132,7 @@ const vesselData = {
     id: "myway",
     name: "IATE MY WAY",
     type: "Lancha 60 pés",
-    image: "/lovable-uploads/myway-1.png",
+    image: mywayImage,
     capacity: 20,
     price: "R$ 12.000",
     originalPrice: undefined,
@@ -175,20 +175,8 @@ const vesselData = {
       { name: "Copacabana", price: "R$ 15.000,00" },
       { name: "Ilhas Cagarras", price: "R$ 17.000,00" }
     ],
-    gallery: [
-      "/lovable-uploads/myway-1.png",
-      "/lovable-uploads/myway-2.png",
-      "/lovable-uploads/myway-3.png",
-      "/lovable-uploads/myway-4.png",
-      "/lovable-uploads/myway-5.png"
-    ],
-    images: [
-      "/lovable-uploads/myway-1.png",
-      "/lovable-uploads/myway-2.png",
-      "/lovable-uploads/myway-3.png",
-      "/lovable-uploads/myway-4.png",
-      "/lovable-uploads/myway-5.png"
-    ]
+    gallery: [mywayImage],
+    images: [mywayImage]
   },
   flyhi: {
     id: "flyhi",
