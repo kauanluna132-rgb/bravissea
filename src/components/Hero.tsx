@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Anchor, Star, Users } from "lucide-react";
-const heroYacht = "/lovable-uploads/7fc9e49c-d167-4dd4-9ab1-5c39886bc288.png";
+import heroYacht from "@/assets/hero-yacht.jpg";
 const Hero = () => {
   const whatsappLink = "https://wa.me/5521974004415?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
@@ -8,7 +8,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
       backgroundImage: `url(${heroYacht})`
     }}>
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/70 via-primary/50 to-primary/60"></div>
       </div>
       
       
