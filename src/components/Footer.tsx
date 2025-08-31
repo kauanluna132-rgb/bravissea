@@ -1,22 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Instagram, 
-  MessageCircle,
-  Anchor,
-  Star,
-  Shield,
-  Clock
-} from "lucide-react";
-
+import { MapPin, Phone, Mail, Instagram, MessageCircle, Anchor, Star, Shield, Clock } from "lucide-react";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const whatsappLink = "https://wa.me/5521974004415?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
-
-  return (
-    <footer className="bg-slate-800 text-white">
+  return <footer className="bg-slate-800 text-white">
       {/* Main Footer */}
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
@@ -68,10 +55,7 @@ const Footer = () => {
             </div>
 
             {/* WhatsApp CTA */}
-            <Button 
-              asChild
-              className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white mt-6"
-            >
+            <Button asChild className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white mt-6">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Falar no WhatsApp
@@ -121,12 +105,7 @@ const Footer = () => {
           {/* Social Media */}
           <div className="flex flex-col items-start md:items-end">
             <div className="flex flex-col gap-3">
-              <a 
-                href="https://instagram.com/bravisseatour" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors"
-              >
+              <a href="https://instagram.com/bravisseatour" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
             </div>
@@ -142,7 +121,7 @@ const Footer = () => {
             {/* Copyright */}
             <div className="text-center md:text-left text-white/60 text-sm">
               <p>&copy; {currentYear} Bravissea. Todos os direitos reservados.</p>
-              <p className="mt-1">CNPJ: 57.287.270/0001-42 | Registro Marinha: BR-RJ-000000</p>
+              <p className="mt-1">CNPJ: 57.287.270/0001-42 </p>
             </div>
 
             {/* Legal Links */}
@@ -157,8 +136,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
