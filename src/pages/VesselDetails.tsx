@@ -61,15 +61,56 @@ const vesselsData = {
   },
   tecnomarine: {
     id: "tecnomarine",
-    name: "Iate Tecnomarine",
-    type: "Iate Executive",
-    images: [tecnomarineImage],
+    name: "TECNOMARINE",
+    type: "Iate 52 pés",
+    images: [
+      "/lovable-uploads/92b2d24f-28f3-4cdb-be14-99cf7cd729da.png",
+      "/lovable-uploads/4697521e-1dee-4702-bbe1-67079bb5f843.png",
+      "/lovable-uploads/af99f0bb-1b98-48c8-b827-d0bc93ba7759.png",
+      "/lovable-uploads/463d7eeb-42ce-415c-b7ff-80724d026b46.png",
+      "/lovable-uploads/b0f38995-9c1b-4570-951d-57023d3d1199.png",
+      "/lovable-uploads/95ba7d4a-ca33-4738-a613-7148b3d1b867.png",
+      "/lovable-uploads/96e4b997-89be-4c5d-985b-ccd8c69440cc.png",
+      "/lovable-uploads/6ba680e5-fcc8-4a6b-b81e-78a8c7589659.png",
+      "/lovable-uploads/31a54bf8-6201-4349-b69a-9b289882ff99.png"
+    ],
     capacity: 20,
     price: "R$ 10.000",
-    rating: 4.8,
-    duration: "8h",
+    rating: 4.9,
+    duration: "5h",
     location: "Marina da Glória",
-    description: "Iate Tecnomarine com alta tecnologia para 20 passageiros",
+    description: "Iate Tecnomarine 52 pés com capacidade para 20 passageiros.",
+    
+    // Especificações Técnicas
+    specs: {
+      type: "Iate 52 pés",
+      capacity: "20 passageiros",
+      duration: "5 horas",
+      departure: "Marina da Glória - RJ"
+    },
+
+    // Inclusos no Passeio
+    amenities: [
+      "Combustível incluído",
+      "Marinheiro profissional",
+      "5 horas de passeio",
+      "Embarque na Marina da Glória"
+    ],
+
+    // Preços por Roteiro
+    destinations: [
+      { name: "Roteiro Urca", price: "R$ 10.000,00" },
+      { name: "Roteiro Praia Vermelha", price: "R$ 11.000,00" },
+      { name: "Copacabana", price: "R$ 13.800,00" },
+      { name: "Cagarras", price: "R$ 15.000,00" }
+    ],
+
+    // Taxas Adicionais
+    additionalFees: [
+      { service: "Taxa do Churrasqueiro", price: "R$ 200,00" },
+      { service: "Taxa de Embarque", price: "R$ 200,00" }
+    ],
+
     category: "iate"
   },
   myway: {
