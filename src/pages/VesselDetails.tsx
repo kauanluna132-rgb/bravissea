@@ -689,15 +689,53 @@ const vesselsData = {
   blau: {
     id: "blau",
     name: "CATAMARÃ BLAU",
-    type: "Catamarã Premium",
-    images: [blauImage],
+    type: "Catamarã",
+    images: [
+      "/lovable-uploads/da67be76-ac24-4269-aead-b242639fa0a3.png",
+      "/lovable-uploads/9811b275-cdf5-422e-adce-19e83e5c4d45.png",
+      "/lovable-uploads/d88ff8fb-9e94-47f9-8f78-e61e8272618d.png",
+      "/lovable-uploads/801c9b39-27b8-4d39-b8aa-a171e0173460.png",
+      "/lovable-uploads/12450aa9-b646-4ad7-8de4-38fb91bc6480.png",
+      "/lovable-uploads/81555da6-30a6-4286-b4e9-f39844b74db8.png",
+      "/lovable-uploads/62a4a4ee-7b72-4365-86a2-b870cd9a3b67.png",
+      "/lovable-uploads/08097703-3ae1-4432-8fe4-5092bda148ef.png",
+      "/lovable-uploads/5533ccfe-73f1-4e38-a910-b70a71adb094.png",
+      "/lovable-uploads/2c53acee-78b6-45f0-9cfc-3e2fda51d15f.png"
+    ],
     capacity: 20,
-    price: "R$ 7.000",
+    price: "R$ 8.000",
     rating: 4.8,
     duration: "5h",
     location: "Marina da Glória",
-    description: "Catamarã Blau com embarque na Marina da Glória",
-    category: "catamara"
+    description: "Catamarã BLAU com capacidade para 20 passageiros, ideal para passeios em família",
+    category: "catamara",
+    specifications: {
+      type: "Catamarã",
+      capacity: "20 passageiros",
+      duration: "5 horas",
+      departure: "Marina da Glória"
+    },
+    amenities: [
+      "Salão interno espaçoso",
+      "Área externa ampla",
+      "Banheiros completos",
+      "Cozinha equipada",
+      "Área de descanso",
+      "Solário",
+      "Sistema de som",
+      "Área para refeições"
+    ],
+    included: [
+      "Marinheiro profissional",
+      "Churrasqueiro",
+      "Combustível",
+      "Passeio de 5 horas"
+    ],
+    itineraries: [
+      { name: "Roteiro Padrão: Urca x Praia Vermelha", price: "R$ 8.000", description: "Roteiro clássico pela Urca e Praia Vermelha" },
+      { name: "Roteiro Itaipu", price: "R$ 10.000", description: "Roteiro estendido para Itaipu (acréscimo R$ 2.000)" },
+      { name: "Roteiro Cagarras", price: "R$ 10.000", description: "Roteiro estendido para Ilhas Cagarras (acréscimo R$ 2.000)" }
+    ]
   },
   nossa: {
     id: "nossa",
@@ -2863,7 +2901,168 @@ Aguardo confirmação! 🌊
                         </div>
                       )}
                       
-                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && vessel.id !== "oceano" && vessel.id !== "lady-ruth" && vessel.id !== "rebeca" && (
+                      {/* Informações específicas do CATAMARÃ BLAU */}
+                      {vessel.id === "blau" && (
+                        <div className="space-y-6">
+                          {/* Especificações Técnicas */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Anchor className="h-5 w-5 mr-2" />
+                              Especificações Técnicas
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Tipo</span>
+                                <p className="text-lg font-semibold">Catamarã</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                                <p className="text-lg font-semibold">20 passageiros</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                                <p className="text-lg font-semibold">5 horas</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Embarque</span>
+                                <p className="text-lg font-semibold">Marina da Glória</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Comodidades */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Coffee className="h-5 w-5 mr-2" />
+                              Comodidades e Ambientes
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Users className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Salão Interno Espaçoso</p>
+                                  <p className="text-sm text-muted-foreground">Ambiente fechado confortável</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Sun className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Área Externa Ampla</p>
+                                  <p className="text-sm text-muted-foreground">Deck aberto para contemplação</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Droplets className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Banheiros Completos</p>
+                                  <p className="text-sm text-muted-foreground">Sanitários equipados</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <ChefHat className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Cozinha Equipada</p>
+                                  <p className="text-sm text-muted-foreground">Para preparo de refeições</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <BedIcon className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Área de Descanso</p>
+                                  <p className="text-sm text-muted-foreground">Espaço para relaxamento</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Music className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Sistema de Som</p>
+                                  <p className="text-sm text-muted-foreground">Entretenimento a bordo</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Inclusos */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <CheckCircle className="h-5 w-5 mr-2" />
+                              Serviços Inclusos
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Anchor className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Marinheiro Profissional</p>
+                                  <p className="text-sm text-green-600">Tripulação experiente</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <ChefHat className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Churrasqueiro</p>
+                                  <p className="text-sm text-green-600">Profissional para churrasco</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Fuel className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Combustível</p>
+                                  <p className="text-sm text-green-600">Incluído no pacote</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Clock className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Passeio de 5 Horas</p>
+                                  <p className="text-sm text-green-600">Duração completa incluída</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Roteiros Disponíveis */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <MapPin className="h-5 w-5 mr-2" />
+                              Roteiros Disponíveis
+                            </h4>
+                            <div className="space-y-4">
+                              <div className="border border-primary/20 p-4 rounded-lg">
+                                <div className="flex justify-between items-start mb-2">
+                                  <h5 className="font-semibold text-primary">Roteiro Padrão: Urca x Praia Vermelha</h5>
+                                  <span className="font-bold text-lg text-green-600">R$ 8.000,00</span>
+                                </div>
+                                <p className="text-sm text-muted-foreground">Roteiro clássico pela região da Urca e Praia Vermelha</p>
+                              </div>
+                              
+                              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <div className="flex items-center mb-3">
+                                  <Star className="h-5 w-5 text-blue-600 mr-2" />
+                                  <h5 className="font-semibold text-blue-800">Roteiros Estendidos (Acréscimo R$ 2.000)</h5>
+                                </div>
+                                <div className="space-y-3">
+                                  <div className="flex justify-between items-center p-2 bg-white rounded border">
+                                    <div>
+                                      <p className="font-medium">Roteiro Itaipu</p>
+                                      <p className="text-xs text-muted-foreground">Extensão para região de Itaipu</p>
+                                    </div>
+                                    <span className="font-bold text-primary">R$ 10.000,00</span>
+                                  </div>
+                                  <div className="flex justify-between items-center p-2 bg-white rounded border">
+                                    <div>
+                                      <p className="font-medium">Roteiro Cagarras</p>
+                                      <p className="text-xs text-muted-foreground">Extensão para Ilhas Cagarras</p>
+                                    </div>
+                                    <span className="font-bold text-primary">R$ 10.000,00</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                      
+                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && vessel.id !== "oceano" && vessel.id !== "lady-ruth" && vessel.id !== "rebeca" && vessel.id !== "blau" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>
