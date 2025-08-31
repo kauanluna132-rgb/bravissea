@@ -398,19 +398,19 @@ const vessels = [
     id: "senna",
     name: "SENNA",
     type: "Iate Premium",
-    image: sennaImage,
+    image: "/lovable-uploads/senna-1.png",
     capacity: 20,
-    price: "R$ 7.000",
+    price: "R$ 7.700",
     rating: 4.8,
     duration: "5h",
-    location: "Marina da Glória",
+    location: "Marina da Glória (Pier Nobre)",
     features: [
-      { icon: Anchor, label: "46 Pés" },
-      { icon: Music, label: "Som" },
-      { icon: Coffee, label: "2 Suítes" },
-      { icon: Shield, label: "2 Motores Volvo" }
+      { icon: Anchor, label: "Motores diesel 500HP" },
+      { icon: Music, label: "Som Bluetooth" },
+      { icon: Coffee, label: "2 quartos, 2 banheiros (1 suíte)" },
+      { icon: Shield, label: "Fly e solário espaçosos" }
     ],
-    description: "46 pés com 2 motores volvo a diesel, 2 suítes completas",
+    description: "Som conexão Bluetooth, 2 quartos, 2 banheiros (1 suíte), sala ampla, cozinha completa, fly e solário de proa muito espaçosos",
     category: "iate"
   },
   {

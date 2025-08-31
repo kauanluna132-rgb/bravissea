@@ -694,48 +694,63 @@ const vesselData = {
     id: "senna",
     name: "SENNA",
     type: "Iate Premium",
-    image: sennaImage,
+    image: "/lovable-uploads/senna-1.png",
     capacity: 20,
-    price: "R$ 7.000",
+    price: "R$ 7.700",
     originalPrice: undefined,
     rating: 4.8,
     duration: "5h",
-    location: "Marina da Glória",
-    description: "46 pés com 2 motores volvo a diesel, com capacidade para 20 pessoas, com 2 suítes, ar condicionado, gerador, som, geladeira, microondas, tv, boiler, fogão, cooler, sala, fly.",
+    location: "Marina da Glória (Pier Nobre)",
+    description: "Iate executivo com infraestrutura completa: Som conexão Bluetooth, 2 quartos, 2 banheiros (1 suíte), sala ampla, cozinha completa, fly e solário de proa muito espaçosos.",
     specifications: {
-      comprimento: "46 pés",
-      motor: "2x Volvo Penta 435hp",
+      comprimento: "15 metros",
+      motor: "Motores de centro diesel 500HP",
       combustivel: "Diesel",
-      capacidadeTanque: "500L"
+      capacidadeTanque: "600L"
     },
     included: [
-      "2 suítes",
-      "Ar condicionado",
-      "Gerador",
-      "Som",
-      "Geladeira",
-      "Microondas",
-      "TV",
-      "Boiler",
-      "Fogão",
-      "Cooler",
-      "Sala",
-      "Fly",
-      "Horários alta temporada",
-      "08:00 às 14:00",
-      "14:30 às 19:30",
-      "Marina x mureta da Urca R$7000",
-      "Marina x praia de Adão e Eva ou morcego R$10.000,00",
-      "Marina x praia vermelha R$10.000,00",
-      "Marina x Copacabana R$12.000,00",
-      "Marina x praia de Itaipu R$12.000,00",
-      "Marina x cagarras R$ 12.500,00",
-      "Hora extra R$2.000",
-      "R$200,00 taxa churrasqueiro",
-      "Está incluso diesel, comandante e auxiliar"
+      "Combustível",
+      "Comandante",
+      "Limpeza", 
+      "Macarrão e tapete flutuante"
     ],
-    gallery: [sennaImage],
-    images: [sennaImage]
+    schedule: {
+      weekdays: "Horário flexível",
+      weekends: "09:00 às 14:00 e 14:30 às 19:30"
+    },
+    itinerary: [
+      "Urca: R$7.700",
+      "Praia Vermelha e Urca ou Adão & Eva e Urca: R$8.500",
+      "Praia de Copacabana: R$9.500",
+      "Baía de Guanabara ou Ilhas Cagarras ou Praia de Itaipu: R$10.000"
+    ],
+    additionalServices: [
+      "Churrasqueira: R$200"
+    ],
+    gallery: [
+      "/lovable-uploads/senna-1.png",
+      "/lovable-uploads/senna-2.png",
+      "/lovable-uploads/senna-3.png",
+      "/lovable-uploads/senna-4.png",
+      "/lovable-uploads/senna-5.png",
+      "/lovable-uploads/senna-6.png",
+      "/lovable-uploads/senna-7.png",
+      "/lovable-uploads/senna-8.png",
+      "/lovable-uploads/senna-9.png",
+      "/lovable-uploads/senna-10.png"
+    ],
+    images: [
+      "/lovable-uploads/senna-1.png",
+      "/lovable-uploads/senna-2.png",
+      "/lovable-uploads/senna-3.png",
+      "/lovable-uploads/senna-4.png",
+      "/lovable-uploads/senna-5.png",
+      "/lovable-uploads/senna-6.png",
+      "/lovable-uploads/senna-7.png",
+      "/lovable-uploads/senna-8.png",
+      "/lovable-uploads/senna-9.png",
+      "/lovable-uploads/senna-10.png"
+    ]
   },
   luisa: {
     id: "luisa",
@@ -1075,6 +1090,50 @@ Aguardo retorno!`;
                       <span>Taxa do Churrasqueiro:</span>
                       <span className="font-semibold">{(vessel as any).pricing?.taxaChurrasqueiro}</span>
                     </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Senna Specific Information */}
+            {vessel.id === 'senna' && (
+              <>
+                {/* Horários */}
+                <div className="bg-white p-6 rounded-xl border shadow-sm">
+                  <h3 className="text-xl font-bold mb-4">Horários</h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                      <span className="font-medium">Dias de semana:</span>
+                      <span className="font-semibold">{(vessel as any).schedule?.weekdays}</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                      <span className="font-medium">Fins de semana e feriados:</span>
+                      <span className="font-semibold">{(vessel as any).schedule?.weekends}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Roteiros e Valores */}
+                <div className="bg-white p-6 rounded-xl border shadow-sm">
+                  <h3 className="text-xl font-bold mb-4">Valores / Roteiros</h3>
+                  <div className="space-y-3">
+                    {(vessel as any).itinerary?.map((route: any, index: number) => (
+                      <div key={index} className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
+                        <span className="font-medium text-blue-800">{route}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Serviços Adicionais */}
+                <div className="bg-white p-6 rounded-xl border shadow-sm">
+                  <h3 className="text-xl font-bold mb-4">Serviços Adicionais (Opcional)</h3>
+                  <div className="space-y-3">
+                    {(vessel as any).additionalServices?.map((service: any, index: number) => (
+                      <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <span>{service}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </>
