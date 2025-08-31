@@ -556,16 +556,67 @@ const vesselsData = {
   },
   prestige: {
     id: "prestige",
-    name: "PRESTIGE",
-    type: "Lancha Premium",
-    images: [prestigeImage],
+    name: "IATE PRESTIGE 60 PÉS",
+    type: "Iate de Luxo",
+    images: [
+      "/lovable-uploads/a4f88006-70b1-4a04-9d57-28bfa10151de.png",
+      "/lovable-uploads/6cf377ab-a937-4fe3-ac92-9095dba56157.png",
+      "/lovable-uploads/7165fe57-2b4a-455a-ae95-3149e6e3b7df.png",
+      "/lovable-uploads/73ec5552-0181-4d19-b75d-2a24057c3735.png",
+      "/lovable-uploads/fa35a6dd-ee47-4ad7-8102-d37f9922d687.png",
+      "/lovable-uploads/15303440-1cc6-4b35-90c6-aadc5d3e0e34.png",
+      "/lovable-uploads/6b669433-863d-478c-9b9a-ad488e7b6b61.png",
+      "/lovable-uploads/50a08687-a27e-4702-bb79-7fe91990bf02.png",
+      "/lovable-uploads/2c51654c-c654-47ab-a790-6535d71a42cd.png",
+      "/lovable-uploads/88594a2b-10de-4896-ab88-9412866aa0fa.png"
+    ],
     capacity: 20,
     price: "R$ 20.000",
-    rating: 4.9,
+    rating: 5.0,
     duration: "6h",
     location: "Marina da Glória",
-    description: "Lancha Prestige 600 fly, dois motores volvo d 13",
-    category: "lancha"
+    description: "Iate de luxo Prestige 60 pés com máximo conforto e elegância para sua experiência única no mar.",
+    
+    // Especificações Técnicas
+    specs: {
+      price: "R$ 20.000,00",
+      duration: "6 horas",
+      motorization: "Dois motores Volvo D13",
+      capacity: "Até 20 pessoas"
+    },
+
+    // Acomodações
+    accommodations: [
+      "1 suíte",
+      "1 cabine de solteiro (conversível para casal)",
+      "1 cabine de proa com banheiro social"
+    ],
+
+    // Cozinha Completa
+    kitchen: [
+      "2 geladeiras",
+      "Mini freezer",
+      "Micro-ondas",
+      "Fogão elétrico"
+    ],
+
+    // Conforto e Comodidades
+    comfort: [
+      "Sala espaçosa com dois sofás",
+      "Armários nos quartos e na sala",
+      "Água quente em todas as torneiras",
+      "Gerador de 15 KVA",
+      "Máquina de gelo",
+      "Som Bluetooth com automação independente"
+    ],
+
+    // Flybridge
+    flybridge: [
+      "Pia",
+      "Churrasqueira elétrica"
+    ],
+
+    category: "iate"
   },
   rebeca: {
     id: "rebeca",
@@ -3062,7 +3113,183 @@ Aguardo confirmação! 🌊
                         </div>
                       )}
                       
-                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && vessel.id !== "oceano" && vessel.id !== "lady-ruth" && vessel.id !== "rebeca" && vessel.id !== "blau" && (
+                      {/* Informações específicas do IATE PRESTIGE */}
+                      {vessel.id === "prestige" && (
+                        <div className="space-y-6">
+                          {/* Especificações Técnicas */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Anchor className="h-5 w-5 mr-2" />
+                              Especificações Técnicas
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Preço</span>
+                                <p className="text-lg font-semibold">R$ 20.000,00</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                                <p className="text-lg font-semibold">6 horas</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Motorização</span>
+                                <p className="text-lg font-semibold">Dois motores Volvo D13</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Lotação</span>
+                                <p className="text-lg font-semibold">Até 20 pessoas</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Acomodações */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <BedIcon className="h-5 w-5 mr-2" />
+                              Acomodações
+                            </h4>
+                            <div className="grid gap-3">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <BedIcon className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">1 Suíte Master</p>
+                                  <p className="text-sm text-muted-foreground">Cabine principal</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <BedIcon className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">1 Cabine de Solteiro</p>
+                                  <p className="text-sm text-muted-foreground">Conversível para casal</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Waves className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">1 Cabine de Proa</p>
+                                  <p className="text-sm text-muted-foreground">Com banheiro social</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Cozinha Completa */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <ChefHat className="h-5 w-5 mr-2" />
+                              Cozinha Completa
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-3">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Box className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">2 Geladeiras</p>
+                                  <p className="text-sm text-muted-foreground">Capacidade ampla</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Box className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Mini Freezer</p>
+                                  <p className="text-sm text-muted-foreground">Para gelo e congelados</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Monitor className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Micro-ondas</p>
+                                  <p className="text-sm text-muted-foreground">Aquecimento rápido</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Zap className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Fogão Elétrico</p>
+                                  <p className="text-sm text-muted-foreground">Cozimento completo</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Conforto e Comodidades */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Star className="h-5 w-5 mr-2" />
+                              Conforto e Comodidades
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-3">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Users className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Sala Espaçosa</p>
+                                  <p className="text-sm text-muted-foreground">Dois sofás confortáveis</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Box className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Armários</p>
+                                  <p className="text-sm text-muted-foreground">Nos quartos e na sala</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Droplets className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Água Quente</p>
+                                  <p className="text-sm text-muted-foreground">Em todas as torneiras</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Zap className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Gerador 15 KVA</p>
+                                  <p className="text-sm text-muted-foreground">Energia independente</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Sparkles className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Máquina de Gelo</p>
+                                  <p className="text-sm text-muted-foreground">Gelo sempre disponível</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Music className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Som Bluetooth</p>
+                                  <p className="text-sm text-muted-foreground">Automação independente</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Flybridge */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Waves className="h-5 w-5 mr-2" />
+                              Flybridge
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-3">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Droplets className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Pia</p>
+                                  <p className="text-sm text-muted-foreground">Área superior equipada</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <ChefHat className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Churrasqueira Elétrica</p>
+                                  <p className="text-sm text-muted-foreground">Para refeições ao ar livre</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && vessel.id !== "oceano" && vessel.id !== "lady-ruth" && vessel.id !== "rebeca" && vessel.id !== "blau" && vessel.id !== "prestige" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>

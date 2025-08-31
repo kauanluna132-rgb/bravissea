@@ -13,7 +13,9 @@ import {
   Shield, 
   Waves,
   Anchor,
-  Sun
+  Sun,
+  Clock,
+  MapPin
 } from "lucide-react";
 
 // Importar as imagens das embarcações
@@ -317,21 +319,34 @@ const vessels = [
   {
     id: "prestige",
     name: "PRESTIGE",
-    type: "Lancha Premium",
-    image: prestigeImage,
+    type: "Iate",
+    image: "/lovable-uploads/a4f88006-70b1-4a04-9d57-28bfa10151de.png",
+    images: [
+      "/lovable-uploads/a4f88006-70b1-4a04-9d57-28bfa10151de.png",
+      "/lovable-uploads/6cf377ab-a937-4fe3-ac92-9095dba56157.png",
+      "/lovable-uploads/7165fe57-2b4a-455a-ae95-3149e6e3b7df.png",
+      "/lovable-uploads/73ec5552-0181-4d19-b75d-2a24057c3735.png",
+      "/lovable-uploads/fa35a6dd-ee47-4ad7-8102-d37f9922d687.png",
+      "/lovable-uploads/15303440-1cc6-4b35-90c6-aadc5d3e0e34.png",
+      "/lovable-uploads/6b669433-863d-478c-9b9a-ad488e7b6b61.png",
+      "/lovable-uploads/50a08687-a27e-4702-bb79-7fe91990bf02.png",
+      "/lovable-uploads/2c51654c-c654-47ab-a790-6535d71a42cd.png",
+      "/lovable-uploads/88594a2b-10de-4896-ab88-9412866aa0fa.png"
+    ],
     capacity: 20,
     price: "R$ 20.000",
-    rating: 4.9,
+    rating: 5.0,
     duration: "6h",
     location: "Marina da Glória",
     features: [
-      { icon: Anchor, label: "600 Fly" },
-      { icon: Music, label: "Som Bluetooth" },
-      { icon: Coffee, label: "Cozinha Completa" },
-      { icon: Shield, label: "3 Quartos" }
+      { icon: Users, label: "20 passageiros" },
+      { icon: Clock, label: "6 horas" },
+      { icon: MapPin, label: "Marina da Glória" },
+      { icon: Anchor, label: "Iate de Luxo" }
     ],
-    description: "Lancha Prestige 600 fly, dois motores volvo d 13",
-    category: "lancha"
+    description: "Iate de luxo Prestige 60 pés com máximo conforto e elegância para sua experiência única no mar.",
+    highlight: true,
+    category: "iate"
   },
   {
     id: "rebeca",
