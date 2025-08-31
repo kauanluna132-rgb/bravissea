@@ -146,6 +146,246 @@ const vessels = [
     ],
     description: "Perfeita para reunir família e amigos.",
     highlight: false
+  },
+  {
+    id: "blau",
+    name: "Blau Catamaran",
+    type: "Catamaran",
+    image: blauCatamaran,
+    images: [blauCatamaran],
+    capacity: 20,
+    price: "R$ 3.800",
+    rating: 4.8,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Catamarã espaçoso para grupos grandes.",
+    highlight: false
+  },
+  {
+    id: "comendador",
+    name: "Comendador",
+    type: "Classic Yacht",
+    image: comendadorYacht,
+    images: [comendadorYacht],
+    capacity: 10,
+    price: "R$ 2.200",
+    rating: 4.6,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Yacht tradicional com elegância.",
+    highlight: false
+  },
+  {
+    id: "dragao",
+    name: "Dragão dos Mares",
+    type: "Sport Yacht",
+    image: dragaoYacht,
+    images: [dragaoYacht],
+    capacity: 12,
+    price: "R$ 3.500",
+    rating: 4.8,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Potência e velocidade no mar.",
+    highlight: false
+  },
+  {
+    id: "flyhi",
+    name: "Flyhi Adventure",
+    type: "Adventure Boat",
+    image: flyhiboat,
+    images: [flyhiboat],
+    capacity: 8,
+    price: "R$ 1.800",
+    rating: 4.5,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Aventura e adrenalina no mar.",
+    highlight: false
+  },
+  {
+    id: "iate-executive",
+    name: "Iate Executive",
+    type: "Executive Yacht",
+    image: iateExecutive,
+    images: [iateExecutive],
+    capacity: 12,
+    price: "R$ 3.000",
+    rating: 4.7,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Iate executivo para eventos corporativos.",
+    highlight: false
+  },
+  {
+    id: "lancha-premium",
+    name: "Lancha Premium",
+    type: "Premium Boat",
+    image: lanchaPremium,
+    images: [lanchaPremium],
+    capacity: 8,
+    price: "R$ 2.000",
+    rating: 4.6,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Embarcação de luxo para passeios exclusivos.",
+    highlight: false
+  },
+  {
+    id: "luisa",
+    name: "Luisa Elegance",
+    type: "Luxury Yacht",
+    image: luisaYacht,
+    images: [luisaYacht],
+    capacity: 10,
+    price: "R$ 2.900",
+    rating: 4.8,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Elegância e sofisticação.",
+    highlight: false
+  },
+  {
+    id: "mcell",
+    name: "MCéll",
+    type: "Sport Boat",
+    image: mcellBoat,
+    images: [mcellBoat],
+    capacity: 6,
+    price: "R$ 1.600",
+    rating: 4.4,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Esportividade e agilidade.",
+    highlight: false
+  },
+  {
+    id: "myway",
+    name: "MyWay",
+    type: "Luxury Yacht",
+    image: mywayYacht,
+    images: [mywayYacht],
+    capacity: 10,
+    price: "R$ 2.600",
+    rating: 4.7,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Seu caminho para o luxo.",
+    highlight: false
+  },
+  {
+    id: "prestige",
+    name: "Prestige",
+    type: "Luxury Yacht",
+    image: prestigeYacht,
+    images: [prestigeYacht],
+    capacity: 12,
+    price: "R$ 3.100",
+    rating: 4.8,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Prestígio e exclusividade.",
+    highlight: false
+  },
+  {
+    id: "rebeca",
+    name: "Rebeca",
+    type: "Family Yacht",
+    image: rebecaYacht,
+    images: [rebecaYacht],
+    capacity: 8,
+    price: "R$ 2.300",
+    rating: 4.6,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Conforto familiar no mar.",
+    highlight: false
+  },
+  {
+    id: "seven",
+    name: "Seven",
+    type: "Luxury Yacht",
+    image: sevenYacht,
+    images: [sevenYacht],
+    capacity: 12,
+    price: "R$ 3.400",
+    rating: 4.9,
+    duration: "Full Day",
+    location: "Marina da Glória",
+    features: [
+      { icon: "⚓", label: "Premium" },
+      { icon: "🎵", label: "Som" },
+      { icon: "☕", label: "Bar" },
+      { icon: "🛡️", label: "Seguro" }
+    ],
+    description: "Perfeição em cada detalhe.",
+    highlight: false
   }
 ];
 
