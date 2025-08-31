@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Users, Clock, Star, MapPin, Waves, Coffee, Music, Sun, Shield, Anchor, Zap, Box, Monitor, Smartphone, Droplets, Sparkles, Fuel, CheckCircle } from "lucide-react";
+import { ArrowLeft, Users, Clock, Star, MapPin, Waves, Coffee, Music, Sun, Shield, Anchor, Zap, Box, Monitor, Smartphone, Droplets, Sparkles, Fuel, CheckCircle, Plus, AlertTriangle, Award, Bed as BedIcon, ChefHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -2684,8 +2684,186 @@ Aguardo confirmação! 🌊
                           </div>
                         </div>
                       )}
+                      
+                      {/* Informações específicas da YACHT REBECA */}
+                      {vessel.id === "rebeca" && (
+                        <div className="space-y-6">
+                          {/* Especificações Técnicas */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Anchor className="h-5 w-5 mr-2" />
+                              Especificações Técnicas
+                            </h4>
+                            <div className="grid md:grid-cols-3 gap-4">
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Modelo</span>
+                                <p className="text-lg font-semibold">Phantom 620 Pininfarina</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Comprimento</span>
+                                <p className="text-lg font-semibold">62 pés</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                                <p className="text-lg font-semibold">16 passageiros</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Pernoite</span>
+                                <p className="text-lg font-semibold">Até 7 passageiros</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                                <p className="text-lg font-semibold">6 horas</p>
+                              </div>
+                              <div className="bg-muted/50 p-4 rounded-lg">
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Local</span>
+                                <p className="text-lg font-semibold">Marina da Glória</p>
+                              </div>
+                            </div>
+                          </div>
 
-                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && vessel.id !== "oceano" && vessel.id !== "lady-ruth" && (
+                          {/* Comodidades */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Coffee className="h-5 w-5 mr-2" />
+                              Comodidades e Ambientes
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Users className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Espaço de Convivência</p>
+                                  <p className="text-sm text-muted-foreground">Ambiente social amplo</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <BedIcon className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Cabines e Quartos</p>
+                                  <p className="text-sm text-muted-foreground">Acomodações confortáveis</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Coffee className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Sala de Jantar</p>
+                                  <p className="text-sm text-muted-foreground">Espaço para refeições</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <ChefHat className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Cozinha Completa</p>
+                                  <p className="text-sm text-muted-foreground">Equipada para preparo de refeições</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Sun className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Amplo Cockpit</p>
+                                  <p className="text-sm text-muted-foreground">Área externa espaçosa</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Waves className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Solário na Proa</p>
+                                  <p className="text-sm text-muted-foreground">Duas opções de distribuição</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <ChefHat className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Cozinha Gourmet na Plataforma</p>
+                                  <p className="text-sm text-muted-foreground">Área gourmet externa</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Star className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Fly-bridge Espaçoso</p>
+                                  <p className="text-sm text-muted-foreground">Área superior de comando</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-muted/30 rounded-lg">
+                                <Award className="h-6 w-6 text-primary mr-3" />
+                                <div>
+                                  <p className="font-medium">Design Pininfarina</p>
+                                  <p className="text-sm text-muted-foreground">Estúdio italiano de Ferrari e Maserati</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Inclusos */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <CheckCircle className="h-5 w-5 mr-2" />
+                              Serviços Inclusos
+                            </h4>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Fuel className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Combustível</p>
+                                  <p className="text-sm text-green-600">Incluído no passeio</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Anchor className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Marinheiro Profissional</p>
+                                  <p className="text-sm text-green-600">Tripulação experiente</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Clock className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Passeio de 6 Horas</p>
+                                  <p className="text-sm text-green-600">Duração completa incluída</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                                <Shield className="h-6 w-6 text-green-600 mr-3" />
+                                <div>
+                                  <p className="font-medium text-green-800">Seguro da Embarcação</p>
+                                  <p className="text-sm text-green-600">Cobertura completa</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Serviços Adicionais */}
+                          <div>
+                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
+                              <Plus className="h-5 w-5 mr-2" />
+                              Serviços Adicionais (Não Inclusos)
+                            </h4>
+                            <div className="space-y-4">
+                              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                                <div className="flex items-center mb-2">
+                                  <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
+                                  <h5 className="font-semibold text-orange-800">Importante</h5>
+                                </div>
+                                <p className="text-orange-700 mb-3">Os seguintes serviços NÃO estão inclusos no valor do passeio:</p>
+                                <div className="grid md:grid-cols-2 gap-3">
+                                  <div className="flex items-center p-2 bg-white rounded border">
+                                    <Users className="h-5 w-5 text-orange-600 mr-2" />
+                                    <span className="text-sm font-medium">Serviço de Barman</span>
+                                  </div>
+                                  <div className="flex items-center p-2 bg-white rounded border">
+                                    <ChefHat className="h-5 w-5 text-orange-600 mr-2" />
+                                    <span className="text-sm font-medium">Churrasqueiro</span>
+                                  </div>
+                                </div>
+                                <p className="text-xs text-orange-600 mt-2">Entre em contato para orçamento destes serviços opcionais.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                      
+                      {vessel.id !== "segue" && vessel.id !== "myway" && vessel.id !== "senna" && vessel.id !== "luisa" && vessel.id !== "dragao" && vessel.id !== "mcell" && vessel.id !== "flyhi" && vessel.id !== "grandraray" && vessel.id !== "mangata" && vessel.id !== "comendador" && vessel.id !== "seven" && vessel.id !== "oceano" && vessel.id !== "lady-ruth" && vessel.id !== "rebeca" && (
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold mb-3">Especificações</h4>
