@@ -1,9 +1,12 @@
+import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, AlertTriangle } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
-const testimonials = [
+// Fallback testimonials em caso de erro na API
+const fallbackTestimonials = [
   {
     id: 1,
     name: "Marina Silva",
@@ -11,7 +14,8 @@ const testimonials = [
     rating: 5,
     text: "Experiência incrível! A embarcação estava impecável e o capitão foi super atencioso. As vistas do Pão de Açúcar e Cristo foram inesquecíveis. Recomendo demais!",
     vessel: "Ocean Dream",
-    avatar: "MS"
+    avatar: "MS",
+    date: "2024-08-15"
   },
   {
     id: 2,
@@ -20,7 +24,8 @@ const testimonials = [
     rating: 5,
     text: "Passeio perfeito para comemorar nosso aniversário de casamento. O sunset no catamarã foi mágico. Atendimento de primeira e segurança total.",
     vessel: "Paradise Sailing",
-    avatar: "CE"
+    avatar: "CE",
+    date: "2024-08-10"
   },
   {
     id: 3,
@@ -29,7 +34,8 @@ const testimonials = [
     rating: 5,
     text: "Organizei uma confraternização da empresa no iate e foi um sucesso! Todos ficaram impressionados com o luxo e conforto. Já estamos planejando o próximo.",
     vessel: "Royal Yacht", 
-    avatar: "AC"
+    avatar: "AC",
+    date: "2024-08-05"
   },
   {
     id: 4,
@@ -38,7 +44,8 @@ const testimonials = [
     rating: 5,
     text: "Primeira vez no Rio e escolhi o passeio da Bravissea. Que decisão acertada! Conheci a cidade de um ângulo único. Profissionalismo exemplar.",
     vessel: "Ocean Dream",
-    avatar: "RS"
+    avatar: "RS",
+    date: "2024-07-28"
   },
   {
     id: 5,
@@ -47,7 +54,8 @@ const testimonials = [
     rating: 5,
     text: "Despedida de solteira inesquecível! As meninas adoraram o catamarã. Música, drinks e muito mar. A Bravissea tornou nosso dia especial em algo mágico.",
     vessel: "Paradise Sailing",
-    avatar: "JO"
+    avatar: "JO",
+    date: "2024-07-20"
   },
   {
     id: 6,
@@ -56,7 +64,8 @@ const testimonials = [
     rating: 5,
     text: "Viagem de negócios que virou experiência premium. O iate executivo impressionou nossos clientes internacionais. Fechamos o contrato a bordo!",
     vessel: "Royal Yacht",
-    avatar: "FL"
+    avatar: "FL",
+    date: "2024-07-15"
   }
 ];
 
@@ -68,6 +77,56 @@ const stats = [
 ];
 
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState(fallbackTestimonials);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Função para buscar reviews do Google
+  const fetchGoogleReviews = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      
+      console.log('Buscando reviews do Google...');
+      
+      const { data, error: supabaseError } = await supabase.functions.invoke('google-reviews');
+      
+      if (supabaseError) {
+        console.error('Erro ao buscar reviews:', supabaseError);
+        throw new Error(supabaseError.message || 'Erro ao buscar avaliações');
+      }
+      
+      console.log('Reviews recebidos:', data);
+      
+      if (data && data.reviews && data.reviews.length > 0) {
+        // Adicionar IDs únicos aos reviews do Google
+        const reviewsWithIds = data.reviews.map((review: any, index: number) => ({
+          ...review,
+          id: `google-${index}`,
+          avatar: review.name.split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase()
+        }));
+        
+        setTestimonials(reviewsWithIds);
+        console.log('Reviews atualizados com sucesso');
+      } else {
+        console.log('Nenhum review encontrado, usando fallback');
+        setError('Nenhuma avaliação encontrada no Google');
+      }
+    } catch (error: any) {
+      console.error('Erro ao carregar reviews do Google:', error);
+      setError(error.message || 'Erro ao carregar avaliações do Google');
+      // Manter os reviews de fallback em caso de erro
+      setTestimonials(fallbackTestimonials);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Carregar reviews quando o componente monta
+  useEffect(() => {
+    fetchGoogleReviews();
+  }, []);
+
   return (
     <section className="py-20 bg-gradient-to-br from-background to-primary/5">
       <div className="container mx-auto px-6">
@@ -84,6 +143,22 @@ const Testimonials = () => {
             Mais de 1000 experiências inesquecíveis criadas. Veja os depoimentos de quem 
             já navegou conosco e descobriu o Rio de Janeiro de uma forma única.
           </p>
+          
+          {/* Indicador de status */}
+          {error && (
+            <div className="mt-4 flex items-center justify-center gap-2 text-amber-600">
+              <AlertTriangle className="w-4 h-4" />
+              <span className="text-sm">
+                Exibindo avaliações locais (erro ao carregar Google Reviews)
+              </span>
+            </div>
+          )}
+          
+          {isLoading && (
+            <div className="mt-4 text-sm text-muted-foreground">
+              Carregando avaliações do Google...
+            </div>
+          )}
         </div>
 
         {/* Stats */}
