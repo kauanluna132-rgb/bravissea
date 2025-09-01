@@ -1098,7 +1098,28 @@ const VesselDetails = () => {
   }
 
   const handleInputChange = (field: string, value: string) => {
-    setBookingForm(prev => ({ ...prev, [field]: value }));
+    // Android fix: Prevent white screen on mobile selection
+    try {
+      setBookingForm(prev => ({ ...prev, [field]: value }));
+    } catch (error) {
+      console.warn('Error updating form:', error);
+      // Fallback for Android devices
+      setTimeout(() => {
+        setBookingForm(prev => ({ ...prev, [field]: value }));
+      }, 0);
+    }
+  };
+
+  // Android-specific event handler for Select components
+  const handleSelectChange = (field: string) => (value: string) => {
+    // Prevent event bubbling on Android that can cause white screen
+    if (typeof window !== 'undefined' && navigator.userAgent.includes('Android')) {
+      setTimeout(() => {
+        handleInputChange(field, value);
+      }, 10);
+    } else {
+      handleInputChange(field, value);
+    }
   };
 
   const handleBooking = () => {
@@ -3711,7 +3732,7 @@ Aguardo confirmação! 🌊
                   
                   <div>
                     <Label htmlFor="duration">Duração</Label>
-                    <Select onValueChange={(value) => handleInputChange('duration', value)}>
+                    <Select onValueChange={handleSelectChange('duration')}>
                       <SelectTrigger>
                         <SelectValue placeholder="Selecione a duração" />
                       </SelectTrigger>
@@ -3726,7 +3747,7 @@ Aguardo confirmação! 🌊
                   
                   <div>
                     <Label htmlFor="guests">Número de passageiros</Label>
-                    <Select onValueChange={(value) => handleInputChange('guests', value)}>
+                    <Select onValueChange={handleSelectChange('guests')}>
                       <SelectTrigger>
                         <SelectValue placeholder="Quantas pessoas?" />
                       </SelectTrigger>
@@ -3742,7 +3763,7 @@ Aguardo confirmação! 🌊
                   
                   <div>
                     <Label htmlFor="route">Roteiro desejado</Label>
-                    <Select onValueChange={(value) => handleInputChange('route', value)}>
+                    <Select onValueChange={handleSelectChange('route')}>
                       <SelectTrigger>
                         <SelectValue placeholder="Escolha um roteiro" />
                       </SelectTrigger>
