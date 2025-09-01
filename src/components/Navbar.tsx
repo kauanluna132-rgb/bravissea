@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, Anchor, Phone, MapPin } from "lucide-react";
 import { Button } from "./ui/button";
 import ImageWithFallback from "@/components/ui/image-with-fallback";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   const menuItems = [{
     label: "Início",
     href: "#home"
@@ -20,28 +24,54 @@ const Navbar = () => {
     label: "Contato",
     href: "#contato"
   }];
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth"
-      });
-      setIsMenuOpen(false);
+
+  const handleLogoClick = () => {
+    // Se não estiver na página inicial, navegar para ela
+    if (location.pathname !== '/') {
+      navigate('/');
+    } else {
+      // Se já estiver na página inicial, fazer scroll para o topo
+      scrollToSection("#home");
     }
+    setIsMenuOpen(false);
+  };
+
+  const scrollToSection = (href: string) => {
+    // Se não estiver na página inicial, navegar para ela primeiro
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Aguardar um pequeno delay para a página carregar antes do scroll
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      }, 100);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    }
+    setIsMenuOpen(false);
   };
   return <nav className="fixed top-4 left-4 right-4 mx-auto max-w-7xl glass-effect z-50 rounded-2xl border border-white/20 shadow-elegant">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:justify-between">
           {/* Logo - Desktop */}
           <div className="hidden md:flex items-center space-x-2">
-            <button onClick={() => scrollToSection("#home")} className="cursor-pointer">
+            <button onClick={handleLogoClick} className="cursor-pointer">
               <ImageWithFallback src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" showLoader={false} />
             </button>
           </div>
 
           {/* Logo - Mobile (Centered) */}
           <div className="md:hidden flex-1 flex justify-center">
-            <button onClick={() => scrollToSection("#home")} className="cursor-pointer">
+            <button onClick={handleLogoClick} className="cursor-pointer">
               <ImageWithFallback src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" showLoader={false} />
             </button>
           </div>

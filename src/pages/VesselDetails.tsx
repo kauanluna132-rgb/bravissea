@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Users, Clock, Star, MapPin, Waves, Coffee, Music, Sun, Shield, Anchor, Zap, Box, Monitor, Smartphone, Droplets, Sparkles, Fuel, CheckCircle, Plus, AlertTriangle, Award, Bed as BedIcon, ChefHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -1078,6 +1078,11 @@ const VesselDetails = () => {
     route: "",
     message: ""
   });
+
+  // Scroll para o topo quando a página carregar
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [id]);
 
   const vessel = id ? vesselsData[id as keyof typeof vesselsData] : null;
 
