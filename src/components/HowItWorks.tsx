@@ -148,7 +148,7 @@ const HowItWorks = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="#embarcacoes"
+              href="#embarcações"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-primary font-semibold rounded-xl hover:bg-white/90 transition-colors"
             >
               Ver Embarcações

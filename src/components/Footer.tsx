@@ -68,7 +68,7 @@ const Footer = () => {
             <h4 className="text-blue-400 text-lg font-semibold mb-6">Navegação</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#embarcacoes" className="text-white/80 hover:text-blue-400 transition-colors">
+                <a href="#embarcações" className="text-white/80 hover:text-blue-400 transition-colors">
                   Nossas Embarcações
                 </a>
               </li>

@@ -555,7 +555,7 @@ const VesselCatalog = () => {
     });
 
   return (
-    <section id="embarcacoes" className="py-20 bg-gradient-to-br from-background to-muted/30">
+    <section id="embarcações" className="py-20 bg-gradient-to-br from-background to-muted/30">
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">

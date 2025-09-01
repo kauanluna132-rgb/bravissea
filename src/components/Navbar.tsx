@@ -13,7 +13,7 @@ const Navbar = () => {
     href: "#home"
   }, {
     label: "Embarcações",
-    href: "#embarcacoes"
+    href: "#embarcações"
   }, {
     label: "Roteiros",
     href: "#roteiros"
@@ -89,7 +89,7 @@ const Navbar = () => {
               <Phone className="h-4 w-4 mr-1" />
               <span>(21) 97400-4415</span>
             </div>
-            <Button onClick={() => scrollToSection("#embarcacoes")} className="bg-primary hover:bg-primary-dark">
+            <Button onClick={() => scrollToSection("#embarcações")} className="bg-primary hover:bg-primary-dark">
               Reservar Agora
             </Button>
           </div>
@@ -110,7 +110,7 @@ const Navbar = () => {
                 <Phone className="h-4 w-4 mr-1" />
                 <span>(21) 97400-4415</span>
               </div>
-              <Button onClick={() => scrollToSection("#embarcacoes")} className="bg-primary hover:bg-primary-dark w-full">
+              <Button onClick={() => scrollToSection("#embarcações")} className="bg-primary hover:bg-primary-dark w-full">
                 Reservar Agora
               </Button>
             </div>

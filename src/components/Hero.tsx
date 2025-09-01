@@ -53,7 +53,7 @@ const Hero = () => {
           {/* Call-to-Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button asChild size="lg" className="btn-ocean text-base md:text-lg px-6 md:px-8 py-4 md:py-6 min-w-[180px] md:min-w-[200px]">
-              <a href="#embarcacoes">
+              <a href="#embarcações">
                 <Users className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                 Ver Embarcações
               </a>

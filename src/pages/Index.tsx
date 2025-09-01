@@ -25,7 +25,7 @@ const Index = () => {
         </div>
       </div>
       
-      <div id="embarcacoes">
+      <div id="embarcações">
         <VesselCatalog />
       </div>
       <div id="roteiros">
