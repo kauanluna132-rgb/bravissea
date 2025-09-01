@@ -1164,12 +1164,12 @@ Aguardo confirmação! 🌊
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-4 sm:py-8 lg:py-12">
-          <div className="grid lg:grid-cols-3 gap-4 lg:gap-8">
+        <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 lg:py-12 w-full max-w-full overflow-hidden">
+          <div className="grid lg:grid-cols-3 gap-4 lg:gap-8 w-full max-w-full">
             {/* Galeria e Detalhes */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 min-w-0 max-w-full overflow-hidden">
               {/* Galeria com Carrossel */}
-              <div className="mb-4 sm:mb-8">
+              <div className="mb-4 sm:mb-6 lg:mb-8 w-full overflow-hidden">
                 <VesselImageCarousel
                   images={vessel.images}
                   vesselName={vessel.name}
@@ -1177,12 +1177,12 @@ Aguardo confirmação! 🌊
               </div>
 
               {/* Descrição Organizada */}
-              <Card className="mb-8">
+              <Card className="mb-6 lg:mb-8 w-full">
                 <CardHeader>
                   <CardTitle>Sobre a {vessel.name}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-6 lg:mb-8 text-sm lg:text-lg leading-relaxed break-words">
+                <CardContent className="p-4 lg:p-6">
+                  <p className="text-muted-foreground mb-6 lg:mb-8 text-sm lg:text-lg leading-relaxed break-words hyphens-auto">
                     {vessel.description}
                   </p>
                   

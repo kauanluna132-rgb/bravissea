@@ -44,7 +44,7 @@ const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) =
   return (
     <div className="space-y-4">
       {/* Main Image */}
-      <div className="relative w-full h-96 bg-muted rounded-lg overflow-hidden group">
+      <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] bg-muted rounded-lg overflow-hidden group">
         {/* Loading State */}
         {!imageLoaded[currentImage] && !imageError[currentImage] && (
           <div className="absolute inset-0 flex items-center justify-center bg-muted">
@@ -78,18 +78,18 @@ const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) =
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
+              className="absolute left-1 sm:left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-8 h-8 sm:w-10 sm:h-10"
               onClick={prevImage}
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
+              className="absolute right-1 sm:right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-8 h-8 sm:w-10 sm:h-10"
               onClick={nextImage}
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
           </>
         )}
@@ -100,23 +100,23 @@ const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) =
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute top-1 sm:top-2 right-1 sm:right-2 bg-black/50 hover:bg-black/70 text-white opacity-0 group-hover:opacity-100 transition-opacity w-8 h-8 sm:w-10 sm:h-10"
             >
-              <ZoomIn className="h-4 w-4" />
+              <ZoomIn className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-4xl p-0">
+          <DialogContent className="max-w-4xl w-[95vw] h-[95vh] p-2 sm:p-4">
             <ImageWithFallback
               src={images[currentImage]}
               alt={`${vesselName} - Imagem ${currentImage + 1}`}
-              className="w-full h-auto max-h-[80vh] object-contain"
+              className="w-full h-auto max-h-full object-contain"
               showLoader={true}
             />
           </DialogContent>
         </Dialog>
 
         {/* Image Counter */}
-        <div className="absolute bottom-2 right-2 bg-black/50 text-white px-2 py-1 rounded text-sm">
+        <div className="absolute bottom-1 sm:bottom-2 right-1 sm:right-2 bg-black/50 text-white px-2 py-1 rounded text-xs sm:text-sm">
           {currentImage + 1} / {images.length}
         </div>
       </div>
@@ -128,7 +128,7 @@ const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) =
             <button
               key={index}
               onClick={() => setCurrentImage(index)}
-              className={`flex-shrink-0 w-16 h-12 sm:w-20 sm:h-16 rounded-md overflow-hidden border-2 transition-all ${
+              className={`flex-shrink-0 w-14 h-10 sm:w-16 sm:h-12 lg:w-20 lg:h-16 rounded-md overflow-hidden border-2 transition-all ${
                 index === currentImage
                   ? "border-primary"
                   : "border-gray-200 hover:border-gray-300"
