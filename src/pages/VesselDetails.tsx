@@ -1136,36 +1136,36 @@ Aguardo confirmação! 🌊
               Voltar às embarcações
             </Button>
             
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-              <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+              <div className="flex-1 min-w-0">
+                <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold text-foreground mb-2 break-words">
                   {vessel.name}
                 </h1>
-                <div className="flex items-center space-x-4 text-muted-foreground">
-                  <Badge variant="outline">{vessel.type}</Badge>
-                  <div className="flex items-center">
-                    <MapPin className="h-4 w-4 mr-1" />
-                    {vessel.location}
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-muted-foreground text-sm lg:text-base">
+                  <Badge variant="outline" className="text-xs sm:text-sm">{vessel.type}</Badge>
+                  <div className="flex items-center min-w-0">
+                    <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
+                    <span className="truncate">{vessel.location}</span>
                   </div>
                   <div className="flex items-center">
-                    <Star className="h-4 w-4 mr-1 fill-current text-yellow-500" />
-                    {vessel.rating}
+                    <Star className="h-3 w-3 sm:h-4 sm:w-4 mr-1 fill-current text-yellow-500 flex-shrink-0" />
+                    <span>{vessel.rating}</span>
                   </div>
                 </div>
               </div>
               
-              <div className="mt-4 md:mt-0 text-right">
-                <div className="text-3xl font-bold text-primary">
+              <div className="lg:mt-0 text-left lg:text-right flex-shrink-0">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary break-words">
                   {vessel.price}
                 </div>
-                <div className="text-sm text-muted-foreground">por dia</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">por dia</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-4 sm:py-12">
-          <div className="grid lg:grid-cols-3 gap-4 sm:gap-12">
+        <div className="container mx-auto px-4 py-4 sm:py-8 lg:py-12">
+          <div className="grid lg:grid-cols-3 gap-4 lg:gap-8">
             {/* Galeria e Detalhes */}
             <div className="lg:col-span-2">
               {/* Galeria com Carrossel */}
@@ -1182,7 +1182,7 @@ Aguardo confirmação! 🌊
                   <CardTitle>Sobre a {vessel.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
+                  <p className="text-muted-foreground mb-6 lg:mb-8 text-sm lg:text-lg leading-relaxed break-words">
                     {vessel.description}
                   </p>
                   
@@ -1194,22 +1194,22 @@ Aguardo confirmação! 🌊
                           <Waves className="h-5 w-5 mr-2" />
                           Especificações Técnicas
                         </h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
-                          <div className="bg-muted/50 p-4 rounded-lg">
-                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Comprimento</span>
-                            <p className="text-lg font-semibold">58 Pés</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
+                          <div className="bg-muted/50 p-3 lg:p-4 rounded-lg">
+                            <span className="font-medium text-xs lg:text-sm text-muted-foreground uppercase tracking-wide">Comprimento</span>
+                            <p className="text-base lg:text-lg font-semibold break-words">58 Pés</p>
                           </div>
-                          <div className="bg-muted/50 p-4 rounded-lg">
-                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Motores</span>
-                            <p className="text-lg font-semibold">2 x Volvo 950 IPS</p>
+                          <div className="bg-muted/50 p-3 lg:p-4 rounded-lg">
+                            <span className="font-medium text-xs lg:text-sm text-muted-foreground uppercase tracking-wide">Motores</span>
+                            <p className="text-base lg:text-lg font-semibold break-words">2 x Volvo 950 IPS</p>
                           </div>
-                          <div className="bg-muted/50 p-4 rounded-lg">
-                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
-                            <p className="text-lg font-semibold">{vessel.capacity} pessoas</p>
+                          <div className="bg-muted/50 p-3 lg:p-4 rounded-lg">
+                            <span className="font-medium text-xs lg:text-sm text-muted-foreground uppercase tracking-wide">Capacidade</span>
+                            <p className="text-base lg:text-lg font-semibold break-words">{vessel.capacity} pessoas</p>
                           </div>
-                          <div className="bg-muted/50 p-4 rounded-lg">
-                            <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
-                            <p className="text-lg font-semibold">{vessel.duration}</p>
+                          <div className="bg-muted/50 p-3 lg:p-4 rounded-lg">
+                            <span className="font-medium text-xs lg:text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
+                            <p className="text-base lg:text-lg font-semibold break-words">{vessel.duration}</p>
                           </div>
                         </div>
                       </div>
@@ -1220,7 +1220,7 @@ Aguardo confirmação! 🌊
                           <Users className="h-5 w-5 mr-2" />
                           Acomodações
                         </h4>
-                        <div className="grid md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
                           <div className="bg-muted/50 p-4 rounded-lg text-center">
                             <div className="text-2xl font-bold text-primary mb-1">3</div>
                             <p className="text-sm font-medium">Quartos</p>
@@ -1245,7 +1245,7 @@ Aguardo confirmação! 🌊
                           <Coffee className="h-5 w-5 mr-2" />
                           Comodidades e Entretenimento
                         </h4>
-                        <div className="grid md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-4">
                           <div className="flex items-center p-3 bg-muted/30 rounded-lg">
                             <Music className="h-6 w-6 text-primary mr-3" />
                             <div>
@@ -2672,16 +2672,16 @@ Aguardo confirmação! 🌊
                               Preços Base
                             </h4>
                             <div className="grid md:grid-cols-2 gap-4">
-                              <div className="bg-emerald-50 p-6 rounded-lg border border-emerald-200">
-                                <div className="text-center">
-                                  <h5 className="font-semibold text-emerald-800 mb-2">Até 50 passageiros</h5>
-                                  <span className="text-3xl font-bold text-emerald-700">{(vessel as any).pricing?.up50}</span>
-                                </div>
-                              </div>
-                              <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                                <div className="text-center">
-                                  <h5 className="font-semibold text-blue-800 mb-2">Até 65 passageiros</h5>
-                                  <span className="text-3xl font-bold text-blue-700">{(vessel as any).pricing?.up65}</span>
+                               <div className="bg-emerald-50 p-4 lg:p-6 rounded-lg border border-emerald-200">
+                                 <div className="text-center">
+                                   <h5 className="font-semibold text-emerald-800 mb-2 text-sm lg:text-base">Até 50 passageiros</h5>
+                                   <span className="text-lg lg:text-3xl font-bold text-emerald-700 break-words">{(vessel as any).pricing?.up50}</span>
+                                 </div>
+                               </div>
+                               <div className="bg-blue-50 p-4 lg:p-6 rounded-lg border border-blue-200">
+                                 <div className="text-center">
+                                   <h5 className="font-semibold text-blue-800 mb-2 text-sm lg:text-base">Até 65 passageiros</h5>
+                                   <span className="text-lg lg:text-3xl font-bold text-blue-700 break-words">{(vessel as any).pricing?.up65}</span>
                                 </div>
                               </div>
                             </div>
