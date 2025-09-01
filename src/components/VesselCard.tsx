@@ -93,7 +93,17 @@ const VesselCard = ({
         {/* Botão de galeria no hover */}
         {images.length > 1 && (
           <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Button size="sm" variant="secondary" className="bg-white/90 text-primary">
+            <Button 
+              size="sm" 
+              variant="secondary" 
+              className="bg-white/90 text-primary"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setTimeout(() => {
+                  navigate(`/vessel/${id}`);
+                }, 100);
+              }}
+            >
               <Camera className="w-4 h-4 mr-2" />
               Ver Galeria ({images.length} fotos)
             </Button>
