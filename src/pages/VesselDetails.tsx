@@ -1238,7 +1238,7 @@ Aguardo retorno para confirmação e mais detalhes.
                           <span className="text-sm font-medium capitalize">
                             {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
                           </span>
-                          <span className="text-sm text-muted-foreground">{value}</span>
+                          <span className="text-sm text-muted-foreground">{String(value)}</span>
                         </div>
                       ))}
                     </div>
@@ -1318,7 +1318,7 @@ Aguardo retorno para confirmação e mais detalhes.
               )}
 
               {/* Serviços Adicionais */}
-              {(vessel.additionalFees || vessel.additionalServices) && (
+              {((vessel as any).additionalFees || (vessel as any).additionalServices) && (
                 <Card className="shadow-lg">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg flex items-center gap-2">
@@ -1328,7 +1328,7 @@ Aguardo retorno para confirmação e mais detalhes.
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
-                      {(vessel.additionalFees || vessel.additionalServices)?.map((service, index) => (
+                      {((vessel as any).additionalFees || (vessel as any).additionalServices)?.map((service: any, index: number) => (
                         <div key={index} className="p-4 border rounded-lg">
                           <div className="flex justify-between items-start mb-2">
                             <h4 className="font-medium text-sm">{service.service}</h4>
@@ -1345,7 +1345,7 @@ Aguardo retorno para confirmação e mais detalhes.
               )}
 
               {/* Horários */}
-              {vessel.schedule && (
+              {(vessel as any).schedule && (
                 <Card className="shadow-lg">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg flex items-center gap-2">
@@ -1355,12 +1355,12 @@ Aguardo retorno para confirmação e mais detalhes.
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {Object.entries(vessel.schedule).map(([period, time]) => (
+                      {Object.entries((vessel as any).schedule).map(([period, time]) => (
                         <div key={period} className="p-3 bg-primary/5 rounded-lg text-center">
                           <h4 className="font-medium text-sm capitalize mb-1">
                             {period === 'morning' ? 'Manhã' : 'Tarde'}
                           </h4>
-                          <p className="text-sm text-primary font-bold">{time}</p>
+                          <p className="text-sm text-primary font-bold">{String(time)}</p>
                         </div>
                       ))}
                     </div>
@@ -1369,7 +1369,7 @@ Aguardo retorno para confirmação e mais detalhes.
               )}
 
               {/* Observações */}
-              {vessel.observations && (
+              {(vessel as any).observations && (
                 <Card className="shadow-lg">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg flex items-center gap-2">
@@ -1379,7 +1379,7 @@ Aguardo retorno para confirmação e mais detalhes.
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
-                      {vessel.observations.map((obs, index) => (
+                      {(vessel as any).observations.map((obs: string, index: number) => (
                         <div key={index} className="flex items-start gap-3 p-2">
                           <AlertTriangle className="h-4 w-4 text-yellow-500 flex-shrink-0 mt-0.5" />
                           <span className="text-sm">{obs}</span>
