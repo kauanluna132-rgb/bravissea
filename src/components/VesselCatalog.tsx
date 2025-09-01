@@ -622,7 +622,7 @@ const VesselCatalog = () => {
         {/* Results Counter */}
         <div className="mb-8">
           <p className="text-muted-foreground">
-            {filteredVessels.length} embarcação{filteredVessels.length !== 1 ? 'ões' : ''} encontrada{filteredVessels.length !== 1 ? 's' : ''}
+            {filteredVessels.length} {filteredVessels.length !== 1 ? 'embarcações' : 'embarcação'} encontrada{filteredVessels.length !== 1 ? 's' : ''}
           </p>
         </div>
 
