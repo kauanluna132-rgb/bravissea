@@ -217,6 +217,11 @@ const Testimonials = () => {
                     <div className="text-sm text-muted-foreground">
                       {testimonial.location}
                     </div>
+                    {testimonial.date && (
+                      <div className="text-xs text-muted-foreground mt-1">
+                        {new Date(testimonial.date).toLocaleDateString('pt-BR')}
+                      </div>
+                    )}
                   </div>
                 </div>
               </CardContent>
