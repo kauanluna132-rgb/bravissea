@@ -13,31 +13,31 @@ const routes = [
     id: 2,
     name: "Praia Vermelha",
     description: "Pequena enseada protegida entre morros, com águas calmas e paisagem única no coração da Urca.",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    image: "/lovable-uploads/3da81416-7cd9-4b6c-9ef4-50ac23d91d35.png"
   },
   {
     id: 3,
     name: "Praia do Morcego",
     description: "Praia selvagem e preservada, acessível apenas por trilha ou embarcação, ideal para quem busca tranquilidade.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    image: "/lovable-uploads/d50a29db-3c23-4714-832b-8ca6e66a6a5d.png"
   },
   {
     id: 4,
     name: "Adão e Eva",
     description: "Praias selvagens e desertas na Barra da Tijuca, cercadas por natureza exuberante e águas cristalinas.",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    image: "/lovable-uploads/cda8d6a1-a754-4cb9-9058-c03ecec63744.png"
   },
   {
     id: 5,
     name: "Ilha Cagarras",
     description: "Conjunto de ilhas paradisíacas em frente a Ipanema, refúgio da vida marinha e cenário deslumbrante.",
-    image: "https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    image: "/lovable-uploads/c70f09d4-882e-48c0-a6b9-6331eced8fb3.png"
   },
   {
     id: 6,
     name: "Ilha Tijuca",
     description: "Destino clássico dos cariocas, com águas cristalinas e ambiente perfeito para relaxar e apreciar a natureza.",
-    image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    image: "/lovable-uploads/e9f39912-b13b-40c5-89d3-fc8615aba6f8.png"
   }
 ];
 
