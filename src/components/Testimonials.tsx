@@ -1,71 +1,146 @@
-import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Star, Quote, AlertTriangle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Star, Quote } from "lucide-react";
 
-// Fallback testimonials em caso de erro na API
-const fallbackTestimonials = [
+// Avaliações reais dos clientes
+const testimonials = [
   {
     id: 1,
-    name: "Marina Silva",
-    location: "São Paulo",
+    name: "Rebeca Hansen",
     rating: 5,
-    text: "Experiência incrível! A embarcação estava impecável e o capitão foi super atencioso. As vistas do Pão de Açúcar e Cristo foram inesquecíveis. Recomendo demais!",
-    vessel: "Ocean Dream",
-    avatar: "MS",
-    date: "2024-08-15"
+    text: "Comemore o aniversário de 15 anos do meu filho com a família e amigos. Foi tudo top! Mesmo com o tempo nublado, curtimos bastante. A equipe foi muito atenciosa desde o primeiro contato. Fechei a promoção da...",
+    avatar: "RH",
+    timeAgo: "4 meses atrás"
   },
   {
     id: 2,
-    name: "Carlos Eduardo",
-    location: "Belo Horizonte", 
+    name: "Silveira Luna",
     rating: 5,
-    text: "Passeio perfeito para comemorar nosso aniversário de casamento. O sunset no catamarã foi mágico. Atendimento de primeira e segurança total.",
-    vessel: "Paradise Sailing",
-    avatar: "CE",
-    date: "2024-08-10"
+    text: "Foi tudo impecável! A equipe foi super atenciosa desde o primeiro contato até o final do passeio. A embarcação estava limpa, confortável e bem equipada. Fizemos um roteiro maravilhoso pela Lúcia e praia Vermelha e ainda tiveram um churrasco top a bordo. Com certeza voltaremos!",
+    avatar: "SL",
+    timeAgo: "5 meses atrás"
   },
   {
     id: 3,
-    name: "Amanda Costa",
-    location: "Rio de Janeiro",
+    name: "702 Cross",
     rating: 5,
-    text: "Organizei uma confraternização da empresa no iate e foi um sucesso! Todos ficaram impressionados com o luxo e conforto. Já estamos planejando o próximo.",
-    vessel: "Royal Yacht", 
-    avatar: "AC",
-    date: "2024-08-05"
+    text: "Experiência incrível! Alugue uma lancha para um passeio com amigos e familiares no Rio de Janeiro e foi simplesmente perfeito. A equipe da Bravissea foi super atenciosa e profissional desde o início. Altamente recomendado!",
+    avatar: "7C",
+    timeAgo: "5 meses atrás"
   },
   {
     id: 4,
-    name: "Roberto Santos",
-    location: "Brasília",
+    name: "Nazarete Silva",
     rating: 5,
-    text: "Primeira vez no Rio e escolhi o passeio da Bravissea. Que decisão acertada! Conheci a cidade de um ângulo único. Profissionalismo exemplar.",
-    vessel: "Ocean Dream",
-    avatar: "RS",
-    date: "2024-07-28"
+    text: "Não posso deixar de falar do meu passeio. Juro que fiquei com medo de graças, mas assim que entrei em contato com a Empresa Bravissea, o seu WhatsApp é recomendo e o atendimento foi excelente...",
+    avatar: "NS",
+    timeAgo: "5 meses atrás"
   },
   {
     id: 5,
-    name: "Juliana Oliveira", 
-    location: "Salvador",
+    name: "Rafael Ferrari",
     rating: 5,
-    text: "Despedida de solteira inesquecível! As meninas adoraram o catamarã. Música, drinks e muito mar. A Bravissea tornou nosso dia especial em algo mágico.",
-    vessel: "Paradise Sailing",
-    avatar: "JO",
-    date: "2024-07-20"
+    text: "O barco é ótimo! Foi no Luiza 7, cabem 15 pessoas confortáveis. A equipe é muito solícita e muito competente. Indico a todos.",
+    avatar: "RF",
+    timeAgo: "um mês atrás"
   },
   {
     id: 6,
-    name: "Fernando Lima",
-    location: "Porto Alegre",
+    name: "Alice Silva",
     rating: 5,
-    text: "Viagem de negócios que virou experiência premium. O iate executivo impressionou nossos clientes internacionais. Fechamos o contrato a bordo!",
-    vessel: "Royal Yacht",
-    avatar: "FL",
-    date: "2024-07-15"
+    text: "Top demais a experiência, totalmente privado, gostamos muito",
+    avatar: "AS",
+    timeAgo: "6 dias atrás"
+  },
+  {
+    id: 7,
+    name: "Alex Ramos",
+    rating: 5,
+    text: "Empresa fazendo a diferenciado do começo até o final do passeio 🛥️🌊 parabéns 🏆",
+    avatar: "AR",
+    timeAgo: "um mês atrás"
+  },
+  {
+    id: 8,
+    name: "Marangela Almeida",
+    rating: 5,
+    text: "Excelente tudo, muito perfeito",
+    avatar: "MA",
+    timeAgo: "um mês atrás"
+  },
+  {
+    id: 9,
+    name: "Minas Lancho 2",
+    rating: 5,
+    text: "Ótimo atendimento.",
+    avatar: "ML",
+    timeAgo: "4 meses atrás"
+  },
+  {
+    id: 10,
+    name: "Jeferson Faccio",
+    rating: 5,
+    text: "Excelente.. 👍",
+    avatar: "JF",
+    timeAgo: "4 meses atrás"
+  },
+  {
+    id: 11,
+    name: "Michael Thompson",
+    rating: 5,
+    text: "Excelente atendimento",
+    avatar: "MT",
+    timeAgo: "5 meses atrás"
+  },
+  {
+    id: 12,
+    name: "Carlos Dom",
+    rating: 5,
+    text: "Bravissea tornou meu aniversário muito especial. Meu grupo e eu nos divertimos muito, obrigado por tudo, quando eu voltar ao Brasil com certeza reservar com vocês novamente.",
+    avatar: "CD",
+    timeAgo: "3 meses atrás"
+  },
+  {
+    id: 13,
+    name: "Mariana Campos",
+    rating: 5,
+    text: "Aluguei uma lancha para minha despedida de solteira, foi tudo maravilhoso! Muito cuidadosos e atenciosos! Ganhei fotos personalizadas! Indico, e alugaria novamente!",
+    avatar: "MC",
+    timeAgo: "4 meses atrás"
+  },
+  {
+    id: 14,
+    name: "Joelma Gouveia",
+    rating: 5,
+    text: "Aluguei uma lancha para um evento com amigos e a experiência foi maravilhosa. Todo o processo de reserva foi simples e rápido. A equipe é super profissional e nos garantiu total segurança. Já estamos planejando o próximo passeio!",
+    avatar: "JG",
+    timeAgo: "5 meses atrás"
+  },
+  {
+    id: 15,
+    name: "Jo Sousa",
+    rating: 5,
+    text: "Meu passeio foi MARAVILHOSO. Obrigada pessoal da Bravissea! Foi tudo perfeito, desde a recepção até o final do passeio.",
+    avatar: "JS",
+    timeAgo: "5 meses atrás"
+  },
+  {
+    id: 16,
+    name: "Rosely Valentim",
+    rating: 5,
+    text: "Realizei meu sonho de andar de lancha e conhecer a cidade maravilhosa. Empresa responsável e que zela pela satisfação do cliente.",
+    avatar: "RV",
+    timeAgo: "5 meses atrás"
+  },
+  {
+    id: 17,
+    name: "Márcio Araújo",
+    rating: 5,
+    text: "Parabéns a empresa, foi um passeio maravilhoso, funcionários muito educados e prestativos, gostei muito, recomendo!",
+    avatar: "MA",
+    timeAgo: "6 meses atrás"
   }
 ];
 
@@ -77,56 +152,6 @@ const stats = [
 ];
 
 const Testimonials = () => {
-  const [testimonials, setTestimonials] = useState(fallbackTestimonials);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  // Função para buscar reviews do Google
-  const fetchGoogleReviews = async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
-      
-      console.log('Buscando reviews do Google...');
-      
-      const { data, error: supabaseError } = await supabase.functions.invoke('google-reviews');
-      
-      if (supabaseError) {
-        console.error('Erro ao buscar reviews:', supabaseError);
-        throw new Error(supabaseError.message || 'Erro ao buscar avaliações');
-      }
-      
-      console.log('Reviews recebidos:', data);
-      
-      if (data && data.reviews && data.reviews.length > 0) {
-        // Adicionar IDs únicos aos reviews do Google
-        const reviewsWithIds = data.reviews.map((review: any, index: number) => ({
-          ...review,
-          id: `google-${index}`,
-          avatar: review.name.split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase()
-        }));
-        
-        setTestimonials(reviewsWithIds);
-        console.log('Reviews atualizados com sucesso');
-      } else {
-        console.log('Nenhum review encontrado, usando fallback');
-        setError('Nenhuma avaliação encontrada no Google');
-      }
-    } catch (error: any) {
-      console.error('Erro ao carregar reviews do Google:', error);
-      setError(error.message || 'Erro ao carregar avaliações do Google');
-      // Manter os reviews de fallback em caso de erro
-      setTestimonials(fallbackTestimonials);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Carregar reviews quando o componente monta
-  useEffect(() => {
-    fetchGoogleReviews();
-  }, []);
-
   return (
     <section className="py-20 bg-gradient-to-br from-background to-primary/5">
       <div className="container mx-auto px-6">
@@ -143,22 +168,6 @@ const Testimonials = () => {
             Mais de 1000 experiências inesquecíveis criadas. Veja os depoimentos de quem 
             já navegou conosco e descobriu o Rio de Janeiro de uma forma única.
           </p>
-          
-          {/* Indicador de status */}
-          {error && (
-            <div className="mt-4 flex items-center justify-center gap-2 text-amber-600">
-              <AlertTriangle className="w-4 h-4" />
-              <span className="text-sm">
-                Exibindo avaliações locais (erro ao carregar Google Reviews)
-              </span>
-            </div>
-          )}
-          
-          {isLoading && (
-            <div className="mt-4 text-sm text-muted-foreground">
-              Carregando avaliações do Google...
-            </div>
-          )}
         </div>
 
         {/* Stats */}
@@ -175,58 +184,62 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {testimonials.map((testimonial) => (
-            <Card key={testimonial.id} className="card-luxury overflow-hidden">
-              <CardContent className="p-6">
-                {/* Quote Icon */}
-                <div className="flex justify-between items-start mb-4">
-                  <Quote className="w-8 h-8 text-primary/20" />
-                  
-                  {/* Rating */}
-                  <div className="flex gap-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Testimonial Text */}
-                <p className="text-foreground mb-6 leading-relaxed">
-                  "{testimonial.text}"
-                </p>
-
-                {/* Vessel Badge */}
-                <Badge variant="outline" className="mb-4 border-primary/20 text-primary">
-                  {testimonial.vessel}
-                </Badge>
-
-                {/* Author */}
-                <div className="flex items-center gap-3">
-                  <Avatar className="w-10 h-10">
-                    <AvatarImage src="" />
-                    <AvatarFallback className="bg-primary/10 text-primary font-semibold">
-                      {testimonial.avatar}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <div className="font-semibold text-foreground">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {testimonial.location}
-                    </div>
-                    {testimonial.date && (
-                      <div className="text-xs text-muted-foreground mt-1">
-                        {new Date(testimonial.date).toLocaleDateString('pt-BR')}
+        {/* Testimonials Carousel */}
+        <div className="relative mb-12">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {testimonials.map((testimonial) => (
+                <CarouselItem key={testimonial.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <Card className="card-luxury overflow-hidden h-full">
+                    <CardContent className="p-6 flex flex-col h-full">
+                      {/* Quote Icon */}
+                      <div className="flex justify-between items-start mb-4">
+                        <Quote className="w-8 h-8 text-primary/20 flex-shrink-0" />
+                        
+                        {/* Rating */}
+                        <div className="flex gap-1">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
                       </div>
-                    )}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+
+                      {/* Testimonial Text */}
+                      <p className="text-foreground mb-6 leading-relaxed flex-grow">
+                        "{testimonial.text}"
+                      </p>
+
+                      {/* Author */}
+                      <div className="flex items-center gap-3 mt-auto">
+                        <Avatar className="w-10 h-10">
+                          <AvatarImage src="" />
+                          <AvatarFallback className="bg-primary/10 text-primary font-semibold">
+                            {testimonial.avatar}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-semibold text-foreground">
+                            {testimonial.name}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {testimonial.timeAgo}
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 bg-white/90 border-primary/20 hover:bg-white hover:border-primary" />
+            <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 bg-white/90 border-primary/20 hover:bg-white hover:border-primary" />
+          </Carousel>
         </div>
 
         {/* Trust Indicators */}
