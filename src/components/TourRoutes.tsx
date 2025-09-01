@@ -7,7 +7,7 @@ const routes = [
     id: 1,
     name: "Urca",
     description: "Navegue pelos pontos mais icônicos do Rio, com vista privilegiada do Pão de Açúcar e Fortaleza de São João.",
-    image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    image: "/lovable-uploads/1cb06697-52ac-43f5-ade1-afa0b0a1ecb3.png"
   },
   {
     id: 2,
