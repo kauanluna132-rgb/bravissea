@@ -25,12 +25,20 @@ const Index = () => {
         </div>
       </div>
       
-      <VesselCatalog />
-      <TourRoutes />
-      <HowItWorks />
+      <div id="embarcacoes">
+        <VesselCatalog />
+      </div>
+      <div id="roteiros">
+        <TourRoutes />
+      </div>
+      <div id="como-funciona">
+        <HowItWorks />
+      </div>
       <CustomerPhotos />
       <Testimonials />
-      <Footer />
+      <div id="contato">
+        <Footer />
+      </div>
       <WhatsAppFloat />
     </div>
   );
