@@ -1114,9 +1114,13 @@ const vesselsData = {
 };
 
 const VesselDetails = () => {
-  const { vesselId } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
-  const vessel = vesselsData[vesselId as keyof typeof vesselsData];
+  
+  console.log("VesselId from params:", id);
+  console.log("Available vessel keys:", Object.keys(vesselsData));
+  
+  const vessel = vesselsData[id as keyof typeof vesselsData];
 
   const [bookingForm, setBookingForm] = useState({
     name: '',
