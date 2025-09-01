@@ -4,6 +4,7 @@ import VesselCatalog from "@/components/VesselCatalog";
 import TourRoutes from "@/components/TourRoutes";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
+import CustomerPhotos from "@/components/CustomerPhotos";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 
@@ -27,6 +28,7 @@ const Index = () => {
       <VesselCatalog />
       <TourRoutes />
       <HowItWorks />
+      <CustomerPhotos />
       <Testimonials />
       <Footer />
       <WhatsAppFloat />
