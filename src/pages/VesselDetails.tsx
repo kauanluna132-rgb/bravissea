@@ -855,8 +855,8 @@ const vesselsData = {
       }
     ]
   },
-  nossa: {
-    id: "nossa",
+  atlantis: {
+    id: "atlantis",
     name: "YACHT CATAMARÃ ATLANTIS",
     type: "Catamarã 120 pés",
     images: [
