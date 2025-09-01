@@ -1098,28 +1098,38 @@ const VesselDetails = () => {
   }
 
   const handleInputChange = (field: string, value: string) => {
-    // Android fix: Prevent white screen on mobile selection
-    try {
-      setBookingForm(prev => ({ ...prev, [field]: value }));
-    } catch (error) {
-      console.warn('Error updating form:', error);
-      // Fallback for Android devices
-      setTimeout(() => {
-        setBookingForm(prev => ({ ...prev, [field]: value }));
-      }, 0);
-    }
+    setBookingForm(prev => ({ ...prev, [field]: value }));
   };
 
-  // Android-specific event handler for Select components
-  const handleSelectChange = (field: string) => (value: string) => {
-    // Prevent event bubbling on Android that can cause white screen
-    if (typeof window !== 'undefined' && navigator.userAgent.includes('Android')) {
-      setTimeout(() => {
-        handleInputChange(field, value);
-      }, 10);
-    } else {
-      handleInputChange(field, value);
+  // Detect Android devices
+  const isAndroid = typeof window !== 'undefined' && /Android/i.test(navigator.userAgent);
+
+  // Android-specific select component
+  const AndroidSelect = ({ value, onValueChange, placeholder, children, ...props }: any) => {
+    if (isAndroid) {
+      return (
+        <select
+          value={value || ''}
+          onChange={(e) => onValueChange(e.target.value)}
+          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          {...props}
+        >
+          <option value="" disabled>{placeholder}</option>
+          {children}
+        </select>
+      );
     }
+    
+    return (
+      <Select onValueChange={onValueChange} value={value}>
+        <SelectTrigger>
+          <SelectValue placeholder={placeholder} />
+        </SelectTrigger>
+        <SelectContent>
+          {children}
+        </SelectContent>
+      </Select>
+    );
   };
 
   const handleBooking = () => {
@@ -3732,50 +3742,79 @@ Aguardo confirmação! 🌊
                   
                   <div>
                     <Label htmlFor="duration">Duração</Label>
-                    <Select onValueChange={handleSelectChange('duration')}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Selecione a duração" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="4h">4 horas</SelectItem>
-                        <SelectItem value="6h">6 horas</SelectItem>
-                        <SelectItem value="8h">8 horas (dia inteiro)</SelectItem>
-                        <SelectItem value="custom">Personalizado</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <AndroidSelect
+                      value={bookingForm.duration}
+                      onValueChange={(value: string) => handleInputChange('duration', value)}
+                      placeholder="Selecione a duração"
+                    >
+                      {isAndroid ? (
+                        <>
+                          <option value="4h">4 horas</option>
+                          <option value="6h">6 horas</option>
+                          <option value="8h">8 horas (dia inteiro)</option>
+                          <option value="custom">Personalizado</option>
+                        </>
+                      ) : (
+                        <>
+                          <SelectItem value="4h">4 horas</SelectItem>
+                          <SelectItem value="6h">6 horas</SelectItem>
+                          <SelectItem value="8h">8 horas (dia inteiro)</SelectItem>
+                          <SelectItem value="custom">Personalizado</SelectItem>
+                        </>
+                      )}
+                    </AndroidSelect>
                   </div>
                   
                   <div>
                     <Label htmlFor="guests">Número de passageiros</Label>
-                    <Select onValueChange={handleSelectChange('guests')}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Quantas pessoas?" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {Array.from({ length: vessel.capacity }, (_, i) => (
+                    <AndroidSelect
+                      value={bookingForm.guests}
+                      onValueChange={(value: string) => handleInputChange('guests', value)}
+                      placeholder="Quantas pessoas?"
+                    >
+                      {isAndroid ? (
+                        Array.from({ length: vessel.capacity }, (_, i) => (
+                          <option key={i + 1} value={String(i + 1)}>
+                            {i + 1} {i === 0 ? 'pessoa' : 'pessoas'}
+                          </option>
+                        ))
+                      ) : (
+                        Array.from({ length: vessel.capacity }, (_, i) => (
                           <SelectItem key={i + 1} value={String(i + 1)}>
                             {i + 1} {i === 0 ? 'pessoa' : 'pessoas'}
                           </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                        ))
+                      )}
+                    </AndroidSelect>
                   </div>
                   
                   <div>
                     <Label htmlFor="route">Roteiro desejado</Label>
-                    <Select onValueChange={handleSelectChange('route')}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Escolha um roteiro" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Baía de Guanabara">Baía de Guanabara</SelectItem>
-                        <SelectItem value="Ilhas Tijucas">Ilhas Tijucas</SelectItem>
-                        <SelectItem value="Angra dos Reis">Angra dos Reis</SelectItem>
-                        <SelectItem value="Búzios">Búzios</SelectItem>
-                        <SelectItem value="Copacabana/Cagarras">Copacabana/Cagarras</SelectItem>
-                        <SelectItem value="Personalizado">Personalizado</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <AndroidSelect
+                      value={bookingForm.route}
+                      onValueChange={(value: string) => handleInputChange('route', value)}
+                      placeholder="Escolha um roteiro"
+                    >
+                      {isAndroid ? (
+                        <>
+                          <option value="Baía de Guanabara">Baía de Guanabara</option>
+                          <option value="Ilhas Tijucas">Ilhas Tijucas</option>
+                          <option value="Angra dos Reis">Angra dos Reis</option>
+                          <option value="Búzios">Búzios</option>
+                          <option value="Copacabana/Cagarras">Copacabana/Cagarras</option>
+                          <option value="Personalizado">Personalizado</option>
+                        </>
+                      ) : (
+                        <>
+                          <SelectItem value="Baía de Guanabara">Baía de Guanabara</SelectItem>
+                          <SelectItem value="Ilhas Tijucas">Ilhas Tijucas</SelectItem>
+                          <SelectItem value="Angra dos Reis">Angra dos Reis</SelectItem>
+                          <SelectItem value="Búzios">Búzios</SelectItem>
+                          <SelectItem value="Copacabana/Cagarras">Copacabana/Cagarras</SelectItem>
+                          <SelectItem value="Personalizado">Personalizado</SelectItem>
+                        </>
+                      )}
+                    </AndroidSelect>
                   </div>
                   
                   <div>
