@@ -73,8 +73,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#como-funciona" className="text-white/80 hover:text-blue-400 transition-colors">
-                  Como Funciona
+                <a href="#testimonials" className="text-white/80 hover:text-blue-400 transition-colors">
+                  Avaliações
                 </a>
               </li>
               <li>
@@ -83,8 +83,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#contato" className="text-white/80 hover:text-blue-400 transition-colors">
-                  Contato
+                <a href="#customer-photos" className="text-white/80 hover:text-blue-400 transition-colors">
+                  Clientes
                 </a>
               </li>
             </ul>

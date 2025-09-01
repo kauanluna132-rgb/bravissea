@@ -18,11 +18,11 @@ const Navbar = () => {
     label: "Roteiros",
     href: "#roteiros"
   }, {
-    label: "Como Funciona",
-    href: "#como-funciona"
+    label: "Avaliações",
+    href: "#testimonials"
   }, {
-    label: "Contato",
-    href: "#contato"
+    label: "Clientes",
+    href: "#customer-photos"
   }];
 
   const handleLogoClick = () => {
