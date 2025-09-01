@@ -43,7 +43,7 @@ const vessels = [
   {
     id: "segue",
     name: "SEGUE",
-    type: "Lancha",
+    type: "Iate 58 Pés",
     image: "/lovable-uploads/e52f0edd-5490-4210-9f1a-35b63fc3cf97.png",
     images: [
       "/lovable-uploads/e52f0edd-5490-4210-9f1a-35b63fc3cf97.png",
@@ -68,9 +68,9 @@ const vessels = [
       { icon: Coffee, label: "Churrasqueira" },
       { icon: Shield, label: "3 Quartos" }
     ],
-    description: "Lancha Segue 58 Pés com capacidade para 18 passageiros",
-    highlight: true,
-    category: "lancha"
+    description: "Iate Segue 58 Pés com capacidade para 18 passageiros",
+    highlight: false,
+    category: "iate"
   },
   {
     id: "tecnomarine",
@@ -106,7 +106,7 @@ const vessels = [
   {
     id: "myway",
     name: "IATE MY WAY",
-    type: "Lancha 60 pés",
+    type: "Iate 60 pés",
     image: "/lovable-uploads/3588f07b-7df8-4af6-829b-24ecd40b669e.png",
     images: [
       "/lovable-uploads/3588f07b-7df8-4af6-829b-24ecd40b669e.png",
@@ -132,12 +132,12 @@ const vessels = [
     ],
     description: "Iate my way - Lancha 60 pés com 3 quartos, 2 banheiros, sala 2 ambientes e cozinha equipada",
     highlight: true,
-    category: "lancha"
+    category: "iate"
   },
   {
     id: "flyhi",
     name: "LUÍSA VIII",
-    type: "Iate 38 Pés",
+    type: "Lancha 38 Pés",
     image: "/lovable-uploads/7e95a21c-7588-479d-b209-a63d158402cf.png",
     images: [
       "/lovable-uploads/7e95a21c-7588-479d-b209-a63d158402cf.png",
@@ -163,7 +163,7 @@ const vessels = [
       { icon: Shield, label: "Marinheiro Incluso" }
     ],
     description: "Luisa 8 38 Pés - 5 horas de passeio com combustível, marinheiro, tapetão flutuante, coolers e caixa de som de altíssima qualidade",
-    category: "iate"
+    category: "lancha"
   },
   {
     id: "mcell",
@@ -188,7 +188,7 @@ const vessels = [
   {
     id: "comendador",
     name: "COMENDADOR",
-    type: "Iate Executivo",
+    type: "Lancha 55 Pés",
     image: "/lovable-uploads/ca40959a-88f6-40ad-b3af-b8dca052c478.png",
     images: [
       "/lovable-uploads/ca40959a-88f6-40ad-b3af-b8dca052c478.png",
@@ -214,12 +214,12 @@ const vessels = [
       { icon: Waves, label: "Flybridge" }
     ],
     description: "Lancha 55 Pés com capacidade para 25 passageiros + 2 tripulantes",
-    category: "iate"
+    category: "lancha"
   },
   {
     id: "dragao",
     name: "DRAGÃO",
-    type: "Iate 41 pés",
+    type: "Lancha 41 pés",
     image: "/lovable-uploads/063d534d-72c1-4861-964e-1013f7b5e1fb.png",
     images: [
       "/lovable-uploads/063d534d-72c1-4861-964e-1013f7b5e1fb.png",
@@ -246,12 +246,12 @@ const vessels = [
       { icon: Shield, label: "2 Tripulantes" }
     ],
     description: "Iate de 41 pés com capacidade para 17 passageiros + 2 tripulantes",
-    category: "iate"
+    category: "lancha"
   },
   {
     id: "grandraray",
     name: "GRAND RARAY",
-    type: "Iate Premium",
+    type: "Lancha Premium",
     image: "/lovable-uploads/ab7f00cd-e5bd-490d-8dce-6f179460fd9a.png",
     capacity: 20,
     price: "R$ 7.000",
@@ -265,7 +265,7 @@ const vessels = [
       { icon: Waves, label: "Tapetão Flutuante" }
     ],
     description: "GRAND RARAY com 5 horas de passeio e equipamentos de primeira qualidade",
-    category: "iate"
+    category: "lancha"
   },
   // Novas embarcações
   {
@@ -299,7 +299,7 @@ const vessels = [
   {
     id: "mangata",
     name: "MANGATA",
-    type: "Iate Premium",
+    type: "Lancha 44 Pés",
     image: "/lovable-uploads/8e04365e-545e-47e3-a14d-2cf6b644e2f4.png",
     capacity: 12,
     price: "R$ 11.500",
@@ -314,7 +314,7 @@ const vessels = [
       { icon: Shield, label: "2 Quartos" }
     ],
     description: "Sessa Marine C44 - Iate de luxo com área gourmet e plataforma submergível",
-    category: "iate"
+    category: "lancha"
   },
   {
     id: "prestige",
@@ -395,6 +395,7 @@ const vessels = [
       { icon: Shield, label: "Marinheiro" }
     ],
     description: "Catamarã de até 65 passageiros com horários válidos por 30 dias",
+    highlight: true,
     category: "catamara"
   },
   {
@@ -470,7 +471,7 @@ const vessels = [
   {
     id: "senna",
     name: "SENNA",
-    type: "Iate Premium",
+    type: "Lancha Premium",
     image: "/lovable-uploads/758a21a0-0f35-4d63-8802-bf9fb5543f54.png",
     capacity: 18,
     price: "R$ 7.700",
@@ -484,12 +485,12 @@ const vessels = [
       { icon: Shield, label: "Fly e solário espaçosos" }
     ],
     description: "Capacidade: 18 passageiros + 2 tripulantes. Motores de centro diesel 500HP",
-    category: "iate"
+    category: "lancha"
   },
   {
     id: "luisa",
     name: "LUÍSA V",
-    type: "Iate Premium",
+    type: "Lancha Premium",
     image: "/lovable-uploads/03c21177-517e-46bb-ba14-3d5e3e92b548.png",
     images: [
       "/lovable-uploads/03c21177-517e-46bb-ba14-3d5e3e92b548.png",
@@ -515,7 +516,7 @@ const vessels = [
       { icon: Shield, label: "Marinheiro Incluso" }
     ],
     description: "LUÍSA V - Iate Premium para até 15 passageiros com comodidades completas",
-    category: "iate"
+    category: "lancha"
   }
 ];
 
