@@ -96,12 +96,11 @@ const VesselCard = ({
             <Button 
               size="sm" 
               variant="secondary" 
-              className="bg-white/90 text-primary"
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                setTimeout(() => {
-                  navigate(`/vessel/${id}`);
-                }, 100);
+              className="bg-white/90 text-primary hover:bg-primary hover:text-white"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                navigate(`/vessel/${id}`);
               }}
             >
               <Camera className="w-4 h-4 mr-2" />
@@ -164,14 +163,7 @@ const VesselCard = ({
         <div className="flex gap-3 w-full">
           <Button 
             variant="outline" 
-            onClick={() => {
-              // Fazer scroll para o topo antes de navegar
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-              // Aguardar um pouco para o scroll completar antes de navegar
-              setTimeout(() => {
-                navigate(`/vessel/${id}`);
-              }, 100);
-            }}
+            onClick={() => navigate(`/vessel/${id}`)}
             className="flex-1 border-primary text-primary hover:bg-primary hover:text-white"
           >
             Ver Detalhes
