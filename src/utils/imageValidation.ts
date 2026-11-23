@@ -48,7 +48,7 @@ export const getFallbackUrls = (): string[] => [
 
 // Função para registrar erros de carregamento de imagem
 export const logImageError = (url: string, error?: Error): void => {
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.DEV) {
     console.warn(`[Image Loading Error] Failed to load: ${url}`, error);
   }
   
