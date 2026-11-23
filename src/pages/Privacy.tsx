@@ -8,7 +8,7 @@ const Privacy = () => (
       <h1 className="text-3xl font-bold">Política de Privacidade</h1>
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">Contatos e pedidos de reserva</h2>
-        <p>Ao solicitar uma reserva, os dados preenchidos são usados para preparar uma mensagem para o WhatsApp da Bravissea. A mensagem só é enviada quando você confirma o envio no WhatsApp. O site não confirma automaticamente uma reserva ou pagamento.</p>
+        <p>Ao enviar o formulário de contato ou uma solicitação de passeio, seu nome, telefone, email e detalhes do pedido são registrados no CRM da Bravissea para atendimento e elaboração de proposta. Uma fila na VPS preserva solicitações enquanto o CRM estiver indisponível; após a sincronização, os dados de contato são removidos da fila e mantidos no CRM para o atendimento. No formulário de passeio, também preparamos uma mensagem para o WhatsApp, enviada apenas quando você confirma no aplicativo. O envio do formulário não confirma reserva ou pagamento.</p>
       </section>
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">Medição e publicidade</h2>

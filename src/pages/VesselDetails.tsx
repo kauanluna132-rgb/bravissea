@@ -1,3 +1,4 @@
+import { submitLead, leadRequestId } from "@/lib/submit-lead";
 import { useState, useEffect } from "react";
 import { trackLead } from "@/lib/ad-measurement";
 import { useParams, useNavigate } from "react-router-dom";
@@ -1080,6 +1081,9 @@ const VesselDetails = () => {
     message: ""
   });
 
+  const [sending, setSending] = useState(false);
+  const [leadError, setLeadError] = useState("");
+  const [leadSent, setLeadSent] = useState(false);
   // Scroll para o topo quando a página carregar
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -1133,7 +1137,12 @@ const VesselDetails = () => {
     );
   };
 
-  const handleBooking = () => {
+  const handleBooking = async () => {
+    if (sending) return;
+    setSending(true); setLeadError("");
+    try { await submitLead({...bookingForm, vesselName: vessel.name}, leadRequestId()); setLeadSent(true); }
+    catch (error) { setLeadError((error as Error).message); setSending(false); return; }
+    setSending(false);
     const message = `
 🚤 *RESERVA BRAVISSEA*
 
@@ -3833,16 +3842,18 @@ Aguardo confirmação! 🌊
                     />
                   </div>
                   
+                  {leadError && <p role="alert" className="text-red-600">{leadError}</p>}
+                  {leadSent && <p role="status">Solicitação recebida! Nossa equipe entrará em contato.</p>}
                   <Button 
                     onClick={handleBooking}
                     className="w-full bg-primary hover:bg-primary-dark"
-                    disabled={!bookingForm.name || !bookingForm.phone}
+                    disabled={sending || !bookingForm.name || !bookingForm.phone}
                   >
-                    Enviar Reserva via WhatsApp
+                    {sending ? "Enviando..." : "Enviar solicitação e abrir WhatsApp"}
                   </Button>
                   
                   <p className="text-xs text-muted-foreground text-center">
-                    Ao clicar, você será redirecionado para o WhatsApp com suas informações preenchidas.
+                    Sua solicitação será registrada para atendimento e o WhatsApp será aberto. A reserva depende de confirmação. Consulte nossa política de privacidade.
                   </p>
                 </CardContent>
               </Card>

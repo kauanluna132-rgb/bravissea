@@ -1,3 +1,4 @@
+import ContactForm from "@/components/ContactForm";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import VesselCatalog from "@/components/VesselCatalog";
@@ -41,6 +42,7 @@ const Index = () => {
         <Testimonials />
       </div>
       <div id="contato">
+        <ContactForm />
         <Footer />
       </div>
       <WhatsAppFloat />
