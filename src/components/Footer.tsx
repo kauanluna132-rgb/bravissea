@@ -113,6 +113,24 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Map */}
+      <div className="container mx-auto px-6 pb-12">
+        <h4 className="text-blue-400 text-lg font-semibold mb-4 flex items-center gap-2">
+          <MapPin className="w-5 h-5" /> Onde estamos
+        </h4>
+        <div className="w-full overflow-hidden rounded-xl border border-white/10">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.811929583364!2d-43.17028080000001!3d-22.920306699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9981524e85c9c1%3A0x7509499b937ba8ef!2sBravissea%20-%20Aluguel%20de%20Embarca%C3%A7%C3%B5es!5e0!3m2!1spt-BR!2sbr!4v1795396572998!5m2!1spt-BR!2sbr"
+            title="Localização Bravissea no Google Maps"
+            className="w-full h-72 md:h-96 block"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        </div>
+      </div>
+
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
         <div className="container mx-auto px-6 py-6">
