@@ -1,5 +1,6 @@
+import { getAttribution } from "./attribution";
 export async function submitLead(data: Record<string, string>, requestId: string) {
- const response = await fetch('/api/leads', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({...data, requestId}), signal: AbortSignal.timeout(20000) });
+ const response = await fetch('/api/leads', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({...data, attribution: await getAttribution(), requestId}), signal: AbortSignal.timeout(20000) });
  if (!response.ok) throw new Error('Não foi possível enviar. Confira seus dados e tente novamente.');
  return response.json();
 }

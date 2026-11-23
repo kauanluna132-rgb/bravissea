@@ -28,7 +28,7 @@ http.createServer(async(req,res)=>{
  if(req.url==='/api/leads' && req.method==='POST') {
   try {
    if(req.headers.origin && req.headers.origin !== `http://${req.headers.host}` && req.headers.origin !== `https://${req.headers.host}`) return reply(res,403,{error:'Origem inválida'});
-   let raw=''; for await(const chunk of req) { raw+=chunk; if(Buffer.byteLength(raw)>16000) return reply(res,413,{error:'Mensagem muito longa'}); }
+   let raw=''; for await(const chunk of req) { raw+=chunk; if(Buffer.byteLength(raw)>32000) return reply(res,413,{error:'Mensagem muito longa'}); }
    const p=JSON.parse(raw), txt=(k,max=200)=> typeof p[k]==='string'?p[k].trim().slice(0,max):'';
    if(txt('website')) return reply(res,200,{ok:true});
    const name=txt('name'), phone=txt('phone'), email=txt('email');
@@ -41,6 +41,8 @@ http.createServer(async(req,res)=>{
    const prior=db.prepare('SELECT id FROM leads WHERE id=? OR (fingerprint=? AND created>?)').get(p.requestId,fingerprint,now-600000);
    if(prior) return reply(res,200,{ok:true,id:prior.id});
    const payload={id:p.requestId,name:`${txt('vesselName')||'Contato'} — ${name}`,stage:'NEW',leadName:name,leadPhone:phone,leadEmail:email,vesselName:txt('vesselName'),tourDuration:txt('duration'),guestCount:txt('guests'),tourRoute:txt('route'),leadMessage:txt('message',3000),leadSource:'Site Bravissea'};
+   const attributionKeys=['utmSource','utmMedium','utmCampaign','utmContent','utmTerm','utmId','fbclid','gclid','gbraid','wbraid','ttclid','campaignId','adGroupId','adId','placement','landingPath','referrerHost','firstTouch','lastTouch','attributionConsent'];
+   if(p.attribution && typeof p.attribution==='object') for(const field of attributionKeys) if(typeof p.attribution[field]==='string') payload[field]=p.attribution[field].slice(0,field.endsWith('Touch')?7000:500);
    if(/^\d{4}-\d{2}-\d{2}$/.test(txt('date'))) payload.tourDate=txt('date');
    db.prepare('INSERT INTO leads(id,fingerprint,payload,created) VALUES (?,?,?,?)').run(p.requestId,fingerprint,JSON.stringify(payload),now);
    reply(res,202,{ok:true,id:p.requestId}); void sync();
