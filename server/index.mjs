@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 mkdirSync('/data', { recursive: true });
 const db = new DatabaseSync('/data/leads.sqlite');
 db.exec('PRAGMA journal_mode=WAL; CREATE TABLE IF NOT EXISTS leads(id TEXT PRIMARY KEY, fingerprint TEXT, payload TEXT, synced INTEGER DEFAULT 0, created INTEGER); CREATE TABLE IF NOT EXISTS rates(ip TEXT PRIMARY KEY, count INTEGER, since INTEGER)');
+const prices=JSON.parse(readFileSync(new URL('./prices.json',import.meta.url),'utf8'));
 const crm = process.env.TWENTY_URL, key = process.env.TWENTY_API_KEY;
 let syncing = false;
 async function sync() {
@@ -37,10 +38,13 @@ http.createServer(async(req,res)=>{
    const rate=db.prepare('SELECT * FROM rates WHERE ip=?').get(ip);
    if(rate && now-rate.since<60000 && rate.count>=30) return reply(res,429,{error:'Aguarde um minuto e tente novamente.'});
    db.prepare('INSERT OR REPLACE INTO rates VALUES (?,?,?)').run(ip,rate&&now-rate.since<60000?rate.count+1:1,rate&&now-rate.since<60000?rate.since:now);
-   const fingerprint=createHash('sha256').update(JSON.stringify([name,phone,email,txt('vesselName'),txt('date'),txt('duration'),txt('guests'),txt('route'),txt('message',3000)])).digest('hex');
+   const fingerprint=createHash('sha256').update(JSON.stringify([name,phone,email,txt('vesselId'),txt('vesselName'),txt('date'),txt('duration'),txt('guests'),txt('route'),txt('message',3000)])).digest('hex');
    const prior=db.prepare('SELECT id FROM leads WHERE id=? OR (fingerprint=? AND created>?)').get(p.requestId,fingerprint,now-600000);
    if(prior) return reply(res,200,{ok:true,id:prior.id});
+   const vessel=prices[txt('vesselId')];
+   if(txt('vesselId')&&!vessel) return reply(res,400,{error:'Embarcação inválida'});
    const payload={id:p.requestId,name:`${txt('vesselName')||'Contato'} — ${name}`,stage:'NEW',leadName:name,leadPhone:phone,leadEmail:email,vesselName:txt('vesselName'),tourDuration:txt('duration'),guestCount:txt('guests'),tourRoute:txt('route'),leadMessage:txt('message',3000),leadSource:'Site Bravissea'};
+   if(vessel) {payload.vesselName=vessel.name;payload.amount={amountMicros:vessel.amountMicros,currencyCode:'BRL'};}
    const attributionKeys=['utmSource','utmMedium','utmCampaign','utmContent','utmTerm','utmId','fbclid','gclid','gbraid','wbraid','ttclid','campaignId','adGroupId','adId','placement','landingPath','referrerHost','firstTouch','lastTouch','attributionConsent'];
    if(p.attribution && typeof p.attribution==='object') for(const field of attributionKeys) if(typeof p.attribution[field]==='string') payload[field]=p.attribution[field].slice(0,field.endsWith('Touch')?7000:500);
    if(/^\d{4}-\d{2}-\d{2}$/.test(txt('date'))) payload.tourDate=txt('date');

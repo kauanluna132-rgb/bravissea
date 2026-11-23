@@ -1,5 +1,7 @@
+import { useState } from "react";
+import ContactForm from "./ContactForm";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { trackLead } from "@/lib/ad-measurement";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
@@ -56,8 +58,8 @@ const VesselCard = ({
   highlight = false
 }: VesselCardProps) => {
   const navigate = useNavigate();
-  const whatsappMessage = `Olá! Tenho interesse na embarcação ${name}. Gostaria de mais informações sobre preços e disponibilidade.`;
-  const whatsappLink = `https://wa.me/5521974004415?text=${encodeURIComponent(whatsappMessage)}`;
+  const [bookingOpen,setBookingOpen]=useState(false);
+
 
   return (
     <Card className={`card-luxury overflow-hidden group ${highlight ? 'ring-2 ring-accent shadow-luxury' : ''}`}>
@@ -169,18 +171,15 @@ const VesselCard = ({
           >
             Ver Detalhes
           </Button>
-          <Button 
-            asChild
-            className="flex-1 btn-ocean"
-          >
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer" onClick={() => {
-              window.__lovableEvents?.track?.("project.contact_clicked", { source: "vessel_card", vessel_id: id });
-              void trackLead({ kind: "contact_clicked", source: "vessel_card", vessel_id: id });
-            }}>
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Reservar
-            </a>
+          <Button className="flex-1 btn-ocean" onClick={()=>setBookingOpen(true)}>
+            <MessageCircle className="w-4 h-4 mr-2" />Reservar
           </Button>
+          <Dialog open={bookingOpen} onOpenChange={setBookingOpen}>
+            <DialogContent className="max-h-[90dvh] overflow-y-auto sm:max-w-xl">
+              <DialogTitle>Solicitação de passeio</DialogTitle>
+              <ContactForm vessel={{id,name,price,capacity,duration}} />
+            </DialogContent>
+          </Dialog>
         </div>
       </CardFooter>
     </Card>

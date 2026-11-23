@@ -1140,7 +1140,7 @@ const VesselDetails = () => {
   const handleBooking = async () => {
     if (sending) return;
     setSending(true); setLeadError("");
-    try { await submitLead({...bookingForm, vesselName: vessel.name}, leadRequestId()); setLeadSent(true); }
+    try { await submitLead({...bookingForm, vesselName: vessel.name, vesselId: vessel.id}, leadRequestId()); setLeadSent(true); }
     catch (error) { setLeadError((error as Error).message); setSending(false); return; }
     setSending(false);
     const message = `

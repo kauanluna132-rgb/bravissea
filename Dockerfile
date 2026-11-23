@@ -3,11 +3,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --include=dev --no-audit --no-fund
 COPY . .
-RUN npm run build
+RUN npm run build && node server/build-prices.mjs
 FROM node:24-alpine
 WORKDIR /app
 COPY --from=build /app/dist ./dist
-COPY server ./server
+COPY --from=build /app/server ./server
 ENV NODE_ENV=production
 EXPOSE 3000
 CMD ["node", "server/index.mjs"]
