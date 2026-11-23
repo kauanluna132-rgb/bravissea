@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { trackLead } from "@/lib/ad-measurement";
 import { MessageCircle, Anchor, Star, Users } from "lucide-react";
 import ImageWithFallback from "@/components/ui/image-with-fallback";
 import heroYacht from "@/assets/hero-yacht.jpg";
@@ -60,7 +61,10 @@ const Hero = () => {
             </Button>
             
             <Button asChild variant="outline" size="lg" className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-primary backdrop-blur-md text-base md:text-lg px-6 md:px-8 py-4 md:py-6 min-w-[180px] md:min-w-[200px]">
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer" onClick={() => {
+                window.__lovableEvents?.track?.("project.contact_clicked", { source: "hero" });
+                void trackLead({ kind: "contact_clicked", source: "hero" });
+              }}>
                 <MessageCircle className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                 Falar no WhatsApp
               </a>

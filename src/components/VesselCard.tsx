@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { trackLead } from "@/lib/ad-measurement";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
@@ -172,7 +173,10 @@ const VesselCard = ({
             asChild
             className="flex-1 btn-ocean"
           >
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+            <a href={whatsappLink} target="_blank" rel="noopener noreferrer" onClick={() => {
+              window.__lovableEvents?.track?.("project.contact_clicked", { source: "vessel_card", vessel_id: id });
+              void trackLead({ kind: "contact_clicked", source: "vessel_card", vessel_id: id });
+            }}>
               <MessageCircle className="w-4 h-4 mr-2" />
               Reservar
             </a>

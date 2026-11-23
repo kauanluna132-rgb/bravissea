@@ -1,6 +1,7 @@
 import { MapPin } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
+import { trackLead } from "@/lib/ad-measurement";
 
 const routes = [
   {
@@ -45,7 +46,13 @@ const TourRoutes = () => {
   const handleBookRoute = (routeName: string) => {
     const message = `Olá! Gostaria de incluir o destino: ${routeName} no meu passeio. Podem me enviar mais informações?`;
     const whatsappUrl = `https://wa.me/5521974004415?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    const popup = window.open(whatsappUrl, '_blank');
+    if (!popup) return;
+    popup.opener = null;
+    const route = routes.find((item) => item.name === routeName);
+    if (!route) return;
+    window.__lovableEvents?.track?.("project.route_inquiry_clicked", { source: "tour_routes", route_id: route.id });
+    void trackLead({ kind: "route_inquiry_clicked", source: "tour_routes", route_id: route.id });
   };
 
   return (

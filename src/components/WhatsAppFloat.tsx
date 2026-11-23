@@ -1,5 +1,6 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackLead } from "@/lib/ad-measurement";
 
 const WhatsAppFloat = () => {
   const whatsappLink = "https://wa.me/5521974004415?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
@@ -13,6 +14,10 @@ const WhatsAppFloat = () => {
       >
         <a 
           href={whatsappLink}
+          onClick={() => {
+            window.__lovableEvents?.track?.("project.contact_clicked", { source: "floating_button" });
+            void trackLead({ kind: "contact_clicked", source: "floating_button" });
+          }}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center"

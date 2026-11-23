@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { trackLead } from "@/lib/ad-measurement";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Search, 
@@ -155,6 +156,10 @@ const HowItWorks = () => {
             </a>
             <a 
               href="https://wa.me/5521974004415?text=Olá! Quero agendar meu passeio com a Bravissea."
+              onClick={() => {
+                window.__lovableEvents?.track?.("project.contact_clicked", { source: "how_it_works" });
+                void trackLead({ kind: "contact_clicked", source: "how_it_works" });
+              }}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-primary transition-colors"

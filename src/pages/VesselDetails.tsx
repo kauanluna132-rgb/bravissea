@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { trackLead } from "@/lib/ad-measurement";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Users, Clock, Star, MapPin, Waves, Coffee, Music, Sun, Shield, Anchor, Zap, Box, Monitor, Smartphone, Droplets, Sparkles, Fuel, CheckCircle, Plus, AlertTriangle, Award, Bed as BedIcon, ChefHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -1152,7 +1153,11 @@ Aguardo confirmação! 🌊
     `;
     
     const whatsappUrl = `https://wa.me/5521974004415?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    const popup = window.open(whatsappUrl, '_blank');
+    if (!popup) return;
+    popup.opener = null;
+    window.__lovableEvents?.track?.("project.booking_request_opened", { source: "booking_form", vessel_id: vessel.id });
+    void trackLead({ kind: "booking_request_opened", source: "booking_form", vessel_id: vessel.id });
   };
 
   return (

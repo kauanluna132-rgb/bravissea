@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { trackLead } from "@/lib/ad-measurement";
+import PrivacySettings from "./PrivacySettings";
 import { MapPin, Phone, Mail, Instagram, MessageCircle, Anchor, Star, Shield, Clock } from "lucide-react";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -56,7 +58,10 @@ const Footer = () => {
 
             {/* WhatsApp CTA */}
             <Button asChild className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white mt-6">
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer" onClick={() => {
+                window.__lovableEvents?.track?.("project.contact_clicked", { source: "footer" });
+                void trackLead({ kind: "contact_clicked", source: "footer" });
+              }}>
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Falar no WhatsApp
               </a>
@@ -143,10 +148,11 @@ const Footer = () => {
             </div>
 
             {/* Legal Links */}
-            <div className="flex gap-4 text-sm">
-              <a href="#" className="text-white/60 hover:text-blue-400 transition-colors">
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <a href="/privacidade" className="text-white/60 hover:text-blue-400 transition-colors">
                 Política de Privacidade
               </a>
+              <PrivacySettings />
               <a href="#" className="text-white/60 hover:text-blue-400 transition-colors">
                 Termos de Uso
               </a>

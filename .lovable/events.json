@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "events": {
+    "project.booking_request_opened": {
+      "event_schema_version": 1,
+      "description": "Formulário de reserva abre o WhatsApp com o pedido preenchido; não confirma reserva ou pagamento.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "vessel_id"
+        ],
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "booking_form"
+            ]
+          },
+          "vessel_id": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "project.contact_clicked": {
+      "event_schema_version": 1,
+      "description": "Clique em contato pelo WhatsApp; não confirma envio da mensagem ou reserva.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source"
+        ],
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "hero",
+              "footer",
+              "floating_button",
+              "how_it_works",
+              "catalog",
+              "vessel_card"
+            ]
+          },
+          "vessel_id": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "project.route_inquiry_clicked": {
+      "event_schema_version": 1,
+      "description": "Abertura do WhatsApp para consultar um roteiro; não confirma mensagem enviada.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "route_id"
+        ],
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "tour_routes"
+            ]
+          },
+          "route_id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 6
+          }
+        }
+      }
+    }
+  }
+}
