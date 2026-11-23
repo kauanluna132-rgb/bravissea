@@ -76,6 +76,3 @@ enabled = false
 port = 54327
 vector_port = 54328
 backend = "postgres"
-
-[functions.google-reviews]
-verify_jwt = false
