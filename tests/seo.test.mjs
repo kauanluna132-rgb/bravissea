@@ -35,3 +35,15 @@ test('real HTTP routing distinguishes valid pages, unknown URLs, redirects, cach
   assert.equal((await fetch(base+'/',{method:'HEAD'})).status,200);
  }finally{await new Promise(resolve=>server.close(resolve));}
 });
+test('homepage uses the requested title, a general summary, varied original images and excludes fleet card snippets',()=>{
+ const html=readFileSync('dist/index.html','utf8');
+ assert.ok(html.includes('<title>Aluguel de Lanchas, Iates e Catamarãs no Rio de Janeiro | Bravissea</title>'));
+ assert.match(html,/<meta name="description" content="Bravissea: aluguel de lanchas, iates e catamarãs/);
+ assert.match(html,/<div id="embarcações" data-nosnippet="">/);
+ const images=[...html.matchAll(/<meta property="og:image" content="([^"]+)"/g)].map(m=>m[1]);
+ assert.equal(new Set(images).size,3);assert.ok(images.every(image=>image.includes('/lovable-uploads/')&&image.endsWith('.png')));
+ for(const file of Object.values(pages))assert.ok(!readFileSync('dist/'+file,'utf8').includes('/optimized/'),file);
+ const schema=JSON.parse(html.match(/id="bravissea-schema" type="application\/ld\+json">(.*?)<\/script>/)[1]);
+ assert.equal(schema['@graph'].find(x=>x['@type']==='WebPage').image.length,3);
+ assert.ok(!schema['@graph'].some(x=>x['@type']==='ItemList'));
+});

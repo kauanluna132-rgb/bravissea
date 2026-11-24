@@ -20,16 +20,18 @@ export function getSeo(path: string) {
  const category=rentalPages.find(p=>'/'+p.slug===path);
  const vessel=vessels.find(v=>'/vessel/'+v.id===path);
  const known=seoPaths.includes(path);
- const title=path==='/'?'Aluguel de lanchas, iates e catamarãs no Rio | Bravissea':category?category.title+' | Bravissea':vessel?`Aluguel ${vessel.name} no Rio — até ${vessel.capacity} pessoas | Bravissea`:path==='/privacidade'?'Política de Privacidade | Bravissea':'Página não encontrada | Bravissea';
- const description=category?.description || (vessel?`${vessel.type} ${vessel.name} para até ${vessel.capacity} passageiros no Rio de Janeiro. Passeio de ${vessel.duration}, ${vessel.price} como referência. Consulte disponibilidade.`:path==='/'?'Aluguel de lancha, iate e catamarã no Rio de Janeiro. Compare fotos, capacidade e valores da frota Bravissea e solicite seu passeio privado na Marina da Glória.':path==='/privacidade'?'Saiba como a Bravissea trata os dados de atendimento e medição do site.':'A página solicitada não foi encontrada. Consulte o catálogo de embarcações da Bravissea.');
- const image=SITE+(vessel?.image || '/lovable-uploads/e52f0edd-5490-4210-9f1a-35b63fc3cf97.png');
- const graph: Record<string,unknown>[]=[business,{'@type':'WebSite','@id':SITE+'/#site',url:SITE+'/',name:'Bravissea',inLanguage:'pt-BR',publisher:{'@id':SITE+'/#empresa'}},{'@type':'WebPage','@id':SITE+path+'#pagina',url:SITE+path,name:title,description,inLanguage:'pt-BR',isPartOf:{'@id':SITE+'/#site'}}];
+ const title=path==='/'?'Aluguel de Lanchas, Iates e Catamarãs no Rio de Janeiro | Bravissea':category?category.title+' | Bravissea':vessel?`Aluguel ${vessel.name} no Rio — até ${vessel.capacity} pessoas | Bravissea`:path==='/privacidade'?'Política de Privacidade | Bravissea':'Página não encontrada | Bravissea';
+ const description=category?.description || (vessel?`${vessel.type} ${vessel.name} para até ${vessel.capacity} passageiros no Rio de Janeiro. Passeio de ${vessel.duration}, ${vessel.price} como referência. Consulte disponibilidade.`:path==='/'?'Bravissea: aluguel de lanchas, iates e catamarãs no Rio de Janeiro para passeios privados, celebrações e eventos. Conheça a frota e solicite seu orçamento.':path==='/privacidade'?'Saiba como a Bravissea trata os dados de atendimento e medição do site.':'A página solicitada não foi encontrada. Consulte o catálogo de embarcações da Bravissea.');
+ const representatives=['lancha','iate','catamara'].map(type=>vessels.find(v=>v.category===type)!).filter(Boolean);
+ const images=vessel?[SITE+vessel.image]:category?vessels.filter(v=>v.category===category.category).slice(0,3).map(v=>SITE+v.image):representatives.map(v=>SITE+v.image);
+ const image=images[0];
+ const graph: Record<string,unknown>[]=[business,{'@type':'WebSite','@id':SITE+'/#site',url:SITE+'/',name:'Bravissea',inLanguage:'pt-BR',publisher:{'@id':SITE+'/#empresa'}},{'@type':'WebPage','@id':SITE+path+'#pagina',url:SITE+path,name:title,description,inLanguage:'pt-BR',isPartOf:{'@id':SITE+'/#site'},image:images}];
  if(path!=='/'&&known) graph.push({'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Início',item:SITE+'/'},{'@type':'ListItem',position:2,name:category?.title||vessel?.name||'Privacidade',item:SITE+path}]});
  if(category||vessel||path==='/') graph.push({'@type':'Service',name:category?.title|| (vessel?`Aluguel de ${vessel.name}`:'Aluguel de embarcações no Rio de Janeiro'),url:SITE+path,description,serviceType:vessel?.type||'Aluguel de embarcações para passeio',provider:{'@id':SITE+'/#empresa'},areaServed:{'@type':'City',name:'Rio de Janeiro'}});
  if(category||path==='/') {
   const list=category?vessels.filter(v=>v.category===category.category):vessels;
-  graph.push({'@type':'ItemList',itemListElement:list.map((v,i)=>({'@type':'ListItem',position:i+1,name:v.name,url:SITE+'/vessel/'+v.id}))});
+  if(category) graph.push({'@type':'ItemList',itemListElement:list.map((v,i)=>({'@type':'ListItem',position:i+1,name:v.name,url:SITE+'/vessel/'+v.id}))});
   graph.push({'@type':'FAQPage',mainEntity:faq.map(([q,a])=>({'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}}))});
  }
- return {title,description,image,canonical:SITE+path,robots:known?'index, follow, max-image-preview:large':'noindex, follow',schema:{'@context':'https://schema.org','@graph':graph},status:known?200:404};
+ return {title,description,image,images,canonical:SITE+path,robots:known?'index, follow, max-image-preview:large':'noindex, follow',schema:{'@context':'https://schema.org','@graph':graph},status:known?200:404};
 }

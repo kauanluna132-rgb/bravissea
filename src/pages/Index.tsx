@@ -29,7 +29,7 @@ const Index = () => {
       </div>
       
       <RentalGuide />
-      <div id="embarcações">
+      <div id="embarcações" data-nosnippet="">
         <VesselCatalog />
       </div>
       <div id="roteiros">

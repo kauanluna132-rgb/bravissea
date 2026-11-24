@@ -8,7 +8,7 @@ const Hero = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img src={import.meta.env.PROD ? "/optimized/hero-1600.webp" : heroYacht} srcSet={import.meta.env.PROD ? "/optimized/hero-800.webp 800w, /optimized/hero-1600.webp 1600w" : undefined} sizes="100vw" alt="" aria-hidden="true" width={1920} height={1080} {...{fetchpriority:"high"}} loading="eager" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={heroYacht} sizes="100vw" alt="" aria-hidden="true" width={1920} height={1080} {...{fetchpriority:"high"}} loading="eager" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/70 via-primary/50 to-primary/60"></div>
       </div>
       
