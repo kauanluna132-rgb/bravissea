@@ -28,6 +28,23 @@ setInterval(sync,15000); void sync();
 function reply(res,code,data) { res.writeHead(code,{'Content-Type':'application/json','Cache-Control':'no-store'}); res.end(JSON.stringify(data)); }
 http.createServer(async(req,res)=>{
  if(req.url==='/healthz') return reply(res,200,{ok:true});
+ if(req.url==='/api/events' && req.method==='POST') {
+  try {
+   if(req.headers.origin!==`https://${req.headers.host}`) return reply(res,403,{error:'Invalid origin'});
+   let raw=''; for await(const chunk of req) {raw+=chunk;if(Buffer.byteLength(raw)>4000)return reply(res,413,{});}
+   const p=JSON.parse(raw);
+   if(!['ViewContent','Contact'].includes(p.event) || !/^[0-9a-f-]{36}$/i.test(p.id||'')) return reply(res,400,{});
+   const ip=clientIP(req),now=Date.now(),rateKey='event:'+(ip||req.socket.remoteAddress);
+   const rate=db.prepare('SELECT * FROM rates WHERE ip=?').get(rateKey);
+   if(rate && now-rate.since<60000 && rate.count>=120) return reply(res,429,{});
+   db.prepare('INSERT OR REPLACE INTO rates VALUES (?,?,?)').run(rateKey,rate&&now-rate.since<60000?rate.count+1:1,rate&&now-rate.since<60000?rate.since:now);
+   const properties={};
+   if(typeof p.vesselId==='string') { const vessel=prices[p.vesselId];if(!vessel)return reply(res,400,{});properties.contents=[{content_id:p.vesselId,content_name:vessel.name}];properties.content_type='product'; }
+   if(['hero','footer','floating_button','how_it_works','catalog','vessel_card','tour_routes','booking_form'].includes(p.source)) properties.description=p.source;
+   tiktok.enqueue(p.measurement,p.id,now,req.headers['user-agent'],{},ip,p.event,properties);
+   reply(res,202,{ok:true});void tiktok.flush();
+  } catch {reply(res,400,{});} return;
+ }
  if(req.url==='/api/leads' && req.method==='POST') {
   try {
    if(req.headers.origin && req.headers.origin !== `http://${req.headers.host}` && req.headers.origin !== `https://${req.headers.host}`) return reply(res,403,{error:'Origem inválida'});

@@ -63,9 +63,10 @@ export function startTikTok(db, env = process.env, send = fetch) {
  }
  const timer=setInterval(()=>void flush(),15000); timer.unref(); void flush();
  return {
-  enqueue(input,id,now,userAgent,contact,ip) {
+  enqueue(input,id,now,userAgent,contact,ip,eventName='SubmitForm',properties) {
    if(!enabled) return;
    const event=leadEvent(input,id,now,userAgent,contact,ip);
+   if(event) { event.event=eventName; if(properties) event.properties=properties; }
    if(event) db.prepare('INSERT OR IGNORE INTO tiktok_events(id,payload,created) VALUES (?,?,?)').run(id,JSON.stringify(event),now);
   }, flush,
  };

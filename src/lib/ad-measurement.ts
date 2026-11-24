@@ -1,3 +1,4 @@
+import { getLeadAttribution } from "./attribution";
 import { applySignals, canTrack, onConsentChange, readChoice } from "./consent";
 import { googleConversionDestination, leadPayload, measurementConfig, type LeadEvent } from "./lead-events";
 
@@ -133,6 +134,7 @@ export async function trackLead(event: LeadEvent) {
   if (!advertisingAllowed || readChoice("advertising") === "denied") return;
   const permitted = await canTrack("advertising");
   if (!permitted || !advertisingAllowed || readChoice("advertising") === "denied") return;
+  void trackSiteEvent("Contact", event.vessel_id, event.source);
   const id = crypto.randomUUID();
   const payload = leadPayload(event, id);
   window.dataLayer.push(payload);
@@ -154,12 +156,7 @@ export async function trackLead(event: LeadEvent) {
       send_to: measurementConfig.googleAnalyticsId,
     });
   }
-  if (advertisingAllowed && readChoice("advertising") !== "denied") {
-    window.ttq?.track("Contact", {
-      content_type: "product",
-      description: event.kind,
-    }, { event_id: id });
-  }
+
 }
 /** Capture permission at submission time; blocked actions are never replayed later. */
 export async function leadSubmissionMeasurement(ttclid?: string) {
@@ -168,4 +165,18 @@ export async function leadSubmissionMeasurement(ttclid?: string) {
  let ttp = "";
  try { ttp = decodeURIComponent(document.cookie.split("; ").find(c => c.startsWith("_ttp="))?.slice(5) || ""); } catch { /* Missing/invalid cookie is optional. */ }
  return { allowed: true, ttp, locale: navigator.language, page: `${location.origin}${location.pathname}`, ...(ttclid ? { ttclid } : {}) };
+}
+
+export async function trackSiteEvent(event: "ViewContent" | "Contact", vesselId?: string, source = "catalog") {
+ const measurement = await leadSubmissionMeasurement(getLeadAttribution().ttclid);
+ if (!measurement.allowed) return;
+ const id = crypto.randomUUID();
+ const body=JSON.stringify({event,id,vesselId,source,measurement});
+ // Retrying uses the same ID. The durable server outbox handles provider failures.
+ try {
+  const response=await fetch('/api/events',{method:'POST',headers:{'Content-Type':'application/json'},body,keepalive:true});
+  if(response.ok || response.status<500) return;
+ } catch { /* One bounded retry while permission still exists. */ }
+ if(readChoice("advertising")==="denied" || !advertisingAllowed) return;
+ try { await fetch('/api/events',{method:'POST',headers:{'Content-Type':'application/json'},body,keepalive:true}); } catch { /* Never interrupt navigation. */ }
 }

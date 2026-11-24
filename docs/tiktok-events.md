@@ -21,3 +21,5 @@ Verification: run Node 24 `node --test tests/tiktok.test.mjs tests/attribution.t
 Official references:
 - https://business-api.tiktok.com/portal/docs/events-api-for-web/v1.3
 - https://ads.tiktok.com/resources/help/article/tiktok-click-id?lang=en
+
+Site events: POST /api/events allows only ViewContent (catalogue and vessel pages) and Contact (existing contact handlers, reservation popup and WhatsApp continuation). These anonymous events do not require contact fields and never create CRM leads. Properties are allowlisted; vessel names come from the server catalogue. All events retain advertising permission checks, stable event IDs, durable retries and server-only delivery. No Purchase is inferred.

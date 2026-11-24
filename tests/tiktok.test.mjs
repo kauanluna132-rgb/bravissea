@@ -44,3 +44,14 @@ test('proxy address uses last hop, excludes private addresses and ignores spoofe
  assert.equal(clientIP({socket:{remoteAddress:'8.8.4.4'},headers:{'x-forwarded-for':'1.1.1.1'}}),'8.8.4.4');
  assert.equal(clientIP({socket:{remoteAddress:'172.18.0.2'},headers:{}}),'');
 });
+test('content and contact events need no contact fields and deduplicate by event ID',async()=>{
+ const db=new DatabaseSync(':memory:');const sent=[];
+ const sender=startTikTok(db,{TIKTOK_EVENTS_ENABLED:'true',TIKTOK_PIXEL_ID:'DC2A9U3C77U0A5LSGGH0',TIKTOK_ACCESS_TOKEN:'test'},async(u,o)=>{sent.push(JSON.parse(o.body));return {ok:true,json:async()=>({code:0})};});
+ const now=Date.now();
+ for(const event of ['ViewContent','Contact']){
+  sender.enqueue(input,event,now,'agent',{},'',event,{content_type:'product'});
+  sender.enqueue(input,event,now,'agent',{},'',event,{content_type:'product'});
+ }
+ await sender.flush();assert.equal(sent.length,2);assert.deepEqual(sent.map(x=>x.data[0].event),['ViewContent','Contact']);
+ for(const body of sent){assert.equal(body.data[0].user.email,undefined);assert.equal(body.data[0].user.phone,undefined);}
+});

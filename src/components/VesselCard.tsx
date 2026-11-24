@@ -1,3 +1,4 @@
+import { trackSiteEvent } from "@/lib/ad-measurement";
 import { useState } from "react";
 import ContactForm from "./ContactForm";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -171,7 +172,7 @@ const VesselCard = ({
           >
             Ver Detalhes
           </Button>
-          <Button className="flex-1 btn-ocean" onClick={()=>setBookingOpen(true)}>
+          <Button className="flex-1 btn-ocean" onClick={()=>{setBookingOpen(true);void trackSiteEvent("Contact",id,"vessel_card");}}>
             <MessageCircle className="w-4 h-4 mr-2" />Reservar
           </Button>
           <Dialog open={bookingOpen} onOpenChange={setBookingOpen}>

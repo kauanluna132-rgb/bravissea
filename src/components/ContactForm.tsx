@@ -1,3 +1,4 @@
+import { trackSiteEvent } from "@/lib/ad-measurement";
 import { useState } from 'react';
 import { submitLead, leadRequestId } from '@/lib/submit-lead';
 import { Button } from '@/components/ui/button';
@@ -16,6 +17,6 @@ export default function ContactForm({vessel}: {vessel?: {id:string;name:string;p
  <label>Como podemos ajudar?<Textarea name="message" maxLength={3000} /></label>
  <div hidden aria-hidden="true"><input name="website" tabIndex={-1} autoComplete="off" /></div>
  <p className="text-sm text-muted-foreground">Usaremos seus dados para responder à solicitação. Veja a <a href="/privacidade" className="underline">política de privacidade</a>. O envio não confirma uma reserva.</p>
- <Button disabled={busy}>{busy?'Enviando...':'Enviar solicitação'}</Button><p role="status">{status}</p>{whatsapp && <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="underline font-semibold">Continuar atendimento no WhatsApp</a>}
+ <Button disabled={busy}>{busy?'Enviando...':'Enviar solicitação'}</Button><p role="status">{status}</p>{whatsapp && <a onClick={()=>void trackSiteEvent("Contact",vessel?.id,"booking_form")} href={whatsapp} target="_blank" rel="noopener noreferrer" className="underline font-semibold">Continuar atendimento no WhatsApp</a>}
  </form></section>;
 }
