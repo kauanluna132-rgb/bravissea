@@ -3,7 +3,7 @@ import { applySignals, canTrack, onConsentChange, readChoice } from "./consent";
 import { googleConversionDestination, leadPayload, measurementConfig, type LeadEvent } from "./lead-events";
 
 let started = false;
-let advertisingAllowed = false;
+let advertisingAllowed = true;
 let analyticsConfigured = false;
 let adsConfigured = false;
 let metaConfigured = false;
@@ -84,8 +84,8 @@ function loadTikTok() {
 
 async function refreshPermission() {
   const currentRevision = ++revision;
-  // Immediately revoke while permission is being resolved, including withdrawals.
-  advertisingAllowed = false;
+  // Automatic measurement starts immediately, independent of stored choices.
+  advertisingAllowed = true;
   if (readChoice("advertising") === "denied") {
     window.fbq?.("consent", "revoke");
     window.ttq?.revokeConsent?.();

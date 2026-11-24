@@ -12,14 +12,16 @@ Runtime-only Coolify variables on the website application:
 Only new validated forms saved to the durable lead database generate SubmitForm.
 A server-side SQLite outbox retries failures for up to 48 hours with the original event_id and event_time. Duplicate form requests do not add another event. Successful/expired event payloads are scrubbed. CRM synchronization and TikTok delivery have independent retries.
 
-The existing advertising permission is required at submission time. Unknown region, refusal, GPC, and withdrawn permission block new advertising events. Automatic URL attribution saved to the CRM does not grant advertising permission. No checkbox is added to forms.
+Measurement begins automatically for all visits under the owner configuration. No regional lookup or saved preference is required. No checkbox is added to forms.
 
 Allowed payload (expanded matching explicitly authorized by the owner): SubmitForm, lead request UUID, submission timestamp, page origin/path, user-agent and ttclid if available. Matching identifiers now also include server-hashed email, E.164 phone and stable external_id, public client IP from the trusted reverse proxy, locale and existing _ttp cookie when available. Raw contact details, free text, query strings, WhatsApp URLs and catalogue prices are excluded. SubmitForm does not represent confirmed booking or payment. This integration sends no browser-side SubmitForm, so do not add an Event Builder duplicate. Browser pixel remains disabled separately until explicitly configured.
 
-Verification: run Node 24 `node --test tests/tiktok.test.mjs tests/attribution.test.cjs`; deploy; use a Test Events code and submit a clearly labelled test lead with advertising permitted. Verify SubmitForm in Events Manager, then remove the test code and redeploy. No historical leads are replayed when enabling.
+Verification: run Node 24 `node --test tests/tiktok.test.mjs tests/attribution.test.cjs`; deploy; use a Test Events code and submit a clearly labelled test lead. Verify SubmitForm in Events Manager, then remove the test code and redeploy. No historical leads are replayed when enabling.
 
 Official references:
 - https://business-api.tiktok.com/portal/docs/events-api-for-web/v1.3
 - https://ads.tiktok.com/resources/help/article/tiktok-click-id?lang=en
 
-Site events: POST /api/events allows only ViewContent (catalogue and vessel pages) and Contact (existing contact handlers, reservation popup and WhatsApp continuation). These anonymous events do not require contact fields and never create CRM leads. Properties are allowlisted; vessel names come from the server catalogue. All events retain advertising permission checks, stable event IDs, durable retries and server-only delivery. No Purchase is inferred.
+Site events: POST /api/events allows only ViewContent (catalogue and vessel pages) and Contact (existing contact handlers, reservation popup and WhatsApp continuation). These anonymous events do not require contact fields and never create CRM leads. Properties are allowlisted; vessel names come from the server catalogue. All events retain stable event IDs, durable retries and server-only delivery. No Purchase is inferred.
+
+Owner policy update: measurement is automatic for all site visits. No region lookup, saved choice or cookie-settings UI gates new events. Contact hashes remain server-side; names and messages remain excluded. Browser/network blocking can still prevent delivery.

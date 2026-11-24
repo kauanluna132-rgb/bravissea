@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { trackLead } from "@/lib/ad-measurement";
-import PrivacySettings from "./PrivacySettings";
 import { MapPin, Phone, Mail, Instagram, MessageCircle, Anchor, Star, Shield, Clock } from "lucide-react";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -152,7 +151,6 @@ const Footer = () => {
               <a href="/privacidade" className="text-white/60 hover:text-blue-400 transition-colors">
                 Política de Privacidade
               </a>
-              <PrivacySettings />
               <a href="#" className="text-white/60 hover:text-blue-400 transition-colors">
                 Termos de Uso
               </a>
