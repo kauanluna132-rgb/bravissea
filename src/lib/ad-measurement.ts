@@ -161,3 +161,9 @@ export async function trackLead(event: LeadEvent) {
     }, { event_id: id });
   }
 }
+/** Capture permission at submission time; blocked actions are never replayed later. */
+export async function leadSubmissionMeasurement(ttclid?: string) {
+ const allowedAtAction = advertisingAllowed && readChoice("advertising") !== "denied";
+ if (!allowedAtAction || !(await canTrack("advertising")) || !advertisingAllowed || readChoice("advertising") === "denied") return { allowed: false };
+ return { allowed: true, page: `${location.origin}${location.pathname}`, ...(ttclid ? { ttclid } : {}) };
+}

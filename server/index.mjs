@@ -1,4 +1,5 @@
 import http from 'node:http';
+import { startTikTok } from './tiktok.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync, readFileSync, existsSync } from 'node:fs';
 import { resolve, extname } from 'node:path';
@@ -6,6 +7,7 @@ import { createHash } from 'node:crypto';
 mkdirSync('/data', { recursive: true });
 const db = new DatabaseSync('/data/leads.sqlite');
 db.exec('PRAGMA journal_mode=WAL; CREATE TABLE IF NOT EXISTS leads(id TEXT PRIMARY KEY, fingerprint TEXT, payload TEXT, synced INTEGER DEFAULT 0, created INTEGER); CREATE TABLE IF NOT EXISTS rates(ip TEXT PRIMARY KEY, count INTEGER, since INTEGER)');
+const tiktok = startTikTok(db);
 const prices=JSON.parse(readFileSync(new URL('./prices.json',import.meta.url),'utf8'));
 const crm = process.env.TWENTY_URL, key = process.env.TWENTY_API_KEY;
 let syncing = false;
@@ -48,8 +50,13 @@ http.createServer(async(req,res)=>{
    const attributionKeys=['utmSource','utmMedium','utmCampaign','utmContent','utmTerm','utmId','fbclid','gclid','gbraid','wbraid','ttclid','campaignId','adGroupId','adId','placement','landingPath','referrerHost','firstTouch','lastTouch','attributionConsent'];
    if(p.attribution && typeof p.attribution==='object') for(const field of attributionKeys) if(typeof p.attribution[field]==='string') payload[field]=p.attribution[field].slice(0,field.endsWith('Touch')?7000:500);
    if(/^\d{4}-\d{2}-\d{2}$/.test(txt('date'))) payload.tourDate=txt('date');
-   db.prepare('INSERT INTO leads(id,fingerprint,payload,created) VALUES (?,?,?,?)').run(p.requestId,fingerprint,JSON.stringify(payload),now);
-   reply(res,202,{ok:true,id:p.requestId}); void sync();
+   db.exec('BEGIN IMMEDIATE');
+   try {
+    db.prepare('INSERT INTO leads(id,fingerprint,payload,created) VALUES (?,?,?,?)').run(p.requestId,fingerprint,JSON.stringify(payload),now);
+    tiktok.enqueue(p.measurement,p.requestId,now,req.headers['user-agent']);
+    db.exec('COMMIT');
+   } catch(e) { db.exec('ROLLBACK'); throw e; }
+   reply(res,202,{ok:true,id:p.requestId}); void sync(); void tiktok.flush();
   } catch { reply(res,400,{error:'Não foi possível receber sua solicitação.'}); }
   return;
  }

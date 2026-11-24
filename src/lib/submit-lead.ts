@@ -1,6 +1,9 @@
 import { getLeadAttribution } from "./attribution";
+import { leadSubmissionMeasurement } from "./ad-measurement";
 export async function submitLead(data: Record<string, string>, requestId: string) {
- const response = await fetch('/api/leads', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({...data, attribution: getLeadAttribution(), requestId}), signal: AbortSignal.timeout(20000) });
+ const attribution = getLeadAttribution();
+ const measurement = await leadSubmissionMeasurement(attribution.ttclid);
+ const response = await fetch('/api/leads', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({...data, attribution, measurement, requestId}), signal: AbortSignal.timeout(20000) });
  if (!response.ok) throw new Error('Não foi possível enviar. Confira seus dados e tente novamente.');
  return response.json();
 }
