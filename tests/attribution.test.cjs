@@ -18,3 +18,10 @@ test('denial and withdrawal remove click IDs without replaying the URL after lat
  assert.equal((await p.getAttribution()).gclid,undefined);choices.advertising=true;assert.equal((await p.getAttribution()).gclid,undefined);
  const c={analytics:true,advertising:true};const q=page('https://site.test/?ttclid=abc',c);assert.equal((await q.getAttribution()).ttclid,'abc');c.advertising=false;assert.equal((await q.getAttribution()).ttclid,undefined);
 });
+test('explicit submission consent captures entry UTMs after initial block and navigation',async()=>{
+ const choices={analytics:false,advertising:false};const p=page('https://site.test/?utm_source=meta&utm_campaign=verao&fbclid=abc',choices);
+ assert.deepEqual(JSON.parse(JSON.stringify(await p.getAttribution())),{});
+ choices.analytics=true;choices.advertising=true;
+ const result=await p.getAttribution(true);
+ assert.equal(result.utmSource,'meta');assert.equal(result.utmCampaign,'verao');assert.equal(result.fbclid,'abc');
+});
