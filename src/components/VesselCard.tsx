@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { trackSiteEvent } from "@/lib/ad-measurement";
 import { useState } from "react";
 import ContactForm from "./ContactForm";
@@ -68,7 +69,8 @@ const VesselCard = ({
       <div className="relative overflow-hidden h-64">
         <ImageWithFallback
           src={image} 
-          alt={name}
+          alt={`${name} para aluguel no Rio de Janeiro`}
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           showLoader={true}
         />
@@ -166,11 +168,10 @@ const VesselCard = ({
       <CardFooter className="pt-4">
         <div className="flex gap-3 w-full">
           <Button 
-            variant="outline" 
-            onClick={() => navigate(`/vessel/${id}`)}
+            variant="outline" asChild
             className="flex-1 border-primary text-primary hover:bg-primary hover:text-white"
           >
-            Ver Detalhes
+            <Link to={`/vessel/${id}`} aria-label={`Ver detalhes e solicitar aluguel de ${name}`}>Ver Detalhes</Link>
           </Button>
           <Button className="flex-1 btn-ocean" onClick={()=>{setBookingOpen(true);void trackSiteEvent("Contact",id,"vessel_card");}}>
             <MessageCircle className="w-4 h-4 mr-2" />Reservar

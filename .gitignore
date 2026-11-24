@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 server/prices.json
+
+server/pages.json
+public/optimized/

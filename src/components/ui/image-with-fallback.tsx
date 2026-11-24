@@ -1,3 +1,4 @@
+import { optimizedImage, imageSources } from "@/lib/images";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { validateImageUrl, getFallbackUrls, logImageError } from "@/utils/imageValidation";
@@ -18,7 +19,8 @@ const ImageWithFallback = ({
   fallbackSrc = "/placeholder.svg",
   className,
   onLoadingChange,
-  showLoader = true,
+  showLoader = false,
+  loading = "lazy",
   ...props 
 }: ImageWithFallbackProps) => {
   const [imgSrc, setImgSrc] = useState(src);
@@ -93,16 +95,18 @@ const ImageWithFallback = ({
 
       <img
         {...props}
-        src={imgSrc}
+        src={optimizedImage(imgSrc)}
+        srcSet={imageSources(imgSrc)}
+        sizes={props.sizes || "100vw"}
         alt={alt}
         className={cn(
           "transition-opacity duration-300",
-          isLoading ? "opacity-0" : "opacity-100",
           className
         )}
         onLoad={handleLoad}
         onError={handleError}
-        loading="lazy"
+        loading={loading}
+        decoding="async"
       />
     </div>
   );

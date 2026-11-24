@@ -1,7 +1,8 @@
+import { vessels as catalogVessels } from "@/components/VesselCatalog";
 import { submitLead, leadRequestId } from "@/lib/submit-lead";
 import { useState, useEffect } from "react";
 import { trackLead } from "@/lib/ad-measurement";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Users, Clock, Star, MapPin, Waves, Coffee, Music, Sun, Shield, Anchor, Zap, Box, Monitor, Smartphone, Droplets, Sparkles, Fuel, CheckCircle, Plus, AlertTriangle, Award, Bed as BedIcon, ChefHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -1089,7 +1090,9 @@ const VesselDetails = () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [id]);
 
-  const vessel = id ? vesselsData[id as keyof typeof vesselsData] : null;
+  const detail = id ? vesselsData[id as keyof typeof vesselsData] : null;
+  const catalog = catalogVessels.find(v => v.id === id);
+  const vessel = detail && catalog ? {...detail,name:catalog.name,type:catalog.type,capacity:catalog.capacity,price:catalog.price,duration:catalog.duration,location:catalog.location,category:catalog.category} : null;
 
   if (!vessel) {
     return (
@@ -1177,19 +1180,15 @@ Aguardo confirmação! 🌊
         {/* Header */}
         <div className="bg-secondary/30 py-8">
           <div className="container mx-auto px-4">
-            <Button 
-              variant="ghost" 
-              onClick={() => navigate("/")}
-              className="mb-4"
-            >
+            <Button variant="ghost" asChild className="mb-4"><Link to="/#embarcações">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Voltar às embarcações
-            </Button>
+            </Link></Button>
             
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
               <div className="flex-1 min-w-0">
                 <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold text-foreground mb-2 break-words">
-                  {vessel.name}
+                  Aluguel de {vessel.name} no Rio de Janeiro
                 </h1>
                 <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-muted-foreground text-sm lg:text-base">
                   <Badge variant="outline" className="text-xs sm:text-sm">{vessel.type}</Badge>
@@ -1208,7 +1207,7 @@ Aguardo confirmação! 🌊
                 <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary break-words">
                   {vessel.price}
                 </div>
-                <div className="text-xs sm:text-sm text-muted-foreground">por dia</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">por passeio — valor de referência</div>
               </div>
             </div>
           </div>

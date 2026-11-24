@@ -1,3 +1,4 @@
+import { optimizedImage, imageSources } from "@/lib/images";
 import { MapPin } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
@@ -25,7 +26,7 @@ const routes = [
   {
     id: 4,
     name: "Adão e Eva",
-    description: "Praias selvagens e desertas na Barra da Tijuca, cercadas por natureza exuberante e águas cristalinas.",
+    description: "Praias próximas à Fortaleza de Santa Cruz, em Niterói, para um roteiro combinado conforme as condições de navegação.",
     image: "/lovable-uploads/cda8d6a1-a754-4cb9-9058-c03ecec63744.png"
   },
   {
@@ -72,8 +73,9 @@ const TourRoutes = () => {
             <Card key={route.id} className="overflow-hidden group hover:shadow-luxury transition-all duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img 
-                  src={route.image} 
-                  alt={route.name}
+                  src={optimizedImage(route.image)} srcSet={imageSources(route.image)} sizes="(min-width: 768px) 33vw, 100vw" 
+                  loading="lazy" decoding="async" width={640} height={400}
+                  alt={`Destino de passeio de barco: ${route.name}`}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute bottom-4 left-4">

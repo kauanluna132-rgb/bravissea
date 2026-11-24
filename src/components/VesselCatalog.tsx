@@ -40,7 +40,7 @@ import sevenImage from "@/assets/seven-yacht.jpg";
 import sennaImage from "@/assets/senna-yacht.jpg";
 import luisaImage from "@/assets/luisa-yacht.jpg";
 
-const vessels = [
+export const vessels = [
   {
     id: "segue",
     name: "SEGUE",

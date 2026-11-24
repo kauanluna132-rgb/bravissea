@@ -45,13 +45,6 @@ const VesselImageCarousel = ({ images, vesselName }: VesselImageCarouselProps) =
     <div className="space-y-4">
       {/* Main Image */}
       <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] bg-muted rounded-lg overflow-hidden group">
-        {/* Loading State */}
-        {!imageLoaded[currentImage] && !imageError[currentImage] && (
-          <div className="absolute inset-0 flex items-center justify-center bg-muted">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-          </div>
-        )}
-        
         {/* Error State */}
         {imageError[currentImage] && (
           <div className="absolute inset-0 flex items-center justify-center bg-muted">

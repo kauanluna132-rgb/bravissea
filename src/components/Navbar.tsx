@@ -64,23 +64,23 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 md:justify-between">
           {/* Logo - Desktop */}
           <div className="hidden md:flex items-center space-x-2">
-            <button onClick={handleLogoClick} className="cursor-pointer">
-              <ImageWithFallback src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" showLoader={false} />
-            </button>
+            <a href="/" onClick={e=>{e.preventDefault();handleLogoClick();}} className="cursor-pointer">
+              <ImageWithFallback src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" showLoader={false} loading="eager" />
+            </a>
           </div>
 
           {/* Logo - Mobile (Centered) */}
           <div className="md:hidden flex-1 flex justify-center">
-            <button onClick={handleLogoClick} className="cursor-pointer">
-              <ImageWithFallback src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" showLoader={false} />
-            </button>
+            <a href="/" onClick={e=>{e.preventDefault();handleLogoClick();}} className="cursor-pointer">
+              <ImageWithFallback src="/lovable-uploads/3dd1c35b-81c4-4a09-85cd-8cd136cac6b0.png" alt="Bravissea" className="h-12 w-auto" showLoader={false} loading="eager" />
+            </a>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {menuItems.map(item => <button key={item.label} onClick={() => scrollToSection(item.href)} className="text-foreground hover:text-primary transition-colors font-medium">
+            {menuItems.map(item => <a href={"/"+item.href} key={item.label} onClick={e=>{e.preventDefault();scrollToSection(item.href);}} className="text-foreground hover:text-primary transition-colors font-medium">
                 {item.label}
-              </button>)}
+              </a>)}
           </div>
 
           {/* Desktop CTA */}
@@ -95,7 +95,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <button className="md:hidden p-2 absolute right-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMenuOpen} className="md:hidden p-2 absolute right-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X className="h-6 w-6 text-foreground" /> : <Menu className="h-6 w-6 text-foreground" />}
           </button>
         </div>
@@ -103,9 +103,9 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isMenuOpen && <div className="md:hidden py-4 border-t border-border/50">
             <div className="flex flex-col space-y-4">
-              {menuItems.map(item => <button key={item.label} onClick={() => scrollToSection(item.href)} className="text-left text-foreground hover:text-primary transition-colors font-medium py-2">
+              {menuItems.map(item => <a href={"/"+item.href} key={item.label} onClick={e=>{e.preventDefault();scrollToSection(item.href);}} className="text-left text-foreground hover:text-primary transition-colors font-medium py-2">
                   {item.label}
-                </button>)}
+                </a>)}
               <div className="flex items-center text-sm text-muted-foreground pt-2">
                 <Phone className="h-4 w-4 mr-1" />
                 <span>(21) 97400-4415</span>

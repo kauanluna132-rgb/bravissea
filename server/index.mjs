@@ -1,8 +1,8 @@
+import { serveStatic } from './static.mjs';
 import http from 'node:http';
 import { startTikTok, clientIP } from './tiktok.mjs';
 import { DatabaseSync } from 'node:sqlite';
-import { mkdirSync, readFileSync, existsSync } from 'node:fs';
-import { resolve, extname } from 'node:path';
+import { mkdirSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 mkdirSync('/data', { recursive: true });
 const db = new DatabaseSync('/data/leads.sqlite');
@@ -78,8 +78,5 @@ http.createServer(async(req,res)=>{
   return;
  }
  if(req.url?.startsWith('/api/')) return reply(res,404,{error:'Not found'});
- const path=resolve('dist','.'+new URL(req.url,'http://localhost').pathname);
- if(!path.startsWith(resolve('dist')+'/') && path!==resolve('dist')) return reply(res,403,{});
- const file=existsSync(path)&&extname(path)?path:resolve('dist/index.html');
- try { const data=readFileSync(file); const types={'.html':'text/html','.js':'application/javascript','.css':'text/css','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.svg':'image/svg+xml','.woff2':'font/woff2'}; res.writeHead(200,{'Content-Type':types[extname(file)]||'application/octet-stream'});res.end(data); } catch { res.writeHead(404);res.end(); }
+ serveStatic(req,res);
 }).listen(3000,'0.0.0.0');

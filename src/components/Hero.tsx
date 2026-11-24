@@ -7,9 +7,8 @@ const Hero = () => {
   const whatsappLink = "https://wa.me/5521974004415?text=Olá! Gostaria de saber mais sobre os passeios da Bravissea.";
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-      backgroundImage: `url(${heroYacht})`
-    }}>
+      <div className="absolute inset-0">
+        <img src={import.meta.env.PROD ? "/optimized/hero-1600.webp" : heroYacht} srcSet={import.meta.env.PROD ? "/optimized/hero-800.webp 800w, /optimized/hero-1600.webp 1600w" : undefined} sizes="100vw" alt="" aria-hidden="true" width={1920} height={1080} {...{fetchpriority:"high"}} loading="eager" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/70 via-primary/50 to-primary/60"></div>
       </div>
       
@@ -25,14 +24,13 @@ const Hero = () => {
           
           {/* Main Headline */}
           <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
-            Navegue pelo
-            <span className="block bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Paraíso Carioca</span>
+            Aluguel de lanchas, iates e catamarãs
+            <span className="block bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">no Rio de Janeiro</span>
           </h1>
           
           {/* Subheadline */}
           <p className="md:text-xl lg:text-2xl mb-6 md:mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed text-base">
-            Descubra as belezas do Rio de Janeiro a bordo de iates, lanchas e catamarãs de luxo. 
-            Experiências inesquecíveis com segurança e conforto garantidos.
+            Planeje um passeio privado para seu grupo com a Bravissea. Compare embarcações, capacidades e valores de referência e consulte disponibilidade para embarque na Marina da Glória.
           </p>
           
           {/* Stats */}

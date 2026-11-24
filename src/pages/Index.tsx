@@ -1,3 +1,4 @@
+import RentalGuide, { RentalFAQ } from "@/components/RentalGuide";
 import ContactForm from "@/components/ContactForm";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -13,6 +14,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
+      <main>
       <div id="home">
         <Hero />
       </div>
@@ -26,6 +28,7 @@ const Index = () => {
         </div>
       </div>
       
+      <RentalGuide />
       <div id="embarcações">
         <VesselCatalog />
       </div>
@@ -43,6 +46,10 @@ const Index = () => {
       </div>
       <div id="contato">
         <ContactForm />
+      </div>
+      <RentalFAQ />
+      </main>
+      <div>
         <Footer />
       </div>
       <WhatsAppFloat />

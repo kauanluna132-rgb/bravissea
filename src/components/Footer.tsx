@@ -1,3 +1,4 @@
+import { RentalLinks } from "./RentalGuide";
 import { Button } from "@/components/ui/button";
 import { trackLead } from "@/lib/ad-measurement";
 import { MapPin, Phone, Mail, Instagram, MessageCircle, Anchor, Star, Shield, Clock } from "lucide-react";
@@ -82,12 +83,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#depoimentos" className="text-white/80 hover:text-blue-400 transition-colors">
+                <a href="/#testimonials" className="text-white/80 hover:text-blue-400 transition-colors">
                   Depoimentos
                 </a>
               </li>
               <li>
-                <a href="#customer-photos" className="text-white/80 hover:text-blue-400 transition-colors">
+                <a href="/#customer-photos" className="text-white/80 hover:text-blue-400 transition-colors">
                   Clientes
                 </a>
               </li>
@@ -117,6 +118,7 @@ const Footer = () => {
         </div>
       </div>
 
+      <div className="container mx-auto px-6 pb-10"><h2 className="text-lg font-semibold mb-4">Aluguel de embarcações no Rio</h2><div className="rounded-xl bg-white p-5"><RentalLinks /></div></div>
       {/* Map */}
       <div className="container mx-auto px-6 pb-12">
         <h4 className="text-blue-400 text-lg font-semibold mb-4 flex items-center gap-2">
