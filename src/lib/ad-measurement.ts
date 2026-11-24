@@ -1,30 +1,14 @@
 import { getLeadAttribution } from "./attribution";
 import { applySignals, canTrack, onConsentChange, readChoice } from "./consent";
-import { googleConversionDestination, leadPayload, measurementConfig, type LeadEvent } from "./lead-events";
+import { leadPayload, measurementConfig, type LeadEvent } from "./lead-events";
 
 let started = false;
 let advertisingAllowed = true;
-let analyticsConfigured = false;
-let adsConfigured = false;
 let metaConfigured = false;
-let googleLoaded = false;
-let tiktokConfigured = false;
 let revision = 0;
 
 function google(...args: unknown[]) {
   window.gtag?.(...args);
-}
-
-function loadGoogle() {
-  if (googleLoaded) return;
-  googleLoaded = true;
-  google("set", "developer_id.dZjgwMW", true);
-  google("js", new Date());
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementConfig.googleAnalyticsId}`;
-  script.id = "bravissea-google-tag";
-  document.head.appendChild(script);
 }
 
 function loadMeta() {
@@ -53,35 +37,6 @@ function loadMeta() {
   window.fbq?.("trackSingle", measurementConfig.metaPixelId, "PageView");
 }
 
-function loadTikTok() {
-  const id = measurementConfig.tiktokPixelId;
-  if (!id) return;
-  if (tiktokConfigured) {
-    window.ttq?.grantConsent?.();
-    return;
-  }
-  tiktokConfigured = true;
-  // Official deferred Pixel API; no matching/identify calls are enabled.
-  const queue = [] as unknown as NonNullable<Window["ttq"]>;
-  queue.track = (...args: unknown[]) => queue.push(["track", ...args]);
-  queue.page = () => queue.push(["page"]);
-  queue.grantConsent = () => queue.push(["grantConsent"]);
-  queue.revokeConsent = () => queue.push(["revokeConsent"]);
-  queue.methods = ["track", "page", "grantConsent", "revokeConsent"];
-  const url = "https://analytics.tiktok.com/i18n/pixel/events.js";
-  queue._i = { [id]: Object.assign([], { _u: url }) };
-  queue._t = { [id]: Date.now() };
-  queue._o = { [id]: {} };
-  window.TiktokAnalyticsObject = "ttq";
-  window.ttq = queue;
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `${url}?sdkid=${encodeURIComponent(id)}&lib=ttq`;
-  document.head.appendChild(script);
-  queue.grantConsent();
-  queue.page();
-}
-
 async function refreshPermission() {
   const currentRevision = ++revision;
   // Automatic measurement starts immediately, independent of stored choices.
@@ -95,27 +50,9 @@ async function refreshPermission() {
   advertisingAllowed = ads;
   applySignals("advertising", ads ? "granted" : "denied");
   applySignals("analytics", analytics ? "granted" : "denied");
-  if (ads || analytics) loadGoogle();
-  if (analytics && !analyticsConfigured) {
-    analyticsConfigured = true;
-    google("config", measurementConfig.googleAnalyticsId, {
-      send_page_view: false,
-      allow_google_signals: false,
-      allow_ad_personalization_signals: false,
-    });
-    google("event", "page_view", {
-      send_to: measurementConfig.googleAnalyticsId,
-      page_location: `${location.origin}${location.pathname}`,
-      page_referrer: document.referrer ? new URL(document.referrer).origin : "",
-    });
-  }
+  // GTM initializes GA4, Google Ads and the TikTok browser pixel once.
   if (ads) {
-    if (!adsConfigured) {
-      adsConfigured = true;
-      google("config", measurementConfig.googleAdsId, { send_page_view: false });
-    }
     loadMeta();
-    loadTikTok();
   } else {
     window.fbq?.("consent", "revoke");
     window.ttq?.revokeConsent?.();
@@ -138,16 +75,8 @@ export async function trackLead(event: LeadEvent) {
   const id = crypto.randomUUID();
   const payload = leadPayload(event, id);
   window.dataLayer.push(payload);
-  // All three moments are WhatsApp contact intent, never a completed booking.
-  window.fbq?.("trackSingle", measurementConfig.metaPixelId, "Contact", {
-    content_category: event.kind,
-    source: event.source,
-    ...(event.vessel_id ? { content_ids: [event.vessel_id] } : {}),
-  }, { eventID: id });
-  google("event", "conversion", {
-    send_to: googleConversionDestination(event.kind),
-    transaction_id: id,
-  });
+  // GTM's published click triggers own Meta/Google Contact conversions.
+  // Keep only the distinct analytics event and the server-side TikTok event here.
   if (await canTrack("analytics")) {
     if (readChoice("advertising") === "denied" || !advertisingAllowed) return;
     const { event: _event, ...parameters } = payload;

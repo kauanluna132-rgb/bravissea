@@ -1,4 +1,4 @@
-// Destinations verified in the published GTM-W9MGL923 container (version 5).
+// Destinations verified in the published GTM-W9MGL923 container (version 7).
 // A WhatsApp action is an intent signal, not a confirmed lead or sale.
 export const measurementConfig = {
   metaPixelId: "618975987909341",
@@ -6,8 +6,8 @@ export const measurementConfig = {
   googleAdsId: "AW-17381921158",
   contactConversionLabel: "6v53CKuBm5UbEIajrOBA",
   bookingConversionLabel: "Q8CjCKm3yZ0bEIajrOBA",
-  // TikTok remains disabled until the owner supplies their pixel ID.
-  tiktokPixelId: "",
+  // Browser pixel is loaded by GTM; the server uses the same verified destination.
+  tiktokPixelId: "DC2A9U3C77U0A5LSGGH0",
 };
 
 export type LeadKind = "contact_clicked" | "route_inquiry_clicked" | "booking_request_opened";

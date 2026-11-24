@@ -1,6 +1,6 @@
 # Project architecture
 - Keep lead semantics and destination settings in `src/lib/lead-events.ts`; WhatsApp intent must not imply a confirmed booking or paid sale.
-- Use `src/lib/ad-measurement.ts` as the sole advertising sender instead of the old GTM automatic-click tags, reusing their existing destinations to prevent duplicate Meta/Google conversions.
+- GTM-W9MGL923 owns Google initialization, TikTok browser pixel, and Meta/Google Contact conversion triggers. ad-measurement.ts owns the Meta PageView baseline and TikTok server events; never duplicate GTM conversions with direct calls.
 - Measurement starts automatically per the owner’s explicit instruction; do not reintroduce region or saved-choice gates.
 - Keep native Lovable event calls directly in existing action handlers and catalog their closed, non-personal schemas.
 - Send only allowlisted event properties; reservation contact details and WhatsApp URLs stay outside measurement payloads.
