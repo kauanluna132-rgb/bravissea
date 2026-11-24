@@ -1,4 +1,4 @@
-import { canTrack } from './consent';
+import { canTrack, readChoice } from './consent';
 const entryUrl = typeof location !== 'undefined' ? location.href : '';
 const KEY = 'bravissea_attribution_v1';
 const TTL = 30 * 86400000;
@@ -43,4 +43,22 @@ export async function getAttribution(captureForThisSubmission = false):Promise<R
  if(!memory || Date.now()-memory.at>=TTL){memory=null;save();return {};}
  memory.first=strip(memory.first,analytics,advertising);memory.last=strip(memory.last,analytics,advertising);save();
  return {...memory.last,firstTouch:JSON.stringify(memory.first),lastTouch:JSON.stringify(memory.last),attributionConsent:JSON.stringify({analytics,advertising})};
+}
+
+// First-party context of the submitted inquiry. Does not grant cookie/pixel consent
+// or persist click identifiers in browser storage.
+export function getLeadAttribution(): Record<string,string> {
+ const entry=new URL(entryUrl);const current=new URL(location.href);
+ function context(url:URL):Touch {
+  const touch:Touch={};
+  for(const [param,field] of Object.entries({...analyticsKeys,...adKeys})) {
+   const value=url.searchParams.get(param);if(value)touch[field]=value.slice(0,500);
+  }
+  touch.landingPath=url.pathname.slice(0,500);
+  return touch;
+ }
+ const first=context(entry),latest=context(current);
+ const last=Object.keys(latest).some(k=>k!=='landingPath')?latest:first;
+ try{first.referrerHost=new URL(document.referrer).hostname;}catch{}
+ return {...last,firstTouch:JSON.stringify(first),lastTouch:JSON.stringify(last),attributionConsent:JSON.stringify({analytics:readChoice('analytics'),advertising:readChoice('advertising'),captureMode:'submitted_url_context'})};
 }

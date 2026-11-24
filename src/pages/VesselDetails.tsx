@@ -1,4 +1,3 @@
-import AttributionChoice from "@/components/AttributionChoice";
 import { submitLead, leadRequestId } from "@/lib/submit-lead";
 import { useState, useEffect } from "react";
 import { trackLead } from "@/lib/ad-measurement";
@@ -1082,7 +1081,6 @@ const VesselDetails = () => {
     message: ""
   });
 
-  const [allowAttribution,setAllowAttribution]=useState(false);
   const [sending, setSending] = useState(false);
   const [leadError, setLeadError] = useState("");
   const [leadSent, setLeadSent] = useState(false);
@@ -1142,7 +1140,7 @@ const VesselDetails = () => {
   const handleBooking = async () => {
     if (sending) return;
     setSending(true); setLeadError("");
-    try { await submitLead({...bookingForm, vesselName: vessel.name, vesselId: vessel.id}, leadRequestId(),allowAttribution); setLeadSent(true); }
+    try { await submitLead({...bookingForm, vesselName: vessel.name, vesselId: vessel.id}, leadRequestId()); setLeadSent(true); }
     catch (error) { setLeadError((error as Error).message); setSending(false); return; }
     setSending(false);
     const message = `
@@ -3844,7 +3842,6 @@ Aguardo confirmação! 🌊
                     />
                   </div>
                   
-                  <AttributionChoice checked={allowAttribution} onChange={setAllowAttribution} />
                   {leadError && <p role="alert" className="text-red-600">{leadError}</p>}
                   {leadSent && <p role="status">Solicitação recebida! Nossa equipe entrará em contato.</p>}
                   <Button 
