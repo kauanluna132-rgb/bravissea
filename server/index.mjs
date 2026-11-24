@@ -1,5 +1,5 @@
 import http from 'node:http';
-import { startTikTok } from './tiktok.mjs';
+import { startTikTok, clientIP } from './tiktok.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync, readFileSync, existsSync } from 'node:fs';
 import { resolve, extname } from 'node:path';
@@ -53,7 +53,7 @@ http.createServer(async(req,res)=>{
    db.exec('BEGIN IMMEDIATE');
    try {
     db.prepare('INSERT INTO leads(id,fingerprint,payload,created) VALUES (?,?,?,?)').run(p.requestId,fingerprint,JSON.stringify(payload),now);
-    tiktok.enqueue(p.measurement,p.requestId,now,req.headers['user-agent']);
+    tiktok.enqueue(p.measurement,p.requestId,now,req.headers['user-agent'],{email,phone},clientIP(req));
     db.exec('COMMIT');
    } catch(e) { db.exec('ROLLBACK'); throw e; }
    reply(res,202,{ok:true,id:p.requestId}); void sync(); void tiktok.flush();

@@ -165,5 +165,7 @@ export async function trackLead(event: LeadEvent) {
 export async function leadSubmissionMeasurement(ttclid?: string) {
  const allowedAtAction = advertisingAllowed && readChoice("advertising") !== "denied";
  if (!allowedAtAction || !(await canTrack("advertising")) || !advertisingAllowed || readChoice("advertising") === "denied") return { allowed: false };
- return { allowed: true, page: `${location.origin}${location.pathname}`, ...(ttclid ? { ttclid } : {}) };
+ let ttp = "";
+ try { ttp = decodeURIComponent(document.cookie.split("; ").find(c => c.startsWith("_ttp="))?.slice(5) || ""); } catch { /* Missing/invalid cookie is optional. */ }
+ return { allowed: true, ttp, locale: navigator.language, page: `${location.origin}${location.pathname}`, ...(ttclid ? { ttclid } : {}) };
 }

@@ -1,5 +1,22 @@
-// Server-only Events API. Contact details and quote values never enter this payload.
-export function leadEvent(input, id, now, userAgent = '') {
+import { createHash } from 'node:crypto';
+import { isIP } from 'node:net';
+const hash = value => createHash('sha256').update(value).digest('hex');
+export function normalizePhone(value = '') {
+ const raw=String(value).trim(); let digits=raw.replace(/\D/g,'');
+ if(raw.startsWith('00')) digits=digits.slice(2);
+ if(!raw.startsWith('+') && !raw.startsWith('00') && [10,11].includes(digits.length)) digits='55'+digits;
+ return /^[1-9]\d{7,14}$/.test(digits) ? '+'+digits : '';
+}
+// Trust only the last forwarded hop added by the local reverse proxy, never body IPs.
+export function clientIP(req) {
+ const peer=(req.socket.remoteAddress||'').replace(/^::ffff:/,'');
+ const privatePeer=/^(127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(peer)||peer==='::1';
+ const candidate=privatePeer ? String(req.headers['x-forwarded-for']||'').split(',').at(-1).trim() : peer;
+ if(!isIP(candidate) || /^(0\.|10\.|127\.|169\.254\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(candidate) || /^(::|fc|fd|fe80)/i.test(candidate)) return '';
+ return candidate;
+}
+// Hash contact identifiers on the server. Never send names, messages or quote revenue.
+export function leadEvent(input, id, now, userAgent = '', contact = {}, ip = '') {
  if (input?.allowed !== true) return null;
  let page;
  try {
@@ -9,6 +26,14 @@ export function leadEvent(input, id, now, userAgent = '') {
  } catch { return null; }
  const user = { user_agent: String(userAgent).slice(0,500) };
  if (typeof input.ttclid === 'string' && /^[a-zA-Z0-9_\-.]{1,500}$/.test(input.ttclid)) user.ttclid = input.ttclid;
+ const email=String(contact.email||'').trim().toLowerCase();
+ const phone=normalizePhone(contact.phone);
+ if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) user.email=hash(email);
+ if(phone) user.phone=hash(phone);
+ if(user.email || user.phone) user.external_id=hash('bravissea:'+ (user.email ? 'email:'+email : 'phone:'+phone));
+ if(isIP(ip)) user.ip=ip;
+ if(typeof input.ttp==='string' && /^[a-zA-Z0-9_.-]{1,500}$/.test(input.ttp)) user.ttp=input.ttp;
+ if(typeof input.locale==='string' && /^[a-z]{2,3}([-_][a-zA-Z]{2,4})?$/.test(input.locale)) user.locale=input.locale.replace('-','_');
  return {event:'SubmitForm',event_id:id,event_time:Math.floor(now/1000),user,page};
 }
 export function startTikTok(db, env = process.env, send = fetch) {
@@ -38,9 +63,9 @@ export function startTikTok(db, env = process.env, send = fetch) {
  }
  const timer=setInterval(()=>void flush(),15000); timer.unref(); void flush();
  return {
-  enqueue(input,id,now,userAgent) {
+  enqueue(input,id,now,userAgent,contact,ip) {
    if(!enabled) return;
-   const event=leadEvent(input,id,now,userAgent);
+   const event=leadEvent(input,id,now,userAgent,contact,ip);
    if(event) db.prepare('INSERT OR IGNORE INTO tiktok_events(id,payload,created) VALUES (?,?,?)').run(id,JSON.stringify(event),now);
   }, flush,
  };

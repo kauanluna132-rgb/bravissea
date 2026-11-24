@@ -26,3 +26,21 @@ test('durable dedup, retry stable event identity and scrub on successful deliver
  assert.equal(db.prepare('SELECT payload FROM tiktok_events').get().payload,'{}');
  await sender.flush();assert.equal(calls.length,2);
 });
+
+test('advanced matching normalizes and hashes contact identifiers; only allowlisted keys',()=>{
+ const contact={email:' USER@Example.COM ',phone:'(21) 99999-1234',name:'secret',message:'private'};
+ const a=leadEvent({...input,ttp:'cookie_123',locale:'pt-BR'},'id',1000,'agent',contact,'8.8.8.8');
+ const b=leadEvent(input,'other',2000,'agent',{email:'user@example.com',phone:'+5521999991234'});
+ assert.match(a.user.email,/^[a-f0-9]{64}$/);assert.match(a.user.phone,/^[a-f0-9]{64}$/);
+ assert.equal(a.user.email,b.user.email);assert.equal(a.user.phone,b.user.phone);assert.equal(a.user.external_id,b.user.external_id);
+ assert.equal(a.user.ip,'8.8.8.8');assert.equal(a.user.ttp,'cookie_123');assert.equal(a.user.locale,'pt_BR');
+ assert.ok(!JSON.stringify(a).includes('user@example.com'));assert.ok(!JSON.stringify(a).includes('99999'));
+ assert.equal(a.user.name,undefined);assert.equal(a.user.message,undefined);
+ assert.equal(leadEvent({...input,allowed:false},'id',1000,'agent',contact),null);
+});
+test('proxy address uses last hop, excludes private addresses and ignores spoofed body data',async()=>{
+ const {clientIP}=await import('../server/tiktok.mjs');
+ assert.equal(clientIP({socket:{remoteAddress:'172.18.0.2'},headers:{'x-forwarded-for':'1.1.1.1, 8.8.8.8'}}),'8.8.8.8');
+ assert.equal(clientIP({socket:{remoteAddress:'8.8.4.4'},headers:{'x-forwarded-for':'1.1.1.1'}}),'8.8.4.4');
+ assert.equal(clientIP({socket:{remoteAddress:'172.18.0.2'},headers:{}}),'');
+});
