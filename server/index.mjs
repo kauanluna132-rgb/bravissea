@@ -1,6 +1,7 @@
 import { serveStatic } from './static.mjs';
 import http from 'node:http';
 import { startTikTok, clientIP } from './tiktok.mjs';
+import { createWonConversions, validWonSecret } from './won.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -8,6 +9,7 @@ mkdirSync('/data', { recursive: true });
 const db = new DatabaseSync('/data/leads.sqlite');
 db.exec('PRAGMA journal_mode=WAL; CREATE TABLE IF NOT EXISTS leads(id TEXT PRIMARY KEY, fingerprint TEXT, payload TEXT, synced INTEGER DEFAULT 0, created INTEGER); CREATE TABLE IF NOT EXISTS rates(ip TEXT PRIMARY KEY, count INTEGER, since INTEGER)');
 const tiktok = startTikTok(db);
+const won = createWonConversions(db);
 const prices=JSON.parse(readFileSync(new URL('./prices.json',import.meta.url),'utf8'));
 const crm = process.env.TWENTY_URL, key = process.env.TWENTY_API_KEY;
 let syncing = false;
@@ -28,6 +30,18 @@ setInterval(sync,15000); void sync();
 function reply(res,code,data) { res.writeHead(code,{'Content-Type':'application/json','Cache-Control':'no-store'}); res.end(JSON.stringify(data)); }
 http.createServer(async(req,res)=>{
  if(req.url==='/healthz') return reply(res,200,{ok:true});
+ if(req.url==='/api/crm/won' && req.method==='POST') {
+  if (!validWonSecret(req.headers['x-crm-sync-secret'], process.env.CRM_WON_WEBHOOK_SECRET)) return reply(res,401,{error:'Unauthorized'});
+  try {
+   let raw=''; for await (const chunk of req) { raw+=chunk; if (Buffer.byteLength(raw)>1000) return reply(res,413,{}); }
+   const { opportunityId } = JSON.parse(raw);
+   if (!/^[0-9a-f-]{36}$/i.test(opportunityId || '')) return reply(res,400,{});
+   const result = await won.capture(opportunityId);
+   reply(res,202,result);
+   if (result.queued) void won.flush();
+  } catch (error) { console.error('Won conversion capture failed:', error.message); reply(res,502,{error:'CRM unavailable or sale incomplete'}); }
+  return;
+ }
  if(req.url==='/api/events' && req.method==='POST') {
   try {
    if(req.headers.origin!==`https://${req.headers.host}`) return reply(res,403,{error:'Invalid origin'});
