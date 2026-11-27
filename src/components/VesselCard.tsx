@@ -51,7 +51,6 @@ const VesselCard = ({
   images = [],
   capacity,
   price,
-  originalPrice,
   rating,
   duration,
   location,
@@ -124,13 +123,7 @@ const VesselCard = ({
             </h3>
             <p className="text-muted-foreground text-sm">{description}</p>
           </div>
-          <div className="text-right">
-            <div className="text-2xl font-bold text-primary">{price}</div>
-            {originalPrice && (
-              <div className="text-sm text-muted-foreground line-through">{originalPrice}</div>
-            )}
-            <div className="text-xs text-muted-foreground">por passeio</div>
-          </div>
+          <div className="text-right text-sm font-semibold text-primary">Solicite orçamento</div>
         </div>
       </CardHeader>
       
