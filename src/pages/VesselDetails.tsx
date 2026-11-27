@@ -1068,6 +1068,8 @@ const vesselsData = {
   }
 };
 
+const publicPrice = (value: unknown) => typeof value === "string" ? value.replace(/R\$\s*[\d.,]+(?:\/[A-Za-z]+)?/g, "Sob consulta") : value;
+
 const VesselDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -1205,9 +1207,9 @@ Aguardo confirmação! 🌊
               
               <div className="lg:mt-0 text-left lg:text-right flex-shrink-0">
                 <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary break-words">
-                  {vessel.price}
+                  Solicite orçamento
                 </div>
-                <div className="text-xs sm:text-sm text-muted-foreground">por passeio — valor de referência</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Consulte disponibilidade e valores</div>
               </div>
             </div>
           </div>
@@ -1232,7 +1234,7 @@ Aguardo confirmação! 🌊
                 </CardHeader>
                 <CardContent className="p-4 lg:p-6">
                   <p className="text-muted-foreground mb-6 lg:mb-8 text-sm lg:text-lg leading-relaxed break-words hyphens-auto">
-                    {vessel.description}
+                    {publicPrice(vessel.description)}
                   </p>
                   
                   {vessel.id === "segue" && (
@@ -1419,20 +1421,20 @@ Aguardo confirmação! 🌊
                          <div className="grid md:grid-cols-2 gap-4">
                             <div className="bg-muted/50 p-4 rounded-lg">
                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Valor Base</span>
-                              <p className="text-lg font-semibold">{(vessel as any).pricing?.base}</p>
-                              <p className="text-xs text-muted-foreground">{(vessel as any).pricing?.duration}</p>
+                              <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.base)}</p>
+                              <p className="text-xs text-muted-foreground">{publicPrice((vessel as any).pricing?.duration)}</p>
                             </div>
                             <div className="bg-muted/50 p-4 rounded-lg">
                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa Churrasco</span>
-                              <p className="text-lg font-semibold">{(vessel as any).pricing?.barbecue}</p>
+                              <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.barbecue)}</p>
                             </div>
                             <div className="bg-muted/50 p-4 rounded-lg">
                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Hora Extra</span>
-                              <p className="text-lg font-semibold">{(vessel as any).pricing?.extraHour}</p>
+                              <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.extraHour)}</p>
                             </div>
                             <div className="bg-muted/50 p-4 rounded-lg">
                               <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Gerador</span>
-                              <p className="text-lg font-semibold">{(vessel as any).pricing?.generator}</p>
+                              <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.generator)}</p>
                               <p className="text-xs text-muted-foreground">Ar-condicionado, geladeira, microondas e fogão</p>
                             </div>
                          </div>
@@ -1442,14 +1444,14 @@ Aguardo confirmação! 🌊
                        <div>
                          <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
                            <MapPin className="h-5 w-5 mr-2" />
-                           Roteiros e Preços
+                           Roteiros e orçamento
                          </h4>
                           <div className="grid md:grid-cols-2 gap-4">
                             {(vessel as any).destinations?.map((destination: any, index: number) => (
                              <div key={index} className="border border-primary/20 p-4 rounded-lg">
                                <div className="flex justify-between items-center">
                                  <h5 className="font-semibold text-primary">{destination.name}</h5>
-                                 <span className="font-bold text-lg">{destination.price}</span>
+                                 <span className="font-bold text-lg">{publicPrice(destination.price)}</span>
                                </div>
                              </div>
                            ))}
@@ -1520,35 +1522,35 @@ Aguardo confirmação! 🌊
                            </div>
                          </div>
 
-                         {/* Roteiros e Preços */}
+                         {/* Roteiros e orçamento */}
                          <div>
                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
                              <MapPin className="h-5 w-5 mr-2" />
-                             Roteiros e Preços
+                             Roteiros e orçamento
                            </h4>
                             <div className="grid md:grid-cols-2 gap-4">
                               <div className="border border-primary/20 p-4 rounded-lg">
                                 <div className="flex justify-between items-center">
                                   <h5 className="font-semibold text-primary">Roteiro Urca</h5>
-                                  <span className="font-bold text-lg">R$ 10.000,00</span>
+                                  <span className="font-bold text-lg">Sob consulta</span>
                                 </div>
                               </div>
                               <div className="border border-primary/20 p-4 rounded-lg">
                                 <div className="flex justify-between items-center">
                                   <h5 className="font-semibold text-primary">Roteiro Praia Vermelha</h5>
-                                  <span className="font-bold text-lg">R$ 11.000,00</span>
+                                  <span className="font-bold text-lg">Sob consulta</span>
                                 </div>
                               </div>
                               <div className="border border-primary/20 p-4 rounded-lg">
                                 <div className="flex justify-between items-center">
                                   <h5 className="font-semibold text-primary">Copacabana</h5>
-                                  <span className="font-bold text-lg">R$ 13.800,00</span>
+                                  <span className="font-bold text-lg">Sob consulta</span>
                                 </div>
                               </div>
                               <div className="border border-primary/20 p-4 rounded-lg">
                                 <div className="flex justify-between items-center">
                                   <h5 className="font-semibold text-primary">Cagarras</h5>
-                                  <span className="font-bold text-lg">R$ 15.000,00</span>
+                                  <span className="font-bold text-lg">Sob consulta</span>
                                 </div>
                               </div>
                            </div>
@@ -1563,11 +1565,11 @@ Aguardo confirmação! 🌊
                            <div className="grid md:grid-cols-2 gap-4">
                               <div className="bg-muted/50 p-4 rounded-lg">
                                 <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa do Churrasqueiro</span>
-                                <p className="text-lg font-semibold">R$ 200,00</p>
+                                <p className="text-lg font-semibold">Sob consulta</p>
                               </div>
                               <div className="bg-muted/50 p-4 rounded-lg">
                                 <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa de Embarque</span>
-                                <p className="text-lg font-semibold">R$ 200,00</p>
+                                <p className="text-lg font-semibold">Sob consulta</p>
                               </div>
                            </div>
                          </div>
@@ -1655,12 +1657,12 @@ Aguardo confirmação! 🌊
                           <div className="grid md:grid-cols-2 gap-4">
                              <div className="bg-muted/50 p-4 rounded-lg">
                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Valor Base</span>
-                               <p className="text-lg font-semibold">{(vessel as any).pricing?.base}</p>
+                               <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.base)}</p>
                                <p className="text-xs text-muted-foreground">5 horas</p>
                              </div>
                              <div className="bg-muted/50 p-4 rounded-lg">
                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Churrasqueira</span>
-                               <p className="text-lg font-semibold">{(vessel as any).pricing?.barbecue}</p>
+                               <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.barbecue)}</p>
                              </div>
                           </div>
                         </div>
@@ -1669,14 +1671,14 @@ Aguardo confirmação! 🌊
                         <div>
                           <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
                             <MapPin className="h-5 w-5 mr-2" />
-                            Roteiros e Preços
+                            Roteiros e orçamento
                           </h4>
                            <div className="grid md:grid-cols-2 gap-4">
                              {(vessel as any).destinations?.map((destination: any, index: number) => (
                               <div key={index} className="border border-primary/20 p-4 rounded-lg">
                                 <div className="flex justify-between items-center">
                                   <h5 className="font-semibold text-primary">{destination.name}</h5>
-                                  <span className="font-bold text-lg">{destination.price}</span>
+                                  <span className="font-bold text-lg">{publicPrice(destination.price)}</span>
                                 </div>
                               </div>
                             ))}
@@ -1714,16 +1716,16 @@ Aguardo confirmação! 🌊
                           <div className="grid md:grid-cols-3 gap-4">
                              <div className="bg-muted/50 p-4 rounded-lg">
                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Valor Base</span>
-                               <p className="text-lg font-semibold">{(vessel as any).pricing?.base}</p>
+                               <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.base)}</p>
                                <p className="text-xs text-muted-foreground">5 horas</p>
                              </div>
                              <div className="bg-muted/50 p-4 rounded-lg">
                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa Churrasqueiro</span>
-                               <p className="text-lg font-semibold">{(vessel as any).pricing?.barbecueStaff}</p>
+                               <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.barbecueStaff)}</p>
                              </div>
                              <div className="bg-muted/50 p-4 rounded-lg">
                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa Embarque</span>
-                               <p className="text-lg font-semibold">{(vessel as any).pricing?.boardingFee}</p>
+                               <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.boardingFee)}</p>
                              </div>
                           </div>
                         </div>
@@ -1732,14 +1734,14 @@ Aguardo confirmação! 🌊
                         <div>
                           <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
                             <MapPin className="h-5 w-5 mr-2" />
-                            Roteiros e Preços
+                            Roteiros e orçamento
                           </h4>
                            <div className="grid md:grid-cols-2 gap-4">
                              {(vessel as any).destinations?.map((destination: any, index: number) => (
                               <div key={index} className="border border-primary/20 p-4 rounded-lg">
                                 <div className="flex justify-between items-center">
                                   <h5 className="font-semibold text-primary">{destination.name}</h5>
-                                  <span className="font-bold text-lg">{destination.price}</span>
+                                  <span className="font-bold text-lg">{publicPrice(destination.price)}</span>
                                 </div>
                               </div>
                             ))}
@@ -1847,16 +1849,16 @@ Aguardo confirmação! 🌊
                           <div className="grid md:grid-cols-3 gap-4">
                              <div className="bg-muted/50 p-4 rounded-lg">
                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Valor Base</span>
-                               <p className="text-lg font-semibold">{(vessel as any).pricing?.base}</p>
+                               <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.base)}</p>
                                <p className="text-xs text-muted-foreground">5 horas</p>
                              </div>
                              <div className="bg-muted/50 p-4 rounded-lg">
                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa de Embarque</span>
-                               <p className="text-lg font-semibold">{(vessel as any).pricing?.boardingFee}</p>
+                               <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.boardingFee)}</p>
                              </div>
                              <div className="bg-muted/50 p-4 rounded-lg">
                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa Churrasqueiro</span>
-                               <p className="text-lg font-semibold">{(vessel as any).pricing?.barbecueStaff}</p>
+                               <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.barbecueStaff)}</p>
                              </div>
                           </div>
                         </div>
@@ -1932,16 +1934,16 @@ Aguardo confirmação! 🌊
                           <div className="grid md:grid-cols-3 gap-4">
                              <div className="bg-muted/50 p-4 rounded-lg">
                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Valor Base</span>
-                               <p className="text-lg font-semibold">{(vessel as any).pricing?.base}</p>
+                               <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.base)}</p>
                                <p className="text-xs text-muted-foreground">5 horas</p>
                              </div>
                              <div className="bg-muted/50 p-4 rounded-lg">
                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa Churrasqueiro</span>
-                               <p className="text-lg font-semibold">{(vessel as any).pricing?.barbecueStaff}</p>
+                               <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.barbecueStaff)}</p>
                              </div>
                              <div className="bg-muted/50 p-4 rounded-lg">
                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Taxa de Embarque</span>
-                               <p className="text-lg font-semibold">{(vessel as any).pricing?.boardingFee}</p>
+                               <p className="text-lg font-semibold">{publicPrice((vessel as any).pricing?.boardingFee)}</p>
                              </div>
                           </div>
                         </div>
@@ -1957,7 +1959,7 @@ Aguardo confirmação! 🌊
                               <div key={index} className="border border-primary/20 p-4 rounded-lg">
                                 <div className="flex justify-between items-center">
                                   <h5 className="font-semibold text-primary">{destination.name}</h5>
-                                  <span className="font-bold text-sm text-green-600">{destination.price}</span>
+                                  <span className="font-bold text-sm text-green-600">{publicPrice(destination.price)}</span>
                                 </div>
                               </div>
                             ))}
@@ -2008,17 +2010,17 @@ Aguardo confirmação! 🌊
                            </div>
                          </div>
 
-                         {/* Preços por Roteiro */}
+                         {/* Roteiros e orçamento */}
                          <div>
                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
                              <Sun className="h-5 w-5 mr-2" />
-                             Preços por Roteiro
+                             Roteiros e orçamento
                            </h4>
                             <div className="grid md:grid-cols-3 gap-4">
                               {(vessel as any).destinations?.map((destination: any, index: number) => (
                                <div key={index} className="border border-primary/20 p-4 rounded-lg text-center">
                                  <h5 className="font-semibold text-primary mb-2">{destination.name}</h5>
-                                 <span className="text-2xl font-bold text-green-600">{destination.price}</span>
+                                 <span className="text-2xl font-bold text-green-600">{publicPrice(destination.price)}</span>
                                </div>
                              ))}
                            </div>
@@ -2094,35 +2096,35 @@ Aguardo confirmação! 🌊
                            </div>
                          </div>
 
-                         {/* Roteiros e Preços */}
+                         {/* Roteiros e orçamento */}
                          <div>
                            <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
                              <MapPin className="h-5 w-5 mr-2" />
-                             Roteiros e Preços
+                             Roteiros e orçamento
                            </h4>
                            <div className="grid md:grid-cols-2 gap-4">
                              <div className="border border-primary/20 p-4 rounded-lg">
                                <div className="flex justify-between items-center">
                                  <h5 className="font-semibold text-primary">Roteiro Urca</h5>
-                                 <span className="font-bold text-lg text-green-600">R$ 7.000,00</span>
+                                 <span className="font-bold text-lg text-green-600">Sob consulta</span>
                                </div>
                              </div>
                              <div className="border border-primary/20 p-4 rounded-lg">
                                <div className="flex justify-between items-center">
                                  <h5 className="font-semibold text-primary">Roteiro Praia Vermelha</h5>
-                                 <span className="font-bold text-lg text-green-600">R$ 8.000,00</span>
+                                 <span className="font-bold text-lg text-green-600">Sob consulta</span>
                                </div>
                              </div>
                              <div className="border border-primary/20 p-4 rounded-lg">
                                <div className="flex justify-between items-center">
                                  <h5 className="font-semibold text-primary">Roteiro Niterói</h5>
-                                 <span className="font-bold text-lg text-green-600">R$ 8.000,00</span>
+                                 <span className="font-bold text-lg text-green-600">Sob consulta</span>
                                </div>
                              </div>
                              <div className="border border-primary/20 p-4 rounded-lg">
                                <div className="flex justify-between items-center">
                                  <h5 className="font-semibold text-primary">Roteiro Ilha Cagarras/Copacabana</h5>
-                                 <span className="font-bold text-lg text-green-600">R$ 9.500,00</span>
+                                 <span className="font-bold text-lg text-green-600">Sob consulta</span>
                                </div>
                              </div>
                            </div>
@@ -2297,11 +2299,11 @@ Aguardo confirmação! 🌊
                             </div>
                           </div>
 
-                          {/* Roteiro e Preços */}
+                          {/* Roteiro e orçamento */}
                           <div>
                             <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
                               <MapPin className="h-5 w-5 mr-2" />
-                              Roteiro e Preços
+                              Roteiro e orçamento
                             </h4>
                             <div className="border border-primary/20 p-6 rounded-lg bg-gradient-to-r from-primary/5 to-secondary/5">
                               <div className="text-center">
@@ -2312,7 +2314,7 @@ Aguardo confirmação! 🌊
                                 <p className="text-sm text-muted-foreground mb-4">
                                   (Roteiro completo mediante condições do mar)
                                 </p>
-                                <span className="font-bold text-3xl text-green-600">R$ 11.500,00</span>
+                                <span className="font-bold text-3xl text-green-600">Sob consulta</span>
                               </div>
                             </div>
                           </div>
@@ -2329,7 +2331,7 @@ Aguardo confirmação! 🌊
                                   <h5 className="font-semibold text-orange-800">Taxa de Churrasqueiro</h5>
                                   <p className="text-sm text-orange-600">Serviço de churrasqueiro profissional</p>
                                 </div>
-                                <span className="font-bold text-lg text-orange-600">R$ 200,00</span>
+                                <span className="font-bold text-lg text-orange-600">Sob consulta</span>
                               </div>
                             </div>
                           </div>
@@ -2455,7 +2457,7 @@ Aguardo confirmação! 🌊
                             </div>
                           </div>
 
-                          {/* Roteiros e Preços */}
+                          {/* Roteiros e orçamento */}
                           <div>
                             <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
                               <MapPin className="h-5 w-5 mr-2" />
@@ -2468,7 +2470,7 @@ Aguardo confirmação! 🌊
                                     <h5 className="font-semibold text-blue-800">Roteiro Urca</h5>
                                     <p className="text-sm text-blue-600">Passeio pela região da Urca</p>
                                   </div>
-                                  <span className="font-bold text-xl text-blue-700">R$ 7.700</span>
+                                  <span className="font-bold text-xl text-blue-700">Sob consulta</span>
                                 </div>
                               </div>
                               <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-green-50 to-green-100">
@@ -2477,7 +2479,7 @@ Aguardo confirmação! 🌊
                                     <h5 className="font-semibold text-green-800">Roteiro Praia do Morcego</h5>
                                     <p className="text-sm text-green-600">Visita à Praia do Morcego</p>
                                   </div>
-                                  <span className="font-bold text-xl text-green-700">R$ 8.500</span>
+                                  <span className="font-bold text-xl text-green-700">Sob consulta</span>
                                 </div>
                               </div>
                               <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-orange-50 to-orange-100">
@@ -2486,7 +2488,7 @@ Aguardo confirmação! 🌊
                                     <h5 className="font-semibold text-orange-800">Roteiro Praia Vermelha</h5>
                                     <p className="text-sm text-orange-600">Exploração da Praia Vermelha</p>
                                   </div>
-                                  <span className="font-bold text-xl text-orange-700">R$ 9.000</span>
+                                  <span className="font-bold text-xl text-orange-700">Sob consulta</span>
                                 </div>
                               </div>
                               <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-purple-50 to-purple-100">
@@ -2495,7 +2497,7 @@ Aguardo confirmação! 🌊
                                     <h5 className="font-semibold text-purple-800">Roteiro Copacabana</h5>
                                     <p className="text-sm text-purple-600">Passeio pela costa de Copacabana</p>
                                   </div>
-                                  <span className="font-bold text-xl text-purple-700">R$ 9.500</span>
+                                  <span className="font-bold text-xl text-purple-700">Sob consulta</span>
                                 </div>
                               </div>
                               <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-emerald-50 to-emerald-100">
@@ -2504,7 +2506,7 @@ Aguardo confirmação! 🌊
                                     <h5 className="font-semibold text-emerald-800">Roteiro Ilha Cagarras</h5>
                                     <p className="text-sm text-emerald-600">Aventura nas Ilhas Cagarras</p>
                                   </div>
-                                  <span className="font-bold text-xl text-emerald-700">R$ 11.000</span>
+                                  <span className="font-bold text-xl text-emerald-700">Sob consulta</span>
                                 </div>
                               </div>
                             </div>
@@ -2589,7 +2591,7 @@ Aguardo confirmação! 🌊
                             </div>
                           </div>
 
-                          {/* Roteiros e Preços */}
+                          {/* Roteiros e orçamento */}
                           <div>
                             <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
                               <MapPin className="h-5 w-5 mr-2" />
@@ -2602,7 +2604,7 @@ Aguardo confirmação! 🌊
                                     <h5 className="font-semibold text-blue-800">Roteiro Urca</h5>
                                     <p className="text-sm text-blue-600">Passeio pela região da Urca</p>
                                   </div>
-                                  <span className="font-bold text-xl text-blue-700">R$ 7.000</span>
+                                  <span className="font-bold text-xl text-blue-700">Sob consulta</span>
                                 </div>
                               </div>
                               <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-orange-50 to-orange-100">
@@ -2611,7 +2613,7 @@ Aguardo confirmação! 🌊
                                     <h5 className="font-semibold text-orange-800">Roteiro Praia Vermelha</h5>
                                     <p className="text-sm text-orange-600">Exploração da Praia Vermelha</p>
                                   </div>
-                                  <span className="font-bold text-xl text-orange-700">R$ 7.800</span>
+                                  <span className="font-bold text-xl text-orange-700">Sob consulta</span>
                                 </div>
                               </div>
                               <div className="border border-primary/20 p-4 rounded-lg bg-gradient-to-r from-emerald-50 to-emerald-100">
@@ -2620,7 +2622,7 @@ Aguardo confirmação! 🌊
                                     <h5 className="font-semibold text-emerald-800">Roteiro Ilha Cagarras</h5>
                                     <p className="text-sm text-emerald-600">Aventura nas Ilhas Cagarras</p>
                                   </div>
-                                  <span className="font-bold text-xl text-emerald-700">R$ 8.900</span>
+                                  <span className="font-bold text-xl text-emerald-700">Sob consulta</span>
                                 </div>
                               </div>
                             </div>
@@ -2718,19 +2720,19 @@ Aguardo confirmação! 🌊
                           <div>
                             <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
                               <Sun className="h-5 w-5 mr-2" />
-                              Preços Base
+                              Orçamento
                             </h4>
                             <div className="grid md:grid-cols-2 gap-4">
                                <div className="bg-emerald-50 p-4 lg:p-6 rounded-lg border border-emerald-200">
                                  <div className="text-center">
                                    <h5 className="font-semibold text-emerald-800 mb-2 text-sm lg:text-base">Até 50 passageiros</h5>
-                                   <span className="text-lg lg:text-3xl font-bold text-emerald-700 break-words">{(vessel as any).pricing?.up50}</span>
+                                   <span className="text-lg lg:text-3xl font-bold text-emerald-700 break-words">{publicPrice((vessel as any).pricing?.up50)}</span>
                                  </div>
                                </div>
                                <div className="bg-blue-50 p-4 lg:p-6 rounded-lg border border-blue-200">
                                  <div className="text-center">
                                    <h5 className="font-semibold text-blue-800 mb-2 text-sm lg:text-base">Até 65 passageiros</h5>
-                                   <span className="text-lg lg:text-3xl font-bold text-blue-700 break-words">{(vessel as any).pricing?.up65}</span>
+                                   <span className="text-lg lg:text-3xl font-bold text-blue-700 break-words">{publicPrice((vessel as any).pricing?.up65)}</span>
                                 </div>
                               </div>
                             </div>
@@ -2752,7 +2754,7 @@ Aguardo confirmação! 🌊
                                         <p className="text-sm text-muted-foreground">{service.note}</p>
                                       )}
                                     </div>
-                                    <span className="font-bold text-primary">{service.price}</span>
+                                    <span className="font-bold text-primary">{publicPrice(service.price)}</span>
                                   </div>
                                 </div>
                               ))}
@@ -2888,7 +2890,7 @@ Aguardo confirmação! 🌊
                             </div>
                           </div>
 
-                          {/* Roteiros e Preços */}
+                          {/* Roteiros e orçamento */}
                           <div>
                             <h4 className="text-lg font-semibold mb-4 text-primary flex items-center">
                               <MapPin className="h-5 w-5 mr-2" />
@@ -2898,14 +2900,14 @@ Aguardo confirmação! 🌊
                               <div className="border border-primary/20 p-4 rounded-lg">
                                 <div className="flex justify-between items-start mb-2">
                                   <h5 className="font-semibold text-primary">Roteiro 1: Marina da Glória x Flamengo x Botafogo x Mureta da Urca</h5>
-                                  <span className="font-bold text-lg text-green-600">R$ 2.500,00</span>
+                                  <span className="font-bold text-lg text-green-600">Sob consulta</span>
                                 </div>
                                 <p className="text-sm text-muted-foreground">Passeio completo pelos pontos mais icônicos da Baía de Guanabara</p>
                               </div>
                               <div className="border border-primary/20 p-4 rounded-lg">
                                 <div className="flex justify-between items-start mb-2">
                                   <h5 className="font-semibold text-primary">Roteiro 2: Marina da Glória x Flamengo x Botafogo x Mureta da Urca x Praia Vermelha</h5>
-                                  <span className="font-bold text-lg text-green-600">R$ 2.900,00</span>
+                                  <span className="font-bold text-lg text-green-600">Sob consulta</span>
                                 </div>
                                 <p className="text-sm text-muted-foreground">Roteiro estendido incluindo a paradisíaca Praia Vermelha</p>
                               </div>
@@ -2924,7 +2926,7 @@ Aguardo confirmação! 🌊
                                   <div>
                                     <h5 className="font-semibold">Taxa do Churrasqueiro</h5>
                                   </div>
-                                  <span className="font-bold text-primary">R$ 200,00</span>
+                                  <span className="font-bold text-primary">Sob consulta</span>
                                 </div>
                               </div>
                               <div className="border border-primary/20 p-4 rounded-lg">
@@ -2932,7 +2934,7 @@ Aguardo confirmação! 🌊
                                   <div>
                                     <h5 className="font-semibold">Taxa de Embarque</h5>
                                   </div>
-                                  <span className="font-bold text-primary">R$ 200,00</span>
+                                  <span className="font-bold text-primary">Sob consulta</span>
                                 </div>
                               </div>
                             </div>
@@ -3247,7 +3249,7 @@ Aguardo confirmação! 🌊
                               <div className="border border-primary/20 p-4 rounded-lg">
                                 <div className="flex justify-between items-start mb-2">
                                   <h5 className="font-semibold text-primary">Roteiro Padrão: Urca x Praia Vermelha</h5>
-                                  <span className="font-bold text-lg text-green-600">R$ 8.000,00</span>
+                                  <span className="font-bold text-lg text-green-600">Sob consulta</span>
                                 </div>
                                 <p className="text-sm text-muted-foreground">Roteiro clássico pela região da Urca e Praia Vermelha</p>
                               </div>
@@ -3255,7 +3257,7 @@ Aguardo confirmação! 🌊
                               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                                 <div className="flex items-center mb-3">
                                   <Star className="h-5 w-5 text-blue-600 mr-2" />
-                                  <h5 className="font-semibold text-blue-800">Roteiros Estendidos (Acréscimo R$ 2.000)</h5>
+                                  <h5 className="font-semibold text-blue-800">Roteiros Estendidos (Acréscimo Sob consulta)</h5>
                                 </div>
                                 <div className="space-y-3">
                                   <div className="flex justify-between items-center p-2 bg-white rounded border">
@@ -3263,14 +3265,14 @@ Aguardo confirmação! 🌊
                                       <p className="font-medium">Roteiro Itaipu</p>
                                       <p className="text-xs text-muted-foreground">Extensão para região de Itaipu</p>
                                     </div>
-                                    <span className="font-bold text-primary">R$ 10.000,00</span>
+                                    <span className="font-bold text-primary">Sob consulta</span>
                                   </div>
                                   <div className="flex justify-between items-center p-2 bg-white rounded border">
                                     <div>
                                       <p className="font-medium">Roteiro Cagarras</p>
                                       <p className="text-xs text-muted-foreground">Extensão para Ilhas Cagarras</p>
                                     </div>
-                                    <span className="font-bold text-primary">R$ 10.000,00</span>
+                                    <span className="font-bold text-primary">Sob consulta</span>
                                   </div>
                                 </div>
                               </div>
@@ -3290,8 +3292,8 @@ Aguardo confirmação! 🌊
                             </h4>
                             <div className="grid md:grid-cols-2 gap-4">
                               <div className="bg-muted/50 p-4 rounded-lg">
-                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Preço</span>
-                                <p className="text-lg font-semibold">R$ 20.000,00</p>
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Orçamento</span>
+                                <p className="text-lg font-semibold">Sob consulta</p>
                               </div>
                               <div className="bg-muted/50 p-4 rounded-lg">
                                 <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
@@ -3474,8 +3476,8 @@ Aguardo confirmação! 🌊
                                 <p className="text-lg font-semibold">120 pés</p>
                               </div>
                               <div className="bg-muted/50 p-4 rounded-lg">
-                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Preço Base</span>
-                                <p className="text-lg font-semibold">R$ 80.000,00</p>
+                                <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Orçamento</span>
+                                <p className="text-lg font-semibold">Sob consulta</p>
                               </div>
                               <div className="bg-muted/50 p-4 rounded-lg">
                                 <span className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Duração</span>
@@ -3611,7 +3613,7 @@ Aguardo confirmação! 🌊
                                 <p className="text-blue-700 mb-2">Capacidade para até 100 convidados</p>
                                 <div className="flex justify-between items-center p-2 bg-white rounded border">
                                   <span className="text-sm font-medium">Passageiros adicionais (acima de 80)</span>
-                                  <span className="font-bold text-primary">R$ 1.500,00 por pessoa</span>
+                                  <span className="font-bold text-primary">Sob consulta por pessoa</span>
                                 </div>
                               </div>
                               
@@ -3633,7 +3635,7 @@ Aguardo confirmação! 🌊
                                       <p className="font-medium">Barbecue Experience</p>
                                       <p className="text-xs text-muted-foreground">Experiência completa com cerveja e drinks</p>
                                     </div>
-                                    <span className="font-bold text-primary">R$ 1.500,00/pessoa</span>
+                                    <span className="font-bold text-primary">Sob consulta</span>
                                   </div>
                                 </div>
                               </div>
