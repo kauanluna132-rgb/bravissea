@@ -612,8 +612,6 @@ const VesselCatalog = () => {
               className="px-4 py-3 bg-background border border-border/50 rounded-lg focus:border-primary focus:outline-none"
             >
               <option value="featured">Destaques</option>
-              <option value="price-low">Menor Preço</option>
-              <option value="price-high">Maior Preço</option>
               <option value="capacity">Capacidade</option>
               <option value="rating">Avaliação</option>
             </select>
