@@ -18,7 +18,7 @@ const steps = [
     icon: Search,
     title: "Escolha sua Embarcação",
     description: "Navegue por nossa frota premium e selecione a embarcação ideal para sua ocasião",
-    details: ["Filtre por tipo e capacidade", "Veja fotos e especificações", "Compare preços e avaliações"]
+    details: ["Filtre por tipo e capacidade", "Veja fotos e especificações", "Compare características e avaliações"]
   },
   {
     id: 2,
